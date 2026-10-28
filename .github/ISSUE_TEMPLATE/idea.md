@@ -13,4 +13,4 @@ labels: idea
 **大概的效果：**
 
 
-- [ ] 符合[内容规则](https://github.com/WaterLily5297/claude-chan-isaac/blob/main/CONTRIBUTING.md#内容规则重要)（敌人是滥用机制，不是人）
+- [ ] 符合[内容规则](https://github.com/WaterLily5297/claude-chan-isaac-v2/blob/main/CONTRIBUTING.md#内容规则重要)（敌人是滥用机制，不是人）

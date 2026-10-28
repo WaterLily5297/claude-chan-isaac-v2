@@ -1,5 +1,10 @@
 # Changelog
 
+## Repository move (2026-10-28; documentation)
+
+- Development continues in WaterLily5297/claude-chan-isaac-v2 with main's full history. PR and issue numbers before this entry belong to the original repository, which stays as a read-only record with its old branches.
+- No gameplay or file layout change. The mod folder name stays `claude-chan-isaac`, so installed builds and saves are unaffected.
+
 ## Open item rules decided (2026-10-28; documentation)
 
 - The owner delegated the remaining rule questions. The implemented rules stand for F3 (Herd Bell, Tibo Reset, Nano Banana, One Small Rock a Day), F5 (Same Model Badge restarts on every uncleared entry) and F14 (Token Recall takes your blue and blood tears). The design table now matches the code.
