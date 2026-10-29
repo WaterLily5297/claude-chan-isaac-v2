@@ -31,8 +31,8 @@ Merged units use v2 PR numbers. The old-repository PR #104-#148 table is preserv
 
 | PR | Area | Result | Evidence |
 |---|---|---|---|
-| [#1](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/1) | Repository move | Updated repository links and documented the v2 PR-number reset. No gameplay or runtime files changed. | [Merged 2026-10-28](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/1); source checks passed. |
-| [#3](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/3) | Handoff | Archived the old PR table; started v2 history. | CI passed; docs only. |
+| [#1](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/1) | Repo move | Pointed links to v2 and recorded the PR reset; gameplay unchanged. | CI passed; docs only. |
+| [#3](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/3), [#4](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/4) | Handoff | Archived old PR table; started v2 history. | CI passed; docs only. |
 
 ## Long-term completion gates
 
