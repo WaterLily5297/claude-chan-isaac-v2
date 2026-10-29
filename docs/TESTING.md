@@ -2,6 +2,12 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U3: seeded backlog cache mixtures (2026-10-30; offline stub)
+
+`backlog_seeded_compatibility_test.lua` samples 32 fixed seeds, with two owners and inventory sets drawn from all 80 registered collectible IDs. It loads the real backlog service/family modules, evaluates damage, speed, range and shot-speed caches, dispatches three updates and one supplied ordinary tear hit per owner, then removes inventory before a room transition. The matrix checks finite stats, baseline cache restoration and cleared room-scoped backlog data. The fixture passed under `texlua`.
+
+This is not a 22-form integration test: it does not load character callbacks or the non-backlog item modules. It does not prove no double billing, release every character shooting lock, or define persistence for every item after removal. Focused existing suites cover selected real-module billing/lifecycle rules; all native timing, damage and visual checks remain open. PR #2's pedestal, trinket and dossier appearance is still untested by the owner.
+
 ## W1.3 batch 06: ten original item icons (2026-10-27; offline)
 
 [Batch 06](ITEM_ART_BATCH_06.md) replaces ten Doubao/Kimi/GLM placeholders with original object drawings, explicit palettes/provenance and deterministic hashes. Initial/final 1x/4x sheets were viewed on light/dark fields. Fly wings and gear teeth were separated; the existing margin check caught a projection-foot edge contact, corrected before the final generation and review. Names, effects and registration remain unchanged.
