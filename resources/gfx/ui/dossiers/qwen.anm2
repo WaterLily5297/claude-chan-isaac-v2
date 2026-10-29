@@ -3,7 +3,7 @@
   <Info CreatedBy="Claude-chan contributors" Version="1" Fps="30" />
   <Content>
     <Spritesheets>
-      <Spritesheet Path="gfx/ui/dossiers/qwen.png" Id="0" />
+      <Spritesheet Path="qwen.png" Id="0" />
     </Spritesheets>
     <Layers>
       <Layer Name="Portrait" Id="0" SpritesheetId="0" />

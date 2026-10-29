@@ -100,10 +100,10 @@ def generate(skins_only=False):
         return
     for key in FAMILIES:
         anm2 = (ROOT / f"resources/gfx/ui/dossiers/{key}.anm2").read_text(encoding="utf-8")
-        old = f'gfx/ui/dossiers/{key}.png"'
+        old = f'Path="{key}.png"'
         assert old in anm2, key
         (ROOT / f"resources/gfx/ui/dossiers/{key}_b.anm2").write_text(
-            anm2.replace(old, f'gfx/ui/dossiers/{key}_b.png"'), encoding="utf-8")
+            anm2.replace(old, f'Path="{key}_b.png"'), encoding="utf-8")
     # Menu cells: keep the hand-approved tainted Claude/DeepSeek cells untouched.
     menu = Image.open(ROOT / "content/gfx/ai_portraits.png").convert("RGBA")
     alt_path = ROOT / "content/gfx/ai_portraits_b.png"

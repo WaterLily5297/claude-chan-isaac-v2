@@ -70,8 +70,17 @@ for path in files:
         gfxroot = root.get("gfxroot", "")
         for el in root:
             gfx = el.get("gfx")
-            if gfx and not os.path.isfile(os.path.join("resources", gfxroot, gfx)):
-                print(f"  ✗ {path}: 「{el.get('name')}」的贴图不存在 / sprite missing: resources/{gfxroot}{gfx}")
+            if not gfx:
+                continue
+            # 引擎会自己加 collectibles/ 或 trinkets/，gfx 只能写文件名
+            # The engine adds the collectibles/ or trinkets/ folder; gfx is a bare file name.
+            if "/" in gfx:
+                print(f"  ✗ {path}: 「{el.get('name')}」gfx 不能带文件夹 / gfx must not name a folder: {gfx}")
+                ok = False
+                continue
+            folder = "trinkets" if el.tag == "trinket" else "collectibles"
+            if not os.path.isfile(os.path.join("resources", gfxroot, folder, gfx)):
+                print(f"  ✗ {path}: 「{el.get('name')}」的贴图不存在 / sprite missing: resources/{gfxroot}{folder}/{gfx}")
                 ok = False
 if ok:
     print(f"  ✓ {len(files)} 个 XML 文件，贴图都在")

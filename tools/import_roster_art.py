@@ -142,7 +142,7 @@ def main():
         save(labels.crop((0,index*32,128,index*32+32)),ROOT/f'resources/gfx/ui/boss/playername_{gamekey}.png')
         # Clone the known valid one-frame structure for each dossier.
         actor=ET.parse(ROOT/'content/gfx/characterportraits.anm2').getroot()
-        actor.find('./Content/Spritesheets/Spritesheet').set('Path',f'gfx/ui/dossiers/{key}.png')
+        actor.find('./Content/Spritesheets/Spritesheet').set('Path',f'{key}.png')  # relative to the .anm2 folder
         animations=actor.find('Animations')
         first=copy.deepcopy(animations[0])
         animations.clear(); animations.set('DefaultAnimation','Idle')
