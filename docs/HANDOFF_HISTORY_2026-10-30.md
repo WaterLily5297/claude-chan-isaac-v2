@@ -17,4 +17,3 @@ All are offline source/tooling/documentation work; none is installed or engine-a
 | Stability | #114, #117, #120, #125 | Usage/Limited load validation, GPT/Grok binding allocation ([PERFORMANCE.md](PERFORMANCE.md)), thumbnail exporter repair, scheduled [hardening](HARDENING_2026-10-27.md). |
 | Install record | #104 | Documentation sync installed as `8fd6a8c`. |
 | Documentation | #131, #133, #138, #148 | Handoff compacted (D2 in TESTING.md), [PUBLISHING.md](PUBLISHING.md) refreshed (Workshop still not authorized), CHANGELOG caught up, F3/F5/F14 decided as coded. |
-
