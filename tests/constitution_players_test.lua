@@ -4,7 +4,8 @@ ModCallbacks = setmetatable({}, {__index=function(_, k) return k end})
 DamageFlag = {DAMAGE_IV_BAG=1, DAMAGE_RED_HEARTS=2, DAMAGE_FAKE=4, DAMAGE_NO_PENALTIES=8}
 EntityType = {ENTITY_PLAYER=1}
 CacheFlag = {CACHE_DAMAGE=1, CACHE_SPEED=2}
-PlayerType = {PLAYER_LAZARUS_B=29, PLAYER_LAZARUS2_B=38, PLAYER_THEFORGOTTEN_B=35, PLAYER_THESOUL_B=40}
+PlayerType = {PLAYER_JACOB=19, PLAYER_ESAU=20, PLAYER_LAZARUS_B=29, PLAYER_THEFORGOTTEN_B=35,
+    PLAYER_LAZARUS2_B=38, PLAYER_THESOUL_B=40}
 function include(name)
     assert(name == "scripts.constants")
     return {Item={CONSTITUTION=746}}
@@ -105,6 +106,18 @@ function skeleton:GetOtherTwin() return soul end
 start();tick(soul);tick(skeleton)
 assert(soul.soul==4 and skeleton.soul==0,"tainted shared inventory receives one pickup reward")
 assert(hit(soul)==false and hit(skeleton)==nil,"tainted shared inventory spends one shield")
+
+-- Jacob and Esau are distinct player IDs with their own per-slot item state.
+local jacob, esau = player(365), player(366)
+jacob.kind, esau.kind = PlayerType.PLAYER_JACOB, PlayerType.PLAYER_ESAU
+function jacob:GetOtherTwin() return esau end
+function esau:GetOtherTwin() return jacob end
+players={jacob,esau};start();tick(jacob);tick(esau)
+assert(jacob.soul==2 and esau.soul==2,"both twin player IDs receive independent pickup rewards")
+assert(hit(jacob)==false and hit(esau)==false,"each twin has an independent first-hit block")
+assert(hit(jacob)==nil and hit(esau)==nil,"one twin cannot spend the other's shield")
+fire("MC_POST_NEW_LEVEL")
+assert(hit(esau)==false and hit(jacob)==false,"both twin slots rearm on a new floor")
 
 -- Flip swaps active entities in a slot; returning is not a new co-op join.
 local living,dead=player(370),player(380)
