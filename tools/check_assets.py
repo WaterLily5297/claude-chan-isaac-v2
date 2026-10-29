@@ -65,7 +65,9 @@ for entry in roster + [{'key': e['key'] + '_b'} for e in roster]:
     assert png[24:26] == bytes([8, 6]), key
     actor = ET.parse(root / f'resources/gfx/ui/dossiers/{key}.anm2')
     for sheet in actor.findall('./Content/Spritesheets/Spritesheet'):
-        assert (root / 'resources' / sheet.get('Path')).is_file(), key
+        # The engine resolves spritesheet paths relative to the .anm2 folder.
+        assert sheet.get('Path') == f'{key}.png', key
+        assert (root / 'resources/gfx/ui/dossiers' / sheet.get('Path')).is_file(), key
     frame = actor.find('./Animations/Animation/LayerAnimations/LayerAnimation/Frame')
     assert (int(frame.get('Width')), int(frame.get('Height'))) == (384, 576), key
     assert frame.get('XCrop') == '0' and frame.get('YCrop') == '0', key
