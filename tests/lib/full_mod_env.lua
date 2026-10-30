@@ -1,4 +1,4 @@
--- Full entry-point fixture for supplied update workloads, not an Isaac emulator.
+-- Full entry-point fixture for supplied offline callbacks, not an Isaac emulator.
 -- Reuses explicit entity stand-ins; missing API methods fail instead of auto-nooping.
 local Full = {}
 Full.families={"Claude", "DeepSeek", "GPT", "Gemini", "Grok", "Qwen", "Llama", "Mistral", "Doubao", "Kimi", "GLM"}
@@ -39,13 +39,14 @@ function Full.New(root, kinds, options)
     EntityType.ENTITY_LASER,EntityType.ENTITY_KNIFE,EntityType.ENTITY_BOMB=7,8,4
     EntityFlag.FLAG_CHARM=256
     DamageFlag.DAMAGE_EXPLOSION=4; DamageFlag.DAMAGE_IV_BAG=4096; DamageFlag.DAMAGE_RED_HEARTS=32
-    CacheFlag.CACHE_TEARCOLOR=32; CacheFlag.CACHE_FLYING=64
+    CacheFlag.CACHE_TEARCOLOR=32; CacheFlag.CACHE_FLYING=64; CacheFlag.CACHE_TEARFLAG=128
     ActiveSlot.SLOT_POCKET=2
     Direction.NO_DIRECTION=-1
     CollectibleType.COLLECTIBLE_BIRTHRIGHT=619
     PlayerForm={NUM_PLAYER_FORMS=15}
     TearFlags={TEAR_LUDOVICO=1<<30,TEAR_HOMING=1<<2,TEAR_PIERCING=1<<1,TEAR_SPECTRAL=1<<0}
     TearFlags.TEAR_POISON=1<<4; TearFlags.TEAR_SLOW=1<<5
+    TearFlags.TEAR_KNOCKBACK=1<<6
     EffectVariant.ROCKET=31
     RoomType={ROOM_DEFAULT=1,ROOM_BOSS=5}
     SoundEffect={SOUND_POWERUP_SPEWER=132}
@@ -218,8 +219,17 @@ function Full.New(root, kinds, options)
         function p:AddPlayerFormCostume() count("formCostumes") end
         function p:EvaluateItems()
             count("cacheRebuilds")
-            self.Damage,self.MoveSpeed,self.TearRange,self.ShotSpeed,self.MaxFireDelay=3.5,1,260,1,10
-            self.TearColor,self.TearFlags,self.CanFly=Color(1,1,1,1),0,false
+            -- Supplied native cache inputs, not native stat calculation. Reset
+            -- them before every evaluation so previous mod writes cannot compound.
+            local base=self.cacheBase or {}
+            self.Damage=base.Damage or 3.5
+            self.MoveSpeed=base.MoveSpeed or 1
+            self.TearRange=base.TearRange or 260
+            self.ShotSpeed=base.ShotSpeed or 1
+            self.MaxFireDelay=base.MaxFireDelay or 10
+            local c=base.TearColor or Color(1,1,1,1)
+            self.TearColor=Color(c.R,c.G,c.B,c.A,c.RO,c.GO,c.BO)
+            self.TearFlags,self.CanFly=base.TearFlags or 0,base.CanFly or false
             for _,flag in pairs(CacheFlag) do env.fire("MC_EVALUATE_CACHE",nil,self,flag) end
         end
     end
