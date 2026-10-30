@@ -2,6 +2,14 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U4/F23: stale meal-delay metadata (2026-10-31; offline)
+
+The [scheduled review](HARDENING_MEAL_MIGRATION_2026-10-31.md) reproduces an update arithmetic error when legacy or version-2 unowned meal timers contain a malformed leftover priorDelay. Normalization now discards that irrelevant field while retaining valid countdowns and serials. Owned Rice delay/cancellation rules, invalid-owned rejection, durations and rewards are unchanged.
+
+The actual-main suite covers sixteen migration/unowned cases, two independent Rice Cooker debts and one-time rewards on all 22 forms, valid owned delay restoration and foreign cooldown preservation. Baseline fails the migration and Rice Cooker selectors; the valid-owned selector passes before and after. An isolated control and five deliberate source faults validate the assertions. Existing O6, core-field and full-entry save composition cases still pass. These are supplied-event/table-codec results, not native Continue or JSON/disk acceptance.
+
+Recent profile sources, geometry, all-22 Hit cells and all nine approved tainted design hashes remain valid and unchanged. PR #2 files, installed 8fd6a8c, saves/settings and Workshop are untouched. The focused review supplies the handoff pending consolidation; broader nested-state/error isolation remains open.
+
 ## U6: Grok/Qwen profiles and four-direction carry (2026-10-31; offline)
 
 [The focused handoff](GROK_QWEN_CARRY_PROFILES_2026-10-31.md) replaces foreground torsos that cover the face with side arms and a low torso. Four normal/legacy-tainted sheets each change exactly thirty side-walking/front-carry/side-carry cells. Heads, ordinary front/back walking, Hit/Death/fallen and the other eighteen skins remain unchanged. The geometry gate requires central face clearance and both raised hands, with the earlier GLM/GPT/Gemini contracts retained.

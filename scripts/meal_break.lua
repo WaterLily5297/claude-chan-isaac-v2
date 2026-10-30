@@ -44,6 +44,9 @@ function MealBreak:Init(mod, Risk)
                 -- Legacy timers have no reliable source identity; never cancel them as Rice.
                 s.version = 2; s.serial = 0; s.owner = nil
             end
+            -- Only an owned Rice timer leased a prior native fire delay.
+            -- Discard stale metadata without resetting valid meal debt.
+            if s.owner == nil then s.priorDelay = nil end
             if not sameOwner then
                 b = {seed = p.InitSeed, slot = key, frame = Game():GetFrameCount()}
             end

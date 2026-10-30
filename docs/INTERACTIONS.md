@@ -61,7 +61,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `cf3b468f98aa8342bb29b8957c66c1672260d105bfa9d2d3828c6f094de12cab`.
+112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `ba8e2502a37129868a10dc952532fd7c1d7f24fd4128f9b8851934d47df1ec54`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -2115,7 +2115,7 @@ Risk state roots: `vibeMistakes` direct write at L31, L96; `vibeMistakes` read/a
 #### scripts/meal_break.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [meal_break.lua:103](../scripts/meal_break.lua#L103)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [meal_break.lua:115](../scripts/meal_break.lua#L115)), `ModCallbacks.MC_POST_UPDATE` (`default`, [meal_break.lua:119](../scripts/meal_break.lua#L119)), `ModCallbacks.MC_INPUT_ACTION` (`default`, [meal_break.lua:141](../scripts/meal_break.lua#L141)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [meal_break.lua:106](../scripts/meal_break.lua#L106)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [meal_break.lua:118](../scripts/meal_break.lua#L118)), `ModCallbacks.MC_POST_UPDATE` (`default`, [meal_break.lua:122](../scripts/meal_break.lua#L122)), `ModCallbacks.MC_INPUT_ACTION` (`default`, [meal_break.lua:144](../scripts/meal_break.lua#L144)).
 
 
 Cache flag references: none detected.
@@ -2124,16 +2124,16 @@ Cache flag references: none detected.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [meal_break.lua:66](../scripts/meal_break.lua#L66) | `player.FireDelay` | `math.max(player.FireDelay,remaining)` | self-dependent |
+| [meal_break.lua:69](../scripts/meal_break.lua#L69) | `player.FireDelay` | `math.max(player.FireDelay,remaining)` | self-dependent |
 
-| [meal_break.lua:97](../scripts/meal_break.lua#L97) | `player.FireDelay` | `math.min(player.FireDelay,b.state.priorDelay or 0)` | self-dependent |
-
-
-
-Risk state roots: `mealBreaks` direct write at L16, L105; `mealBreaks` read/alias at L16, L17.
+| [meal_break.lua:100](../scripts/meal_break.lua#L100) | `player.FireDelay` | `math.min(player.FireDelay,b.state.priorDelay or 0)` | self-dependent |
 
 
-Unresolved syntax: L51: dynamic field target requires manual review; L52: dynamic field target requires manual review; L54: dynamic field target requires manual review.
+
+Risk state roots: `mealBreaks` direct write at L16, L108; `mealBreaks` read/alias at L16, L17.
+
+
+Unresolved syntax: L54: dynamic field target requires manual review; L55: dynamic field target requires manual review; L57: dynamic field target requires manual review.
 
 
 #### scripts/pickup_safety.lua
