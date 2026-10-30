@@ -17,15 +17,17 @@
     "key": "gpt",
     "portrait_sha256": "324a7b0f58020a42006bb1e0145ecae4f140e855d0980126e2ace660348896e1",
     "sprite_sha256": "950a9bacd9c32f0b1ad347210a4ddc810c2bdd12b1fd44abc6996d7e0be48331",
-    "packed_sprite_sha256": "ebc65cda4442e4e88a348656a58eb85fee26dffe20747513a6e5f0e1db68efd0",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "01841bd956823edcfe08141568577184ea3ac18dbf5b9f0cc9f70a8ec004d0f3",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "gemini",
     "portrait_sha256": "abe1e2e41996b140b733c72f6835ca54daa178a537a766a60365a758579d1aa9",
     "sprite_sha256": "e2e919a4707ff7f5cd475a6160acd21582082c5e2b250689a96422142b2f4ded",
-    "packed_sprite_sha256": "0dcd3e326c9afbd30109c3caca003a98ecedfa51b70646ebf9155a274bc25218",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "31a2b13a0b1b5dcc881c270d431694151b9b89e07be894f62a785918a80d7eea",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "grok",

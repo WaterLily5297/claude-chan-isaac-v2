@@ -2,7 +2,7 @@
 
 Baseline `ffc52bf`; offline geometry review and mechanical packing correction only. Installed `f8b2b0b` is preserved. No game was launched. The owner's historical oversized-hurt-head report remains unclosed in the engine.
 
-Later follow-up: [GLM profile/carry/fallen repair](GLM_PROFILE_POSES_2026-10-31.md) replaces the two GLM side/fallen findings offline. The tables below retain the original O5 observations; they are not the current GLM art status. Native acceptance remains open.
+Later follow-up: [GLM profile/carry/fallen repair](GLM_PROFILE_POSES_2026-10-31.md) replaces the two GLM side/fallen findings offline. The tables below retain the original O5 observations; they are not the current GLM art status. The [GPT/Gemini body repair](GPT_GEMINI_PROFILE_POSES_2026-10-31.md) subsequently replaces their normal/legacy-tainted side and carry bodies, with a foreground face-clearance check. Their head views and all Hit/Death pixels are unchanged. Native acceptance remains open.
 
 ## What was found and changed
 

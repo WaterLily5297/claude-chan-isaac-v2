@@ -2,6 +2,10 @@
 
 The MIT license in the project root covers **code only**. It does not cover the character designs or the art in this folder.
 
+## GPT and Gemini profile/carry sources (2026-10-31)
+
+The two sources under `docs/art/pose-sources/` and their `docs/art/profile-batch-02-review/` comparisons use the built-in image tool and existing credited ZipZipPipe normal identities. They remain non-commercial character-design derivatives, not MIT artwork or official company assets. `docs/profile-pose-repairs.json` records the exact executed revision prompts, accepted source hashes and the earlier unbundled input candidates with their original prompts/reference hashes. Mechanical thresholding, nearest-neighbour packing and the existing tainted recolor preserve the inherited terms. Only mod pixels appear in the comparisons; native animation data and extracted artwork are not bundled. This does not authorize Workshop publication or claim new rights clearance.
+
 ## Approved nine-family tainted design sources (2026-10-31)
 
 The nine PNG sources under `docs/art/tainted-designs/` depict owner-approved alternate GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM identities derived from the credited ZipZipPipe AI-personification designs. They retain the same attribution and non-commercial conditions as the roster artwork below; neither AI generation nor owner design approval places them under the code's MIT licence or establishes new exclusive rights. The comparison JPEG includes existing normal designs and these alternate sources under the same design terms.
