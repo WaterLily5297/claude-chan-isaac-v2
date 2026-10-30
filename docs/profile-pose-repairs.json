@@ -45,7 +45,7 @@
         ],
         "cell_size": 512,
         "scale": [
-          18,
+          11,
           392
         ],
         "collar_x": [
@@ -72,7 +72,8 @@
           2,
           1,
           1
-        ]
+        ],
+        "carry_min_y": 13
       },
       "fallen": {
         "size": [
@@ -85,7 +86,12 @@
         ],
         "bottom": 61
       },
-      "reference_commit": "1206a32946d279304f28890ddf4903aec939734a"
+      "reference_commit": "1206a32946d279304f28890ddf4903aec939734a",
+      "fit_revision": {
+        "date": "2026-10-31",
+        "baseline": "72ffb32ef3d5e41c4962560e8f70cfb895299508",
+        "scope": "Common profile/carry scale preserves foreground face clearance; fallen source and pixels unchanged."
+      }
     },
     {
       "key": "gpt",

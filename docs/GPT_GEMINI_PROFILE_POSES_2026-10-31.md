@@ -45,7 +45,7 @@ Additional local fault experiments reject wrong source hashes/dimensions, Gemini
 
 ## Handoff
 
-Six normal families still need profile repairs: Grok, Qwen, Llama, Mistral, Doubao and Kimi, plus their legacy tainted derivatives. Revisit GLM's earlier carry fit using this foreground-face review; it is deliberately unchanged in this focused unit. Existing head views, front/back consistency, special poses, physical walking/carrying, costumes, size/flight, hurt/death and interpolation remain native review cases.
+Six normal families still need profile repairs: Grok, Qwen, Llama, Mistral, Doubao and Kimi, plus their legacy tainted derivatives. GLM was unchanged in this unit; the subsequent [carry-clearance follow-up](GLM_CARRY_CLEARANCE_2026-10-31.md) addresses its foreground face overlap. Existing head views, front/back consistency, special poses, physical walking/carrying, costumes, size/flight, hurt/death and interpolation remain native review cases.
 
 All nine distinct tainted designs are approved; do not request approval again. Their dossier, stage, menu and complete gameplay adaptation still waits for the overlapping PR #2 importer/generator work. PR #2 remains unmerged and unmodified; consolidated HANDOFF/CHANGELOG edits remain deferred, with this document and TESTING/ART_STATUS providing the current record.
 

@@ -24,6 +24,8 @@ def main():
     parser.add_argument('--animation-reference', type=Path, required=True)
     parser.add_argument('--before-ref', required=True)
     parser.add_argument('--key', default='glm')
+    parser.add_argument('--body-only', action='store_true',
+                        help='Label this review as a body fit, with Hit/Death as unchanged controls')
     args = parser.parse_args()
     output = args.output.resolve()
     if any(output.is_relative_to(ROOT / p) for p in ('resources', 'content')):
@@ -39,10 +41,11 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     panel = Image.new('RGB', (128 + 192*len(SELECTED), 1150), '#202b3a')
     draw = ImageDraw.Draw(panel)
-    scope = 'profile/carry/fallen repair' if 'fallen' in record else 'profile/carry repair; Hit/Death controls'
+    scope = ('profile/carry/fallen repair' if 'fallen' in record and not args.body_only else
+             'profile/carry repair; Hit/Death controls')
     draw.text((12, 8), f'{args.key.upper()} {scope} / mod pixels only / native keyframe transforms', fill='white')
     draw.text((12, 26), 'Native size above; nearest 2x below. Offline only: no item, ghost, tint, costumes or engine effects.', fill='#d2dde8')
-    report = {'before_ref': args.before_ref,
+    report = {'before_ref': args.before_ref, 'scope': scope,
               'animation_sha256': hashlib.sha256(args.animation_reference.read_bytes()).hexdigest(),
               'evidence': 'Offline keyframe composition; single carry-head key held for the cycle; not engine acceptance', 'skins': []}
     for form, suffix in enumerate(('', '_b')):

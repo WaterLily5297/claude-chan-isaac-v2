@@ -2,6 +2,14 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U6: GLM carry foreground clearance (2026-10-31; offline)
+
+[The focused follow-up](GLM_CARRY_CLEARANCE_2026-10-31.md) corrects a foreground body obscuring the face in the supplied carry composition. Repacking the unchanged source at one 11/392 scale keeps all carry cells at y>=13. Each normal/legacy-tainted GLM sheet changes exactly twenty side/carry cells; every head, front/back, Hit/Death/fallen pixel and the other twenty skins are unchanged. The selected central face band changes from 47-50 overlapping body pixels per key to zero under the explicit preview head-hold assumption.
+
+Source reconstruction, idempotence, existing tainted-generator equality, all-22 unchanged Hit and body-only isolation pass. The 22-form/45-key preview has no sampled clipping warnings and preserves mirrors and three GLM phases. Four local faults are rejected: fallen/head/unrelated-family pixel edits and repeated carry pixels crossing the face boundary; positives pass afterward. CI includes the existing geometry/source-hash gate with the GLM clearance setting, while these additional reconstruction/fault controls remain local.
+
+No native animation, input, costume, weapon, save or playability acceptance is claimed. Sources and prompts, PR #2 files, installed 8fd6a8c and private saves/settings are unchanged. This section and the focused record supply the handoff pending consolidation.
+
 ## U6: GPT/Gemini profile and carry fit (2026-10-31; offline)
 
 [The focused handoff](GPT_GEMINI_PROFILE_POSES_2026-10-31.md) records two revised image-tool sources, actual prompts, per-family collar/ground fit and fixed-origin native-transform comparisons. Four normal/legacy-tainted sheets change exactly twenty side/carry cells each. All heads, front/back bodies, Hit/Death cells and the other eighteen skins remain pixel-identical to baseline.

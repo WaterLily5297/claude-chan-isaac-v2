@@ -3,6 +3,7 @@
 Run after the legacy walk pass. --check re-packs the published sources in memory;
 --before-ref also proves every registered skin is unchanged outside the repair
 cells (and unchanged entirely for other families). Requires Pillow, offline only.
+--body-only excludes fallen cells from both packing and the isolation allowance.
 """
 import argparse
 import hashlib
@@ -27,11 +28,11 @@ def side_position(index, carry=False):
     return x + (256 if carry else 0), y
 
 
-def regions(record):
+def regions(record, body_only=False):
     cells = [(x, y, x + 32, y + 32)
             for carry in (False, True) for i in range(10)
             for x, y in [side_position(i, carry)]]
-    return cells + ([(192, 128, 256, 192)] if 'fallen' in record else [])
+    return cells + ([(192, 128, 256, 192)] if 'fallen' in record and not body_only else [])
 
 
 def source_image(record, expected_size):
@@ -47,7 +48,7 @@ def source_image(record, expected_size):
     return Image.alpha_composite(Image.new('RGBA', image.size), image)
 
 
-def apply(atlas, key):
+def apply(atlas, key, body_only=False):
     record = next((r for r in records() if r['key'] == key), None)
     if record is None:
         return atlas
@@ -83,7 +84,7 @@ def apply(atlas, key):
             frames.append(cell)
         for i, phase in enumerate(cfg['cycle']):
             out.paste(frames[phase], side_position(i, bool(row)))
-    if 'fallen' in record:
+    if 'fallen' in record and not body_only:
         cfg = record['fallen']
         part = source_image(record['sources'][1], cfg['size'])
         part = part.crop(part.getbbox())
@@ -94,7 +95,7 @@ def apply(atlas, key):
     return out
 
 
-def verify_isolation(before_ref, keys=None):
+def verify_isolation(before_ref, keys=None, body_only=False):
     repaired = {r['key']: r for r in records() if keys is None or r['key'] in keys}
     players = ET.parse(ROOT / 'content/players.xml').getroot()
     for player in players:
@@ -107,7 +108,7 @@ def verify_isolation(before_ref, keys=None):
             raise ValueError(f'{rel}: atlas dimensions changed')
         key = path.stem.removeprefix('character_').removesuffix('_b').removesuffix('chan')
         if key in repaired:
-            for box in regions(repaired[key]):
+            for box in regions(repaired[key], body_only):
                 new.paste(old.crop(box), box[:2])
         if old.tobytes() != new.tobytes():
             raise ValueError(f'{rel}: pixels changed outside allowed profile/fallen cells')
@@ -118,6 +119,8 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--check', action='store_true')
     parser.add_argument('--before-ref')
+    parser.add_argument('--body-only', action='store_true',
+                        help='Pack/check side and carry bodies while protecting every fallen cell')
     parser.add_argument('--key', action='append', choices=[r['key'] for r in records()],
                         help='Limit writes and allowed change regions to these families; repeatable')
     args = parser.parse_args()
@@ -129,7 +132,7 @@ def main():
             continue
         target = ROOT / f'resources/gfx/characters/costumes/character_{key}chan.png'
         current = Image.open(target).convert('RGBA')
-        rebuilt = apply(current, key)
+        rebuilt = apply(current, key, args.body_only)
         if args.check:
             if current.tobytes() != rebuilt.tobytes():
                 raise ValueError(f'{key}: packed cells differ from published sources')
@@ -142,8 +145,9 @@ def main():
         manifest_path.write_text(json.dumps(manifest, indent=2)+'\n', encoding='utf-8')
         print('Updated normal sheets; regenerate existing tainted skins with --skins-only.')
     if args.before_ref:
-        verify_isolation(args.before_ref, args.key)
-    print('PASS: reviewed profile/carry/fallen source packing; offline only')
+        verify_isolation(args.before_ref, args.key, args.body_only)
+    scope = 'profile/carry' if args.body_only else 'profile/carry/fallen'
+    print(f'PASS: reviewed {scope} source packing; offline only')
 
 
 if __name__ == '__main__':
