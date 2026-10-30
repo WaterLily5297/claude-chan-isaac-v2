@@ -3,8 +3,8 @@
   "files": {
     "resources/gfx/characters/costumes/character_gptchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_gptchan.png",
-      "source_sha256": "ebc65cda4442e4e88a348656a58eb85fee26dffe20747513a6e5f0e1db68efd0",
-      "sha256": "14d5fe866b6e9a7ab95cf5c2c5278597f7e6c1e1c9ea3af10aa6f488e88e6e82"
+      "source_sha256": "01841bd956823edcfe08141568577184ea3ac18dbf5b9f0cc9f70a8ec004d0f3",
+      "sha256": "96b59d7c4552dd25b95370e7b4a4ceb013e6ed0ed9eeba0739bf9a8356aca913"
     },
     "resources/gfx/ui/stage/playerportrait_gptchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_gptchan.png",
@@ -18,8 +18,8 @@
     },
     "resources/gfx/characters/costumes/character_geminichan_b.png": {
       "source": "resources/gfx/characters/costumes/character_geminichan.png",
-      "source_sha256": "0dcd3e326c9afbd30109c3caca003a98ecedfa51b70646ebf9155a274bc25218",
-      "sha256": "0e62cf77b3ef864f112def65e810d1ba38333a2121518d7c41a09d71d99a1656"
+      "source_sha256": "31a2b13a0b1b5dcc881c270d431694151b9b89e07be894f62a785918a80d7eea",
+      "sha256": "839a01e323c571631f078b39595d9353796b2dc8a72db320c9d17897ddf40674"
     },
     "resources/gfx/ui/stage/playerportrait_geminichan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_geminichan.png",

@@ -127,15 +127,18 @@ def main():
                             and box[3] == 26 and box[2]-box[0] <= 20
                             and box[3]-box[1] <= (22 if carry else 18)):
                         failures.append(f'{path.name}: profile cell {i}, carry={carry}: {box}')
+                    if carry and box and box[1] < profile['side'].get('carry_min_y', 0):
+                        failures.append(f'{path.name}: carry cell {i} enters the reviewed face clearance')
                     pixels = b''.join(row[x*4:(x+32)*4] for row in rows[y:y+32])
                     if phase in phases and phases[phase] != pixels:
                         failures.append(f'{path.name}: inconsistent repeated profile phase {phase}')
                     phases[phase] = pixels
                 if len(set(phases.values())) != 3:
                     failures.append(f'{path.name}: profile stride lost one of three source phases')
-            box = alpha_bounds(rows, (192, 130, 64, 64))
-            if not box or box[2]-box[0] < 1.6*(box[3]-box[1]):
-                failures.append(f'{path.name}: repaired fallen silhouette is no longer horizontal')
+            if 'fallen' in profile:
+                box = alpha_bounds(rows, (192, 130, 64, 64))
+                if not box or box[2]-box[0] < 1.6*(box[3]-box[1]):
+                    failures.append(f'{path.name}: repaired fallen silhouette is no longer horizontal')
     if failures:
         raise SystemExit('\n'.join(failures))
     print(f'  OK: {len(players)} skins retain measured Hit/Death envelopes and anchors, with no crop leftovers')

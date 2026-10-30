@@ -1,0 +1,17 @@
+{
+  "before_ref": "c861dc415fe004487665c409fd7f8236cb7f88ed",
+  "animation_sha256": "0f6fff152dd360625b8dfda238d89077c80bdd9666e59b71d145350e08d87505",
+  "evidence": "Offline keyframe composition; single carry-head key held for the cycle; not engine acceptance",
+  "skins": [
+    {
+      "path": "resources/gfx/characters/costumes/character_gptchan.png",
+      "before_sha256": "ebc65cda4442e4e88a348656a58eb85fee26dffe20747513a6e5f0e1db68efd0",
+      "after_sha256": "01841bd956823edcfe08141568577184ea3ac18dbf5b9f0cc9f70a8ec004d0f3"
+    },
+    {
+      "path": "resources/gfx/characters/costumes/character_gptchan_b.png",
+      "before_sha256": "14d5fe866b6e9a7ab95cf5c2c5278597f7e6c1e1c9ea3af10aa6f488e88e6e82",
+      "after_sha256": "96b59d7c4552dd25b95370e7b4a4ceb013e6ed0ed9eeba0739bf9a8356aca913"
+    }
+  ]
+}

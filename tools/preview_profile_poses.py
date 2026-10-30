@@ -29,7 +29,8 @@ def main():
     if any(output.is_relative_to(ROOT / p) for p in ('resources', 'content')):
         parser.error('Review output must stay outside shipped assets')
     repairs = json.loads((ROOT / 'docs/profile-pose-repairs.json').read_text())['repairs']
-    if args.key not in {r['key'] for r in repairs}:
+    record = next((r for r in repairs if r['key'] == args.key), None)
+    if record is None:
         parser.error('Select a family with a registered profile repair')
     # The supplied native carry head has one two-tick key. Hold only that
     # explicitly identified static layer; retain strict coverage elsewhere.
@@ -38,7 +39,8 @@ def main():
     output.mkdir(parents=True, exist_ok=True)
     panel = Image.new('RGB', (128 + 192*len(SELECTED), 1150), '#202b3a')
     draw = ImageDraw.Draw(panel)
-    draw.text((12, 8), f'{args.key.upper()} profile/carry/fallen repair / mod pixels only / native keyframe transforms', fill='white')
+    scope = 'profile/carry/fallen repair' if 'fallen' in record else 'profile/carry repair; Hit/Death controls'
+    draw.text((12, 8), f'{args.key.upper()} {scope} / mod pixels only / native keyframe transforms', fill='white')
     draw.text((12, 26), 'Native size above; nearest 2x below. Offline only: no item, ghost, tint, costumes or engine effects.', fill='#d2dde8')
     report = {'before_ref': args.before_ref,
               'animation_sha256': hashlib.sha256(args.animation_reference.read_bytes()).hexdigest(),
@@ -68,8 +70,8 @@ def main():
                 panel.paste(cell, (x+48, y), cell)
                 zoom = cell.resize((192, 160), Image.Resampling.NEAREST)
                 panel.paste(zoom, (x, y+80), zoom)
-    panel.save(output / 'glm-profile-review.png')
-    (output / 'glm-profile-review.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
+    panel.save(output / f'{args.key}-profile-review.png')
+    (output / f'{args.key}-profile-review.json').write_text(json.dumps(report, indent=2)+'\n', encoding='utf-8')
     print('Rendered normal and legacy tainted before/after at native transforms; offline only')
 
 

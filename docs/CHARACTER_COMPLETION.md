@@ -18,6 +18,8 @@ The [all-form slot review](CHARACTER_SLOT_OWNERS.md) corrects G3/U4 reassignment
 
 The [core save-field review](HARDENING_SAVE_SCALARS_2026-10-31.md) adds U4/G5 loading protection for malformed shared Risk/Silent Update fields. All 22 forms retain their valid saved module maps and consumed Constitution effects through the supplied Continue sequence; non-Claude Risk stays disabled. This narrow core repair does not close nested-schema migration, native Continue or S1-S4.
 
+The [GPT/Gemini profile/carry repair](GPT_GEMINI_PROFILE_POSES_2026-10-31.md) adds offline source reconstruction, foreground-face clearance and unchanged-Hit checks for four skins. It preserves existing heads and all gameplay behavior; it closes no G1-G7 or S1-S4 native acceptance row.
+
 ## All 22 forms
 
 | Form | Implemented loop and approved B1 condition | Birthright and offline evidence | Saved / transient boundary | Text and remaining form-specific work |

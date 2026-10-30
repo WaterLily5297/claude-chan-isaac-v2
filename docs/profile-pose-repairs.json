@@ -2,7 +2,7 @@
   "version": 1,
   "tool": "built-in image_gen",
   "date": "2026-10-31",
-  "scope": "Normal GLM profile/carry and fallen pose; existing tainted recolor inherits geometry, not the newly approved tainted identity. Offline only.",
+  "scope": "Normal GLM, GPT and Gemini profile/carry repairs; only GLM also has a fallen repair. Existing tainted recolors inherit geometry, not the newly approved tainted identities. Offline only.",
   "repairs": [
     {
       "key": "glm",
@@ -84,8 +84,180 @@
           27
         ],
         "bottom": 61
+      },
+      "reference_commit": "1206a32946d279304f28890ddf4903aec939734a"
+    },
+    {
+      "key": "gpt",
+      "reference_commit": "c861dc415fe004487665c409fd7f8236cb7f88ed",
+      "sources": [
+        {
+          "path": "docs/art/pose-sources/gpt_side_parts.png",
+          "sha256": "bd283754f5f697746f88ebbd025b2c22de6cf6511774106d296c9f9020ac3d69",
+          "prompt": "Edit the supplied headless costume animation sheet. Preserve the character's existing costume identity and color palette, but correct TWO production issues: excessive tiny decoration and contact phases that do not clearly exchange the nearer leg. Produce a fresh, clean TRANSPARENT RGBA 1536x1024 sheet, THREE equal columns by TWO equal rows, SIX separate headless chibi body parts, generous transparent gutters of at least 40 pixels around every part. All parts must fit their own 512x512 cell without crossing a boundary. No glow, backdrop, shadow, text or grid.\n\nTreat every component as a small 18-pixel-high game sprite enlarged with nearest-neighbor pixels: very squat clothed torso, short legs, chunky boots, large flat clusters, one dark outline and only a few broad shades. Remove fine lace, little jewels, pattern texture, gradients and subpixel speckles. No head, neck stump, face or hair. This is a costume body layer in a tiny game, not a tall anime figure. Keep strict RIGHT side profile.\n\nTop row walking: cell 1 NEAR LEG forward (bright boot on RIGHT), FAR LEG backward (darker boot on LEFT). Cell 2 passing: near leg straight supporting torso, far knee bent with lifted boot, feet close. Cell 3 NEAR LEG backward (bright boot on LEFT), FAR LEG forward (darker boot on RIGHT). The third cell must visibly reverse the leading leg from the first, not merely change the sleeve. Preserve one consistent torso, neckline, scale and ground baseline.\nBottom row repeats these exact three leg positions with both short arms raised to the sides of the separate head, never holding an item. Keep the same torso/boot scale as the top row. A compact tail trails to the LEFT. No additions to the costume or official logos. Noncommercial derivative credited to ZipZipPipe, no extracted vanilla art.\nKeep the white/lavender dragon-girl dress, simplified flower at waist, very small folded pale wing and short curled lavender tail. Make the skirt hem compact, with two clearly visible boots. The soft pale normal palette stays unchanged.",
+          "references": [
+            {
+              "description": "Earlier generated normal gpt body-sheet candidate, retained privately and not bundled",
+              "sha256": "e45152abd3d82be9eb30a613759f270e3b431f3d680934c96591a865bc20659f",
+              "generation_prompt": "Use case: identity-preserve.\nMake ONE transparent game animation PARTS sheet, exactly three equally spaced columns and two equally spaced rows, six separated headless clothed BODY components from dress neckline to boots. Landscape 3:2 composition, generous empty gutters, no captions or lines. Image 1 is this NORMAL character's selected costume design; image 2 is the current packed game atlas for chibi proportions only.\nStrict RIGHT SIDE PROFILE (90 degrees): the torso and boots point right, nearer sleeve overlaps farther sleeve, tail trails LEFT. Do not show a frontal costume squeezed narrower. No head, hair, face, horns, ears, floating companion or anatomical neck stump. A closed costume neckline ends each part; the game draws the head separately.\nSmall squat chibi anatomy appropriate to a tiny 18-logical-pixel-tall body, chunky dark-outlined pixel clusters, simple flat 5-8 tone shading, large readable shapes, no painterly rendering, fine lace or tiny decoration. Torso/neckline location, body scale and ground line stay consistent in all six cells.\nTop row: WALK right, arms low. Column 1 is left-foot-forward/right-foot-back contact; column 2 passing phase with one bent lifted knee and feet close; column 3 right-foot-forward/left-foot-back contact, with the nearer leg distinguishing it from column 1. Show two separate short boots and natural walking anatomy, not three identical spread-leg poses.\nBottom row: same three walking phases with BOTH short arms lifted overhead beside the separate head position for item carrying. Draw only the arms/body, never the held item. Raised arms must not change the size of torso or boots. Keep every boot, sleeve and tail completely within its cell.\nActual transparent RGBA isolated parts, absolutely no backdrop, glow, ground shadow, text, company emblem, extra pieces or copied vanilla pixels. Noncommercial derivative of the credited ZipZipPipe identity.\nNORMAL GPT costume: white/light-lavender dragon girl's modest white layered dress with a closed frilled neckline, small flower waist ornament, very short compact folded pale wing behind shoulder and a small curled lavender scaled tail behind the dress. White tiny boots. Preserve her soft pale palette and dragon costume; no mint, black gown or hourglass (those belong to a different tainted design). Simplify the long dress into a squat chibi hem above the boots so both stride phases remain readable.",
+              "generation_references": [
+                {
+                  "path": "resources/gfx/ui/dossiers/gpt.png",
+                  "sha256": "5819f0eceb4d3879b4129844494d0358411bf635b25946801c74c6374b34526f"
+                },
+                {
+                  "path": "resources/gfx/characters/costumes/character_gptchan.png",
+                  "sha256": "ebc65cda4442e4e88a348656a58eb85fee26dffe20747513a6e5f0e1db68efd0"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "side": {
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          11,
+          350
+        ],
+        "collar_x": [
+          [
+            308,
+            280,
+            274
+          ],
+          [
+            332,
+            301,
+            289
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "carry_min_y": 13
+      }
+    },
+    {
+      "key": "gemini",
+      "reference_commit": "c861dc415fe004487665c409fd7f8236cb7f88ed",
+      "sources": [
+        {
+          "path": "docs/art/pose-sources/gemini_side_parts.png",
+          "sha256": "8c10780a94fd7bc5ee5e088a3af49e94a7647d9f363d83a734886e951e951b64",
+          "prompt": "Edit the supplied headless costume animation sheet. Preserve the character's existing costume identity and color palette, but correct TWO production issues: excessive tiny decoration and contact phases that do not clearly exchange the nearer leg. Produce a fresh, clean TRANSPARENT RGBA 1536x1024 sheet, THREE equal columns by TWO equal rows, SIX separate headless chibi body parts, generous transparent gutters of at least 40 pixels around every part. All parts must fit their own 512x512 cell without crossing a boundary. No glow, backdrop, shadow, text or grid.\n\nTreat every component as a small 18-pixel-high game sprite enlarged with nearest-neighbor pixels: very squat clothed torso, short legs, chunky boots, large flat clusters, one dark outline and only a few broad shades. Remove fine lace, little jewels, pattern texture, gradients and subpixel speckles. No head, neck stump, face or hair. This is a costume body layer in a tiny game, not a tall anime figure. Keep strict RIGHT side profile.\n\nTop row walking: cell 1 NEAR LEG forward (bright boot on RIGHT), FAR LEG backward (darker boot on LEFT). Cell 2 passing: near leg straight supporting torso, far knee bent with lifted boot, feet close. Cell 3 NEAR LEG backward (bright boot on LEFT), FAR LEG forward (darker boot on RIGHT). The third cell must visibly reverse the leading leg from the first, not merely change the sleeve. Preserve one consistent torso, neckline, scale and ground baseline.\nBottom row repeats these exact three leg positions with both short arms raised to the sides of the separate head, never holding an item. Keep the same torso/boot scale as the top row. A compact tail trails to the LEFT. No additions to the costume or official logos. Noncommercial derivative credited to ZipZipPipe, no extracted vanilla art.\nKeep the indigo/violet cat-girl jacket, wide white-trimmed sleeves, short violet skirt, ONE simple gold star, white/blue boots and a short blue-purple cat tail. The blue/purple normal palette stays unchanged.",
+          "references": [
+            {
+              "description": "Earlier generated normal gemini body-sheet candidate, retained privately and not bundled",
+              "sha256": "81f7857eee9ac334ed043e7388350a6a3e1835fc7d789988b6b0229df6eb0bc1",
+              "generation_prompt": "Use case: identity-preserve.\nMake ONE transparent game animation PARTS sheet, exactly three equally spaced columns and two equally spaced rows, six separated headless clothed BODY components from dress neckline to boots. Landscape 3:2 composition, generous empty gutters, no captions or lines. Image 1 is this NORMAL character's selected costume design; image 2 is the current packed game atlas for chibi proportions only.\nStrict RIGHT SIDE PROFILE (90 degrees): the torso and boots point right, nearer sleeve overlaps farther sleeve, tail trails LEFT. Do not show a frontal costume squeezed narrower. No head, hair, face, horns, ears, floating companion or anatomical neck stump. A closed costume neckline ends each part; the game draws the head separately.\nSmall squat chibi anatomy appropriate to a tiny 18-logical-pixel-tall body, chunky dark-outlined pixel clusters, simple flat 5-8 tone shading, large readable shapes, no painterly rendering, fine lace or tiny decoration. Torso/neckline location, body scale and ground line stay consistent in all six cells.\nTop row: WALK right, arms low. Column 1 is left-foot-forward/right-foot-back contact; column 2 passing phase with one bent lifted knee and feet close; column 3 right-foot-forward/left-foot-back contact, with the nearer leg distinguishing it from column 1. Show two separate short boots and natural walking anatomy, not three identical spread-leg poses.\nBottom row: same three walking phases with BOTH short arms lifted overhead beside the separate head position for item carrying. Draw only the arms/body, never the held item. Raised arms must not change the size of torso or boots. Keep every boot, sleeve and tail completely within its cell.\nActual transparent RGBA isolated parts, absolutely no backdrop, glow, ground shadow, text, company emblem, extra pieces or copied vanilla pixels. Noncommercial derivative of the credited ZipZipPipe identity.\nNORMAL Gemini costume: indigo/violet jacket with wide white/purple sleeves, violet short skirt with white ruffle, a tiny generic gold star ornament, chunky white boots with blue-violet toes, and a compact blue-to-purple cat tail behind. Keep the familiar blue/purple/gold color scheme. A sideward coat panel follows the body rather than spreading symmetrically. No head or hair; do not add magenta-haired tainted-design props or stylus. Simplify detailed jewelry into a few gold pixel clusters.",
+              "generation_references": [
+                {
+                  "path": "resources/gfx/ui/dossiers/gemini.png",
+                  "sha256": "32bad7a3e4ef924bcf2d99778bc6cdc0f01cb81f0c2586a3e928e2c747428b18"
+                },
+                {
+                  "path": "resources/gfx/characters/costumes/character_geminichan.png",
+                  "sha256": "0dcd3e326c9afbd30109c3caca003a98ecedfa51b70646ebf9155a274bc25218"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "side": {
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          11,
+          363
+        ],
+        "collar_x": [
+          [
+            315,
+            283,
+            268
+          ],
+          [
+            370,
+            288,
+            296
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "source_cells": [
+          [
+            [
+              0,
+              0,
+              512,
+              512
+            ],
+            [
+              512,
+              0,
+              1024,
+              512
+            ],
+            [
+              1024,
+              0,
+              1536,
+              512
+            ]
+          ],
+          [
+            [
+              0,
+              512,
+              544,
+              1024
+            ],
+            [
+              544,
+              512,
+              1040,
+              1024
+            ],
+            [
+              1040,
+              512,
+              1536,
+              1024
+            ]
+          ]
+        ],
+        "carry_min_y": 13
       }
     }
-  ],
-  "reference_commit": "1206a32946d279304f28890ddf4903aec939734a"
+  ]
 }
