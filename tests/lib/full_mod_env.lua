@@ -92,6 +92,27 @@ function Full.New(root, kinds, options)
         function t:ResetSpriteScale() self.SpriteScale=Vector(self.Scale,self.Scale) end
         return t
     end
+    -- Typed non-tear sources with explicitly supplied native fields. Creating
+    -- one dispatches no callbacks; tests choose init/update/flight/hit order.
+    function env.weapon(kind,owner)
+        local types={laser=EntityType.ENTITY_LASER,knife=EntityType.ENTITY_KNIFE,
+            bomb=EntityType.ENTITY_BOMB,rocket=EntityType.ENTITY_EFFECT,target=EntityType.ENTITY_EFFECT}
+        local e=env.tear(owner)
+        e.kind,e.Type=kind,assert(types[kind],"unsupported weapon stand-in")
+        e.Scale=1.7
+        if kind=="laser" then
+            e.circle,e.OneHit,e.DisableFollowParent=false,false,false
+            function e:IsCircleLaser() return self.circle end
+        elseif kind=="knife" then
+            e.flying=false
+            function e:IsFlying() return self.flying end
+        elseif kind=="bomb" then e.IsFetus,e.ExplosionDamage=false,20
+        else
+            e.Variant=kind=="rocket" and EffectVariant.ROCKET or EffectVariant.TARGET
+            e.CollisionDamage=nil -- Rocket explosion amounts are supplied by the hit.
+        end
+        return e
+    end
     function Isaac.Spawn(kind,variant,subtype,position,velocity,spawner)
         if kind~=EntityType.ENTITY_TEAR then return baseSpawn(kind,variant,subtype,position,velocity,spawner) end
         local t=env.tear(spawner and spawner:ToPlayer())
