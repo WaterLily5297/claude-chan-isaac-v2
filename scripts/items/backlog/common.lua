@@ -178,7 +178,7 @@ function Common:Init(mod, Risk)
     local stats = { damage = {}, speed = {}, range = {}, shotspeed = {} }
     local leases, volleys, guards, timers, helpers, labels = {}, {}, {}, {}, {}, {}
     local pendingUse, hitThisRoom, lastAttack = {}, {}, {}
-    local dealing = false
+    local dealing, redeal = false, nil
     local started = false
     local owners = SlotOwners.New()
 
@@ -471,6 +471,12 @@ function Common:Init(mod, Risk)
 
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, amount, flags, source, countdown)
         if dealing then return nil end
+        local src = source and source.Entity
+        -- Suppress only this service's replacement of the same source/target
+        -- hit. A character may emit independent player-sourced damage while
+        -- that replacement is being dispatched; it still needs item modifiers.
+        if redeal and redeal.target == GetPtrHash(entity) and src
+            and redeal.source == GetPtrHash(src) then return nil end
         local player = entity:ToPlayer()
         if player then
             local e = source and source.Entity
@@ -497,7 +503,6 @@ function Common:Init(mod, Risk)
         end
         local npc = entity:ToNPC()
         if not npc or npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then return nil end
-        local src = source and source.Entity
         local owner, familiar = Common.Owner(src)
         local lease
         if childLaser(src) then
@@ -518,9 +523,11 @@ function Common:Init(mod, Risk)
         for _, fn in ipairs(modifiers) do mult = mult * (fn(npc, owner, kind, lease) or 1) end
         emit("hit", npc, owner, kind, lease and lease.id ~= "derived" and lease.id or nil, amount * mult)
         if mult ~= 1 and mult > 0 then
-            dealing = true
-            npc:TakeDamage(amount * mult, flags, source, countdown)
-            dealing = false
+            local previous = redeal
+            redeal = {target=GetPtrHash(npc), source=GetPtrHash(src)}
+            local ok, result = pcall(npc.TakeDamage, npc, amount * mult, flags, source, countdown)
+            redeal = previous
+            if not ok then error(result, 0) end
             return false
         end
         return nil
