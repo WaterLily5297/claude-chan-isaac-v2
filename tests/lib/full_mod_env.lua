@@ -139,7 +139,11 @@ function Full.New(root, kinds, options)
     function room:GetTopLeftPos() return topLeft end
     function room:GetBottomRightPos() return bottomRight end
     function room:GetDoor() return nil end
-    function level:GetCurrentRoomDesc() desc.SafeGridIndex=env.roomIndex; return desc end
+    function level:GetCurrentRoomDesc()
+        desc.SafeGridIndex=env.roomIndex
+        desc.SpawnSeed=env.roomIndex+3 -- Supplied room identity, stable on revisits.
+        return desc
+    end
     function level:GetCurses() return 0 end
     function hud:IsVisible() return options.render~=false end
     function hud:ShowItemText() count("captions") end

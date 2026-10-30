@@ -12,6 +12,8 @@ Compare the [gameplay targets](CHARACTER_GAMEPLAY.md), [approved B1 tradeoffs](D
 - English EID, HUD and dossier strings were compared with the principal loop/B1 rules. Short dossier cards omit many details by design; **T1/T2** below are concrete misleading omissions/wording. No screenshot/layout or physical-input pass is claimed.
 - The broad target that all remaining timers survive Continue is stronger than several explicit per-form source descriptions. This table exposes the boundary instead of silently persisting live targets, refunding spent resources or changing cooldown rules. Resolve that design/documentation inconsistency before implementing additional persistence.
 
+The [full-entry target review](HARDENING_TARGET_COMPOSITION_2026-10-30.md) adds G2/G3 composition for five duplicate-form pairs across five supplied weapons, plus a GLM Retry pair. It actually activates Paint, Check, Export, Ratio and tasks, and samples live Birthright gain/loss for Paint/task damage (G4). It fixes an independent Export pulse losing its item modifier inside a backlog damage replacement. This selected coverage does not close the all-form matrices below.
+
 ## All 22 forms
 
 | Form | Implemented loop and approved B1 condition | Birthright and offline evidence | Saved / transient boundary | Text and remaining form-specific work |
