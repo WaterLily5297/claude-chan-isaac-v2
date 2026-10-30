@@ -47,6 +47,8 @@ function Full.New(root, kinds, options)
     TearFlags={TEAR_LUDOVICO=1<<30,TEAR_HOMING=1<<2,TEAR_PIERCING=1<<1,TEAR_SPECTRAL=1<<0}
     TearFlags.TEAR_POISON=1<<4; TearFlags.TEAR_SLOW=1<<5
     TearFlags.TEAR_KNOCKBACK=1<<6
+    TearFlags.TEAR_QUADSPLIT=1<<7; TearFlags.TEAR_FREEZE=1<<8; TearFlags.TEAR_CHARM=1<<9
+    TearFlags.TEAR_CONFUSION=1<<10; TearFlags.TEAR_WIGGLE=1<<11; TearFlags.TEAR_BOOMERANG=1<<12
     EffectVariant.ROCKET=31
     RoomType={ROOM_DEFAULT=1,ROOM_BOSS=5}
     SoundEffect={SOUND_POWERUP_SPEWER=132}
@@ -72,6 +74,31 @@ function Full.New(root, kinds, options)
         return Vector(self.X*c-self.Y*s,self.X*s+self.Y*c)
     end
     function Color(r,g,b,a,ro,go,bo) return {R=r,G=g,B=b,A=a,RO=ro or 0,GO=go or 0,BO=bo or 0} end
+
+    -- Supply resolved ordinary-tear fields. Raw Spawn creates a typed tear but
+    -- does not synthesize POST_FIRE_TEAR; FireTear below explicitly does.
+    local baseTear,baseSpawn=env.tear,Isaac.Spawn
+    function env.tear(owner)
+        local t=baseTear(owner)
+        t.InitSeed,t.SubType=t.hash+4000,0
+        t.CollisionDamage=owner and owner.Damage or 3.5
+        t.TearFlags=owner and owner.TearFlags or 0
+        local c=owner and owner.TearColor or Color(1,1,1,1)
+        t.Color=Color(c.R,c.G,c.B,c.A,c.RO,c.GO,c.BO)
+        t.Velocity=Vector(10,0)
+        t.Height,t.FallingSpeed,t.FallingAcceleration,t.HomingFriction,t.KnockbackMultiplier=-10,0,0.5,0,1
+        function t:HasTearFlags(flags) return self.TearFlags & flags~=0 end
+        function t:AddTearFlags(flags) self.TearFlags=self.TearFlags|flags end
+        function t:ResetSpriteScale() self.SpriteScale=Vector(self.Scale,self.Scale) end
+        return t
+    end
+    function Isaac.Spawn(kind,variant,subtype,position,velocity,spawner)
+        if kind~=EntityType.ENTITY_TEAR then return baseSpawn(kind,variant,subtype,position,velocity,spawner) end
+        local t=env.tear(spawner and spawner:ToPlayer())
+        t.Variant,t.SubType,t.Position,t.Velocity,t.SpawnerEntity=variant,subtype,position,velocity,spawner
+        env.spawned[#env.spawned+1]=t
+        return t
+    end
 
     -- Cache engine stand-ins so their construction is outside measured loops.
     local game=Game(); local room,level,hud=game:GetRoom(),game:GetLevel(),game:GetHUD()
@@ -195,6 +222,21 @@ function Full.New(root, kinds, options)
         p.FireDelay,p.MaxFireDelay,p.CanFly,p.coins=0,10,false,40
         p.aim,p.move,p.TearColor=Vector.Zero,Vector.Zero,Color(1,1,1,1)
         p.trinkets={}; p.SpriteScale=Vector(1,1)
+        local collectibleRng={}
+        function p:GetCollectibleRNG(id)
+            if not collectibleRng[id] then
+                local rng=RNG(); rng:SetSeed(self.InitSeed*7919+id,35); collectibleRng[id]=rng
+            end
+            return collectibleRng[id]
+        end
+        function p:FireTear(position,velocity,_,_,_,_,mult)
+            local t=env.tear(self)
+            t.Position,t.Velocity=position,velocity
+            t.CollisionDamage=t.CollisionDamage*(mult or 1)
+            self.fired[#self.fired+1]=t
+            env.fire("MC_POST_FIRE_TEAR",nil,t)
+            return t
+        end
         local effects={}; local effectList={Size=0}
         function effects:GetEffectsList() return effectList end
         function p:GetPlayerType() count("typeReads"); return self.kindId end
@@ -269,6 +311,13 @@ function Full.New(root, kinds, options)
         end
     end
     function env.resetMetrics() env.metrics={} end
+    function env.primary(player,scale)
+        local t=env.tear(player)
+        t.Scale=scale or t.Scale
+        player.FireDelay=player.MaxFireDelay
+        env.fire("MC_POST_FIRE_TEAR",nil,t)
+        return t
+    end
     function env.saveSnapshot()
         env.fire("MC_PRE_GAME_EXIT",nil,true)
         return codec.decode(assert(env.mod.saved))
