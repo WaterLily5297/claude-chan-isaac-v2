@@ -17,6 +17,7 @@ function Full.New(root, kinds, options)
         else module=rawInclude(name) end
         if name=="scripts.risk" then env.Risk=module end
         if name=="scripts.meal_break" then env.Meal=module end
+        if name=="scripts.items.backlog.common" then env.Backlog=module end
         return module
     end
     local formIds={}
@@ -124,16 +125,32 @@ function Full.New(root, kinds, options)
     local collection={Size=1000}
     function config:GetCollectibles() return collection end
     function Isaac.GetItemConfig() return config end
+    -- Detached snapshots exercise production save composition, not a native
+    -- JSON round trip. Reject runtime objects instead of retaining live aliases.
     local snapshots={}
-    local function copy(value)
-        if type(value)~="table" then return value end
-        local result={}; for k,v in pairs(value) do result[k]=copy(v) end; return result
+    local function copy(value,seen)
+        local kind=type(value)
+        if kind~="table" then
+            assert(kind=="nil" or kind=="string" or kind=="boolean"
+                or (kind=="number" and value==value and math.abs(value)<math.huge),"non-JSON save value")
+            return value
+        end
+        seen=seen or {}; assert(not seen[value],"cyclic save state")
+        assert(getmetatable(value)==nil,"runtime object in save state")
+        seen[value]=true
+        local result={}
+        for k,v in pairs(value) do
+            assert(type(k)=="string" or type(k)=="number","non-scalar save key")
+            result[k]=copy(v,seen)
+        end
+        seen[value]=nil; return result
     end
     package.loaded.json=nil
-    package.preload.json=function() return {
+    local codec={
         encode=function(value) snapshots[#snapshots+1]=copy(value); return tostring(#snapshots) end,
         decode=function(value) return copy(assert(snapshots[tonumber(value)])) end,
-    } end
+    }
+    package.preload.json=function() return codec end
 
     -- Preserve registered priorities and filters. Only dispatch supplied events.
     local dispatch={}
@@ -172,7 +189,8 @@ function Full.New(root, kinds, options)
     end
     for i,kind in ipairs(kinds) do
         local p=env.player(240+i*5)
-        p.kindId,p.InitSeed,p.ControllerIndex=kind,1000+i,i-1
+        p.hash=p.hash+(options.identityBase or 0)
+        p.kindId,p.InitSeed,p.ControllerIndex=kind,1000+i+(options.identityBase or 0),i-1
         p.FireDelay,p.MaxFireDelay,p.CanFly,p.coins=0,10,false,40
         p.aim,p.move,p.TearColor=Vector.Zero,Vector.Zero,Color(1,1,1,1)
         p.trinkets={}; p.SpriteScale=Vector(1,1)
@@ -215,8 +233,19 @@ function Full.New(root, kinds, options)
     dofile(root.."/main.lua")
     env.Item=include("scripts.constants").Item
     for _,id in pairs(env.Item) do env.config[id]={ID=id,MaxCharges=4,ChargeType=0} end
-    env.fire("MC_POST_GAME_STARTED",nil,false)
-    env.fire("MC_POST_NEW_ROOM")
+    if options.inventory then
+        for i,p in ipairs(env.players) do p.items=copy(options.inventory[i] or {}) end
+    end
+    if options.snapshot then
+        env.mod.saved=codec.encode(options.snapshot)
+        -- Supply the initial-room-before-start sequence explicitly. This is
+        -- one ordering, not a claim that the engine always uses it.
+        env.fire("MC_POST_NEW_ROOM")
+        env.fire("MC_POST_GAME_STARTED",nil,true)
+    else
+        env.fire("MC_POST_GAME_STARTED",nil,false)
+        env.fire("MC_POST_NEW_ROOM")
+    end
     function env.step(n)
         for _=1,n or 1 do
             env.frame=env.frame+1
@@ -230,6 +259,10 @@ function Full.New(root, kinds, options)
         end
     end
     function env.resetMetrics() env.metrics={} end
+    function env.saveSnapshot()
+        env.fire("MC_PRE_GAME_EXIT",nil,true)
+        return codec.decode(assert(env.mod.saved))
+    end
     function env.preview()
         for _,p in ipairs(env.players) do
             p.items[env.Item.UNCHANGED_PREVIEW]=1
