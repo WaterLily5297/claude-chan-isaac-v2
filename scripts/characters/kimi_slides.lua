@@ -1,5 +1,6 @@
 -- Normal Kimi: Another Slide Deck. Unique clears earn Slides; DROP presents them.
 -- Saved per-player Slides and unique clears. The live presentation is transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -83,6 +84,10 @@ function Kimi:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.kimi_slides", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isKimi(p) then return end
         local b = bindings[GetPtrHash(p)]

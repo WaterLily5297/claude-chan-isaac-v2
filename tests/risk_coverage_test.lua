@@ -20,7 +20,7 @@ function Isaac.GetPlayer(i) return players[i+1] end
 function Isaac.GetScreenHeight() return 270 end
 ModCallbacks = setmetatable({}, {__index=function(_,k) return k end})
 CacheFlag = {CACHE_DAMAGE=1}
-CallbackPriority = {DEFAULT=0,LATE=1000}
+CallbackPriority = {EARLY=-100,DEFAULT=0,LATE=1000}
 DamageFlag = {DAMAGE_FAKE=1 << 21,DAMAGE_NO_PENALTIES=1 << 28}
 EntityType = {ENTITY_PLAYER=1}
 function RNG() return {SetSeed=function() end, RandomInt=function() return 0 end, RandomFloat=function() return 1 end} end

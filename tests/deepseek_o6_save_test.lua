@@ -34,7 +34,7 @@ package.preload.json=function() return {
     decode=function() return copy(saved) end,
 } end
 ModCallbacks=setmetatable({}, {__index=function(_,k) return k end})
-CallbackPriority={LATE=1000}
+CallbackPriority={EARLY=-100,LATE=1000}
 EntityType={ENTITY_PLAYER=1,ENTITY_LASER=7,ENTITY_KNIFE=8}
 EffectVariant={TARGET=30,ROCKET=31}
 CacheFlag={CACHE_SPEED=1,CACHE_DAMAGE=2}

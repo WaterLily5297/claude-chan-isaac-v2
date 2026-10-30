@@ -12,6 +12,7 @@
 -- Three unique combat clears earn a Page. Range +1.5, Shot Speed +0.2.
 -- Pocket item: Banked Reset, which refills Quota and cancels a pending review.
 
+local SaveSync = include("scripts.save_sync")
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
@@ -113,6 +114,10 @@ function TaintedClaude:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.claude_chan_b", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]

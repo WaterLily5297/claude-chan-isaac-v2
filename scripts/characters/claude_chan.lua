@@ -16,6 +16,7 @@
 -- keeps it through the first suspension on each floor without cancelling the
 -- penalty. Older saves with one shared age give it to each Claude present.
 
+local SaveSync = include("scripts.save_sync")
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
@@ -152,6 +153,10 @@ function ClaudeChan:Init(mod, Risk)
         -- Type changes on the same pointer/seed deliberately retain Claude debt.
         -- An observed departure or a new pointer/seed still ends that account.
     end
+
+    SaveSync.Register(Risk, "character.claude_chan", function()
+        if ready then observeOwners() end
+    end)
 
     local function getUsage(player)
         observeOwners()

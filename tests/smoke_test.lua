@@ -47,7 +47,7 @@ DoorSlot = { NUM_DOOR_SLOTS = 8 }
 TearFlags = { TEAR_HOMING = "homing", TEAR_PIERCING = "piercing", TEAR_SPECTRAL = "spectral", TEAR_POISON = "poison", TEAR_SLOW = "slow" }
 PickupVariant = { PICKUP_COLLECTIBLE = 100, PICKUP_LOCKEDCHEST = 60, PICKUP_COIN = 20 }
 ModCallbacks = setmetatable({}, { __index = function(_, k) return k end })
-CallbackPriority = { DEFAULT = 0, LATE = 1000 }
+CallbackPriority = {EARLY=-100, DEFAULT = 0, LATE = 1000 }
 EffectVariant = { TARGET = 30, ROCKET = 31 }
 EntityType = { ENTITY_PLAYER = 1, ENTITY_TEAR = 2, ENTITY_PROJECTILE = 9, ENTITY_CLOTTY = 15 }
 CacheFlag = { CACHE_DAMAGE = 1, CACHE_RANGE = 2, CACHE_SHOTSPEED = 4, CACHE_SPEED = 8, CACHE_TEARCOLOR = 16, CACHE_FIREDELAY = 32, CACHE_FLYING = 64 }

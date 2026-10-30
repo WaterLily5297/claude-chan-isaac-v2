@@ -1,6 +1,7 @@
 -- Tainted Doubao: I'll Do It Again. An overpromise/recovery cycle: Confident,
 -- then Apology, then ready to promise again. Timers run only in hostile combat.
 -- Saved per player: the current phase and its remaining frames.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -62,6 +63,10 @@ function Again:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.doubao_again", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]

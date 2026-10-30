@@ -13,6 +13,7 @@ local json = require("json")
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local ModelRoster = include("scripts.characters.model_roster")
+local SaveSync = include("scripts.save_sync")
 
 local Risk = {}
 
@@ -176,6 +177,7 @@ function Risk:RollIp()
 end
 
 function Risk:Save(mod)
+    if started then SaveSync.Run(self) end
     mod:SaveData(json.encode(self.state))
 end
 
@@ -210,8 +212,9 @@ function Risk:Init(mod)
         started = true
     end)
 
-    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function(_, shouldSave)
-        if shouldSave then
+    -- Save while live ownership bindings still exist, before normal cleanup.
+    mod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.EARLY, function(_, shouldSave)
+        if started and shouldSave then
             Risk:Save(mod)
         end
         started, checkpoint = false, false
@@ -229,10 +232,11 @@ function Risk:Init(mod)
     -- Checkpoint every floor as well as on exit. If the game closes without a
     -- normal exit (crash, forced close), continuing must not load mod state
     -- from an older session or a different run.
-    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+    -- Include normal update handlers' floor, cap and ownership changes.
+    mod:AddPriorityCallback(ModCallbacks.MC_POST_UPDATE, CallbackPriority.LATE, function()
         if started and checkpoint then
-            checkpoint = false
             Risk:Save(mod)
+            checkpoint = false
         end
     end)
 

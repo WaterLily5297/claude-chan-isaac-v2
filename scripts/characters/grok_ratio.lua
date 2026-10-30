@@ -2,6 +2,7 @@
 -- lands on the quoted target when the timer runs out. Original parody; Grok and
 -- the parody account Gork stay distinct. Saved per player: the selection cooldown.
 -- The live selection and Ratio are transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -67,6 +68,10 @@ function Ratio:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.grok_ratio", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]

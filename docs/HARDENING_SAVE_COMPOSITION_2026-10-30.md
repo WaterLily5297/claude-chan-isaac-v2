@@ -42,6 +42,8 @@ These fault copies are validation controls, not production changes or newly disc
 
 ## Remaining limits and next work
 
+Follow-up on 2026-10-30: the [final-save correction](HARDENING_SAVE_BARRIER_2026-10-30.md) covers last-slot changes before any normal update, settled floor checkpoints and duplicate-exit/failure controls. The observations below describe this earlier suite; their native and broader migration limits still apply.
+
 - This is offline evidence under supplied events. The codec copies finite scalar values and plain tables, rejects cycles/metatables/functions and separates snapshots from live state. It does not serialize native JSON, reproduce numeric-key conversion, validate corrupted disk files or emulate engine entities.
 - Continue explicitly supplies the initial-room-before-game-start sequence. Fresh starts supply game-start then new-room. No player-init callback is supplied, so starting pockets/menu selection are outside the fixture. Those orders and the frame clock are inputs, not observations of Repentance or Repentance+.
 - The rotation case observes a live slot change before saving. A slot change immediately followed by a save, native save timing, same-frame floor checkpoints, special subplayers, native inventory restoration and inter-mod callback order remain open.

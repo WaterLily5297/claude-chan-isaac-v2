@@ -3,7 +3,7 @@
 local root = arg[1]
 local env = dofile(root.."/tests/lib/backlog_env.lua").New(root)
 local mode = arg[2] or "all"
-CallbackPriority = {DEFAULT=0,LATE=1000}
+CallbackPriority = {EARLY=-100,DEFAULT=0,LATE=1000}
 DamageFlag.DAMAGE_IV_BAG, DamageFlag.DAMAGE_RED_HEARTS = 4096,32
 package.preload.json = function() return {encode=function() return "{}" end,decode=function() return {} end} end
 local names = {"Claude-chan","DeepSeek-chan","GPT-chan","Gemini-chan","Grok-chan",

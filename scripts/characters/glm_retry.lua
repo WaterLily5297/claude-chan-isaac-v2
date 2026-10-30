@@ -1,6 +1,7 @@
 -- Tainted GLM: Please Retry. Schedule a request on one enemy; if it is still
 -- there when the request lands, it hits hard. Failed requests earn bounded,
 -- deterministic Retry stacks. Saved per player: Retry stacks only.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -60,6 +61,10 @@ function Retry:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.glm_retry", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]

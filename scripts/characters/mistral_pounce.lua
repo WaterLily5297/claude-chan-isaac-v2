@@ -1,6 +1,7 @@
 -- Normal Mistral: Le Chat. Move while firing to charge a Pounce, then swipe forward.
 -- No player teleport or contact immunity. The ready Pounce is saved per player;
 -- charge and cooldown are transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -63,6 +64,10 @@ function Mistral:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.mistral_pounce", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isMistral(p) then return end
         local b = bindings[GetPtrHash(p)]
