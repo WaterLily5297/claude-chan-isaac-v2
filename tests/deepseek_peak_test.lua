@@ -2,7 +2,7 @@
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
 local callbacks, players, saved, draws, spawned = {}, {}, nil, {}, {}
-local C={Player={DEEPSEEK_CHAN=42,DEEPSEEK_CHAN_B=142}}
+local C={RISK_MAX=100,Player={DEEPSEEK_CHAN=42,DEEPSEEK_CHAN_B=142}}
 function include(name)
     if name=="scripts.constants" then return C end
     if name=="scripts.characters.model_roster" then return {Find=function() end} end

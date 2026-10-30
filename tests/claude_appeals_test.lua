@@ -8,7 +8,7 @@ local paused=false
 EntityFlag={FLAG_FRIENDLY=1}
 function EntityPtr(e) return {Ref=e} end
 local function pos(x) return {X=x,Y=0,Distance=function(self,o) return math.abs(self.X-o.X) end} end
-local C = {Player={CLAUDE_CHAN=41}, Item={BAN_HAMMER=733, SUBAGENT_SWARM=745}}
+local C = {RISK_MAX=100,Player={CLAUDE_CHAN=41}, Item={BAN_HAMMER=733, SUBAGENT_SWARM=745}}
 local Hud = {T=function(_,key,...) return key..":"..table.concat({...},",") end,
     Draw=function(_,text) draws[#draws+1]=text end}
 function include(name)

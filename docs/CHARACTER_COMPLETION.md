@@ -16,6 +16,8 @@ The [full-entry target review](HARDENING_TARGET_COMPOSITION_2026-10-30.md) adds 
 
 The [all-form slot review](CHARACTER_SLOT_OWNERS.md) corrects G3/U4 reassignment: the same continuously observed owner keeps saved progress and transient ability bindings through a slot move. All 22 forms have duplicate/mixed four-player and detached Continue cases; 17 active timelines compare moved/stationary owners. Actual replacements and observed departures still start fresh. This supersedes the earlier conservative swap-reset fixtures, without deciding native special-body identity or closing S1-S4.
 
+The [core save-field review](HARDENING_SAVE_SCALARS_2026-10-31.md) adds U4/G5 loading protection for malformed shared Risk/Silent Update fields. All 22 forms retain their valid saved module maps and consumed Constitution effects through the supplied Continue sequence; non-Claude Risk stays disabled. This narrow core repair does not close nested-schema migration, native Continue or S1-S4.
+
 ## All 22 forms
 
 | Form | Implemented loop and approved B1 condition | Birthright and offline evidence | Saved / transient boundary | Text and remaining form-specific work |

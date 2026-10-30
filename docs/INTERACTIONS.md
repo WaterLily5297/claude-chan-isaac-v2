@@ -30,7 +30,7 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Charm before ordinary shields | Absolutely Right previously registered a default-priority observer before backlog guards. The real-module fixture reproduced charm on a Sold Out-blocked bullet. | [Corrected to LATE](CHARM_DAMAGE_ORDER.md), with existing source/duration/flag behavior retained. Native final health/status timing, vetoes after LATE and other hit reactions remain open. |
 | Tear copying and helper damage | [tear_fork.lua](../scripts/tear_fork.lua) copies parent damage/colour/flags into a new child. Other helpers use native creation, scaling and later field writes. | [Full-entry ordinary-shot coverage](FULL_MOD_PRIMARY_COMPOSITION.md) checks Swarm/Peak resolved copies, Context aging and actual One More Finger synchronous helpers alongside form/item resource accounting. Raw-spawn and helper event contracts remain supplied inputs; production already passes. Preserve established ownership rules; no child-billing fix from static findings. Native E2 remains required for unresolved ancestry. |
 | Flight cache | [transformation.lua](../scripts/transformation.lua) assigns `CanFly = true` only after its transformation predicate, within the flight cache. | Intentional grant, not an unconditional loss of native flight. [264 seeded composition cases](AGENTIC_COSTUME_COMPOSITION.md) now exercise the real backlog, transformation and costume-lock callbacks: threshold/removal, supplied native flight, cache rebuilding, type departure/return and vanilla controls. Character ability loops and native cache/render timing remain open. |
-| Shared Risk roots | Risk owns serialization/default restoration; legacy `accountAge` is read/migrated by Claude; backlog families share the versioned service through local aliases. The scanner finds direct shared access to `claudeUsage` and `reviewApproved`. | Shared roots are expected in services, but do not prove per-player isolation. [Character slot continuity](CHARACTER_SLOT_OWNERS.md) fixes 21 forms resetting the same observed owners on slot moves; all 22 form records and 17 active timelines now have bounded offline reassignment coverage. W6.1 still needs native identity/save ordering, unobserved moves, broader migration and special-body cases. Dynamic or nested writes remain visible as unresolved work, not accepted coverage. |
+| Shared Risk roots | Risk owns serialization/default restoration; legacy `accountAge` is read/migrated by Claude; backlog families share the versioned service through local aliases. The scanner finds direct shared access to `claudeUsage` and `reviewApproved`. | Shared roots are expected in services, but do not prove per-player isolation. The [core loading review](HARDENING_SAVE_SCALARS_2026-10-31.md) validates the eight existing base fields independently while retaining valid module maps; its dynamic boolean-key loop is limited to the four named legacy/pickup flags. [Character slot continuity](CHARACTER_SLOT_OWNERS.md) fixes 21 forms resetting the same observed owners on slot moves; all 22 form records and 17 active timelines now have bounded offline reassignment coverage. W6.1 still needs native identity/save ordering, unobserved moves, broader migration and special-body cases. Dynamic or nested writes remain visible as unresolved work, not accepted coverage. |
 | Checkpoint Pin multi-assignment | [backlog/shared.lua](../scripts/items/backlog/shared.lua) restores `Position` and clears `Velocity` in one assignment. | Both targets are listed without pretending the RHS was resolved. Existing mechanism tests and a later native collision/room case determine acceptance. |
 | Ignore Instructions dynamic targets | [ignore_instructions.lua](../scripts/items/ignore_instructions.lua) indexes transient primary records by owner pointer and active slot. The four unresolved indexed assignments update/remove these local records; they do not write native entity fields or Risk state. | Manually reviewed for consume/refusal/replacement behavior, EntityPtr/seed identity and room/start clearing. Eight fault checks strengthen offline coverage. Native pairing and recursive external uses remain open in F2; the lexical warnings stay visible. |
 | Callback cancellation and explicit late callbacks | Constitution registers before Risk; Risk and Vibe damage bookkeeping use explicit LATE priority. Swarm's fire-tear callback also declares LATE. Other registrations generally use default priority. | Preserve cancellation/derived-shot regressions. Review callbacks with early returns and external integrations by actual event, not the whole-file callback list. Static default priority alone is not an ordering defect. |
@@ -61,7 +61,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `e25b2fba208cd4e88fc2126667a8c087c0bebf3243f5e1c866f14a1440a5635d`.
+112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `cf3b468f98aa8342bb29b8957c66c1672260d105bfa9d2d3828c6f094de12cab`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -2175,7 +2175,7 @@ Risk state roots: none detected.
 #### scripts/risk.lua
 
 
-Callbacks: `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [risk.lua:197](../scripts/risk.lua#L197)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [risk.lua:203](../scripts/risk.lua#L203)), `ModCallbacks.MC_PRE_GAME_EXIT` (`CallbackPriority.EARLY`, [risk.lua:216](../scripts/risk.lua#L216)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [risk.lua:225](../scripts/risk.lua#L225)), `ModCallbacks.MC_POST_UPDATE` (`CallbackPriority.LATE`, [risk.lua:236](../scripts/risk.lua#L236)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [risk.lua:243](../scripts/risk.lua#L243)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`CallbackPriority.LATE`, [risk.lua:248](../scripts/risk.lua#L248)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [risk.lua:255](../scripts/risk.lua#L255)), `ModCallbacks.MC_POST_RENDER` (`default`, [risk.lua:261](../scripts/risk.lua#L261)).
+Callbacks: `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [risk.lua:230](../scripts/risk.lua#L230)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [risk.lua:236](../scripts/risk.lua#L236)), `ModCallbacks.MC_PRE_GAME_EXIT` (`CallbackPriority.EARLY`, [risk.lua:249](../scripts/risk.lua#L249)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [risk.lua:258](../scripts/risk.lua#L258)), `ModCallbacks.MC_POST_UPDATE` (`CallbackPriority.LATE`, [risk.lua:269](../scripts/risk.lua#L269)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [risk.lua:276](../scripts/risk.lua#L276)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`CallbackPriority.LATE`, [risk.lua:281](../scripts/risk.lua#L281)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [risk.lua:288](../scripts/risk.lua#L288)), `ModCallbacks.MC_POST_RENDER` (`default`, [risk.lua:294](../scripts/risk.lua#L294)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -2184,14 +2184,14 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [risk.lua:199](../scripts/risk.lua#L199) | `player.Damage` | `player.Damage*SUSPENDED_DAMAGE_MULT` | self-dependent |
+| [risk.lua:232](../scripts/risk.lua#L232) | `player.Damage` | `player.Damage*SUSPENDED_DAMAGE_MULT` | self-dependent |
 
 
 
-Risk state roots: `[dynamic]` direct write at L190; `[whole table]` direct write at L33, L185, L209; `[whole table]` read/alias at L181; `ip` direct write at L166; `ip` read/alias at L271; `risk` direct write at L133, L137; `risk` read/alias at L94, L133, L151, L275; `sharedUsers` direct write at L174; `sharedUsers` read/alias at L271.
+Risk state roots: `[dynamic]` direct write at L222; `[whole table]` direct write at L65, L217, L242; `[whole table]` read/alias at L213, L226; `ip` direct write at L198; `ip` read/alias at L304; `risk` direct write at L165, L169; `risk` read/alias at L126, L165, L183, L308; `sharedUsers` direct write at L206; `sharedUsers` read/alias at L304.
 
 
-Unresolved syntax: L190: dynamic field target requires manual review.
+Unresolved syntax: L222: dynamic field target requires manual review; L61: dynamic field target requires manual review.
 
 
 #### scripts/save_sync.lua
