@@ -35,6 +35,8 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Ignore Instructions dynamic targets | [ignore_instructions.lua](../scripts/items/ignore_instructions.lua) indexes transient primary records by owner pointer and active slot. The four unresolved indexed assignments update/remove these local records; they do not write native entity fields or Risk state. | Manually reviewed for consume/refusal/replacement behavior, EntityPtr/seed identity and room/start clearing. Eight fault checks strengthen offline coverage. Native pairing and recursive external uses remain open in F2; the lexical warnings stay visible. |
 | Callback cancellation and explicit late callbacks | Constitution registers before Risk; Risk and Vibe damage bookkeeping use explicit LATE priority. Swarm's fire-tear callback also declares LATE. Other registrations generally use default priority. | Preserve cancellation/derived-shot regressions. Review callbacks with early returns and external integrations by actual event, not the whole-file callback list. Static default priority alone is not an ordering defect. |
 | Optional EID registration | Missing or throwing EID registration methods previously escaped `Eid:Init()` and interrupted later entry-point registrations. The indexed `warned[method]` assignment is a local diagnostic map, not engine or Risk state. | [Isolated at the adapter boundary](EID_ISOLATION.md), with failing-before fixtures, unchanged healthy description records and real-entry-point smoke coverage. Native EID versions, rendering and other optional integrations remain open. |
+| Meal completion versus cancellation | MealBreak clears its timer on death before the backlog update. Rice Cooker formerly interpreted that zero as completed lunch. | F16 is corrected by requiring a living owner for a new reward. [Real-service composition](HARDENING_2026-10-30.md) preserves normal completion, owner isolation, character-meal cancellation and primary weapon damage/payment. Native death/revival remains open. |
+| Unspent Rate-Limit Valve prime after removal | A prime earned while holding the passive remains in the common transient prime table when the item is removed; later attacks can still consume it. | Separate U3 removal candidate. The composition review consumes warm-up primes through real attacks before isolating Rice Cooker. That is not acceptance of the passive's removal policy; follow up with a dedicated inventory-loss regression and distinguish unspent primes from already resolved projectiles. |
 
 No gameplay fix was bundled with the original audit because those findings needed semantic checks before code changes. The later W2 audit reproduced normal-Claude account transfer on live slot replacement and added transient owner isolation with failing-before regressions; [TESTING.md](TESTING.md) retains the precise scope, same-entity debt exception and native limits. W4.2 takes other confirmed defects individually. W4.3 expands native categories and W4.4 adds seeded mod-item combinations. W2/W3 completion tables should link findings to exact registered content and current EID/HUD rules. W6 owns serialization/performance review. Do not treat an empty or manually classified overlap list as engine acceptance.
 
@@ -52,7 +54,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `a2ae74bad61f805ab4798d961f10937693dd26b724cb4722aaa35ca4dd860122`.
+111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `54b90f4245bce5e5d57a3f3d4e25091f4efee6800ba3274ee0394489ef627524`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1094,7 +1096,7 @@ Unresolved syntax: L132: dynamic field target requires manual review; L193: dyna
 #### scripts/items/backlog/deepseek.lua
 
 
-Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:27](../scripts/items/backlog/deepseek.lua#L27)), `ModCallbacks.MC_PRE_PICKUP_COLLISION` (`default`, [items/backlog/deepseek.lua:60](../scripts/items/backlog/deepseek.lua#L60)), `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:90](../scripts/items/backlog/deepseek.lua#L90)).
+Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:27](../scripts/items/backlog/deepseek.lua#L27)), `ModCallbacks.MC_PRE_PICKUP_COLLISION` (`default`, [items/backlog/deepseek.lua:62](../scripts/items/backlog/deepseek.lua#L62)), `ModCallbacks.MC_USE_ITEM` (`default`, [items/backlog/deepseek.lua:92](../scripts/items/backlog/deepseek.lua#L92)).
 
 
 Cache flag references: none detected.
@@ -1106,7 +1108,7 @@ Direct tracked-field writes: none detected.
 Risk state roots: none detected.
 
 
-Unresolved syntax: L74: dynamic field target requires manual review; L84: dynamic field target requires manual review.
+Unresolved syntax: L76: dynamic field target requires manual review; L86: dynamic field target requires manual review.
 
 
 #### scripts/items/backlog/doubao.lua

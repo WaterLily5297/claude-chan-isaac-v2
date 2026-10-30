@@ -30,7 +30,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Open Weights | Download for free: blue flies | 2 | 4 rooms | 4 room charges; 2 blue flies for each living player (solo: 4) |
 | Please Retry | Server busy: 3 delayed tears | 2 | 6 rooms | 6 room charges; Fires 3 tears at 0.6x damage, half a second apart, along your aim; Leaving the room cancels the rest |
 | Release Soon | Two more weeks: delayed bullet guards | 1 | 6 rooms | 6 room charges; 2 seconds later: 3 guards against ordinary enemy bullets for 6 seconds; Leaving the room cancels it |
-| Rice Cooker | Lunch first, then a x2 attack | 2 | 4 rooms | 4 room charges; 3-second lunch: can't shoot, can move, no healing; Then your next attack within 7 seconds deals x2; Car Battery does not double the meal |
+| Rice Cooker | Lunch first, then a x2 attack | 2 | 4 rooms | 4 room charges; 3-second lunch: can't shoot, can move, no healing; Then your next attack within 7 seconds deals x2; Dying before lunch ends cancels the pending reward; Car Battery does not double the meal |
 | Sanity Test | Mark an enemy: 3 separate attacks, x3 pulse | 2 | 4 rooms | 4 room charges; Marks the nearest enemy within 220 units for 6 seconds; 3 different attacks hitting it trigger a 3x damage pulse; No target: keeps the charge |
 | Seahorse Emoji | It definitely exists: summon a random wisp | 1 | 3 rooms | 3 room charges; Summons a Book of Virtues wisp of a random vanilla active; It disappears when you leave the room; One per player; using again replaces it |
 | Slide Deadline | Due in eight seconds: kill marks, DMG up | 2 | 4 rooms | 4 room charges; Marks up to 3 enemies within 250 units for 8 seconds; Kill them all in time: +15% damage for this room |

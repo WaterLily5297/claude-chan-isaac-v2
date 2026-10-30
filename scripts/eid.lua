@@ -15,7 +15,7 @@ local descriptions = {
         en_us = { "Anniversary Cake", "Each floor finished without an enemy hit or a suspension: +0.15 damage (max +0.6)#A spoiled floor resets only this bonus" },
     },
     [Constants.Item.RICE_COOKER] = {
-        en_us = { "Rice Cooker", "4 room charges#3-second lunch: can't shoot, can move, no healing#Then your next attack within 7 seconds deals x2#Car Battery does not double the meal" },
+        en_us = { "Rice Cooker", "4 room charges#3-second lunch: can't shoot, can move, no healing#Then your next attack within 7 seconds deals x2#Dying before lunch ends cancels the pending reward#Car Battery does not double the meal" },
     },
     [Constants.Item.ONE_BOWL] = {
         en_us = { "One Bowl Only", "The first red heart you pick up in a room grants one guard against an ordinary enemy bullet#Max 1 guard, 3 per floor" },
