@@ -3,7 +3,7 @@
 local root, selected = assert(arg[1]), arg[2]
 local callbacks, players, saved, frame, paused, down = {}, {}, nil, 0, false, {}
 local Risk, Meal
-local C = {Player={DEEPSEEK_CHAN=42, CLAUDE_CHAN=41, CLAUDE_CHAN_B=43}, Item={}}
+local C = {RISK_MAX=100,Player={DEEPSEEK_CHAN=42, CLAUDE_CHAN=41, CLAUDE_CHAN_B=43}, Item={}}
 function C.IsDeepSeek(p) return p:GetPlayerType()==42 end
 function include(name)
     if name=="scripts.constants" then return C end

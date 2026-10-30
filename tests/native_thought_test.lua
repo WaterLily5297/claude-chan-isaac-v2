@@ -2,7 +2,7 @@
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
 local callbacks, players, saved, draws = {}, {}, nil, {}
-local C={Player={DEEPSEEK_CHAN=42},Item={LUNCH_BREAK=749,MILLION_CONTEXT=739}}
+local C={RISK_MAX=100,Player={DEEPSEEK_CHAN=42},Item={LUNCH_BREAK=749,MILLION_CONTEXT=739}}
 function include(name)
     if name=="scripts.characters.deepseek_rice" and arg[2] then return dofile(arg[2]) end
     if name=="scripts.constants" then return C end

@@ -30,6 +30,38 @@ local function defaultState()
     }
 end
 
+local function numberInRange(value, minimum, maximum)
+    return type(value) == "number" and value == value and value >= minimum and value <= maximum
+end
+
+local function validIp(value)
+    if type(value) ~= "string" or #value > 15 then return false end
+    local a,b,c,d = value:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)$")
+    if not a then return false end
+    for _,octet in ipairs({a,b,c,d}) do
+        if #octet > 3 or tonumber(octet) > 255 then return false end
+    end
+    return true
+end
+
+local function normalizeCore(state)
+    -- Repair only these service-owned scalar fields. Valid owner maps and
+    -- legacy module fields must reach their own migrations unchanged.
+    if not numberInRange(state.risk, 0, Constants.RISK_MAX) or state.risk ~= math.floor(state.risk) then
+        state.risk = 0
+    end
+    if not validIp(state.ip) then state.ip = "0.0.0.0" end
+    -- RollIp generates at most 20 + 200 users; zero is the initial state.
+    if not numberInRange(state.sharedUsers, 0, 220) or state.sharedUsers ~= math.floor(state.sharedUsers) then
+        state.sharedUsers = 0
+    end
+    -- Silent Update's existing floor roll is 0.8..1.3; the neutral default is 1.
+    if not numberInRange(state.silentMult, 0.8, 1.3) then state.silentMult = 1 end
+    for _,key in ipairs({"residentialApplied", "relayApplied", "constitutionApplied", "constitutionBlockUsed"}) do
+        state[key] = state[key] == true
+    end
+end
+
 Risk.state = defaultState()
 
 local SUSPEND_AT = 90
@@ -191,6 +223,7 @@ function Risk:Load(mod)
             end
         end
     end
+    normalizeCore(self.state)
 end
 
 function Risk:Init(mod)

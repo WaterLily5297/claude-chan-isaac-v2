@@ -1,7 +1,7 @@
 -- Real item/pill/input callbacks, detached saves and fresh player wrappers.
 local root, oldItem = arg[1], arg[2]
 local callbacks, players, frame, paused, saved = {}, {}, 0, false, nil
-local C = {Item={LUNCH_BREAK=749}, Pill={GETTING_FOOD=51, CAT_GIRL=50}}
+local C = {RISK_MAX=100,Item={LUNCH_BREAK=749}, Pill={GETTING_FOOD=51, CAT_GIRL=50}}
 function include(name)
     if name == "scripts.constants" then return C end
     if name == "scripts.characters.model_roster" then return { Find = function() end } end

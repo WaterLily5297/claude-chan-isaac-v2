@@ -2,7 +2,7 @@
 -- JSON is a detached snapshot stub; engine save-file acceptance stays separate.
 local root = arg[1]
 local callbacks, players, frame, saved = {}, {}, 1, nil
-local C = {Player={CLAUDE_CHAN=41}, Item={BAN_HAMMER=733, COMPACT=735, BANKED_RESET=744}}
+local C = {RISK_MAX=100,Player={CLAUDE_CHAN=41}, Item={BAN_HAMMER=733, COMPACT=735, BANKED_RESET=744}}
 local Hud = {T=function(_,key,...) return key..":"..table.concat({...},",") end, Draw=function() end}
 function include(name)
     if name=="scripts.constants" then return C end

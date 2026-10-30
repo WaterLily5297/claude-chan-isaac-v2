@@ -2,7 +2,7 @@
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
 local callbacks, players, saved, draws, texts = {}, {}, nil, {}, {}
-local C={Player={CLAUDE_CHAN=41,CLAUDE_CHAN_B=141,DEEPSEEK_CHAN=42},Item={BANKED_RESET=744,SUBAGENT_SWARM=745}}
+local C={RISK_MAX=100,Player={CLAUDE_CHAN=41,CLAUDE_CHAN_B=141,DEEPSEEK_CHAN=42},Item={BANKED_RESET=744,SUBAGENT_SWARM=745}}
 function include(name)
     if name=="scripts.constants" then return C end
     if name=="scripts.characters.model_roster" then return {Find=function() end, IsFamily=function() return false end} end
