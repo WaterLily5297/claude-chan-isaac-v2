@@ -153,7 +153,7 @@ enter(2,true)
 assert(hud()=="Grok-chan: DROP: quote someone",hud())
 
 -- DROP quotes the nearest hostile within 220 units; nothing nearby spends nothing.
-enemy(400); tap(p); assert(hud()=="Grok-chan: DROP: quote someone" and state().cooldown==0)
+enemy(400); tap(p); assert(hud()=="DROP: No target in range" and state().cooldown==0)
 local friend=enemy(30); friend.friendly=true
 local quoted,other,third=enemy(50),enemy(120),enemy(200)
 tap(p); assert(texts[#texts]=="Quoted" and state().cooldown==300)
@@ -168,7 +168,7 @@ step(); hit(quoted,tear(p)); step(); hit(other,tear(q)); step(); hit(other,tear(
 assert(hud()=="Grok-chan: Ratio 0/3  6s","an own-only reply loses one Ratio")
 for _=1,4 do step(); hit(third,tear(p)) end
 assert(hud()=="Grok-chan: Ratio 3/3  6s","Ratio caps at three")
-tap(p); assert(state().cooldown<300 and hud():find("Ratio 3/3"),"no retarget during the quote")
+tap(p); assert(state().cooldown<300 and hud()=="DROP: Quote cooling down","no retarget during the quote")
 
 -- At expiry the quoted target takes one 1x pulse per stack.
 local before=#quoted.taken

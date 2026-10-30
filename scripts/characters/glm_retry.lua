@@ -149,7 +149,8 @@ function Retry:Init(mod, Risk)
                 end
             end
             -- The cooldown outlasts the request, so only one is ever pending.
-            if drop:Poll(p, combat and b.cooldown == 0) then
+            if drop:Poll(p, combat and b.cooldown == 0,
+                not combat and "Needs combat" or "Request cooling down") then
                 local target = Tools.Nearest(p.Position, RADIUS)
                 -- No target means no request and no cooldown.
                 if target then
@@ -157,6 +158,8 @@ function Retry:Init(mod, Risk)
                     Feedback.Mark(target, Color(1, 1, 1, 1, 0.3, 0.1, 0.35), REQUEST_FRAMES)
                     b.cooldown = COOLDOWN_FRAMES
                     Game():GetHUD():ShowItemText("GLM-chan", "Request queued")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -169,6 +172,7 @@ function Retry:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("GLM-chan: Retries %d/%d", b.state.retries, RETRY_CAP)
             if b.request then text = text..string.format("  Request Pending %ds", math.ceil(b.request.remaining / 30))
             elseif b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end

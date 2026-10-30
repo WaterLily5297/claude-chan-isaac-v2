@@ -142,13 +142,16 @@ function Gemini:Init(mod, Risk)
                     if b.mark.remaining <= 0 then b.mark = nil end
                 end
             end
-            if drop:Poll(p, s.paint > 0) then
+            if drop:Poll(p, s.paint > 0,
+                "No Paint left") then
                 local target = Tools.Nearest(p.Position, MARK_RADIUS)
                 -- No target means no Paint is spent. A new mark replaces the old one.
                 if target then
                     s.paint = s.paint - 1
                     b.mark = {ref=EntityPtr(target), hash=GetPtrHash(target), remaining=MARK_FRAMES}
                     Game():GetHUD():ShowItemText("Gemini-chan", "Wet paint: wait one second")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -202,7 +205,8 @@ function Gemini:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Gemini-chan: Paint %d/%d", b.state.paint, PAINT_CAP)
             if b.mark then
                 local drying = b.mark.remaining - (MARK_FRAMES - DRY_FRAMES)

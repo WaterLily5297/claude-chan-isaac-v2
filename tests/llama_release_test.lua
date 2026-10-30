@@ -156,7 +156,8 @@ local p=players[1]
 assert(state().releases==1); p:EvaluateItems(); near(p.Damage,9.5)
 assert(hud()=="Llama-chan: Releases 1/2  Next 0/2",hud())
 clear=false; tap(p); assert(p.flies==0 and state().releases==1,"combat keeps the Release")
-assert(texts[#texts]=="Prepare the release between fights")
+assert(texts[#texts]~="Prepare the release between fights","refusal stays out of shared captions")
+assert(hud()=="DROP: Release between fights",hud()); tick(45)
 assert(hud():find("Between fights"),hud()); clear=true
 down[0]=true; tick(20); down[0]=false; tick(); assert(p.flies==0,"a long hold keeps native DROP")
 tap(p); assert(p.flies==4 and state().releases==0 and texts[#texts]=="Released")

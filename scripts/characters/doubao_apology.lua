@@ -148,7 +148,8 @@ function Doubao:Init(mod, Risk)
                 if s.token == 0 then dropToken(s) end
             end
             b.frame = now
-            if drop:Poll(p, s.token ~= nil) then
+            if drop:Poll(p, s.token ~= nil,
+                "No Apology ready") then
                 dropToken(s)
                 apologize(p, s)
                 Game():GetHUD():ShowItemText("Doubao-chan", "Sorry, you're right.")
@@ -173,7 +174,8 @@ function Doubao:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = "Doubao-chan: No apology needed"
             if s.token == 0 then text = "Doubao-chan: Apology Ready"

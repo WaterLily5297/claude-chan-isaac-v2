@@ -167,7 +167,8 @@ function Manager:Init(mod, Risk)
             end
             b.tasks = kept
             local spent = s.budget[room] or 0
-            if drop:Poll(p, combat and #b.tasks < SLOTS and spent + PULSES <= ROOM_BUDGET) then
+            if drop:Poll(p, combat and #b.tasks < SLOTS and spent + PULSES <= ROOM_BUDGET,
+                not combat and "Needs combat" or #b.tasks >= SLOTS and "All task slots busy" or "Room pulse budget spent") then
                 local target = unassigned(p, b)
                 -- No target means nothing is scheduled or spent.
                 if target then
@@ -176,6 +177,8 @@ function Manager:Init(mod, Risk)
                     -- A light outline marks the assignee; it never hides the enemy.
                     Feedback.Mark(target, TASK_TINT, PULSE_FRAMES)
                     Game():GetHUD():ShowItemText("Kimi-chan", "You are the manager")
+                else
+                    drop:Refuse(p, "No unassigned target nearby")
                 end
             end
         end)
@@ -204,7 +207,8 @@ function Manager:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         local room = roomKey()
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Kimi-chan: Tasks %d/%d  Budget %d/%d", #b.tasks, SLOTS,
                 ROOM_BUDGET - (b.state.budget[room] or 0), ROOM_BUDGET)
             local paused = 0

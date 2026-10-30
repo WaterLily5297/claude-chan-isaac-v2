@@ -174,8 +174,12 @@ function Peak:Init(mod, Risk)
                     end
                 end
             end
-            if drop:Poll(p, true) and b.clock >= b.toggleReady then
-                s.saving = not s.saving; b.toggleReady = b.clock + TOGGLE_FRAMES
+            if drop:Poll(p, true) then
+                if b.clock >= b.toggleReady then
+                    s.saving = not s.saving; b.toggleReady = b.clock + TOGGLE_FRAMES
+                else
+                    drop:Refuse(p, "Toggle cooling down")
+                end
             end
         end)
     end)
@@ -329,6 +333,7 @@ function Peak:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = string.format("Compute %d/%d  %s %.1fs  %s", s.compute, cap(p),
                 s.phase == "peak" and "Peak" or "Valley", s.remaining / 30, s.saving and "Saving" or "Forks On")

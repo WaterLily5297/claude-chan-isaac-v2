@@ -176,13 +176,16 @@ function Kimi:Init(mod, Risk)
                     Feedback.Mark(b.show.marks[focus].Ref, Color(0.7, 0.85, 1, 1, 0, 0.1, 0.3), 2)
                 end
             end
-            if drop:Poll(p, s.slides >= cost(p)) then
+            if drop:Poll(p, s.slides >= cost(p),
+                "Not enough Slides") then
                 local targets = audience(p)
                 -- No audience means no Slides are spent. A new deck replaces the old one.
                 if #targets > 0 then
                     s.slides = s.slides - cost(p)
                     present(p, b, targets)
                     Game():GetHUD():ShowItemText("Kimi-chan", "Another slide deck")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -213,6 +216,7 @@ function Kimi:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Kimi-chan: Slides %d/%d  Cost %d", b.state.slides, SLIDE_CAP, cost(p))
             if b.show then text = text..string.format("  Presenting %ds", math.ceil(b.show.remaining / 30)) end
             HudLayout.DrawPlayer(HudText, i, text, 0.55, 0.65, 1, 0.9)
