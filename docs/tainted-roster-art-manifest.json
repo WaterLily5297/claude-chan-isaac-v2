@@ -123,8 +123,8 @@
     },
     "resources/gfx/characters/costumes/character_glmchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_glmchan.png",
-      "source_sha256": "b034bde830c365e9166ed8049f0251c14aabcddd8504e0cec4ba89ddd642838b",
-      "sha256": "c91b005c1ee1e0c59ba573c20404cd6c6057c4b5284553b7061adaf4f22d39d9"
+      "source_sha256": "a78087ac6cce537ef95518388671594d3dd0f464725beca25b559b1747d154a2",
+      "sha256": "6347710b0d0dd476e13b32342959c434591b09a09f62d5cff9d0e2a665f75988"
     },
     "resources/gfx/ui/stage/playerportrait_glmchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_glmchan.png",

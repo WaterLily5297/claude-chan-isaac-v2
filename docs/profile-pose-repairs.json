@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "tool": "built-in image_gen",
+  "date": "2026-10-31",
+  "scope": "Normal GLM profile/carry and fallen pose; existing tainted recolor inherits geometry, not the newly approved tainted identity. Offline only.",
+  "repairs": [
+    {
+      "key": "glm",
+      "sources": [
+        {
+          "path": "docs/art/pose-sources/glm_side_parts.png",
+          "sha256": "118ad4da4b71fa98d9574fd0ccf6735d07a2f8d0689097f9d7de62042886146f",
+          "prompt": "Use case: identity-preserve.\nAsset type: original pixel-art game animation parts sheet for NORMAL GLM-chan, not the white-haired tainted design. Image 1 is the approved black-haired, black/white fox-maid costume reference. Image 2 is her current game atlas, a style and scale reference only.\nCreate ONE transparent landscape sheet arranged as exactly three equally spaced columns and two equally spaced rows, six clearly separated pieces with generous transparent gutters. Each piece is a tiny squat chibi BODY COMPONENT FROM COLLAR TO SHOES, with no head, face, ears or hair: the game draws its head on another layer. No neck stump or anatomical detail, just a closed costume collar.\nAll six body pieces are in a genuine strict RIGHT SIDE PROFILE, not a narrowed front view. Show the nearer white sleeve, black bodice, white skirt panel beneath the black outer dress, small dark boots, and a restrained black fox tail with white tip behind the torso. Stubby rounded proportions, simplified readable silhouette, crisp large pixel clusters, dark outline and a small flat-color palette; no painterly gradients, blur or adult realistic anatomy.\nTop row: three successive rightward walking phases: left foot forward, feet passing, right foot forward; arms naturally at sides. Bottom row: the corresponding same three walking phases with both short arms raised above the collar to carry an item above the separate head layer. Do not draw the carried item. All body parts keep the same size, shoulder position and ground baseline in their own cell. Feet fully visible and never joined into a single leg. Every figure complete within its cell. No grid lines, numbers, captions, logo, background or extra poses. Actual transparent RGBA. Noncommercial derivative credited to ZipZipPipe. Draw only these requested original costume parts; do not reproduce any extracted vanilla artwork.",
+          "references": [
+            {
+              "path": "resources/gfx/ui/dossiers/glm.png",
+              "sha256": "7ebf1b1ff9e3530c9f3653568003279f3cb06861147a08f3074a1576eb7ba5b1"
+            },
+            {
+              "path": "resources/gfx/characters/costumes/character_glmchan.png",
+              "sha256": "b034bde830c365e9166ed8049f0251c14aabcddd8504e0cec4ba89ddd642838b"
+            }
+          ]
+        },
+        {
+          "path": "docs/art/pose-sources/glm_fallen.png",
+          "sha256": "a353aa9c451d71573c22b6a511029d451f54033447859f829bc1f487a55d4ed2",
+          "prompt": "Use case: identity-preserve.\nAsset type: one original pixel-art complete fallen/death pose for NORMAL GLM-chan in an Isaac mod. Image 1 is the exact normal costume/identity reference; Image 2 supplies the existing chibi game-sprite face and proportions.\nDraw one tiny, cute, non-graphic chibi character lying completely on her side on the ground, head toward the LEFT and boots toward the RIGHT. The torso is HORIZONTAL and rests on the ground, not seated, kneeling or upright. Her large rounded head, small clothed torso and both legs form one readable reclining silhouette. Eyes softly closed, both arms relaxed beside her small closed dark book. No injury, blood or violent detail.\nPreserve NORMAL GLM-chan's black hair with a few pale ends, fox ears, black/white frilled headpiece, pale face, black/white dress and fluffy black tail with a white tip. Simplify into crisp chunky pixel-art clusters with a dark outline and a few flat shades, matching the game's small chibi scale. Do not make an elaborate anime illustration. Overall silhouette is wider than tall, fitting approximately a 36-by-27 logical-pixel envelope when packed, with the whole head, ears, tail and boots visible. Center the single horizontal sprite with plenty of transparent space on all sides. Actual transparent RGBA; no scene, ground shadow, glow, text, grid, logo, extra characters or extra poses. Noncommercial derivative of the credited ZipZipPipe design, no copied vanilla pixels.",
+          "references": [
+            {
+              "path": "resources/gfx/ui/dossiers/glm.png",
+              "sha256": "7ebf1b1ff9e3530c9f3653568003279f3cb06861147a08f3074a1576eb7ba5b1"
+            },
+            {
+              "path": "resources/gfx/characters/costumes/character_glmchan.png",
+              "sha256": "b034bde830c365e9166ed8049f0251c14aabcddd8504e0cec4ba89ddd642838b"
+            }
+          ]
+        }
+      ],
+      "side": {
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          18,
+          392
+        ],
+        "collar_x": [
+          [
+            310,
+            286,
+            264
+          ],
+          [
+            319,
+            288,
+            270
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ]
+      },
+      "fallen": {
+        "size": [
+          1448,
+          1086
+        ],
+        "maximum": [
+          36,
+          27
+        ],
+        "bottom": 61
+      }
+    }
+  ],
+  "reference_commit": "1206a32946d279304f28890ddf4903aec939734a"
+}

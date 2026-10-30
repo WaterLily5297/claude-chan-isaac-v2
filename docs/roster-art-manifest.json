@@ -73,8 +73,9 @@
     "key": "glm",
     "portrait_sha256": "352f9d539f96df28de96411287bf3c833c78414f7977eca2f6865e11336c6d82",
     "sprite_sha256": "e3ad27bda24556c794e3f050c3f28b5d61834384a8a815c70fb89588f8023d7c",
-    "packed_sprite_sha256": "b034bde830c365e9166ed8049f0251c14aabcddd8504e0cec4ba89ddd642838b",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "a78087ac6cce537ef95518388671594d3dd0f464725beca25b559b1747d154a2",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "claude_b",
