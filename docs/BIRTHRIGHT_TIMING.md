@@ -2,6 +2,8 @@
 
 Source checkpoint `9076bc0`, reviewed 2026-10-27. This focused G4 record covers four tainted forms whose pending effects sample Birthright at different times. It preserves their current source behavior; it does not impose one policy across all characters or add balance/persistence rules. The original suites passed; the added boundary cases also pass without production changes.
 
+The later [full-entry timing matrix](BIRTHRIGHT_FULL_ENTRY.md) loads all 22 forms in duplicate pairs and extends selected gain/loss/reacquisition boundaries. The counts and scope below remain the historical four-form record; neither review establishes native pickup, reroll or cache ordering.
+
 ## Observed source contracts and offline evidence
 
 | Form / source | When Birthright is read | New real-module boundary cases |
