@@ -81,7 +81,7 @@ Four items per family (44) plus six shared items (50). A = active with room char
 | 45 | Shared / Cache Cartridge | P | **Local implementation.** Revisit a cleared room to gain +0.15 speed until entering combat; no clear rewards, charges or damage farming. |
 | 46 | Shared / Token Recall | A4 | **Local implementation.** Retrieve up to three owner-created ordinary tears and gain one temporary guard per tear, max three for four seconds. Ignore other players and special projectiles. |
 | 47 | Shared / Checkpoint Pin | A6 | **Local implementation.** Place a marker for five seconds; reuse returns to the safe marker position within the same room. Never restore health, inventory or saved state. |
-| 48 | Shared / Rate-Limit Valve | P | **Local implementation.** After two seconds not firing, next attack gains +30% damage. Consumed once; does not reset Claude usage or tainted quota. |
+| 48 | Shared / Rate-Limit Valve | P | **Local implementation.** After two seconds not firing, next attack gains +30% damage. Requires holding at least one copy until the attack starts; losing the passive discards an unspent bonus without changing an already resolved attack. Consumed once; does not reset Claude usage or tainted quota. |
 | 49 | Shared / Consensus Coin | P | **Local implementation.** Two different owned damage sources hitting the same target within two seconds cause one 0.5x pulse; one pulse per target, no recursive trigger. |
 | 50 | Shared / Error Budget | P | **Local implementation.** First real hit each floor spends the budget and grants +0.2 speed for that room. Does not cancel damage; budget state survives continue. |
 

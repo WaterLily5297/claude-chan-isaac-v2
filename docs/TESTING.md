@@ -2,6 +2,12 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U3/F17: Rate-Limit Valve inventory loss (2026-10-30; offline)
+
+The [inventory-loss fixture](VALVE_REMOVAL.md) reproduces an unspent passive bonus surviving removal on baseline `359665e`, both with an update and when the next event is an attack. Six scenarios check cleanup, the attack-time ownership guard, remaining copies, another holder, resolved same-frame/in-flight attacks, an independent completed Rice Cooker reward and reacquisition under the existing idle threshold. The fixture uses real backlog modules with supplied inventory, attack and damage events.
+
+Native D4/D100/Clicker/Genesis timing, charged/controlled weapons and real Continue remain unverified. No active reward is newly tied to item ownership, and no save or installed file changes are made. The earlier DeepSeek composition matrix remains active.
+
 ## U3/F16: DeepSeek, meals and backlog composition (2026-10-30; offline)
 
 The [scheduled integration review](HARDENING_2026-10-30.md) loads real MealBreak, all backlog modules, DeepSeek base stats, Rice First/Thought and Peak/Valley callbacks. Twelve seeded four-player scenarios check independent locks, character-meal cancellation/refund, active completion, inventory removal, same-frame Thought/Compute payment, nested item/knife damage, both scheduled phases and room cleanup. Native APIs, event order and weapon states are supplied; this is not all-form or engine acceptance.

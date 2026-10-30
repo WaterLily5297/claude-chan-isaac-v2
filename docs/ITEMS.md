@@ -79,7 +79,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Please Come Back | Don't leave us: clears recharge actives | 2 | 3 new rooms cleared without using a charged active: +1 charge to your active item; Timed and zero-charge actives don't benefit |
 | Queue Ticket | Now serving: clears recharge actives | 2 | Every 4th new room cleared: +1 charge to your active item; Timed and zero-charge actives don't benefit |
 | Quote Retort | Ratio: hit back harder after damage | 2 | After you take enemy damage, your next attack within 4 seconds deals +50% |
-| Rate-Limit Valve | Please slow down: pause for +30% DMG | 2 | After 2 seconds without attacking, your next attack deals +30% |
+| Rate-Limit Valve | Please slow down: pause for +30% DMG | 2 | After 2 seconds without attacking, your next attack deals +30%; Losing the last copy removes an unused bonus; Shots already fired keep their bonus |
 | Rejection Letter | Getting hit clears nearby bullets | 1 | After a real enemy hit, removes up to 3 ordinary enemy bullets within 120 units; Once per room; you still take the hit |
 | Residential IP | Clean connection: risk down, rises slower | 2 | Risk -30 on pickup; All risk increases are halved |
 | Routing Receipt | Every 3 clears: DMG up next room | 2 | Every 3 new rooms cleared: +20% damage in the next combat room; Re-entering rooms does not count |
