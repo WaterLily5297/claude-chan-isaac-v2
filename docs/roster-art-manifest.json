@@ -33,15 +33,17 @@
     "key": "grok",
     "portrait_sha256": "d0af816200360d46e29c9e4e0fc3eaaa190e05010900fbd3470e2836550a35f6",
     "sprite_sha256": "22e6f304b9de1e71b2724bf65314705735733131ff28c08ced8858d8d0967c2c",
-    "packed_sprite_sha256": "8b7399b026002abb93a919ffcb073078979c56f27672defa0ff39ac6b92028d8",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "d13824102ba7b4506917d48b74cc67dbe7afd76678034a4aa6b9d7757c43827d",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "qwen",
     "portrait_sha256": "7e184e70bab27072ebd4ae111b4f2c2d4719d39f1e69301dbfb3845f2778375c",
     "sprite_sha256": "f069fd9c69b87d9862350a98f6e8516f707b0d6065b171e38addeb7ee5307c52",
-    "packed_sprite_sha256": "1e698bc02055f3b811cf46201dec9b759f39a7bfde16ad70bd4cdde53b1a7725",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "13677af5a5566f7155750fd9fa0e299bfe0d3738ad332e7e03c14b7c64777ba0",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "llama",

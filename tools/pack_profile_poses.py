@@ -28,10 +28,19 @@ def side_position(index, carry=False):
     return x + (256 if carry else 0), y
 
 
+def carry_position(index, side=False):
+    if side:
+        return side_position(index, True)
+    return (256 + index * 32, 32) if index < 8 else (448 + (index - 8) * 32, 0)
+
+
 def regions(record, body_only=False):
     cells = [(x, y, x + 32, y + 32)
             for carry in (False, True) for i in range(10)
             for x, y in [side_position(i, carry)]]
+    if 'carry' in record:
+        cells += [(x, y, x + 32, y + 32) for i in range(10)
+                  for x, y in [carry_position(i)]]
     return cells + ([(192, 128, 256, 192)] if 'fallen' in record and not body_only else [])
 
 
@@ -48,18 +57,12 @@ def source_image(record, expected_size):
     return Image.alpha_composite(Image.new('RGBA', image.size), image)
 
 
-def apply(atlas, key, body_only=False):
-    record = next((r for r in records() if r['key'] == key), None)
-    if record is None:
-        return atlas
-    if atlas.size != (512, 512):
-        raise ValueError(f'{key}: expected 512x512 atlas')
-    out = atlas.convert('RGBA').copy()
-    cfg = record['side']
-    source = source_image(record['sources'][0], cfg['size'])
+def part_rows(record, cfg, source_index, anchors_name):
+    key = record['key']
+    source = source_image(record['sources'][source_index], cfg['size'])
     step = cfg['cell_size']
     factor = cfg['scale'][0] / cfg['scale'][1]
-    for row, anchors in enumerate(cfg['collar_x']):
+    for row, anchors in enumerate(cfg[anchors_name]):
         frames = []
         for col, collar in enumerate(anchors):
             source_box = (cfg['source_cells'][row][col] if 'source_cells' in cfg else
@@ -74,16 +77,32 @@ def apply(atlas, key, body_only=False):
                 raise ValueError(f'{key}: missing transparent source gutter at {row},{col}')
             part = part.crop(box)
             part = part.resize(tuple(round(n*factor) for n in part.size), Image.Resampling.NEAREST)
-            # Tail and raised arms must not move the collar off the native head
-            # pivot. Use a reviewed collar anchor and one scale across both rows.
+            # Side bodies use the collar; wide carry parts use the opening's
+            # center. Each source uses one scale and the reviewed ground anchor.
             x, y = 16-round((collar-box[0])*factor), cfg['ground']-part.height
             if x <= 0 or y <= 0 or x+part.width >= 32 or y+part.height >= 32:
                 raise ValueError(f'{key}: packed part touches cell edge at {row},{col}')
             cell = Image.new('RGBA', (32, 32))
             cell.alpha_composite(part, (x, y))
             frames.append(cell)
-        for i, phase in enumerate(cfg['cycle']):
+        yield frames
+
+
+def apply(atlas, key, body_only=False):
+    record = next((r for r in records() if r['key'] == key), None)
+    if record is None:
+        return atlas
+    if atlas.size != (512, 512):
+        raise ValueError(f'{key}: expected 512x512 atlas')
+    out = atlas.convert('RGBA').copy()
+    for row, frames in enumerate(part_rows(record, record['side'], 0, 'collar_x')):
+        for i, phase in enumerate(record['side']['cycle']):
             out.paste(frames[phase], side_position(i, bool(row)))
+    if 'carry' in record:
+        cfg = record['carry']
+        for row, frames in enumerate(part_rows(record, cfg, cfg['source_index'], 'anchor_x')):
+            for i, phase in enumerate(cfg['cycle']):
+                out.paste(frames[phase], carry_position(i, bool(row)))
     if 'fallen' in record and not body_only:
         cfg = record['fallen']
         part = source_image(record['sources'][1], cfg['size'])

@@ -2,7 +2,7 @@
   "version": 1,
   "tool": "built-in image_gen",
   "date": "2026-10-31",
-  "scope": "Normal GLM, GPT and Gemini profile/carry repairs; only GLM also has a fallen repair. Existing tainted recolors inherit geometry, not the newly approved tainted identities. Offline only.",
+  "scope": "Normal GLM, GPT, Gemini, Grok and Qwen profiles; Grok/Qwen also replace front/back carry parts, and only GLM has a fallen repair. Legacy tainted recolors inherit geometry, not approved alternate identities. Offline only.",
   "repairs": [
     {
       "key": "glm",
@@ -263,6 +263,305 @@
           ]
         ],
         "carry_min_y": 13
+      }
+    },
+    {
+      "key": "grok",
+      "reference_commit": "4101dce459baa616a25726d8f27d00860de88828",
+      "sources": [
+        {
+          "path": "docs/art/pose-sources/grok_side_parts.png",
+          "sha256": "20fceed3867692842c1fed075932928ac220fa7a8893415e9e09535abd188638",
+          "prompt": "Use case: identity-preserve. Create a clean game sprite PARTS sheet for the NORMAL character in image 1. Image 2 is the existing tiny game atlas and supplies the rounded chibi style. This is a technical body layer from closed costume neckline to shoes: NO HEAD, hair, face, ears, neck stump or weapon. No carried prop. The game provides its head separately.\n\nLayout: transparent landscape 1536x1024, exactly 3 equal columns by 2 equal rows, 6 separate pieces, each safely inside its own 512x512 cell with at least 60 transparent pixels on every edge. Strict RIGHT side profile for every piece, with the near sleeve overlapping the far sleeve and boots pointing right. Keep neckline alignment, costume scale and foot ground line consistent within the cells.\n\nCrucial tiny-game style: extremely squat cute clothed body, very short legs and chunky little shoes, broad flat dark-outlined pixel clusters. Think an ELEVEN-logical-pixel-high body under a much larger separate head. Only a few broad color areas and one simple accent; no fine lace, chains, jewelry texture, realistic adult torso, folds full of speckles, blur or gradient. Preserve the recognizable costume colors and overall shape in this compact chibi adaptation.\n\nTop row: three walking phases: near foot forward/far foot back; close-foot passing phase with far knee bent; near foot back/far foot forward. Show two little shoes with clear stride differences. Lower row: the same three leg phases with very short arms bent upward beside the collar for carrying. Keep the same body and boot scale. The carrying silhouette is only slightly taller than the walking silhouette: NO long outstretched arms or tall V pose, because the foreground body layer must not cover the separate face.\n\nTrue transparent RGBA with no haze, backdrop, glow, shadow, text, grid lines, company logos, extra pieces or characters. Noncommercial derivative credited to ZipZipPipe. Original costume parts only, no extracted vanilla artwork.\nNORMAL Grok costume: a small black Gothic dress with simple gold edging, a visible deep-crimson inner hem, white cuff/frill, black stockings and chunky black shoes. Keep the dress rounded and compact, one tiny gold waist ornament. Do not draw the halberd, twin-tail hair or the ivory/crimson tainted costume.",
+          "references": [
+            {
+              "path": "resources/gfx/ui/dossiers/grok.png",
+              "sha256": "10208fe5c043b41c22e9dc0e43a42a10dc042b8e41ea201bf00bc8b7e180cdba"
+            },
+            {
+              "path": "resources/gfx/characters/costumes/character_grokchan.png",
+              "sha256": "8b7399b026002abb93a919ffcb073078979c56f27672defa0ff39ac6b92028d8"
+            }
+          ],
+          "reference_commit": "41dcca469e191643a455e604884a27ef727431b7",
+          "usage": "Only the top walking row is packed; lower carry row is superseded."
+        },
+        {
+          "path": "docs/art/pose-sources/grok_carry_parts.png",
+          "sha256": "f075f0e7d003583079359d23e8a6d9b3502b3036291e558564c6fb998f7d9869",
+          "prompt": "Use case: precise-object-edit.\nCorrect ONLY the small costume defect in the TOP THREE figures of this Grok-chan carry sheet. Each top figure currently has a third hand with a white cuff floating at the center of the skirt below the gold waist ornament. ERASE that central white cuff and peach-colored extra hand, replacing that small patch with a continuous simple black/charcoal skirt panel and a restrained gold seam. Preserve the TWO raised hands at the far sides. Bottom three figures already have no central hand: preserve them.\nKeep exactly the same six poses, positions, dimensions, broad U-shaped arms, transparent central head opening, tiny torso, foot phases, black/gold/red palette, chunky pixel style and 1536x1024 canvas. Do not enlarge the torso, change the proportions or add details. Actual transparent RGBA, no background or glow, no heads, text or logos. Credited noncommercial ZipZipPipe derivative.",
+          "references": [
+            {
+              "description": "Unbundled Grok proportion revision; extra central hand corrected in final source.",
+              "sha256": "a5c2094f79693fd3b61c2515c3e5f7d39253793d117c80d08d411b9e382d7dbb",
+              "generation_prompt": "Use case: precise-object-edit.\nImage 1 is the GROK carry-parts candidate to revise. Image 2 is an exact proportional spacing guide. Keep the six-cell arrangement, costume palette and three walking foot phases. Redraw only the proportions to match the guide: much WIDER raised-arm opening, MUCH TINIER body. Every component must be about 1.5 TIMES AS WIDE AS IT IS TALL, not tall/square. Think of a wide letter U with two tiny shoes below its bottom. The two hands and narrow sleeves sit at the leftmost and rightmost ends. The empty space between them is about 70 percent of the whole sprite width. The collar and whole small torso/skirt/shoes are confined to the LOWEST THIRD of the component. Arms join that low tiny torso. Do not fill the central empty face hole. Sleeves must be slim enough to stay outside the guide's red hole. Tiny costume details, no large torso. Exactly TWO hands in each component: REMOVE the stray third hand inside the top-row black dress if present.\nTop three pieces front view, bottom three rightward profile torso/feet; hands at both outside edges. Transparent 1536x1024 PNG with three columns and two rows; each full piece in its own cell and generous gutters. Flat chunky pixel art and dark outline. No head, hair, face, neck stump, carried object, guide colors, guide labels, background, glow or shadows. Preserve exact costume identity and noncommercial ZipZipPipe derivative terms. This is a technical shape correction, not a new design.",
+              "generation_references": [
+                {
+                  "description": "Unbundled initial grok carry source; proportion review rejected.",
+                  "sha256": "7f659ac025d56199053ec430bd903565b0a821a1cf8e618a2f565f8a4a1e4373",
+                  "generation_prompt": "Use case: identity-preserve.\nAsset type: six headless pixel-art carry animation costume parts for a Binding of Isaac mod. Image 1 is ONLY the credited normal costume identity reference. Image 2 is an original abstract layout guide, NOT final art. Image 3 is the existing source for color and chunky pixel-art style only.\nCreate one 1536x1024 transparent PNG with exactly three columns and two rows, six isolated components. The top row is FRONT carry-walk phases: left foot forward, feet passing, right foot forward. The bottom row is strict RIGHT SIDE carry-walk with those three phases. No heads, faces, hair, neck stumps or held items. The native head is drawn separately.\nCRITICAL STRUCTURE: each part is a broad U/Y-shaped pair of raised arms with a VERY SMALL torso and tiny shoes at the bottom. The arms flank a LARGE TRANSPARENT HOLE for the separate head. Follow the guide's geometry: within a logical 32x32 cell, hands around x3..6 and x26..29 at y8..12; arms angle down to a torso centered near x12..20, y18..23; shoes end at y26. Keep the ENTIRE central upper rectangle x7..25,y0..13 genuinely transparent, and leave substantial space below it before the tiny collar. Do not place a torso, collar, sleeve, shoulders or bow across that central opening. Both flanking hands remain visible even in the side row, but the tiny torso and shoes read in right profile. The guide is a spacing constraint, not a costume drawing. Keep each figure fully inside its own 512px cell with ample transparent outer gutters, consistent scale and ground baseline.\nUse crisp chunky dark pixel outlines, simple flat color clusters, stubby cute game proportions, tiny readable sleeves and shoes. No realism, blur, glow, shadows, background matte, grid, labels, text, logos, weapons, fan, extra limbs, head or extra figures. Actual transparent RGBA. Never draw the red/blue guide colors or any guide markings. Noncommercial derivative of the credited ZipZipPipe design; no copied native-game pixels.\nNORMAL Grok-chan costume: black and charcoal gothic dress, restrained gold trim, small crimson underskirt, white frilled cuffs, pale small hands, tiny black boots. Preserve this normal identity, not the approved ivory/crimson tainted variant.",
+                  "generation_references": [
+                    {
+                      "path": "resources/gfx/ui/dossiers/grok.png",
+                      "sha256": "10208fe5c043b41c22e9dc0e43a42a10dc042b8e41ea201bf00bc8b7e180cdba"
+                    },
+                    {
+                      "path": "docs/art/pose-sources/carry-layout-guide.png",
+                      "sha256": "3d580de792794c50c796d0dad11b71ff9cb81946842ac32a99146c30f102dacd",
+                      "description": "Original geometric layout diagram only; no native or character pixels."
+                    },
+                    {
+                      "path": "docs/art/pose-sources/grok_side_parts.png",
+                      "sha256": "20fceed3867692842c1fed075932928ac220fa7a8893415e9e09535abd188638"
+                    }
+                  ]
+                },
+                {
+                  "path": "docs/art/pose-sources/carry-layout-guide.png",
+                  "sha256": "3d580de792794c50c796d0dad11b71ff9cb81946842ac32a99146c30f102dacd",
+                  "description": "Original geometric layout diagram only; no native or character pixels."
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "side": {
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          11,
+          310
+        ],
+        "collar_x": [
+          [
+            279,
+            243,
+            254
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "source_cells": [
+          [
+            [
+              0,
+              0,
+              512,
+              544
+            ],
+            [
+              512,
+              0,
+              1024,
+              544
+            ],
+            [
+              1024,
+              0,
+              1536,
+              544
+            ]
+          ]
+        ]
+      },
+      "carry": {
+        "source_index": 1,
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          26,
+          461
+        ],
+        "anchor_x": [
+          [
+            259,
+            256,
+            252
+          ],
+          [
+            258,
+            256,
+            257
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "note": "Front/back share row 0; left/right share row 1. Opening centered at x=16. Central x=9..22,y=0..12 stays empty; hands flank it."
+      }
+    },
+    {
+      "key": "qwen",
+      "reference_commit": "4101dce459baa616a25726d8f27d00860de88828",
+      "sources": [
+        {
+          "path": "docs/art/pose-sources/qwen_side_parts.png",
+          "sha256": "afac68543d7ef786b4a3cc2b54be7bad3be2b06ac001dee5ed38b2e58374e77a",
+          "prompt": "Use case: identity-preserve. Create a clean game sprite PARTS sheet for the NORMAL character in image 1. Image 2 is the existing tiny game atlas and supplies the rounded chibi style. This is a technical body layer from closed costume neckline to shoes: NO HEAD, hair, face, ears, neck stump or weapon. No carried prop. The game provides its head separately.\n\nLayout: transparent landscape 1536x1024, exactly 3 equal columns by 2 equal rows, 6 separate pieces, each safely inside its own 512x512 cell with at least 60 transparent pixels on every edge. Strict RIGHT side profile for every piece, with the near sleeve overlapping the far sleeve and boots pointing right. Keep neckline alignment, costume scale and foot ground line consistent within the cells.\n\nCrucial tiny-game style: extremely squat cute clothed body, very short legs and chunky little shoes, broad flat dark-outlined pixel clusters. Think an ELEVEN-logical-pixel-high body under a much larger separate head. Only a few broad color areas and one simple accent; no fine lace, chains, jewelry texture, realistic adult torso, folds full of speckles, blur or gradient. Preserve the recognizable costume colors and overall shape in this compact chibi adaptation.\n\nTop row: three walking phases: near foot forward/far foot back; close-foot passing phase with far knee bent; near foot back/far foot forward. Show two little shoes with clear stride differences. Lower row: the same three leg phases with very short arms bent upward beside the collar for carrying. Keep the same body and boot scale. The carrying silhouette is only slightly taller than the walking silhouette: NO long outstretched arms or tall V pose, because the foreground body layer must not cover the separate face.\n\nTrue transparent RGBA with no haze, backdrop, glow, shadow, text, grid lines, company logos, extra pieces or characters. Noncommercial derivative credited to ZipZipPipe. Original costume parts only, no extracted vanilla artwork.\nNORMAL Qwen costume: a compact flowing blue-and-white robe, deep navy outer sleeves/skirt, a white front panel visible along the profile hem, a simple narrow gold trim and a small blue waist knot. Tiny blue shoes peek out separately below the hem. No fan, purse, hair or hat. Preserve the normal blue/white palette, not the violet/amber tainted design.",
+          "references": [
+            {
+              "path": "resources/gfx/ui/dossiers/qwen.png",
+              "sha256": "f19528803cb07ccfe4d11a8fb09d2e9e3f0ab6906d436d5e36bf2c47ce18ad29"
+            },
+            {
+              "path": "resources/gfx/characters/costumes/character_qwenchan.png",
+              "sha256": "1e698bc02055f3b811cf46201dec9b759f39a7bfde16ad70bd4cdde53b1a7725"
+            }
+          ],
+          "reference_commit": "41dcca469e191643a455e604884a27ef727431b7",
+          "usage": "Only the top walking row is packed; lower carry row is superseded."
+        },
+        {
+          "path": "docs/art/pose-sources/qwen_carry_parts.png",
+          "sha256": "dabaa0e67dae21227f9eb03ee011f2e93d78dd53724682a29c2dd3c320535c63",
+          "prompt": "Use case: precise-object-edit.\nImage 1 is the QWEN carry-parts candidate to revise. Image 2 is an exact proportional spacing guide. Keep the six-cell arrangement, costume palette and three walking foot phases. Redraw only the proportions to match the guide: much WIDER raised-arm opening, MUCH TINIER body. Every component must be about 1.5 TIMES AS WIDE AS IT IS TALL, not tall/square. Think of a wide letter U with two tiny shoes below its bottom. The two hands and narrow sleeves sit at the leftmost and rightmost ends. The empty space between them is about 70 percent of the whole sprite width. The collar and whole small torso/skirt/shoes are confined to the LOWEST THIRD of the component. Arms join that low tiny torso. Do not fill the central empty face hole. Sleeves must be slim enough to stay outside the guide's red hole. Tiny costume details, no large torso. Exactly TWO hands in each component: REMOVE the stray third hand inside the top-row costume if present.\nTop three pieces front view, bottom three rightward profile torso/feet; hands at both outside edges. Transparent 1536x1024 PNG with three columns and two rows; each full piece in its own cell and generous gutters. Flat chunky pixel art and dark outline. No head, hair, face, neck stump, carried object, guide colors, guide labels, background, glow or shadows. Preserve exact costume identity and noncommercial ZipZipPipe derivative terms. This is a technical shape correction, not a new design.",
+          "references": [
+            {
+              "description": "Unbundled initial qwen carry source; proportion review rejected.",
+              "sha256": "99a71da02d34fc5f80f2364d28b01f1ebcea3cb7179b8d3ea50976a4fd2fd198",
+              "generation_prompt": "Use case: identity-preserve.\nAsset type: six headless pixel-art carry animation costume parts for a Binding of Isaac mod. Image 1 is ONLY the credited normal costume identity reference. Image 2 is an original abstract layout guide, NOT final art. Image 3 is the existing source for color and chunky pixel-art style only.\nCreate one 1536x1024 transparent PNG with exactly three columns and two rows, six isolated components. The top row is FRONT carry-walk phases: left foot forward, feet passing, right foot forward. The bottom row is strict RIGHT SIDE carry-walk with those three phases. No heads, faces, hair, neck stumps or held items. The native head is drawn separately.\nCRITICAL STRUCTURE: each part is a broad U/Y-shaped pair of raised arms with a VERY SMALL torso and tiny shoes at the bottom. The arms flank a LARGE TRANSPARENT HOLE for the separate head. Follow the guide's geometry: within a logical 32x32 cell, hands around x3..6 and x26..29 at y8..12; arms angle down to a torso centered near x12..20, y18..23; shoes end at y26. Keep the ENTIRE central upper rectangle x7..25,y0..13 genuinely transparent, and leave substantial space below it before the tiny collar. Do not place a torso, collar, sleeve, shoulders or bow across that central opening. Both flanking hands remain visible even in the side row, but the tiny torso and shoes read in right profile. The guide is a spacing constraint, not a costume drawing. Keep each figure fully inside its own 512px cell with ample transparent outer gutters, consistent scale and ground baseline.\nUse crisp chunky dark pixel outlines, simple flat color clusters, stubby cute game proportions, tiny readable sleeves and shoes. No realism, blur, glow, shadows, background matte, grid, labels, text, logos, weapons, fan, extra limbs, head or extra figures. Actual transparent RGBA. Never draw the red/blue guide colors or any guide markings. Noncommercial derivative of the credited ZipZipPipe design; no copied native-game pixels.\nNORMAL Qwen-chan costume: blue and white short robe, navy sleeves with restrained gold trim, cream inner panel, small blue sash, pale small hands, tiny blue shoes. Large sleeves must remain on the arms outside the head opening. Preserve this normal identity, not the approved violet tainted variant.",
+              "generation_references": [
+                {
+                  "path": "resources/gfx/ui/dossiers/qwen.png",
+                  "sha256": "f19528803cb07ccfe4d11a8fb09d2e9e3f0ab6906d436d5e36bf2c47ce18ad29"
+                },
+                {
+                  "path": "docs/art/pose-sources/carry-layout-guide.png",
+                  "sha256": "3d580de792794c50c796d0dad11b71ff9cb81946842ac32a99146c30f102dacd",
+                  "description": "Original geometric layout diagram only; no native or character pixels."
+                },
+                {
+                  "path": "docs/art/pose-sources/qwen_side_parts.png",
+                  "sha256": "afac68543d7ef786b4a3cc2b54be7bad3be2b06ac001dee5ed38b2e58374e77a"
+                }
+              ]
+            },
+            {
+              "path": "docs/art/pose-sources/carry-layout-guide.png",
+              "sha256": "3d580de792794c50c796d0dad11b71ff9cb81946842ac32a99146c30f102dacd",
+              "description": "Original geometric layout diagram only; no native or character pixels."
+            }
+          ]
+        }
+      ],
+      "side": {
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          11,
+          312
+        ],
+        "collar_x": [
+          [
+            269,
+            265,
+            259
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "source_cells": [
+          [
+            [
+              0,
+              0,
+              512,
+              544
+            ],
+            [
+              512,
+              0,
+              1024,
+              544
+            ],
+            [
+              1024,
+              0,
+              1536,
+              544
+            ]
+          ]
+        ]
+      },
+      "carry": {
+        "source_index": 1,
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          26,
+          484
+        ],
+        "anchor_x": [
+          [
+            266,
+            256,
+            246
+          ],
+          [
+            264,
+            256,
+            246
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "note": "Front/back share row 0; left/right share row 1. Opening centered at x=16. Central x=9..22,y=0..12 stays empty; hands flank it."
       }
     }
   ]

@@ -2,6 +2,12 @@
 
 The MIT license in the project root covers **code only**. It does not cover the character designs or the art in this folder.
 
+## Grok and Qwen profile/carry sources (2026-10-31)
+
+The four generated sources under `docs/art/pose-sources/` and the two `docs/art/profile-batch-03-review/` comparisons retain the credited normal ZipZipPipe identities and their non-commercial derivative terms. Exact executed requests, intermediate-reference provenance, hashes and packing settings are in `docs/profile-pose-repairs.json`. Mechanical packing and the unchanged legacy tainted recolor do not create new design rights or MIT character artwork.
+
+`carry-layout-guide.png` is an original project geometric diagram under MIT; it contains no native or character pixels. Privately inspected native animation geometry and artwork are not redistributed. These repairs do not integrate the approved distinct tainted identities, establish engine acceptance or authorize Workshop publication.
+
 ## GPT and Gemini profile/carry sources (2026-10-31)
 
 The two sources under `docs/art/pose-sources/` and their `docs/art/profile-batch-02-review/` comparisons use the built-in image tool and existing credited ZipZipPipe normal identities. They remain non-commercial character-design derivatives, not MIT artwork or official company assets. `docs/profile-pose-repairs.json` records the exact executed revision prompts, accepted source hashes and the earlier unbundled input candidates with their original prompts/reference hashes. Mechanical thresholding, nearest-neighbour packing and the existing tainted recolor preserve the inherited terms. Only mod pixels appear in the comparisons; native animation data and extracted artwork are not bundled. This does not authorize Workshop publication or claim new rights clearance.

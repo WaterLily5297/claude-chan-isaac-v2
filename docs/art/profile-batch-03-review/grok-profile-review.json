@@ -1,0 +1,18 @@
+{
+  "before_ref": "4101dce459baa616a25726d8f27d00860de88828",
+  "scope": "profile/carry repair; Hit/Death controls",
+  "animation_sha256": "0f6fff152dd360625b8dfda238d89077c80bdd9666e59b71d145350e08d87505",
+  "evidence": "Offline keyframe composition; single carry-head key held for the cycle; not engine acceptance",
+  "skins": [
+    {
+      "path": "resources/gfx/characters/costumes/character_grokchan.png",
+      "before_sha256": "8b7399b026002abb93a919ffcb073078979c56f27672defa0ff39ac6b92028d8",
+      "after_sha256": "d13824102ba7b4506917d48b74cc67dbe7afd76678034a4aa6b9d7757c43827d"
+    },
+    {
+      "path": "resources/gfx/characters/costumes/character_grokchan_b.png",
+      "before_sha256": "d391d21aa8ccaea10e0d21f33cdaf8875f304d913df18f516c1753dffa5df954",
+      "after_sha256": "acb5e1fcf4b1f9fce330040b0c18912ff54ac8565cb5062e70a97226bc5c8e0c"
+    }
+  ]
+}
