@@ -4,7 +4,7 @@
 
 Offline source audit only. This record does not establish that the game engine accepts a path convention. During publication preparation on 2026-10-30, fetching remote `main` succeeded and confirmed `9888186e649dcd9cbb8eb713572ff7702022f015`, matching the local base. The latest [v2 PR #2](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/2) metadata, changed-file list and discussion were inspected: it remains open and unmerged at head `c6f8bf6b746456474454540bb90e5dab59521dbf`. This supersedes the earlier failed DNS attempt. No runtime files or game state were touched.
 
-The checker is not yet wired into `tools/check.sh`: that gate is part of open v2 PR #2, whose item-art and dossier changes are still awaiting owner testing. Do not edit PR #2 files or merge it as part of this audit.
+The checker is not yet wired into `tools/check.sh`: that gate is part of open v2 PR #2, whose item-art and dossier changes are still awaiting owner testing. Updates to `docs/HANDOFF.md` are also deferred because PR #2 owns that file. Do not edit PR #2 files or merge it as part of this audit.
 
 ## Scope and results
 
