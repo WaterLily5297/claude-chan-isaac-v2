@@ -33,8 +33,8 @@
     },
     "resources/gfx/characters/costumes/character_grokchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_grokchan.png",
-      "source_sha256": "8b7399b026002abb93a919ffcb073078979c56f27672defa0ff39ac6b92028d8",
-      "sha256": "d391d21aa8ccaea10e0d21f33cdaf8875f304d913df18f516c1753dffa5df954"
+      "source_sha256": "d13824102ba7b4506917d48b74cc67dbe7afd76678034a4aa6b9d7757c43827d",
+      "sha256": "acb5e1fcf4b1f9fce330040b0c18912ff54ac8565cb5062e70a97226bc5c8e0c"
     },
     "resources/gfx/ui/stage/playerportrait_grokchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_grokchan.png",
@@ -48,8 +48,8 @@
     },
     "resources/gfx/characters/costumes/character_qwenchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_qwenchan.png",
-      "source_sha256": "1e698bc02055f3b811cf46201dec9b759f39a7bfde16ad70bd4cdde53b1a7725",
-      "sha256": "01bb358b632eef9cc70189fadbb9701b8be9818f710806c0e9977884cb33ce97"
+      "source_sha256": "13677af5a5566f7155750fd9fa0e299bfe0d3738ad332e7e03c14b7c64777ba0",
+      "sha256": "f97fb70d2a6c78cc93a3037bb4a518cd3f16a3af86df0dbdc77ee85f8907c51b"
     },
     "resources/gfx/ui/stage/playerportrait_qwenchan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_qwenchan.png",

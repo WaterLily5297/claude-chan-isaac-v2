@@ -113,22 +113,39 @@ def main():
         key = path.stem.removeprefix('character_').removesuffix('_b').removesuffix('chan')
         profile = next((p for p in profiles if p['key'] == key), None)
         if profile:
-            cycle = profile['side']['cycle']
-            if len(cycle) != 10 or set(cycle) != {0, 1, 2}:
-                failures.append(f'{key}: expected ten frames using three reviewed phases')
-                continue
-            for carry in (False, True):
+            groups = [(False, False), (True, False)]
+            if 'carry' in profile:
+                groups.append((True, True))
+            for carry, front in groups:
+                wide = carry and 'carry' in profile
+                cfg = profile['carry'] if wide else profile['side']
+                cycle = cfg['cycle']
+                if len(cycle) != 10 or set(cycle) != {0, 1, 2}:
+                    failures.append(f'{key}: expected ten frames using three reviewed phases')
+                    continue
                 phases = {}
                 for i, phase in enumerate(cycle):
-                    x, y = (i*32, 64) if i < 8 else ((i-8)*32, 96)
-                    x += 256 if carry else 0
+                    if front:
+                        x, y = (256+i*32, 32) if i < 8 else (448+(i-8)*32, 0)
+                    else:
+                        x, y = (i*32, 64) if i < 8 else ((i-8)*32, 96)
+                        x += 256 if carry else 0
                     box = alpha_bounds(rows, (x, y, 32, 32))
                     if not (box and box[0] > 0 and box[1] > 0 and box[2] < 32
-                            and box[3] == 26 and box[2]-box[0] <= 20
-                            and box[3]-box[1] <= (22 if carry else 18)):
-                        failures.append(f'{path.name}: profile cell {i}, carry={carry}: {box}')
-                    if carry and box and box[1] < profile['side'].get('carry_min_y', 0):
+                            and box[3] == 26 and box[2]-box[0] <= (26 if wide else 20)
+                            and box[3]-box[1] <= (18 if wide or not carry else 22)
+                            and (not wide or abs(box[0]+box[2]-32) <= 1)):
+                        failures.append(f'{path.name}: profile cell {i}, carry={carry}, front={front}: {box}')
+                    if carry and not wide and box and box[1] < cfg.get('carry_min_y', 0):
                         failures.append(f'{path.name}: carry cell {i} enters the reviewed face clearance')
+                    if wide:
+                        # Foreground carry arms flank the head. Protect the
+                        # central face, while permitting hands over side hair.
+                        if alpha_bounds(rows, (x+9, y, 14, 13)):
+                            failures.append(f'{path.name}: carry cell {i}, front={front} covers the central face')
+                        if not all(alpha_bounds(rows, (x+edge, y, 8, 13))
+                                   for edge in (1, 23)):
+                            failures.append(f'{path.name}: carry cell {i}, front={front} loses a raised hand')
                     pixels = b''.join(row[x*4:(x+32)*4] for row in rows[y:y+32])
                     if phase in phases and phases[phase] != pixels:
                         failures.append(f'{path.name}: inconsistent repeated profile phase {phase}')

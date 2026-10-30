@@ -1,0 +1,18 @@
+{
+  "before_ref": "4101dce459baa616a25726d8f27d00860de88828",
+  "scope": "profile/carry repair; Hit/Death controls",
+  "animation_sha256": "0f6fff152dd360625b8dfda238d89077c80bdd9666e59b71d145350e08d87505",
+  "evidence": "Offline keyframe composition; single carry-head key held for the cycle; not engine acceptance",
+  "skins": [
+    {
+      "path": "resources/gfx/characters/costumes/character_qwenchan.png",
+      "before_sha256": "1e698bc02055f3b811cf46201dec9b759f39a7bfde16ad70bd4cdde53b1a7725",
+      "after_sha256": "13677af5a5566f7155750fd9fa0e299bfe0d3738ad332e7e03c14b7c64777ba0"
+    },
+    {
+      "path": "resources/gfx/characters/costumes/character_qwenchan_b.png",
+      "before_sha256": "01bb358b632eef9cc70189fadbb9701b8be9818f710806c0e9977884cb33ce97",
+      "after_sha256": "f97fb70d2a6c78cc93a3037bb4a518cd3f16a3af86df0dbdc77ee85f8907c51b"
+    }
+  ]
+}

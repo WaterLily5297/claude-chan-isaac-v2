@@ -13,9 +13,10 @@ import subprocess
 from PIL import Image, ImageDraw
 from preview_character_poses import ROOT, NAMES, load_animation, active_frames, render
 
-CARRY = ('PickupWalkLeft', 'PickupWalkRight')
+CARRY = tuple('PickupWalk' + direction for direction in ('Down', 'Left', 'Up', 'Right'))
 SELECTED = (('WalkLeft', 4), ('WalkRight', 4), ('WalkRight', 14),
-            ('PickupWalkLeft', 4), ('PickupWalkRight', 14), ('Death', 21), ('Hit', 6))
+            ('PickupWalkDown', 4), ('PickupWalkLeft', 4),
+            ('PickupWalkUp', 14), ('PickupWalkRight', 14), ('Death', 21), ('Hit', 6))
 
 
 def main():
