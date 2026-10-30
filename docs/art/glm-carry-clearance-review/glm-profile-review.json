@@ -1,0 +1,18 @@
+{
+  "before_ref": "72ffb32ef3d5e41c4962560e8f70cfb895299508",
+  "scope": "profile/carry repair; Hit/Death controls",
+  "animation_sha256": "0f6fff152dd360625b8dfda238d89077c80bdd9666e59b71d145350e08d87505",
+  "evidence": "Offline keyframe composition; single carry-head key held for the cycle; not engine acceptance",
+  "skins": [
+    {
+      "path": "resources/gfx/characters/costumes/character_glmchan.png",
+      "before_sha256": "a78087ac6cce537ef95518388671594d3dd0f464725beca25b559b1747d154a2",
+      "after_sha256": "67ceff68589462968bc976b3685e39b42eacd79966b8314ffbe052500e5378ce"
+    },
+    {
+      "path": "resources/gfx/characters/costumes/character_glmchan_b.png",
+      "before_sha256": "6347710b0d0dd476e13b32342959c434591b09a09f62d5cff9d0e2a665f75988",
+      "after_sha256": "07e3c03f3acdd0ada98c7582e098d5f371481b5b854d10055c772a8556651266"
+    }
+  ]
+}

@@ -2,6 +2,8 @@
 
 Baseline: v2 `1206a32946d279304f28890ddf4903aec939734a`. This is a normal-identity mechanical art repair and its existing darkened tainted derivative, reviewed offline. The nine distinct tainted designs were approved separately in [v2 PR #25](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/25); their runtime adaptation remains pending the PR #2 generator/importer dependency.
 
+Later correction: the [carry-clearance follow-up](GLM_CARRY_CLEARANCE_2026-10-31.md) replaces the original body fit described below with `11/392` and protects the face. This document preserves the first repair's historical scale and evidence; its fallen source/output remain unchanged.
+
 ## What changes
 
 GLM's side bodies previously came from squeezing a frontal body to 75% width. The new generated source supplies three right-facing clothed body phases and three corresponding raised-arm phases. The engine mirrors the same cells for leftward movement. The fallen source is a complete horizontal reclining pose, replacing the seated-looking source. Heads, front/back movement, Hit, upright Death and all other atlas pixels are unchanged.
