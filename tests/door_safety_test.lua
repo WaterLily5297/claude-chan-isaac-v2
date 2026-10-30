@@ -1,6 +1,6 @@
 -- Items that force doors or delete pickups must not break run progression:
 -- special exits keep their native requirements, run-ending pickups survive,
--- and All Tests Passing cannot skip an uncleared boss room. Callback stubs only.
+-- and All Tests Passing cannot skip required waves. Callback stubs only.
 local root = arg[1]
 function include(name) return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua") end
 local ids = { ["--dangerously-skip-permissions"] = 741, ["All Tests Passing"] = 742 }
@@ -17,12 +17,13 @@ RoomType = { ROOM_DEFAULT = 1, ROOM_TREASURE = 4, ROOM_BOSS = 5, ROOM_SECRET = 7
 PickupVariant = { PICKUP_COIN = 20, PICKUP_LOCKEDCHEST = 60, PICKUP_COLLECTIBLE = 100, PICKUP_BIGCHEST = 340,
     PICKUP_TROPHY = 370, PICKUP_BED = 380, PICKUP_MOMSCHEST = 390 }
 
-local doors, entities, roomType, clear, captions = {}, {}, 1, false, {}
+local doors, entities, roomType, clear, captions, greedMode = {}, {}, 1, false, {}, 0
+local clearCalls = 0
 local room = {
     GetDoor = function(_, slot) return doors[slot] end,
     GetType = function() return roomType end,
     IsClear = function() return clear end,
-    SetClear = function(_, v) clear = v end,
+    SetClear = function(_, v) clearCalls = clearCalls + 1; clear = v end,
 }
 local player = { HasCollectible = function(_, id) return id == 741 end }
 function Isaac.GetPlayer() return player end
@@ -30,6 +31,7 @@ function Isaac.GetRoomEntities() return entities end
 function Game() return {
     GetRoom = function() return room end,
     GetNumPlayers = function() return 1 end,
+    IsGreedMode = function() return greedMode == 1 or greedMode == 2 end,
     GetSeeds = function() return { GetStartSeed = function() return 1 end } end,
     GetHUD = function() return { ShowItemText = function(_, a) captions[#captions + 1] = a end } end,
 } end
@@ -96,6 +98,45 @@ local exit, normal = door(-8, 1, false), door(3, 1, false)
 doors = { [0] = normal, [1] = exit, [2] = door(31, 8, false) }
 assert(fire("MC_USE_ITEM", 742, nil, player) == true)
 assert(clear and normal.opened and not exit.opened and not doors[2].opened, "only ordinary doors open")
+
+-- Greed and Greedier share IsGreedMode()'s documented true result.
+-- These are supplied API states, not an emulation of native wave timing.
+for _, mode in ipairs({ { value = 1, name = "Greed" }, { value = 2, name = "Greedier" } }) do
+    for _, kind in ipairs({ 1, 5 }) do
+        greedMode, roomType, clear, captions = mode.value, kind, false, {}
+        local greedDoor = door(3, 1, false)
+        doors = { [0] = greedDoor }
+        local before = clearCalls
+        for attempt = 1, 2 do
+            local result = fire("MC_USE_ITEM", 742, nil, player)
+            assert(type(result) == "table" and result.Discharge == false,
+                mode.name .. " wave keeps the active charge")
+            assert(result.Remove == false and result.ShowAnim == false,
+                mode.name .. " refusal neither removes nor animates the item")
+            assert(not clear and not greedDoor.opened and clearCalls == before,
+                mode.name .. " refusal must not mutate clear state or doors")
+            assert(#captions == attempt and captions[attempt] == "Required review pending",
+                mode.name .. " refusal explains the preserved charge")
+        end
+
+        -- Once the supplied room is clear, the existing safe-door behavior
+        -- still runs. The guard is not a permanent mode-wide item ban.
+        clear = true
+        local specialExit = door(-8, 1, false)
+        doors[1] = specialExit
+        assert(fire("MC_USE_ITEM", 742, nil, player) == true,
+            mode.name .. " cleared room permits use")
+        assert(greedDoor.opened and not specialExit.opened and clearCalls == before + 1,
+            mode.name .. " cleared room opens only eligible doors")
+    end
+end
+greedMode = 0
+
+roomType, clear = 1, false
+doors = { [0] = door(3, 1, false) }
+assert(fire("MC_USE_ITEM", 742, nil, player) == true and clear and doors[0].opened,
+    "returning to an ordinary run must not retain the mode refusal")
+
 roomType, clear = 5, true
 assert(fire("MC_USE_ITEM", 742, nil, player) == true, "a cleared boss room is no longer guarded")
-print("PASS All Tests Passing: refuses boss, Boss Rush and challenge rooms; opens ordinary doors only")
+print("PASS All Tests Passing: refuses boss, Boss Rush, challenge and Greed-mode waves; opens ordinary doors only")

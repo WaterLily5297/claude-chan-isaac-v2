@@ -10,7 +10,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 
 | Item | Pickup line | Quality | Charge | Effect |
 |---|---|---|---|---|
-| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there; Refused in uncleared boss, Boss Rush and challenge rooms (charge kept) |
+| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there; Refused in uncleared boss, Boss Rush or challenge rooms, and any uncleared room in Greed/Greedier (charge kept) |
 | Another Adapter | Fine-tuned again: cycle range/speed/DMG | 2 | 4 rooms | 4 room charges; Cycles a bonus for this room: +60 range, then +0.15 speed, then +15% damage; Each use replaces the last |
 | Ban Hammer | Ban the room. Mostly the right accounts | 3 | 4 rooms | Bans every non-boss enemy in the room; Bosses take 60 damage; Banned enemies never respawn as new accounts; 20% of bans are misbans of innocent developers: +3 risk each |
 | Banked Reset | Thanks for your patience: risk + limits reset | 2 | 12 rooms | Risk -25; Claude-chan: usage meter reset, ends a usage limit early; Tainted Claude-chan: Quota refilled; a pending review is cancelled without returning its Page |

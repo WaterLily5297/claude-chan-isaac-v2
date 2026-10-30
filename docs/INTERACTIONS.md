@@ -51,7 +51,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `d01eeebbf70a281b075d734edb8223e28aaf2239cc93f2934f2de000d4eb0855`.
+111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `3c7b91d581034be7dc0eeb3af50619b8e943990a35d5a900c571df24594bb38e`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -2004,7 +2004,7 @@ Risk state roots: none detected.
 #### scripts/items/tests_passing.lua
 
 
-Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/tests_passing.lua:19](../scripts/items/tests_passing.lua#L19)).
+Callbacks: `ModCallbacks.MC_USE_ITEM` (`default`, [items/tests_passing.lua:20](../scripts/items/tests_passing.lua#L20)).
 
 
 Cache flag references: none detected.
