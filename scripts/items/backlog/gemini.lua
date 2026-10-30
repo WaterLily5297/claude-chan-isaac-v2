@@ -109,6 +109,7 @@ function Gemini:Init(mod, Risk, C)
     end)
 
     C.On("update", function(frame)
+        local previewEnemies -- Shared only within this refresh; never cache across frames.
         for key, p in pairs(peels) do
             if p.expires < frame then peels[key] = nil
             elseif frame % 10 == 0 then
@@ -127,15 +128,21 @@ function Gemini:Init(mod, Risk, C)
             end
             if #alive == 0 then decoys[key] = nil
             elseif frame % 5 == 0 then
-                -- Each non-boss enemy in range is pointed at its nearest decoy.
-                for _, a in ipairs(alive) do
-                    for _, npc in ipairs(C.Nearby(a.e.Position, DECOY_PULL)) do
+                -- One enumeration serves all owners/markers in this update.
+                -- Keep owner order and first-marker ties; only nearest targets
+                -- within the original radius are changed.
+                previewEnemies = previewEnemies or C.Enemies()
+                for _, npc in ipairs(previewEnemies) do
+                    if not npc:IsBoss() then
                         local best, bestD = nil, math.huge
+                        local position = npc.Position
                         for _, b in ipairs(alive) do
-                            local dist = (b.e.Position - npc.Position):LengthSquared()
-                            if dist < bestD then best, bestD = b.e, dist end
+                            local marker = b.e.Position
+                            local dx, dy = marker.X - position.X, marker.Y - position.Y
+                            local dist = dx * dx + dy * dy
+                            if dist <= DECOY_PULL * DECOY_PULL and dist < bestD then best, bestD = b.e, dist end
                         end
-                        if not npc:IsBoss() and best == a.e then npc.Target = a.e end
+                        if best then npc.Target = best end
                     end
                 end
             end

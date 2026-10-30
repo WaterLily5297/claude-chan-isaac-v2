@@ -38,6 +38,7 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Meal completion versus cancellation | MealBreak clears its timer on death before the backlog update. Rice Cooker formerly interpreted that zero as completed lunch. | F16 is corrected by requiring a living owner for a new reward. [Real-service composition](HARDENING_2026-10-30.md) preserves normal completion, owner isolation, character-meal cancellation and primary weapon damage/payment. Native death/revival remains open. |
 | Unspent Rate-Limit Valve prime after removal | A prime earned while holding the passive previously survived item removal and boosted a later attack. | [F17 corrected offline](VALVE_REMOVAL.md): consumption checks required ownership even before an update; an inventory-loss update removes the pending record. Resolved attack leases and completed active rewards remain unchanged. Native inventory/weapon timing remains open. |
 | Shared meal and Rice slot ownership | Both binders previously discarded progress when the same live players changed slots, including an unfinished food lockout. | [F18 corrected offline](O6_RICE_MEAL_IDENTITY.md): atomic remapping retains the same owner's counters, meal delay lease and Thought clock. Replacements, type transitions, migration, supplied saves and knife-exit cleanup have bounded coverage; native reassignment and save/cleanup order remain open. |
+| Preview repeated enemy enumeration | Every marker previously rebuilt and sorted a nearby-enemy list every fifth update. | [Full entry-point profiling](PERFORMANCE.md) measured 288 queries for four holders over 180 supplied updates. Sharing a callback-local enemy list reduces this to 36 with target/radius/tie/exclusion/lifecycle controls. Native AI, other target writers and engine performance remain unverified. |
 
 No gameplay fix was bundled with the original audit because those findings needed semantic checks before code changes. The later W2 audit reproduced normal-Claude account transfer on live slot replacement and added transient owner isolation with failing-before regressions; [TESTING.md](TESTING.md) retains the precise scope, same-entity debt exception and native limits. W4.2 takes other confirmed defects individually. W4.3 expands native categories and W4.4 adds seeded mod-item combinations. W2/W3 completion tables should link findings to exact registered content and current EID/HUD rules. W6 owns serialization/performance review. Do not treat an empty or manually classified overlap list as engine acceptance.
 
@@ -55,7 +56,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `e730c9a2799119a81608ef9cdba8651c05e9155707241ef7397daef63db5d590`.
+111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `7ecc8f5fec5ea94ac5c8f60c5f85f72d6c96875bc9fb93c53c2b44828b2848f3`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1153,7 +1154,7 @@ Mutator calls: `SetColor` ([items/backlog/gemini.lua:36](../scripts/items/backlo
 Risk state roots: none detected.
 
 
-Unresolved syntax: L113: dynamic field target requires manual review; L120: dynamic field target requires manual review; L128: dynamic field target requires manual review; L43: dynamic field target requires manual review; L44: dynamic field target requires manual review; L75: dynamic field target requires manual review; L82: dynamic field target requires manual review.
+Unresolved syntax: L114: dynamic field target requires manual review; L121: dynamic field target requires manual review; L129: dynamic field target requires manual review; L43: dynamic field target requires manual review; L44: dynamic field target requires manual review; L75: dynamic field target requires manual review; L82: dynamic field target requires manual review.
 
 
 #### scripts/items/backlog/glm.lua
