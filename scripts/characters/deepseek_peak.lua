@@ -222,6 +222,7 @@ function Peak:Init(mod, Risk)
             end
             -- Children share this decision, including later unpaid windows.
             info.lease.expires = expires
+            return {epoch=laserEpoch, binding=b, expires=expires}
         else
             entity:GetData()[BOOST] = expires
         end
@@ -288,9 +289,20 @@ function Peak:Init(mod, Risk)
     end)
     PaidAttacks.Observe(mod, function(p, entity)
         if not ready then return end
-        boost(p, entity, entity and entity.Type ~= EntityType.ENTITY_LASER)
+        return boost(p, entity, entity and entity.Type ~= EntityType.ENTITY_LASER)
     end, function(laser)
         return laserInfo(laser).child
+    end, function(p, laser, decision)
+        local b = binding(p)
+        if not decision or not b or p:IsDead() or decision.epoch ~= laserEpoch or decision.binding ~= b then return end
+        local info = laserInfo(laser)
+        if info.child then return end
+        if not info.lease or info.lease.epoch ~= laserEpoch or info.lease.binding ~= b then
+            info.lease = {epoch=laserEpoch, binding=b}
+        end
+        -- Reuse this owner's paid window without charging again or moving its
+        -- deadline. An unpaid decision also clears a sibling's previous bonus.
+        info.lease.expires = decision.expires
     end)
     local redealing = false
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, target, amount, flags, source, countdown)
