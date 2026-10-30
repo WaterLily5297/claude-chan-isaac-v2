@@ -3,7 +3,7 @@
 local root = arg[1]
 local Env = dofile(root.."/tests/lib/backlog_env.lua")
 local env = Env.New(root)
-CallbackPriority = {DEFAULT=0,LATE=1000}
+CallbackPriority = {EARLY=-100,DEFAULT=0,LATE=1000}
 TearFlags = {TEAR_HOMING=1,TEAR_PIERCING=2,TEAR_SPECTRAL=4,TEAR_POISON=8,TEAR_SLOW=16}
 function RNG() return {SetSeed=function() end} end
 local originalGame = Game

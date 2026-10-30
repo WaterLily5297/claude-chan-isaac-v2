@@ -1,6 +1,7 @@
 -- Normal GLM: Number in Queue. Unique clears advance the Queue; at three, DROP
 -- redeems an Access Pass for the next new hostile rooms. No real purchases or
 -- real-time waiting. Saved per player; the room bonus ends on room exit.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -78,6 +79,10 @@ function GLM:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.glm_queue", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isGLM(p) then return end
         local b = bindings[GetPtrHash(p)]

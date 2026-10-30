@@ -31,6 +31,8 @@ All eight scenarios, the existing focused composition/weapon suites, the full `b
 
 ## Native acceptance and remaining O6 work
 
+Follow-up on 2026-10-30: the [final-save review](HARDENING_SAVE_BARRIER_2026-10-30.md) now observes MealBreak and Rice ownership before encoding, including an earned four-owner meal/Continue case with no intervening update. This closes that supplied-event gap, not native save/cleanup acceptance.
+
 No native save, input, co-op or weapon case is accepted here. In a future authorized session, inspect actual slot identities across co-op join/leave and revival, confirm meal locks and a single refund/reward, then save and fully restart with different players' counters. Test both engine versions. Recreated knife state, actual save/cleanup order, callbacks before the next binding observation and special twin/subplayer identities remain unverified. In particular, the fixture observes a slot change before saving; it does not establish a native guarantee that rebinding always precedes save serialization.
 
 The current source deliberately does not persist a knife entity or its discrete multiplier; this fixture records that boundary, not a new promise to resume the original in-flight attack. Other forms, backlog state composition, Seahorse wisps, broader migration, whole-mod performance and error isolation remain open. No child-laser/Parent billing changes are included; native E2 still gates those changes.

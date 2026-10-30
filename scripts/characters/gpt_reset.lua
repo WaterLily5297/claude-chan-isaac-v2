@@ -1,6 +1,7 @@
 -- Tainted GPT: Reset Watcher. A Credits allowance with a banked Tibo reset.
 -- A fictional reset restores an allowance; it does not claim that real quota
 -- resets fix model quality. Saved per player; no real time and no network.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -78,6 +79,10 @@ function Reset:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.gpt_reset", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]

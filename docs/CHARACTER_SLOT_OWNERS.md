@@ -31,6 +31,8 @@ The detached codec and supplied identities, APIs, input and callback order are t
 
 ## Remaining acceptance and handoff
 
+Follow-up on 2026-10-30: the [final-save review](HARDENING_SAVE_BARRIER_2026-10-30.md) adds an explicit pre-serialization observation and offline cases without an intervening update. It narrows the last-rebind gap below for all 22 form maps; native identity and exit-order acceptance remain open.
+
 Native Jacob/Esau, Forgotten/Soul, Tainted Lazarus/Flip, revival and join/leave must establish their real pointer/seed/slot lifetimes before this rule can be applied to those events. A disappearing body is still an observed departure under this implementation; no unobserved or parked body is guessed to be the same player. The tests observe reassignment before saving and do not establish that native exit callbacks always allow a final rebind before Risk serializes. Real Continue, pending native weapons, cache/render order, other mods and both engine versions remain open.
 
 This unit updates TESTING, CHARACTER_COMPLETION and the interaction inventory. HANDOFF/CHANGELOG consolidation remains deferred because open v2 PR #2 owns those files. Its icon/dossier evidence, RC1 and draft U0 PR #7 remain unresolved. No installation, game input, settings, saves, art, balance values or Workshop publication were changed.

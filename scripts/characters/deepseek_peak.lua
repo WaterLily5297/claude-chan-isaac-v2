@@ -4,6 +4,7 @@
 -- starts and 0.2-second beam windows, knife throws, melee swings, Dr. Fetus
 -- bombs, Epic Fetus rockets) buys the same-priced "off-peak boost" instead:
 -- that attack's hits deal 1.3x, re-dealt once behind a recursion guard.
+local SaveSync = include("scripts.save_sync")
 local C = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
@@ -90,6 +91,10 @@ function Peak:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.deepseek_peak", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not tainted(p) then return end
         local b = bindings[GetPtrHash(p)]

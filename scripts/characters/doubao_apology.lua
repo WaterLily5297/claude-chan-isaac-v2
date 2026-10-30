@@ -1,5 +1,6 @@
 -- Normal Doubao: Sorry, You're Right. The first enemy hit in a room earns an Apology.
 -- It never refunds health or cancels the hit. Saved per player; fictional role.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -69,6 +70,10 @@ function Doubao:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.doubao_apology", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isDoubao(p) then return end
         local b = bindings[GetPtrHash(p)]

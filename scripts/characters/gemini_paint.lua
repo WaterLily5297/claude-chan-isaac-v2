@@ -1,5 +1,6 @@
 -- Normal Gemini: Nano Banana / One More Edit. Paint marks and banana peels.
 -- Saved per-player Paint and unique clears. The live mark and peel are transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -77,6 +78,10 @@ function Gemini:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.gemini_paint", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isGemini(p) then return end
         local b = bindings[GetPtrHash(p)]

@@ -6,6 +6,7 @@
 
 local Constants = include("scripts.constants")
 local SlotOwners = include("scripts.items.slot_owners")
+local SaveSync = include("scripts.save_sync")
 
 local VibeCoding = {}
 
@@ -31,6 +32,10 @@ function VibeCoding:Init(mod, Risk)
         owners:Observe(Risk.state.vibeMistakes)
         return Risk.state.vibeMistakes
     end
+
+    SaveSync.Register(Risk, "vibeMistakes", function()
+        if started and type(Risk.state.vibeMistakes) == "table" then owners:Observe(Risk.state.vibeMistakes) end
+    end)
 
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         rng:SetSeed(math.max(1, Game():GetSeeds():GetStartSeed() + 1986), 35)

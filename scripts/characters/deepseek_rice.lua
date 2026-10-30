@@ -1,4 +1,5 @@
 -- Rice First: a saved, personal meal economy. No proxy or risk mechanics.
+local SaveSync = include("scripts.save_sync")
 local C = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
@@ -73,6 +74,10 @@ function Rice:Init(mod, Risk, Meal)
         for _, b in pairs(nextBindings) do all[b.slot]=b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.deepseek_rice", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not normal(p) then return end
         local b=bindings[GetPtrHash(p)]

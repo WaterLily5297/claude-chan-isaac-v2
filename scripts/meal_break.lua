@@ -1,4 +1,5 @@
 -- Shared food lockout. Save scalar countdowns; never change type or costume.
+local SaveSync = include("scripts.save_sync")
 local MealBreak = {}
 local MAX_FRAMES = 90
 
@@ -54,6 +55,9 @@ function MealBreak:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "mealBreaks", function()
+        if ready then bindPlayers() end
+    end)
     local function binding(player)
         local b = bindings[GetPtrHash(player)]
         if b and b.seed == player.InitSeed then return b end

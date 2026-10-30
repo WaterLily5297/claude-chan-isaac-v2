@@ -10,6 +10,7 @@
 local Constants = include("scripts.constants")
 local PaidAttacks = include("scripts.characters.paid_attacks")
 local SlotOwners = include("scripts.items.slot_owners")
+local SaveSync = include("scripts.save_sync")
 
 local OpusMode = {}
 
@@ -25,9 +26,13 @@ end
 -- Risk is optional so standalone billing fixtures can omit saved state.
 function OpusMode:Init(mod, Risk)
     local owners = SlotOwners.New()
+    local started = false
     if Risk then
-        mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() owners:Reset() end)
-        mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() owners:Reset() end)
+        mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function() started = true; owners:Reset() end)
+        mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function() started = false; owners:Reset() end)
+        SaveSync.Register(Risk, "opusTears", function()
+            if started and type(Risk.state.opusTears) == "table" then owners:Observe(Risk.state.opusTears) end
+        end)
     end
     -- Saved count map and this player's slot key; it follows the live owner (F6).
     local function saved(player)

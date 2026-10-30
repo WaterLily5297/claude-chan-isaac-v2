@@ -5,11 +5,26 @@
 -- within a session (scripts/items/slot_owners.lua).
 
 local SlotOwners = include("scripts.items.slot_owners")
+local SaveSync = include("scripts.save_sync")
 
 local MemeState = {}
 
 local VERSION = 1
-local owners = SlotOwners.New()
+-- Every item importing this service must share one observer for the same map.
+-- Separate observers would apply the same slot rotation more than once.
+local function observer(Risk)
+    if not Risk._memeOwners then
+        local owners = SlotOwners.New()
+        Risk._memeOwners = owners
+        SaveSync.Register(Risk, "memeExtras", function()
+            local all = Risk.state.memeExtras
+            if type(all) == "table" and all.version == VERSION and type(all.players) == "table" then
+                owners:Observe(all.players)
+            end
+        end)
+    end
+    return Risk._memeOwners
+end
 
 function MemeState.FloorKey()
     local level = Game():GetLevel()
@@ -26,7 +41,7 @@ end
 local function saved(Risk)
     local all = Risk.state.memeExtras
     if type(all) ~= "table" or all.version ~= VERSION or type(all.players) ~= "table" then return nil end
-    owners:Observe(all.players)
+    observer(Risk):Observe(all.players)
     return all.players
 end
 
@@ -69,7 +84,7 @@ end
 -- damage cache (9.11 > 9.9, Temperature Dial) must be evaluated again.
 function MemeState.TakeMoved(Risk)
     if not saved(Risk) then return {} end
-    return owners:TakeMoved()
+    return observer(Risk):TakeMoved()
 end
 
 function MemeState.Holders(trinket)

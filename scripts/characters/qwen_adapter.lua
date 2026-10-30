@@ -1,6 +1,7 @@
 -- Normal Qwen: Everyone's Base Model. Choose one adapter per new hostile room.
 -- The joke is community enthusiasm for fine-tunes and variants, not a claim
 -- about any product. Saved per player; the active bonus ends on room exit.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -91,6 +92,10 @@ function Qwen:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.qwen_adapter", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isQwen(p) then return end
         local b = bindings[GetPtrHash(p)]

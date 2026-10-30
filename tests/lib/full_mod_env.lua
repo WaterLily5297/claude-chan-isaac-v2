@@ -34,7 +34,7 @@ function Full.New(root, kinds, options)
     end
     Isaac.GetTrinketIdByName=registry(190)
     Isaac.GetPillEffectByName=registry(50)
-    CallbackPriority={DEFAULT=0,LATE=1000}
+    CallbackPriority={EARLY=-100,DEFAULT=0,LATE=1000}
     EntityPartition={ENEMY=1,BULLET=2}
     EntityType.ENTITY_LASER,EntityType.ENTITY_KNIFE,EntityType.ENTITY_BOMB=7,8,4
     EntityFlag.FLAG_CHARM=256

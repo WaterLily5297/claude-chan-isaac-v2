@@ -1,6 +1,7 @@
 -- Normal Llama: Please Stay Open. Spend a Release to share blue flies.
 -- Fictional gameplay; no claim about any company's future release policy.
 -- Saved per player; duplicate Llamas own separate budgets.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -72,6 +73,10 @@ function Llama:Init(mod, Risk)
         for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.llama_release", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isLlama(p) then return end
         local b = bindings[GetPtrHash(p)]

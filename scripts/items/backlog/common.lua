@@ -189,6 +189,10 @@ function Common:Init(mod, Risk)
         return all.players
     end
 
+    include("scripts.save_sync").Register(Risk, "backlog", function()
+        if started then savedPlayers() end
+    end)
+
     function self.On(name, fn)
         listeners[name] = listeners[name] or {}
         table.insert(listeners[name], fn)
