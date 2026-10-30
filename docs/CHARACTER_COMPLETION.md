@@ -4,6 +4,8 @@ Mechanics audit checkpoint: `28aed35275f938f85818ffd696a9ee67a1efb556` (2026-10-
 
 Compare the [gameplay targets](CHARACTER_GAMEPLAY.md), [approved B1 tradeoffs](DIFFICULTY_FEATURES.md), [source roster](MODEL_ROSTER.md), [22 XML registrations](../content/players.xml), module callbacks, [English EID entries](../scripts/eid.lua), [dossiers](../scripts/characters/dossiers.lua) and the linked real-module fixtures. Every form has a core loop, B1 condition and Birthright branch in source. The audit did not identify an entirely missing form/loop; that does not close untested combinations or the gaps below. Do not merge superseded numerical PR #100.
 
+The 2026-10-31 [meal-migration review](HARDENING_MEAL_MIGRATION_2026-10-31.md) fixes stale unowned delay metadata without clearing valid food debt. Sixteen migration cases and two-owner Rice Cooker resumes on all 22 forms pass offline; valid owned Rice delays and foreign cooldowns retain their existing behavior. This does not close G5 or establish native Continue/input acceptance.
+
 ## How to read the table
 
 - **N / T** means normal / tainted. Source and test links identify the principal implementation and fixture, not an exhaustive native weapon matrix.
