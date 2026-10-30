@@ -64,20 +64,23 @@ function Kimi:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isKimi(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, armed={}, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
     local function binding(p)

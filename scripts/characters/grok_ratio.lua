@@ -48,20 +48,23 @@ function Ratio:Init(mod, Risk)
             local changed = not previous or previous.pointer ~= pointer
                 or previous.seed ~= p.InitSeed or previous.kind ~= kind
             if id >= 0 and kind == id then
-                if previous and changed then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and changed then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             -- Keep the immutable identity snapshot while this slot is unchanged.
             nextSlots[key] = changed and {pointer=pointer, seed=p.InitSeed, kind=kind} or previous
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
     local function binding(p)

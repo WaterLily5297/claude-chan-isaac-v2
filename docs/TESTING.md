@@ -2,6 +2,14 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U3/U4/G3: character state follows observed owners (2026-10-30; offline)
+
+[Character slot continuity](CHARACTER_SLOT_OWNERS.md) reproduces resource resets on all 21 previously slot-bound forms (normal Rice already passes): a same-owner move could reset Credits, age, cooldowns and pending bindings. Atomic remapping now preserves each continuously observed pointer/seed's state, including Claude's paid volley, while actual replacements and observed departures remain fresh-owner boundaries.
+
+All 22 forms have duplicate/mixed four-player moves, pause, wrapper/controller, departure/join, pointer/seed/type replacement and observed-move-before-Continue cases through main.lua. Seventeen actual ability timelines compare moved and stationary owners for 300 frames each, with explicit positive controls. Baseline fails each changed form; seven intentional production faults fail the intended assertions. Older Claude/GPT/Grok swap-reset expectations are explicitly superseded by the owner-delegated continuity rule, while their replacement tests remain.
+
+Native special-body identity, Flip/revival, callbacks before the next rebind, real save/exit order, rendering and both engine versions remain unaccepted. This does not close S1-S4 or E2-E6. Installed `8fd6a8c` and PR #2's files remain untouched; the focused record is this unit's handoff pending consolidated HANDOFF/CHANGELOG updates.
+
 ## U5/G6: quiet DROP refusal cues (2026-10-30; offline)
 
 [DROP_REFUSALS.md](DROP_REFUSALS.md) records the owner-delegated choice and current per-form conditions. Refused taps show one English line for 45 frames in the tapping player's existing HUD band; no shared caption, sound or extra row. A separate feedback observer preserves the original action cancellation rules, costs, cooldowns and native pocket/hold ownership.

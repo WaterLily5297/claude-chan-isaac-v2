@@ -224,8 +224,8 @@ tick(20)
 assert(state()==stableFirst and state(1)==stableSecond and state().cooldown==180 and state(1).cooldown==130,
     "unchanged owners retain their accounts and advance cooldowns once per frame")
 players={q,p}; tick()
-assert(state().cooldown==0 and state(1).cooldown==0 and state()~=stableFirst and state(1)~=stableSecond,
-    "swapping occupied slots cannot transfer cooldowns")
+assert(state().cooldown==129 and state(1).cooldown==179 and state()==stableSecond and state(1)==stableFirst,
+    "cooldowns follow their owners and age once during a slot swap")
 state().cooldown=20; players={q}; tick()
 assert(state().cooldown==19 and state(1)==nil,"departure prunes only the absent slot")
 players[2]=p; tick()

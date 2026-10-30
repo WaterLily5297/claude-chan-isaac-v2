@@ -30,7 +30,7 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Charm before ordinary shields | Absolutely Right previously registered a default-priority observer before backlog guards. The real-module fixture reproduced charm on a Sold Out-blocked bullet. | [Corrected to LATE](CHARM_DAMAGE_ORDER.md), with existing source/duration/flag behavior retained. Native final health/status timing, vetoes after LATE and other hit reactions remain open. |
 | Tear copying and helper damage | [tear_fork.lua](../scripts/tear_fork.lua) copies parent damage/colour/flags into a new child. Other helpers use native creation, scaling and later field writes. | [Full-entry ordinary-shot coverage](FULL_MOD_PRIMARY_COMPOSITION.md) checks Swarm/Peak resolved copies, Context aging and actual One More Finger synchronous helpers alongside form/item resource accounting. Raw-spawn and helper event contracts remain supplied inputs; production already passes. Preserve established ownership rules; no child-billing fix from static findings. Native E2 remains required for unresolved ancestry. |
 | Flight cache | [transformation.lua](../scripts/transformation.lua) assigns `CanFly = true` only after its transformation predicate, within the flight cache. | Intentional grant, not an unconditional loss of native flight. [264 seeded composition cases](AGENTIC_COSTUME_COMPOSITION.md) now exercise the real backlog, transformation and costume-lock callbacks: threshold/removal, supplied native flight, cache rebuilding, type departure/return and vanilla controls. Character ability loops and native cache/render timing remain open. |
-| Shared Risk roots | Risk owns serialization/default restoration; legacy `accountAge` is read/migrated by Claude; backlog families share the versioned service through local aliases. The scanner finds direct shared access to `claudeUsage` and `reviewApproved`. | Shared roots are expected in services, but do not prove per-player isolation. W6.1 must map ownership/migration and check Continue, type swaps, legacy saves and co-op. Dynamic or nested writes remain visible as unresolved work, not accepted coverage. |
+| Shared Risk roots | Risk owns serialization/default restoration; legacy `accountAge` is read/migrated by Claude; backlog families share the versioned service through local aliases. The scanner finds direct shared access to `claudeUsage` and `reviewApproved`. | Shared roots are expected in services, but do not prove per-player isolation. [Character slot continuity](CHARACTER_SLOT_OWNERS.md) fixes 21 forms resetting the same observed owners on slot moves; all 22 form records and 17 active timelines now have bounded offline reassignment coverage. W6.1 still needs native identity/save ordering, unobserved moves, broader migration and special-body cases. Dynamic or nested writes remain visible as unresolved work, not accepted coverage. |
 | Checkpoint Pin multi-assignment | [backlog/shared.lua](../scripts/items/backlog/shared.lua) restores `Position` and clears `Velocity` in one assignment. | Both targets are listed without pretending the RHS was resolved. Existing mechanism tests and a later native collision/room case determine acceptance. |
 | Ignore Instructions dynamic targets | [ignore_instructions.lua](../scripts/items/ignore_instructions.lua) indexes transient primary records by owner pointer and active slot. The four unresolved indexed assignments update/remove these local records; they do not write native entity fields or Risk state. | Manually reviewed for consume/refusal/replacement behavior, EntityPtr/seed identity and room/start clearing. Eight fault checks strengthen offline coverage. Native pairing and recursive external uses remain open in F2; the lexical warnings stay visible. |
 | Callback cancellation and explicit late callbacks | Constitution registers before Risk; Risk and Vibe damage bookkeeping use explicit LATE priority. Swarm's fire-tear callback also declares LATE. Other registrations generally use default priority. | Preserve cancellation/derived-shot regressions. Review callbacks with early returns and external integrations by actual event, not the whole-file callback list. Static default priority alone is not an ordering defect. |
@@ -61,7 +61,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `1c74030020e4752f75bcb8f19fe39850629d016b7546705d9a43d6c6bcf5a4bd`.
+111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `7b721006e1d56dae9d2ffa259da4ae449881e10e638d8ceee42b66feae99c3e3`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -150,7 +150,7 @@ Unresolved syntax: L12: dynamic field target requires manual review.
 #### scripts/characters/claude_chan.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:189](../scripts/characters/claude_chan.lua#L189)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan.lua:203](../scripts/characters/claude_chan.lua#L203)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan.lua:206](../scripts/characters/claude_chan.lua#L206)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan.lua:216](../scripts/characters/claude_chan.lua#L216)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan.lua:235](../scripts/characters/claude_chan.lua#L235)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/claude_chan.lua:236](../scripts/characters/claude_chan.lua#L236)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:247](../scripts/characters/claude_chan.lua#L247)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan.lua:258](../scripts/characters/claude_chan.lua#L258)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan.lua:304](../scripts/characters/claude_chan.lua#L304)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan.lua:319](../scripts/characters/claude_chan.lua#L319)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan.lua:325](../scripts/characters/claude_chan.lua#L325)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [characters/claude_chan.lua:334](../scripts/characters/claude_chan.lua#L334)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan.lua:384](../scripts/characters/claude_chan.lua#L384)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:196](../scripts/characters/claude_chan.lua#L196)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan.lua:210](../scripts/characters/claude_chan.lua#L210)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan.lua:213](../scripts/characters/claude_chan.lua#L213)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan.lua:223](../scripts/characters/claude_chan.lua#L223)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan.lua:242](../scripts/characters/claude_chan.lua#L242)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/claude_chan.lua:243](../scripts/characters/claude_chan.lua#L243)), `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan.lua:254](../scripts/characters/claude_chan.lua#L254)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan.lua:265](../scripts/characters/claude_chan.lua#L265)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan.lua:311](../scripts/characters/claude_chan.lua#L311)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan.lua:326](../scripts/characters/claude_chan.lua#L326)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan.lua:332](../scripts/characters/claude_chan.lua#L332)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [characters/claude_chan.lua:341](../scripts/characters/claude_chan.lua#L341)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan.lua:391](../scripts/characters/claude_chan.lua#L391)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_SPEED`, `CACHE_TEARCOLOR`.
@@ -159,32 +159,32 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/claude_chan.lua:263](../scripts/characters/claude_chan.lua#L263) | `player.Damage` | `player.Damage+AGE_DAMAGE*usage.age` | self-dependent |
+| [characters/claude_chan.lua:270](../scripts/characters/claude_chan.lua#L270) | `player.Damage` | `player.Damage+AGE_DAMAGE*usage.age` | self-dependent |
 
-| [characters/claude_chan.lua:266](../scripts/characters/claude_chan.lua#L266) | `player.Damage` | `player.Damage*LIMITED_DAMAGE_MULT` | self-dependent |
+| [characters/claude_chan.lua:273](../scripts/characters/claude_chan.lua#L273) | `player.Damage` | `player.Damage*LIMITED_DAMAGE_MULT` | self-dependent |
 
-| [characters/claude_chan.lua:269](../scripts/characters/claude_chan.lua#L269) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
+| [characters/claude_chan.lua:276](../scripts/characters/claude_chan.lua#L276) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
 
-| [characters/claude_chan.lua:271](../scripts/characters/claude_chan.lua#L271) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
+| [characters/claude_chan.lua:278](../scripts/characters/claude_chan.lua#L278) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
 
-| [characters/claude_chan.lua:273](../scripts/characters/claude_chan.lua#L273) | `player.MoveSpeed` | `player.MoveSpeed-0.1` | self-dependent |
+| [characters/claude_chan.lua:280](../scripts/characters/claude_chan.lua#L280) | `player.MoveSpeed` | `player.MoveSpeed-0.1` | self-dependent |
 
-| [characters/claude_chan.lua:275](../scripts/characters/claude_chan.lua#L275) | `player.TearColor` | `Tint.Apply(player.TearColor,1,0.55,0.25,1)` | self-dependent |
+| [characters/claude_chan.lua:282](../scripts/characters/claude_chan.lua#L282) | `player.TearColor` | `Tint.Apply(player.TearColor,1,0.55,0.25,1)` | self-dependent |
 
-| [characters/claude_chan.lua:314](../scripts/characters/claude_chan.lua#L314) | `tear.Color` | `Tint.Apply(tear.Color,0.5,0.5,0.5,0.7)` | self-dependent |
-
-
-
-Risk state roots: `accountAge` direct write at L201; `accountAge` read/alias at L162; `claudeUsage` direct write at L156, L191; `claudeUsage` read/alias at L97, L136, L155.
+| [characters/claude_chan.lua:321](../scripts/characters/claude_chan.lua#L321) | `tear.Color` | `Tint.Apply(tear.Color,0.5,0.5,0.5,0.7)` | self-dependent |
 
 
-Unresolved syntax: L108: dynamic field target requires manual review; L109: dynamic field target requires manual review; L124: dynamic field target requires manual review; L127: dynamic field target requires manual review; L132: dynamic field target requires manual review; L138: dynamic field target requires manual review; L143: dynamic field target requires manual review; L159: dynamic field target requires manual review; L287: dynamic field target requires manual review; L339: dynamic field target requires manual review; L355: dynamic field target requires manual review; L98: dynamic field target requires manual review; L99: dynamic field target requires manual review.
+
+Risk state roots: `accountAge` direct write at L208; `accountAge` read/alias at L169; `claudeUsage` direct write at L163, L198; `claudeUsage` read/alias at L102, L162.
+
+
+Unresolved syntax: L113: dynamic field target requires manual review; L132: dynamic field target requires manual review; L133: dynamic field target requires manual review; L137: dynamic field target requires manual review; L139: dynamic field target requires manual review; L140: dynamic field target requires manual review; L146: dynamic field target requires manual review; L147: dynamic field target requires manual review; L151: dynamic field target requires manual review; L166: dynamic field target requires manual review; L294: dynamic field target requires manual review; L346: dynamic field target requires manual review; L362: dynamic field target requires manual review; L97: dynamic field target requires manual review.
 
 
 #### scripts/characters/claude_chan_b.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan_b.lua:145](../scripts/characters/claude_chan_b.lua#L145)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan_b.lua:155](../scripts/characters/claude_chan_b.lua#L155)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan_b.lua:158](../scripts/characters/claude_chan_b.lua#L158)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan_b.lua:165](../scripts/characters/claude_chan_b.lua#L165)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/claude_chan_b.lua:166](../scripts/characters/claude_chan_b.lua#L166)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan_b.lua:210](../scripts/characters/claude_chan_b.lua#L210)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan_b.lua:224](../scripts/characters/claude_chan_b.lua#L224)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan_b.lua:257](../scripts/characters/claude_chan_b.lua#L257)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan_b.lua:267](../scripts/characters/claude_chan_b.lua#L267)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan_b.lua:272](../scripts/characters/claude_chan_b.lua#L272)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan_b.lua:277](../scripts/characters/claude_chan_b.lua#L277)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/claude_chan_b.lua:147](../scripts/characters/claude_chan_b.lua#L147)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/claude_chan_b.lua:157](../scripts/characters/claude_chan_b.lua#L157)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/claude_chan_b.lua:160](../scripts/characters/claude_chan_b.lua#L160)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/claude_chan_b.lua:167](../scripts/characters/claude_chan_b.lua#L167)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/claude_chan_b.lua:168](../scripts/characters/claude_chan_b.lua#L168)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/claude_chan_b.lua:212](../scripts/characters/claude_chan_b.lua#L212)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/claude_chan_b.lua:226](../scripts/characters/claude_chan_b.lua#L226)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/claude_chan_b.lua:259](../scripts/characters/claude_chan_b.lua#L259)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/claude_chan_b.lua:269](../scripts/characters/claude_chan_b.lua#L269)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/claude_chan_b.lua:274](../scripts/characters/claude_chan_b.lua#L274)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/claude_chan_b.lua:279](../scripts/characters/claude_chan_b.lua#L279)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_TEARCOLOR`.
@@ -193,22 +193,22 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_RANGE`, `CACHE_SHOTSPEED`, `CACHE_
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/claude_chan_b.lua:229](../scripts/characters/claude_chan_b.lua#L229) | `player.Damage` | `player.Damage*(suspended and SUSPENDED_DAMAGE or DAMAGE_MULT)` | self-dependent |
+| [characters/claude_chan_b.lua:231](../scripts/characters/claude_chan_b.lua#L231) | `player.Damage` | `player.Damage*(suspended and SUSPENDED_DAMAGE or DAMAGE_MULT)` | self-dependent |
 
-| [characters/claude_chan_b.lua:231](../scripts/characters/claude_chan_b.lua#L231) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
+| [characters/claude_chan_b.lua:233](../scripts/characters/claude_chan_b.lua#L233) | `player.TearRange` | `player.TearRange+1.5*40` | self-dependent |
 
-| [characters/claude_chan_b.lua:233](../scripts/characters/claude_chan_b.lua#L233) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
+| [characters/claude_chan_b.lua:235](../scripts/characters/claude_chan_b.lua#L235) | `player.ShotSpeed` | `player.ShotSpeed+0.2` | self-dependent |
 
-| [characters/claude_chan_b.lua:237](../scripts/characters/claude_chan_b.lua#L237) | `player.TearColor` | `Color(c.R*k[1],c.G*k[2],c.B*k[3],c.A*k[4],c.RO,c.GO,c.BO)` | indirect |
+| [characters/claude_chan_b.lua:239](../scripts/characters/claude_chan_b.lua#L239) | `player.TearColor` | `Color(c.R*k[1],c.G*k[2],c.B*k[3],c.A*k[4],c.RO,c.GO,c.BO)` | indirect |
 
-| [characters/claude_chan_b.lua:238](../scripts/characters/claude_chan_b.lua#L238) | `player.TearColor` | `Color(k[1],k[2],k[3],k[4],0,0,0)` | indirect |
-
-
-
-Risk state roots: `claudeAppeal` direct write at L88, L147; `claudeAppeal` read/alias at L69, L88, L89.
+| [characters/claude_chan_b.lua:240](../scripts/characters/claude_chan_b.lua#L240) | `player.TearColor` | `Color(k[1],k[2],k[3],k[4],0,0,0)` | indirect |
 
 
-Unresolved syntax: L104: dynamic field target requires manual review; L107: dynamic field target requires manual review; L109: dynamic field target requires manual review; L111: dynamic field target requires manual review; L186: dynamic field target requires manual review; L216: dynamic field target requires manual review; L98: dynamic field target requires manual review; L99: dynamic field target requires manual review.
+
+Risk state roots: `claudeAppeal` direct write at L88, L149; `claudeAppeal` read/alias at L69, L88, L89.
+
+
+Unresolved syntax: L108: dynamic field target requires manual review; L110: dynamic field target requires manual review; L112: dynamic field target requires manual review; L188: dynamic field target requires manual review; L218: dynamic field target requires manual review.
 
 
 #### scripts/characters/claude_review.lua
@@ -273,7 +273,7 @@ Risk state roots: none detected.
 #### scripts/characters/deepseek_peak.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/deepseek_peak.lua:119](../scripts/characters/deepseek_peak.lua#L119)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/deepseek_peak.lua:125](../scripts/characters/deepseek_peak.lua#L125)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/deepseek_peak.lua:128](../scripts/characters/deepseek_peak.lua#L128)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/deepseek_peak.lua:135](../scripts/characters/deepseek_peak.lua#L135)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/deepseek_peak.lua:136](../scripts/characters/deepseek_peak.lua#L136)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/deepseek_peak.lua:197](../scripts/characters/deepseek_peak.lua#L197)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/deepseek_peak.lua:282](../scripts/characters/deepseek_peak.lua#L282)), `ModCallbacks.MC_POST_LASER_UPDATE` (`default`, [characters/deepseek_peak.lua:288](../scripts/characters/deepseek_peak.lua#L288)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/deepseek_peak.lua:291](../scripts/characters/deepseek_peak.lua#L291)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/deepseek_peak.lua:312](../scripts/characters/deepseek_peak.lua#L312)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/deepseek_peak.lua:331](../scripts/characters/deepseek_peak.lua#L331)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/deepseek_peak.lua:121](../scripts/characters/deepseek_peak.lua#L121)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/deepseek_peak.lua:127](../scripts/characters/deepseek_peak.lua#L127)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/deepseek_peak.lua:130](../scripts/characters/deepseek_peak.lua#L130)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/deepseek_peak.lua:137](../scripts/characters/deepseek_peak.lua#L137)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/deepseek_peak.lua:138](../scripts/characters/deepseek_peak.lua#L138)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/deepseek_peak.lua:199](../scripts/characters/deepseek_peak.lua#L199)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/deepseek_peak.lua:284](../scripts/characters/deepseek_peak.lua#L284)), `ModCallbacks.MC_POST_LASER_UPDATE` (`default`, [characters/deepseek_peak.lua:290](../scripts/characters/deepseek_peak.lua#L290)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/deepseek_peak.lua:293](../scripts/characters/deepseek_peak.lua#L293)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/deepseek_peak.lua:314](../scripts/characters/deepseek_peak.lua#L314)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/deepseek_peak.lua:333](../scripts/characters/deepseek_peak.lua#L333)).
 
 
 Cache flag references: none detected.
@@ -282,10 +282,10 @@ Cache flag references: none detected.
 Direct tracked-field writes: none detected.
 
 
-Risk state roots: `deepseekPeak` direct write at L58, L121; `deepseekPeak` read/alias at L58, L59.
+Risk state roots: `deepseekPeak` direct write at L58, L123; `deepseekPeak` read/alias at L58, L59.
 
 
-Unresolved syntax: L231: dynamic field target requires manual review; L243: dynamic field target requires manual review; L266: dynamic field target requires manual review; L49: dynamic field target requires manual review; L74: dynamic field target requires manual review; L75: dynamic field target requires manual review; L81: dynamic field target requires manual review; L84: dynamic field target requires manual review; L86: dynamic field target requires manual review; L88: dynamic field target requires manual review.
+Unresolved syntax: L233: dynamic field target requires manual review; L245: dynamic field target requires manual review; L268: dynamic field target requires manual review; L49: dynamic field target requires manual review; L85: dynamic field target requires manual review; L87: dynamic field target requires manual review; L89: dynamic field target requires manual review.
 
 
 #### scripts/characters/deepseek_rice.lua
@@ -332,7 +332,7 @@ Risk state roots: none detected.
 #### scripts/characters/doubao_again.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/doubao_again.lua:88](../scripts/characters/doubao_again.lua#L88)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/doubao_again.lua:94](../scripts/characters/doubao_again.lua#L94)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/doubao_again.lua:97](../scripts/characters/doubao_again.lua#L97)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/doubao_again.lua:101](../scripts/characters/doubao_again.lua#L101)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/doubao_again.lua:102](../scripts/characters/doubao_again.lua#L102)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/doubao_again.lua:138](../scripts/characters/doubao_again.lua#L138)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/doubao_again.lua:147](../scripts/characters/doubao_again.lua#L147)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/doubao_again.lua:156](../scripts/characters/doubao_again.lua#L156)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/doubao_again.lua:163](../scripts/characters/doubao_again.lua#L163)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/doubao_again.lua:91](../scripts/characters/doubao_again.lua#L91)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/doubao_again.lua:97](../scripts/characters/doubao_again.lua#L97)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/doubao_again.lua:100](../scripts/characters/doubao_again.lua#L100)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/doubao_again.lua:104](../scripts/characters/doubao_again.lua#L104)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/doubao_again.lua:105](../scripts/characters/doubao_again.lua#L105)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/doubao_again.lua:141](../scripts/characters/doubao_again.lua#L141)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/doubao_again.lua:150](../scripts/characters/doubao_again.lua#L150)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/doubao_again.lua:159](../scripts/characters/doubao_again.lua#L159)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/doubao_again.lua:166](../scripts/characters/doubao_again.lua#L166)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -341,22 +341,22 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/doubao_again.lua:160](../scripts/characters/doubao_again.lua#L160) | `p.Damage` | `p.Damage*CONFIDENT_DAMAGE` | self-dependent |
+| [characters/doubao_again.lua:163](../scripts/characters/doubao_again.lua#L163) | `p.Damage` | `p.Damage*CONFIDENT_DAMAGE` | self-dependent |
 
-| [characters/doubao_again.lua:161](../scripts/characters/doubao_again.lua#L161) | `p.Damage` | `p.Damage*APOLOGY_DAMAGE` | self-dependent |
-
-
-
-Risk state roots: `doubaoAgain` direct write at L33, L90; `doubaoAgain` read/alias at L33, L34.
+| [characters/doubao_again.lua:164](../scripts/characters/doubao_again.lua#L164) | `p.Damage` | `p.Damage*APOLOGY_DAMAGE` | self-dependent |
 
 
-Unresolved syntax: L47: dynamic field target requires manual review; L48: dynamic field target requires manual review; L53: dynamic field target requires manual review; L55: dynamic field target requires manual review; L57: dynamic field target requires manual review; L59: dynamic field target requires manual review.
+
+Risk state roots: `doubaoAgain` direct write at L33, L93; `doubaoAgain` read/alias at L33, L34.
+
+
+Unresolved syntax: L57: dynamic field target requires manual review; L59: dynamic field target requires manual review; L61: dynamic field target requires manual review.
 
 
 #### scripts/characters/doubao_apology.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/doubao_apology.lua:116](../scripts/characters/doubao_apology.lua#L116)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/doubao_apology.lua:121](../scripts/characters/doubao_apology.lua#L121)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/doubao_apology.lua:124](../scripts/characters/doubao_apology.lua#L124)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/doubao_apology.lua:132](../scripts/characters/doubao_apology.lua#L132)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/doubao_apology.lua:159](../scripts/characters/doubao_apology.lua#L159)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/doubao_apology.lua:173](../scripts/characters/doubao_apology.lua#L173)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/doubao_apology.lua:119](../scripts/characters/doubao_apology.lua#L119)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/doubao_apology.lua:124](../scripts/characters/doubao_apology.lua#L124)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/doubao_apology.lua:127](../scripts/characters/doubao_apology.lua#L127)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/doubao_apology.lua:135](../scripts/characters/doubao_apology.lua#L135)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/doubao_apology.lua:162](../scripts/characters/doubao_apology.lua#L162)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/doubao_apology.lua:176](../scripts/characters/doubao_apology.lua#L176)).
 
 
 Cache flag references: none detected.
@@ -365,10 +365,10 @@ Cache flag references: none detected.
 Direct tracked-field writes: none detected.
 
 
-Risk state roots: `doubaoApology` direct write at L39, L118; `doubaoApology` read/alias at L39, L40.
+Risk state roots: `doubaoApology` direct write at L39, L121; `doubaoApology` read/alias at L39, L40.
 
 
-Unresolved syntax: L53: dynamic field target requires manual review; L54: dynamic field target requires manual review; L60: dynamic field target requires manual review; L62: dynamic field target requires manual review; L64: dynamic field target requires manual review; L66: dynamic field target requires manual review.
+Unresolved syntax: L64: dynamic field target requires manual review; L66: dynamic field target requires manual review; L68: dynamic field target requires manual review.
 
 
 #### scripts/characters/drop_tap.lua
@@ -414,7 +414,7 @@ Risk state roots: none detected.
 #### scripts/characters/gemini_edit.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gemini_edit.lua:85](../scripts/characters/gemini_edit.lua#L85)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gemini_edit.lua:91](../scripts/characters/gemini_edit.lua#L91)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gemini_edit.lua:94](../scripts/characters/gemini_edit.lua#L94)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gemini_edit.lua:100](../scripts/characters/gemini_edit.lua#L100)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gemini_edit.lua:138](../scripts/characters/gemini_edit.lua#L138)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gemini_edit.lua:144](../scripts/characters/gemini_edit.lua#L144)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gemini_edit.lua:163](../scripts/characters/gemini_edit.lua#L163)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gemini_edit.lua:166](../scripts/characters/gemini_edit.lua#L166)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gemini_edit.lua:88](../scripts/characters/gemini_edit.lua#L88)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gemini_edit.lua:94](../scripts/characters/gemini_edit.lua#L94)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gemini_edit.lua:97](../scripts/characters/gemini_edit.lua#L97)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gemini_edit.lua:103](../scripts/characters/gemini_edit.lua#L103)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gemini_edit.lua:141](../scripts/characters/gemini_edit.lua#L141)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gemini_edit.lua:147](../scripts/characters/gemini_edit.lua#L147)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gemini_edit.lua:166](../scripts/characters/gemini_edit.lua#L166)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gemini_edit.lua:169](../scripts/characters/gemini_edit.lua#L169)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -423,20 +423,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/gemini_edit.lua:164](../scripts/characters/gemini_edit.lua#L164) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
+| [characters/gemini_edit.lua:167](../scripts/characters/gemini_edit.lua#L167) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `geminiEdit` direct write at L37, L87; `geminiEdit` read/alias at L37, L38.
+Risk state roots: `geminiEdit` direct write at L37, L90; `geminiEdit` read/alias at L37, L38.
 
 
-Unresolved syntax: L153: dynamic field target requires manual review; L51: dynamic field target requires manual review; L52: dynamic field target requires manual review; L57: dynamic field target requires manual review; L59: dynamic field target requires manual review; L61: dynamic field target requires manual review; L63: dynamic field target requires manual review.
+Unresolved syntax: L156: dynamic field target requires manual review; L61: dynamic field target requires manual review; L63: dynamic field target requires manual review; L65: dynamic field target requires manual review.
 
 
 #### scripts/characters/gemini_paint.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gemini_paint.lua:102](../scripts/characters/gemini_paint.lua#L102)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gemini_paint.lua:108](../scripts/characters/gemini_paint.lua#L108)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gemini_paint.lua:111](../scripts/characters/gemini_paint.lua#L111)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gemini_paint.lua:118](../scripts/characters/gemini_paint.lua#L118)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gemini_paint.lua:119](../scripts/characters/gemini_paint.lua#L119)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gemini_paint.lua:159](../scripts/characters/gemini_paint.lua#L159)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gemini_paint.lua:170](../scripts/characters/gemini_paint.lua#L170)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/gemini_paint.lua:184](../scripts/characters/gemini_paint.lua#L184)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gemini_paint.lua:204](../scripts/characters/gemini_paint.lua#L204)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gemini_paint.lua:104](../scripts/characters/gemini_paint.lua#L104)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gemini_paint.lua:110](../scripts/characters/gemini_paint.lua#L110)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gemini_paint.lua:113](../scripts/characters/gemini_paint.lua#L113)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gemini_paint.lua:120](../scripts/characters/gemini_paint.lua#L120)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gemini_paint.lua:121](../scripts/characters/gemini_paint.lua#L121)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gemini_paint.lua:161](../scripts/characters/gemini_paint.lua#L161)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gemini_paint.lua:172](../scripts/characters/gemini_paint.lua#L172)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/gemini_paint.lua:186](../scripts/characters/gemini_paint.lua#L186)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gemini_paint.lua:206](../scripts/characters/gemini_paint.lua#L206)).
 
 
 Cache flag references: none detected.
@@ -445,20 +445,20 @@ Cache flag references: none detected.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/gemini_paint.lua:199](../scripts/characters/gemini_paint.lua#L199) | `effect.Color` | `Color(1,0.9,0.2,1,0.4,0.35,0)` | indirect |
+| [characters/gemini_paint.lua:201](../scripts/characters/gemini_paint.lua#L201) | `effect.Color` | `Color(1,0.9,0.2,1,0.4,0.35,0)` | indirect |
 
 
 
-Risk state roots: `geminiPaint` direct write at L44, L104; `geminiPaint` read/alias at L44, L45.
+Risk state roots: `geminiPaint` direct write at L44, L106; `geminiPaint` read/alias at L44, L45.
 
 
-Unresolved syntax: L137: dynamic field target requires manual review; L165: dynamic field target requires manual review; L62: dynamic field target requires manual review; L63: dynamic field target requires manual review; L68: dynamic field target requires manual review; L71: dynamic field target requires manual review; L73: dynamic field target requires manual review; L75: dynamic field target requires manual review.
+Unresolved syntax: L139: dynamic field target requires manual review; L167: dynamic field target requires manual review; L72: dynamic field target requires manual review; L74: dynamic field target requires manual review; L76: dynamic field target requires manual review.
 
 
 #### scripts/characters/glm_queue.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/glm_queue.lua:105](../scripts/characters/glm_queue.lua#L105)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/glm_queue.lua:111](../scripts/characters/glm_queue.lua#L111)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/glm_queue.lua:114](../scripts/characters/glm_queue.lua#L114)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/glm_queue.lua:126](../scripts/characters/glm_queue.lua#L126)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/glm_queue.lua:127](../scripts/characters/glm_queue.lua#L127)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/glm_queue.lua:162](../scripts/characters/glm_queue.lua#L162)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/glm_queue.lua:172](../scripts/characters/glm_queue.lua#L172)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/glm_queue.lua:177](../scripts/characters/glm_queue.lua#L177)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/glm_queue.lua:108](../scripts/characters/glm_queue.lua#L108)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/glm_queue.lua:114](../scripts/characters/glm_queue.lua#L114)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/glm_queue.lua:117](../scripts/characters/glm_queue.lua#L117)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/glm_queue.lua:129](../scripts/characters/glm_queue.lua#L129)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/glm_queue.lua:130](../scripts/characters/glm_queue.lua#L130)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/glm_queue.lua:165](../scripts/characters/glm_queue.lua#L165)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/glm_queue.lua:175](../scripts/characters/glm_queue.lua#L175)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/glm_queue.lua:180](../scripts/characters/glm_queue.lua#L180)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -467,20 +467,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/glm_queue.lua:175](../scripts/characters/glm_queue.lua#L175) | `p.Damage` | `p.Damage*BONUS` | self-dependent |
+| [characters/glm_queue.lua:178](../scripts/characters/glm_queue.lua#L178) | `p.Damage` | `p.Damage*BONUS` | self-dependent |
 
 
 
-Risk state roots: `glmQueue` direct write at L41, L107; `glmQueue` read/alias at L41, L42.
+Risk state roots: `glmQueue` direct write at L41, L110; `glmQueue` read/alias at L41, L42.
 
 
-Unresolved syntax: L145: dynamic field target requires manual review; L148: dynamic field target requires manual review; L168: dynamic field target requires manual review; L63: dynamic field target requires manual review; L64: dynamic field target requires manual review; L69: dynamic field target requires manual review; L71: dynamic field target requires manual review; L73: dynamic field target requires manual review; L75: dynamic field target requires manual review.
+Unresolved syntax: L148: dynamic field target requires manual review; L151: dynamic field target requires manual review; L171: dynamic field target requires manual review; L73: dynamic field target requires manual review; L75: dynamic field target requires manual review; L77: dynamic field target requires manual review.
 
 
 #### scripts/characters/glm_retry.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/glm_retry.lua:94](../scripts/characters/glm_retry.lua#L94)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/glm_retry.lua:100](../scripts/characters/glm_retry.lua#L100)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/glm_retry.lua:103](../scripts/characters/glm_retry.lua#L103)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/glm_retry.lua:110](../scripts/characters/glm_retry.lua#L110)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/glm_retry.lua:111](../scripts/characters/glm_retry.lua#L111)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/glm_retry.lua:167](../scripts/characters/glm_retry.lua#L167)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/glm_retry.lua:170](../scripts/characters/glm_retry.lua#L170)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/glm_retry.lua:97](../scripts/characters/glm_retry.lua#L97)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/glm_retry.lua:103](../scripts/characters/glm_retry.lua#L103)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/glm_retry.lua:106](../scripts/characters/glm_retry.lua#L106)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/glm_retry.lua:113](../scripts/characters/glm_retry.lua#L113)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/glm_retry.lua:114](../scripts/characters/glm_retry.lua#L114)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/glm_retry.lua:170](../scripts/characters/glm_retry.lua#L170)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/glm_retry.lua:173](../scripts/characters/glm_retry.lua#L173)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -489,20 +489,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/glm_retry.lua:168](../scripts/characters/glm_retry.lua#L168) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
+| [characters/glm_retry.lua:171](../scripts/characters/glm_retry.lua#L171) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `glmRetry` direct write at L35, L96; `glmRetry` read/alias at L35, L36.
+Risk state roots: `glmRetry` direct write at L35, L99; `glmRetry` read/alias at L35, L36.
 
 
-Unresolved syntax: L45: dynamic field target requires manual review; L46: dynamic field target requires manual review; L51: dynamic field target requires manual review; L53: dynamic field target requires manual review; L55: dynamic field target requires manual review; L57: dynamic field target requires manual review.
+Unresolved syntax: L55: dynamic field target requires manual review; L57: dynamic field target requires manual review; L59: dynamic field target requires manual review.
 
 
 #### scripts/characters/gpt_downgrade.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gpt_downgrade.lua:109](../scripts/characters/gpt_downgrade.lua#L109)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gpt_downgrade.lua:115](../scripts/characters/gpt_downgrade.lua#L115)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gpt_downgrade.lua:118](../scripts/characters/gpt_downgrade.lua#L118)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gpt_downgrade.lua:125](../scripts/characters/gpt_downgrade.lua#L125)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gpt_downgrade.lua:126](../scripts/characters/gpt_downgrade.lua#L126)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gpt_downgrade.lua:174](../scripts/characters/gpt_downgrade.lua#L174)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gpt_downgrade.lua:184](../scripts/characters/gpt_downgrade.lua#L184)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gpt_downgrade.lua:189](../scripts/characters/gpt_downgrade.lua#L189)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/gpt_downgrade.lua:205](../scripts/characters/gpt_downgrade.lua#L205)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gpt_downgrade.lua:215](../scripts/characters/gpt_downgrade.lua#L215)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gpt_downgrade.lua:220](../scripts/characters/gpt_downgrade.lua#L220)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gpt_downgrade.lua:111](../scripts/characters/gpt_downgrade.lua#L111)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gpt_downgrade.lua:117](../scripts/characters/gpt_downgrade.lua#L117)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gpt_downgrade.lua:120](../scripts/characters/gpt_downgrade.lua#L120)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gpt_downgrade.lua:127](../scripts/characters/gpt_downgrade.lua#L127)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gpt_downgrade.lua:128](../scripts/characters/gpt_downgrade.lua#L128)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gpt_downgrade.lua:176](../scripts/characters/gpt_downgrade.lua#L176)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gpt_downgrade.lua:186](../scripts/characters/gpt_downgrade.lua#L186)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/gpt_downgrade.lua:191](../scripts/characters/gpt_downgrade.lua#L191)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/gpt_downgrade.lua:207](../scripts/characters/gpt_downgrade.lua#L207)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gpt_downgrade.lua:217](../scripts/characters/gpt_downgrade.lua#L217)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gpt_downgrade.lua:222](../scripts/characters/gpt_downgrade.lua#L222)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -511,20 +511,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/gpt_downgrade.lua:218](../scripts/characters/gpt_downgrade.lua#L218) | `p.Damage` | `p.Damage*(b.state.verified and VERIFIED_DAMAGE or FALLBACK_DAMAGE)` | self-dependent |
+| [characters/gpt_downgrade.lua:220](../scripts/characters/gpt_downgrade.lua#L220) | `p.Damage` | `p.Damage*(b.state.verified and VERIFIED_DAMAGE or FALLBACK_DAMAGE)` | self-dependent |
 
 
 
-Risk state roots: `gptRouting` direct write at L33, L111; `gptRouting` read/alias at L33, L34.
+Risk state roots: `gptRouting` direct write at L33, L113; `gptRouting` read/alias at L33, L34.
 
 
-Unresolved syntax: L138: dynamic field target requires manual review; L180: dynamic field target requires manual review; L61: dynamic field target requires manual review; L62: dynamic field target requires manual review; L67: dynamic field target requires manual review; L70: dynamic field target requires manual review; L73: dynamic field target requires manual review; L75: dynamic field target requires manual review.
+Unresolved syntax: L140: dynamic field target requires manual review; L182: dynamic field target requires manual review; L71: dynamic field target requires manual review; L74: dynamic field target requires manual review; L76: dynamic field target requires manual review.
 
 
 #### scripts/characters/gpt_reset.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gpt_reset.lua:118](../scripts/characters/gpt_reset.lua#L118)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gpt_reset.lua:124](../scripts/characters/gpt_reset.lua#L124)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gpt_reset.lua:127](../scripts/characters/gpt_reset.lua#L127)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gpt_reset.lua:133](../scripts/characters/gpt_reset.lua#L133)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gpt_reset.lua:134](../scripts/characters/gpt_reset.lua#L134)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gpt_reset.lua:162](../scripts/characters/gpt_reset.lua#L162)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gpt_reset.lua:178](../scripts/characters/gpt_reset.lua#L178)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/gpt_reset.lua:185](../scripts/characters/gpt_reset.lua#L185)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/gpt_reset.lua:190](../scripts/characters/gpt_reset.lua#L190)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gpt_reset.lua:197](../scripts/characters/gpt_reset.lua#L197)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gpt_reset.lua:202](../scripts/characters/gpt_reset.lua#L202)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/gpt_reset.lua:121](../scripts/characters/gpt_reset.lua#L121)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/gpt_reset.lua:127](../scripts/characters/gpt_reset.lua#L127)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/gpt_reset.lua:130](../scripts/characters/gpt_reset.lua#L130)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/gpt_reset.lua:136](../scripts/characters/gpt_reset.lua#L136)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/gpt_reset.lua:137](../scripts/characters/gpt_reset.lua#L137)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/gpt_reset.lua:165](../scripts/characters/gpt_reset.lua#L165)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/gpt_reset.lua:181](../scripts/characters/gpt_reset.lua#L181)), `ModCallbacks.MC_POST_LASER_INIT` (`default`, [characters/gpt_reset.lua:188](../scripts/characters/gpt_reset.lua#L188)), `ModCallbacks.MC_POST_BOMB_INIT` (`default`, [characters/gpt_reset.lua:193](../scripts/characters/gpt_reset.lua#L193)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/gpt_reset.lua:200](../scripts/characters/gpt_reset.lua#L200)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/gpt_reset.lua:205](../scripts/characters/gpt_reset.lua#L205)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -533,20 +533,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/gpt_reset.lua:200](../scripts/characters/gpt_reset.lua#L200) | `p.Damage` | `p.Damage*FULL_SEND_DAMAGE` | self-dependent |
+| [characters/gpt_reset.lua:203](../scripts/characters/gpt_reset.lua#L203) | `p.Damage` | `p.Damage*FULL_SEND_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `gptReset` direct write at L41, L120; `gptReset` read/alias at L41, L42.
+Risk state roots: `gptReset` direct write at L41, L123; `gptReset` read/alias at L41, L42.
 
 
-Unresolved syntax: L146: dynamic field target requires manual review; L168: dynamic field target requires manual review; L63: dynamic field target requires manual review; L64: dynamic field target requires manual review; L69: dynamic field target requires manual review; L71: dynamic field target requires manual review; L73: dynamic field target requires manual review; L75: dynamic field target requires manual review.
+Unresolved syntax: L149: dynamic field target requires manual review; L171: dynamic field target requires manual review; L73: dynamic field target requires manual review; L75: dynamic field target requires manual review; L77: dynamic field target requires manual review.
 
 
 #### scripts/characters/grok_check.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/grok_check.lua:97](../scripts/characters/grok_check.lua#L97)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/grok_check.lua:103](../scripts/characters/grok_check.lua#L103)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/grok_check.lua:106](../scripts/characters/grok_check.lua#L106)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/grok_check.lua:120](../scripts/characters/grok_check.lua#L120)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/grok_check.lua:121](../scripts/characters/grok_check.lua#L121)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/grok_check.lua:169](../scripts/characters/grok_check.lua#L169)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/grok_check.lua:174](../scripts/characters/grok_check.lua#L174)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/grok_check.lua:196](../scripts/characters/grok_check.lua#L196)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/grok_check.lua:206](../scripts/characters/grok_check.lua#L206)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/grok_check.lua:213](../scripts/characters/grok_check.lua#L213)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/grok_check.lua:100](../scripts/characters/grok_check.lua#L100)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/grok_check.lua:106](../scripts/characters/grok_check.lua#L106)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/grok_check.lua:109](../scripts/characters/grok_check.lua#L109)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/grok_check.lua:123](../scripts/characters/grok_check.lua#L123)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/grok_check.lua:124](../scripts/characters/grok_check.lua#L124)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/grok_check.lua:172](../scripts/characters/grok_check.lua#L172)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/grok_check.lua:177](../scripts/characters/grok_check.lua#L177)), `ModCallbacks.MC_POST_ENTITY_KILL` (`default`, [characters/grok_check.lua:199](../scripts/characters/grok_check.lua#L199)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/grok_check.lua:209](../scripts/characters/grok_check.lua#L209)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/grok_check.lua:216](../scripts/characters/grok_check.lua#L216)).
 
 
 Cache flag references: `CACHE_SPEED`.
@@ -555,20 +555,20 @@ Cache flag references: `CACHE_SPEED`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/grok_check.lua:210](../scripts/characters/grok_check.lua#L210) | `p.MoveSpeed` | `p.MoveSpeed+VERIFIED_SPEED` | self-dependent |
+| [characters/grok_check.lua:213](../scripts/characters/grok_check.lua#L213) | `p.MoveSpeed` | `p.MoveSpeed+VERIFIED_SPEED` | self-dependent |
 
 
 
-Risk state roots: `grokCheck` direct write at L36, L99; `grokCheck` read/alias at L36, L37.
+Risk state roots: `grokCheck` direct write at L36, L102; `grokCheck` read/alias at L36, L37.
 
 
-Unresolved syntax: L186: dynamic field target requires manual review; L54: dynamic field target requires manual review; L55: dynamic field target requires manual review; L60: dynamic field target requires manual review; L62: dynamic field target requires manual review; L64: dynamic field target requires manual review; L66: dynamic field target requires manual review.
+Unresolved syntax: L189: dynamic field target requires manual review; L64: dynamic field target requires manual review; L66: dynamic field target requires manual review; L68: dynamic field target requires manual review.
 
 
 #### scripts/characters/grok_ratio.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/grok_ratio.lua:101](../scripts/characters/grok_ratio.lua#L101)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/grok_ratio.lua:107](../scripts/characters/grok_ratio.lua#L107)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/grok_ratio.lua:110](../scripts/characters/grok_ratio.lua#L110)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/grok_ratio.lua:116](../scripts/characters/grok_ratio.lua#L116)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/grok_ratio.lua:163](../scripts/characters/grok_ratio.lua#L163)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/grok_ratio.lua:168](../scripts/characters/grok_ratio.lua#L168)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/grok_ratio.lua:181](../scripts/characters/grok_ratio.lua#L181)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/grok_ratio.lua:184](../scripts/characters/grok_ratio.lua#L184)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/grok_ratio.lua:104](../scripts/characters/grok_ratio.lua#L104)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/grok_ratio.lua:110](../scripts/characters/grok_ratio.lua#L110)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/grok_ratio.lua:113](../scripts/characters/grok_ratio.lua#L113)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/grok_ratio.lua:119](../scripts/characters/grok_ratio.lua#L119)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/grok_ratio.lua:166](../scripts/characters/grok_ratio.lua#L166)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/grok_ratio.lua:171](../scripts/characters/grok_ratio.lua#L171)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/grok_ratio.lua:184](../scripts/characters/grok_ratio.lua#L184)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/grok_ratio.lua:187](../scripts/characters/grok_ratio.lua#L187)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -577,20 +577,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/grok_ratio.lua:182](../scripts/characters/grok_ratio.lua#L182) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
+| [characters/grok_ratio.lua:185](../scripts/characters/grok_ratio.lua#L185) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `grokRatio` direct write at L40, L103; `grokRatio` read/alias at L40, L41.
+Risk state roots: `grokRatio` direct write at L40, L106; `grokRatio` read/alias at L40, L41.
 
 
-Unresolved syntax: L51: dynamic field target requires manual review; L52: dynamic field target requires manual review; L57: dynamic field target requires manual review; L59: dynamic field target requires manual review; L62: dynamic field target requires manual review; L64: dynamic field target requires manual review.
+Unresolved syntax: L61: dynamic field target requires manual review; L64: dynamic field target requires manual review; L66: dynamic field target requires manual review.
 
 
 #### scripts/characters/kimi_manager.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/kimi_manager.lua:114](../scripts/characters/kimi_manager.lua#L114)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/kimi_manager.lua:120](../scripts/characters/kimi_manager.lua#L120)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/kimi_manager.lua:123](../scripts/characters/kimi_manager.lua#L123)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/kimi_manager.lua:130](../scripts/characters/kimi_manager.lua#L130)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/kimi_manager.lua:131](../scripts/characters/kimi_manager.lua#L131)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/kimi_manager.lua:186](../scripts/characters/kimi_manager.lua#L186)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/kimi_manager.lua:191](../scripts/characters/kimi_manager.lua#L191)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/kimi_manager.lua:202](../scripts/characters/kimi_manager.lua#L202)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/kimi_manager.lua:205](../scripts/characters/kimi_manager.lua#L205)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/kimi_manager.lua:117](../scripts/characters/kimi_manager.lua#L117)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/kimi_manager.lua:123](../scripts/characters/kimi_manager.lua#L123)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/kimi_manager.lua:126](../scripts/characters/kimi_manager.lua#L126)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/kimi_manager.lua:133](../scripts/characters/kimi_manager.lua#L133)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/kimi_manager.lua:134](../scripts/characters/kimi_manager.lua#L134)), `ModCallbacks.MC_POST_FIRE_TEAR` (`default`, [characters/kimi_manager.lua:189](../scripts/characters/kimi_manager.lua#L189)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/kimi_manager.lua:194](../scripts/characters/kimi_manager.lua#L194)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/kimi_manager.lua:205](../scripts/characters/kimi_manager.lua#L205)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/kimi_manager.lua:208](../scripts/characters/kimi_manager.lua#L208)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -599,20 +599,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/kimi_manager.lua:203](../scripts/characters/kimi_manager.lua#L203) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
+| [characters/kimi_manager.lua:206](../scripts/characters/kimi_manager.lua#L206) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `kimiManager` direct write at L48, L116; `kimiManager` read/alias at L48, L49.
+Risk state roots: `kimiManager` direct write at L48, L119; `kimiManager` read/alias at L48, L49.
 
 
-Unresolved syntax: L175: dynamic field target requires manual review; L66: dynamic field target requires manual review; L67: dynamic field target requires manual review; L72: dynamic field target requires manual review; L74: dynamic field target requires manual review; L76: dynamic field target requires manual review; L78: dynamic field target requires manual review.
+Unresolved syntax: L178: dynamic field target requires manual review; L76: dynamic field target requires manual review; L78: dynamic field target requires manual review; L80: dynamic field target requires manual review.
 
 
 #### scripts/characters/kimi_slides.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/kimi_slides.lua:132](../scripts/characters/kimi_slides.lua#L132)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/kimi_slides.lua:138](../scripts/characters/kimi_slides.lua#L138)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/kimi_slides.lua:141](../scripts/characters/kimi_slides.lua#L141)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/kimi_slides.lua:148](../scripts/characters/kimi_slides.lua#L148)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/kimi_slides.lua:149](../scripts/characters/kimi_slides.lua#L149)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/kimi_slides.lua:193](../scripts/characters/kimi_slides.lua#L193)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/kimi_slides.lua:204](../scripts/characters/kimi_slides.lua#L204)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/kimi_slides.lua:214](../scripts/characters/kimi_slides.lua#L214)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/kimi_slides.lua:135](../scripts/characters/kimi_slides.lua#L135)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/kimi_slides.lua:141](../scripts/characters/kimi_slides.lua#L141)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/kimi_slides.lua:144](../scripts/characters/kimi_slides.lua#L144)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/kimi_slides.lua:151](../scripts/characters/kimi_slides.lua#L151)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/kimi_slides.lua:152](../scripts/characters/kimi_slides.lua#L152)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/kimi_slides.lua:196](../scripts/characters/kimi_slides.lua#L196)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [characters/kimi_slides.lua:207](../scripts/characters/kimi_slides.lua#L207)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/kimi_slides.lua:217](../scripts/characters/kimi_slides.lua#L217)).
 
 
 Cache flag references: none detected.
@@ -621,16 +621,16 @@ Cache flag references: none detected.
 Direct tracked-field writes: none detected.
 
 
-Risk state roots: `kimiSlides` direct write at L50, L134; `kimiSlides` read/alias at L50, L51.
+Risk state roots: `kimiSlides` direct write at L50, L137; `kimiSlides` read/alias at L50, L51.
 
 
-Unresolved syntax: L110: dynamic field target requires manual review; L127: dynamic field target requires manual review; L167: dynamic field target requires manual review; L170: dynamic field target requires manual review; L199: dynamic field target requires manual review; L68: dynamic field target requires manual review; L69: dynamic field target requires manual review; L74: dynamic field target requires manual review; L76: dynamic field target requires manual review; L78: dynamic field target requires manual review; L80: dynamic field target requires manual review.
+Unresolved syntax: L113: dynamic field target requires manual review; L130: dynamic field target requires manual review; L170: dynamic field target requires manual review; L173: dynamic field target requires manual review; L202: dynamic field target requires manual review; L78: dynamic field target requires manual review; L80: dynamic field target requires manual review; L82: dynamic field target requires manual review.
 
 
 #### scripts/characters/llama_hype.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/llama_hype.lua:104](../scripts/characters/llama_hype.lua#L104)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/llama_hype.lua:110](../scripts/characters/llama_hype.lua#L110)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/llama_hype.lua:113](../scripts/characters/llama_hype.lua#L113)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/llama_hype.lua:119](../scripts/characters/llama_hype.lua#L119)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/llama_hype.lua:120](../scripts/characters/llama_hype.lua#L120)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/llama_hype.lua:159](../scripts/characters/llama_hype.lua#L159)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/llama_hype.lua:169](../scripts/characters/llama_hype.lua#L169)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/llama_hype.lua:172](../scripts/characters/llama_hype.lua#L172)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/llama_hype.lua:107](../scripts/characters/llama_hype.lua#L107)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/llama_hype.lua:113](../scripts/characters/llama_hype.lua#L113)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/llama_hype.lua:116](../scripts/characters/llama_hype.lua#L116)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/llama_hype.lua:122](../scripts/characters/llama_hype.lua#L122)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/llama_hype.lua:123](../scripts/characters/llama_hype.lua#L123)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/llama_hype.lua:162](../scripts/characters/llama_hype.lua#L162)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/llama_hype.lua:172](../scripts/characters/llama_hype.lua#L172)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/llama_hype.lua:175](../scripts/characters/llama_hype.lua#L175)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -639,20 +639,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/llama_hype.lua:170](../scripts/characters/llama_hype.lua#L170) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
+| [characters/llama_hype.lua:173](../scripts/characters/llama_hype.lua#L173) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `llamaHype` direct write at L41, L106; `llamaHype` read/alias at L41, L42.
+Risk state roots: `llamaHype` direct write at L41, L109; `llamaHype` read/alias at L41, L42.
 
 
-Unresolved syntax: L138: dynamic field target requires manual review; L165: dynamic field target requires manual review; L59: dynamic field target requires manual review; L60: dynamic field target requires manual review; L65: dynamic field target requires manual review; L67: dynamic field target requires manual review; L69: dynamic field target requires manual review; L71: dynamic field target requires manual review.
+Unresolved syntax: L141: dynamic field target requires manual review; L168: dynamic field target requires manual review; L69: dynamic field target requires manual review; L71: dynamic field target requires manual review; L73: dynamic field target requires manual review.
 
 
 #### scripts/characters/llama_release.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/llama_release.lua:104](../scripts/characters/llama_release.lua#L104)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/llama_release.lua:110](../scripts/characters/llama_release.lua#L110)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/llama_release.lua:113](../scripts/characters/llama_release.lua#L113)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/llama_release.lua:119](../scripts/characters/llama_release.lua#L119)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/llama_release.lua:120](../scripts/characters/llama_release.lua#L120)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/llama_release.lua:145](../scripts/characters/llama_release.lua#L145)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/llama_release.lua:159](../scripts/characters/llama_release.lua#L159)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/llama_release.lua:162](../scripts/characters/llama_release.lua#L162)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/llama_release.lua:107](../scripts/characters/llama_release.lua#L107)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/llama_release.lua:113](../scripts/characters/llama_release.lua#L113)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/llama_release.lua:116](../scripts/characters/llama_release.lua#L116)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/llama_release.lua:122](../scripts/characters/llama_release.lua#L122)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/llama_release.lua:123](../scripts/characters/llama_release.lua#L123)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/llama_release.lua:148](../scripts/characters/llama_release.lua#L148)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/llama_release.lua:162](../scripts/characters/llama_release.lua#L162)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/llama_release.lua:165](../scripts/characters/llama_release.lua#L165)).
 
 
 Cache flag references: `CACHE_DAMAGE`.
@@ -661,20 +661,20 @@ Cache flag references: `CACHE_DAMAGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/llama_release.lua:160](../scripts/characters/llama_release.lua#L160) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
+| [characters/llama_release.lua:163](../scripts/characters/llama_release.lua#L163) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
 
-Risk state roots: `llamaRelease` direct write at L39, L106; `llamaRelease` read/alias at L39, L40.
+Risk state roots: `llamaRelease` direct write at L39, L109; `llamaRelease` read/alias at L39, L40.
 
 
-Unresolved syntax: L131: dynamic field target requires manual review; L151: dynamic field target requires manual review; L57: dynamic field target requires manual review; L58: dynamic field target requires manual review; L63: dynamic field target requires manual review; L65: dynamic field target requires manual review; L67: dynamic field target requires manual review; L69: dynamic field target requires manual review.
+Unresolved syntax: L134: dynamic field target requires manual review; L154: dynamic field target requires manual review; L67: dynamic field target requires manual review; L69: dynamic field target requires manual review; L71: dynamic field target requires manual review.
 
 
 #### scripts/characters/mistral_baguette.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/mistral_baguette.lua:102](../scripts/characters/mistral_baguette.lua#L102)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/mistral_baguette.lua:110](../scripts/characters/mistral_baguette.lua#L110)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/mistral_baguette.lua:113](../scripts/characters/mistral_baguette.lua#L113)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/mistral_baguette.lua:119](../scripts/characters/mistral_baguette.lua#L119)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/mistral_baguette.lua:120](../scripts/characters/mistral_baguette.lua#L120)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/mistral_baguette.lua:158](../scripts/characters/mistral_baguette.lua#L158)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/mistral_baguette.lua:163](../scripts/characters/mistral_baguette.lua#L163)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/mistral_baguette.lua:105](../scripts/characters/mistral_baguette.lua#L105)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/mistral_baguette.lua:113](../scripts/characters/mistral_baguette.lua#L113)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/mistral_baguette.lua:116](../scripts/characters/mistral_baguette.lua#L116)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/mistral_baguette.lua:122](../scripts/characters/mistral_baguette.lua#L122)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/mistral_baguette.lua:123](../scripts/characters/mistral_baguette.lua#L123)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/mistral_baguette.lua:161](../scripts/characters/mistral_baguette.lua#L161)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/mistral_baguette.lua:166](../scripts/characters/mistral_baguette.lua#L166)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_SPEED`.
@@ -683,22 +683,22 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_SPEED`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/mistral_baguette.lua:160](../scripts/characters/mistral_baguette.lua#L160) | `p.MoveSpeed` | `p.MoveSpeed+SPEED` | self-dependent |
+| [characters/mistral_baguette.lua:163](../scripts/characters/mistral_baguette.lua#L163) | `p.MoveSpeed` | `p.MoveSpeed+SPEED` | self-dependent |
 
-| [characters/mistral_baguette.lua:161](../scripts/characters/mistral_baguette.lua#L161) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
-
-
-
-Risk state roots: `mistralBaguette` direct write at L39, L104; `mistralBaguette` read/alias at L39, L40.
+| [characters/mistral_baguette.lua:164](../scripts/characters/mistral_baguette.lua#L164) | `p.Damage` | `p.Damage*BASE_DAMAGE` | self-dependent |
 
 
-Unresolved syntax: L49: dynamic field target requires manual review; L50: dynamic field target requires manual review; L55: dynamic field target requires manual review; L57: dynamic field target requires manual review; L59: dynamic field target requires manual review; L61: dynamic field target requires manual review; L95: dynamic field target requires manual review.
+
+Risk state roots: `mistralBaguette` direct write at L39, L107; `mistralBaguette` read/alias at L39, L40.
+
+
+Unresolved syntax: L59: dynamic field target requires manual review; L61: dynamic field target requires manual review; L63: dynamic field target requires manual review; L98: dynamic field target requires manual review.
 
 
 #### scripts/characters/mistral_pounce.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/mistral_pounce.lua:105](../scripts/characters/mistral_pounce.lua#L105)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/mistral_pounce.lua:111](../scripts/characters/mistral_pounce.lua#L111)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/mistral_pounce.lua:114](../scripts/characters/mistral_pounce.lua#L114)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/mistral_pounce.lua:118](../scripts/characters/mistral_pounce.lua#L118)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/mistral_pounce.lua:164](../scripts/characters/mistral_pounce.lua#L164)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/mistral_pounce.lua:167](../scripts/characters/mistral_pounce.lua#L167)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/mistral_pounce.lua:108](../scripts/characters/mistral_pounce.lua#L108)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/mistral_pounce.lua:114](../scripts/characters/mistral_pounce.lua#L114)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/mistral_pounce.lua:117](../scripts/characters/mistral_pounce.lua#L117)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/mistral_pounce.lua:121](../scripts/characters/mistral_pounce.lua#L121)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/mistral_pounce.lua:167](../scripts/characters/mistral_pounce.lua#L167)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/mistral_pounce.lua:170](../scripts/characters/mistral_pounce.lua#L170)).
 
 
 Cache flag references: `CACHE_SPEED`.
@@ -707,14 +707,14 @@ Cache flag references: `CACHE_SPEED`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/mistral_pounce.lua:165](../scripts/characters/mistral_pounce.lua#L165) | `p.MoveSpeed` | `p.MoveSpeed+SPEED` | self-dependent |
+| [characters/mistral_pounce.lua:168](../scripts/characters/mistral_pounce.lua#L168) | `p.MoveSpeed` | `p.MoveSpeed+SPEED` | self-dependent |
 
 
 
-Risk state roots: `mistralPounce` direct write at L37, L107; `mistralPounce` read/alias at L37, L38.
+Risk state roots: `mistralPounce` direct write at L37, L110; `mistralPounce` read/alias at L37, L38.
 
 
-Unresolved syntax: L47: dynamic field target requires manual review; L48: dynamic field target requires manual review; L54: dynamic field target requires manual review; L56: dynamic field target requires manual review; L58: dynamic field target requires manual review; L60: dynamic field target requires manual review.
+Unresolved syntax: L58: dynamic field target requires manual review; L60: dynamic field target requires manual review; L62: dynamic field target requires manual review.
 
 
 #### scripts/characters/model_roster.lua
@@ -759,7 +759,7 @@ Unresolved syntax: L106: dynamic field target requires manual review; L46: dynam
 #### scripts/characters/qwen_adapter.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/qwen_adapter.lua:116](../scripts/characters/qwen_adapter.lua#L116)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/qwen_adapter.lua:122](../scripts/characters/qwen_adapter.lua#L122)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/qwen_adapter.lua:125](../scripts/characters/qwen_adapter.lua#L125)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/qwen_adapter.lua:139](../scripts/characters/qwen_adapter.lua#L139)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/qwen_adapter.lua:140](../scripts/characters/qwen_adapter.lua#L140)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/qwen_adapter.lua:186](../scripts/characters/qwen_adapter.lua#L186)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/qwen_adapter.lua:200](../scripts/characters/qwen_adapter.lua#L200)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/qwen_adapter.lua:212](../scripts/characters/qwen_adapter.lua#L212)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/qwen_adapter.lua:119](../scripts/characters/qwen_adapter.lua#L119)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/qwen_adapter.lua:125](../scripts/characters/qwen_adapter.lua#L125)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/qwen_adapter.lua:128](../scripts/characters/qwen_adapter.lua#L128)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/qwen_adapter.lua:142](../scripts/characters/qwen_adapter.lua#L142)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/qwen_adapter.lua:143](../scripts/characters/qwen_adapter.lua#L143)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/qwen_adapter.lua:189](../scripts/characters/qwen_adapter.lua#L189)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/qwen_adapter.lua:203](../scripts/characters/qwen_adapter.lua#L203)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/qwen_adapter.lua:215](../scripts/characters/qwen_adapter.lua#L215)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_FIREDELAY`, `CACHE_RANGE`.
@@ -768,24 +768,24 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_FIREDELAY`, `CACHE_RANGE`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/qwen_adapter.lua:205](../scripts/characters/qwen_adapter.lua#L205) | `p.TearRange` | `p.TearRange+RANGE_BONUS` | self-dependent |
+| [characters/qwen_adapter.lua:208](../scripts/characters/qwen_adapter.lua#L208) | `p.TearRange` | `p.TearRange+RANGE_BONUS` | self-dependent |
 
-| [characters/qwen_adapter.lua:207](../scripts/characters/qwen_adapter.lua#L207) | `p.MaxFireDelay` | `FireRate.ScaleInterval(p.MaxFireDelay,TEMPO_INTERVAL)` | self-dependent |
+| [characters/qwen_adapter.lua:210](../scripts/characters/qwen_adapter.lua#L210) | `p.MaxFireDelay` | `FireRate.ScaleInterval(p.MaxFireDelay,TEMPO_INTERVAL)` | self-dependent |
 
-| [characters/qwen_adapter.lua:209](../scripts/characters/qwen_adapter.lua#L209) | `p.Damage` | `p.Damage*POWER_DAMAGE` | self-dependent |
-
-
-
-Risk state roots: `qwenAdapter` direct write at L50, L118; `qwenAdapter` read/alias at L50, L51.
+| [characters/qwen_adapter.lua:212](../scripts/characters/qwen_adapter.lua#L212) | `p.Damage` | `p.Damage*POWER_DAMAGE` | self-dependent |
 
 
-Unresolved syntax: L172: dynamic field target requires manual review; L175: dynamic field target requires manual review; L192: dynamic field target requires manual review; L72: dynamic field target requires manual review; L73: dynamic field target requires manual review; L82: dynamic field target requires manual review; L84: dynamic field target requires manual review; L86: dynamic field target requires manual review; L88: dynamic field target requires manual review.
+
+Risk state roots: `qwenAdapter` direct write at L50, L121; `qwenAdapter` read/alias at L50, L51.
+
+
+Unresolved syntax: L175: dynamic field target requires manual review; L178: dynamic field target requires manual review; L195: dynamic field target requires manual review; L86: dynamic field target requires manual review; L88: dynamic field target requires manual review; L90: dynamic field target requires manual review.
 
 
 #### scripts/characters/qwen_finetune.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/qwen_finetune.lua:114](../scripts/characters/qwen_finetune.lua#L114)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/qwen_finetune.lua:120](../scripts/characters/qwen_finetune.lua#L120)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/qwen_finetune.lua:123](../scripts/characters/qwen_finetune.lua#L123)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/qwen_finetune.lua:129](../scripts/characters/qwen_finetune.lua#L129)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/qwen_finetune.lua:130](../scripts/characters/qwen_finetune.lua#L130)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/qwen_finetune.lua:155](../scripts/characters/qwen_finetune.lua#L155)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/qwen_finetune.lua:173](../scripts/characters/qwen_finetune.lua#L173)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/qwen_finetune.lua:184](../scripts/characters/qwen_finetune.lua#L184)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/qwen_finetune.lua:117](../scripts/characters/qwen_finetune.lua#L117)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/qwen_finetune.lua:123](../scripts/characters/qwen_finetune.lua#L123)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/qwen_finetune.lua:126](../scripts/characters/qwen_finetune.lua#L126)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/qwen_finetune.lua:132](../scripts/characters/qwen_finetune.lua#L132)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/qwen_finetune.lua:133](../scripts/characters/qwen_finetune.lua#L133)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/qwen_finetune.lua:158](../scripts/characters/qwen_finetune.lua#L158)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/qwen_finetune.lua:176](../scripts/characters/qwen_finetune.lua#L176)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/qwen_finetune.lua:187](../scripts/characters/qwen_finetune.lua#L187)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_FIREDELAY`.
@@ -794,16 +794,16 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_FIREDELAY`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/qwen_finetune.lua:179](../scripts/characters/qwen_finetune.lua#L179) | `p.Damage` | `(p.Damage+s.awards*per)*build.damage` | self-dependent |
+| [characters/qwen_finetune.lua:182](../scripts/characters/qwen_finetune.lua#L182) | `p.Damage` | `(p.Damage+s.awards*per)*build.damage` | self-dependent |
 
-| [characters/qwen_finetune.lua:181](../scripts/characters/qwen_finetune.lua#L181) | `p.MaxFireDelay` | `FireRate.ScaleInterval(p.MaxFireDelay,build.interval)` | self-dependent |
-
-
-
-Risk state roots: `qwenFineTune` direct write at L45, L116; `qwenFineTune` read/alias at L45, L46.
+| [characters/qwen_finetune.lua:184](../scripts/characters/qwen_finetune.lua#L184) | `p.MaxFireDelay` | `FireRate.ScaleInterval(p.MaxFireDelay,build.interval)` | self-dependent |
 
 
-Unresolved syntax: L141: dynamic field target requires manual review; L161: dynamic field target requires manual review; L67: dynamic field target requires manual review; L68: dynamic field target requires manual review; L74: dynamic field target requires manual review; L76: dynamic field target requires manual review; L78: dynamic field target requires manual review; L80: dynamic field target requires manual review.
+
+Risk state roots: `qwenFineTune` direct write at L45, L119; `qwenFineTune` read/alias at L45, L46.
+
+
+Unresolved syntax: L144: dynamic field target requires manual review; L164: dynamic field target requires manual review; L78: dynamic field target requires manual review; L80: dynamic field target requires manual review; L82: dynamic field target requires manual review.
 
 
 #### scripts/characters/target_tools.lua

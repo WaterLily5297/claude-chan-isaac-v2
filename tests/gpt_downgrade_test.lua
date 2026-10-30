@@ -263,8 +263,8 @@ tick(20)
 assert(state()==stableFirst and state(1)==stableSecond and state().routing==2 and state(1).routing==1,
     "unchanged owners retain their accounts and routing")
 players={q,p}; tick()
-assert(state().routing==0 and state(1).routing==0 and state()~=stableFirst and state(1)~=stableSecond,
-    "swapping occupied slots cannot transfer routing")
+assert(state().routing==1 and state(1).routing==2 and state()==stableSecond and state(1)==stableFirst,
+    "routing follows each continuously observed owner through a slot swap")
 state().routing=2; players={q}; tick()
 assert(state().routing==2 and state(1)==nil,"departure prunes only the absent slot")
 players[2]=p; tick()

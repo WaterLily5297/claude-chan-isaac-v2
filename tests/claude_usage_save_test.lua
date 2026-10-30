@@ -275,16 +275,17 @@ assert(players[2].data.ccUsage.value==0 and players[2].data.ccUsage.age==0,
     "a later joining player cannot inherit a removed co-op account")
 assert(saved.claudeUsage["0"].pointer==nil and saved.claudeUsage["0"].seed==nil,
     "transient owner identity must not enter saved usage")
--- Slot reordering invalidates both slot accounts; one retirement must not
--- erase the other replacement's pending cache refresh.
+-- Slot reordering retains the same live owners; genuine replacements above
+-- still start fresh. Account age and its cached bonus follow the original player.
 p,q=players[1],players[2]
 p.data.ccUsage.age=2; q.data.ccUsage.age=3
 p:EvaluateItems(); q:EvaluateItems()
+local damageP,damageQ=p.Damage,q.Damage
 players={q,p}; fire("MC_POST_UPDATE")
-assert(p.data.ccUsage.age==0 and q.data.ccUsage.age==0,
-    "reordered slots must not swap the two players' saved accounts")
-assert(math.abs(p.Damage-3.5)<1e-9 and math.abs(q.Damage-3.5)<1e-9,
-    "both reordered owners must receive the fresh account's cache")
+assert(p.data.ccUsage.age==2 and q.data.ccUsage.age==3,
+    "reordered slots must neither exchange nor erase the two players' accounts")
+assert(p.Damage==damageP and q.Damage==damageQ,
+    "both continuously observed owners keep their own account's cache")
 -- Continue without reloading Lua must clear live identities before rebinding.
 players[1].data.ccUsage.value=36; players[1].data.ccUsage.age=2
 fire("MC_PRE_GAME_EXIT",true)
