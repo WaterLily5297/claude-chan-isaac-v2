@@ -8,6 +8,12 @@ Current acceptance status is summarized in HANDOFF.md. Dated sections preserve t
 
 Native checks remain open: in both Repentance and Repentance+, use the item during Greed and Greedier waves, between waves and after the arena is cleared. Check actual charge retention, continued waves/rewards, no premature doors, and ordinary-room use in a later normal run. Native `IsClear()` timing between waves is not modeled. See [the focused handoff](GREED_CLEAR_SAFETY_2026-10-30.md). The installed checkpoint remains unchanged.
 
+## U3/G7: Agentic and fixed-look composition (2026-10-30; offline)
+
+The [shared-service composition fixture](AGENTIC_COSTUME_COMPOSITION.md) runs the real backlog, Agentic transformation and costume-lock callbacks across 264 seeded four-slot cases covering all 22 registered normal/tainted IDs. It checks distinct-item thresholds, finite and repeatable cache rebuilding, independent native flight, size preservation, vanilla costume controls, type departure/return, inventory removal and room-state cleanup. Three injected source faults fail the intended assertions.
+
+The fixture does not load family-specific ability callbacks or the non-backlog individual item modules, and its native flight/delay/scale values are supplied inputs. It therefore does not establish full item/character combinations, no double billing, no stuck shooting locks or native visual/gameplay acceptance. See the record for commands and exact limits. The existing gate automatically includes the new Lua test.
+
 ## U3: seeded backlog cache mixtures (2026-10-30; offline stub)
 
 `backlog_seeded_compatibility_test.lua` samples 32 fixed seeds, with two owners and inventory sets drawn from all 80 registered collectible IDs. It loads the real backlog service/family modules, evaluates damage, speed, range and shot-speed caches, dispatches three updates and one supplied ordinary tear hit per owner, then removes inventory before a room transition. The matrix checks finite stats, baseline cache restoration and cleared room-scoped backlog data. The fixture passed under `texlua`.
