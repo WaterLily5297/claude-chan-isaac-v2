@@ -266,16 +266,22 @@ function Common:Init(mod, Risk)
         end
     end)
 
-    -- Primed bonuses for the player's next attack.
-    function self.Prime(player, key, mult, frames)
+    -- Primed bonuses for the player's next attack. Passive rewards may require
+    -- continued ownership; completed active rewards omit requiredItem.
+    local function availablePrime(player, prime, frame)
+        return (not prime.expires or prime.expires >= frame)
+            and (not prime.requiredItem or player:HasCollectible(prime.requiredItem))
+    end
+    function self.Prime(player, key, mult, frames, requiredItem)
         local d = self.Data(player)
         d.primes = d.primes or {}
-        d.primes[key] = { mult = mult, expires = frames and (now() + frames) or nil }
+        d.primes[key] = { mult = mult, expires = frames and (now() + frames) or nil,
+            requiredItem = requiredItem }
     end
     function self.Primed(player, key)
         local d = self.Data(player)
         local p = d.primes and d.primes[key]
-        return p ~= nil and (not p.expires or p.expires >= now())
+        return p ~= nil and availablePrime(player, p, now())
     end
     function self.Unprime(player, key)
         local d = self.Data(player)
@@ -292,7 +298,9 @@ function Common:Init(mod, Risk)
             local d = self.Data(player)
             local mult = 1
             for key, p in pairs(d.primes or {}) do
-                if not p.expires or p.expires >= frame then mult = mult * p.mult end
+                -- Inventory can change between an update and the attack. Once
+                -- resolved, the volley/weapon lease keeps its original factor.
+                if availablePrime(player, p, frame) then mult = mult * p.mult end
                 d.primes[key] = nil
             end
             volley = { frame = frame, mult = mult, id = tostring(hash) .. ":" .. frame }

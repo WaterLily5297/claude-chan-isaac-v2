@@ -144,7 +144,7 @@ local descriptions = {
         en_us = { "Checkpoint Pin", "6 room charges#First use: pin your position for 5 seconds (keeps the charge)#Use again in the same room: return to the pin#Health and items are never restored" },
     },
     [Constants.Item.RATE_LIMIT_VALVE] = {
-        en_us = { "Rate-Limit Valve", "After 2 seconds without attacking, your next attack deals +30%" },
+        en_us = { "Rate-Limit Valve", "After 2 seconds without attacking, your next attack deals +30%#Losing the last copy removes an unused bonus#Shots already fired keep their bonus" },
     },
     [Constants.Item.CONSENSUS_COIN] = {
         en_us = { "Consensus Coin", "Two different damage sources (tears, lasers, knives, bombs, familiars) hitting one enemy within 2 seconds add a 0.5x damage pulse#Once per enemy" },
