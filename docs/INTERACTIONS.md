@@ -61,7 +61,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `8618ce737663b34e861c9b72b85ef043a9f9bb9e47b493588fb3ebbaa8ccd276`.
+112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `e25b2fba208cd4e88fc2126667a8c087c0bebf3243f5e1c866f14a1440a5635d`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -1443,7 +1443,7 @@ Risk state roots: none detected.
 #### scripts/items/constitution.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/constitution.lua:98](../scripts/items/constitution.lua#L98)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/constitution.lua:103](../scripts/items/constitution.lua#L103)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [items/constitution.lua:106](../scripts/items/constitution.lua#L106)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [items/constitution.lua:113](../scripts/items/constitution.lua#L113)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/constitution.lua:122](../scripts/items/constitution.lua#L122)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/constitution.lua:137](../scripts/items/constitution.lua#L137)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [items/constitution.lua:186](../scripts/items/constitution.lua#L186)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [items/constitution.lua:191](../scripts/items/constitution.lua#L191)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [items/constitution.lua:197](../scripts/items/constitution.lua#L197)), `ModCallbacks.MC_POST_PEFFECT_UPDATE` (`default`, [items/constitution.lua:206](../scripts/items/constitution.lua#L206)), `ModCallbacks.MC_ENTITY_TAKE_DMG` (`default`, [items/constitution.lua:215](../scripts/items/constitution.lua#L215)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [items/constitution.lua:230](../scripts/items/constitution.lua#L230)).
 
 
 Cache flag references: `CACHE_DAMAGE`, `CACHE_SPEED`.
@@ -1452,16 +1452,16 @@ Cache flag references: `CACHE_DAMAGE`, `CACHE_SPEED`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [items/constitution.lua:141](../scripts/items/constitution.lua#L141) | `player.Damage` | `player.Damage*DAMAGE_MULT` | self-dependent |
+| [items/constitution.lua:234](../scripts/items/constitution.lua#L234) | `player.Damage` | `player.Damage*DAMAGE_MULT` | self-dependent |
 
-| [items/constitution.lua:143](../scripts/items/constitution.lua#L143) | `player.MoveSpeed` | `player.MoveSpeed-SPEED_DOWN` | self-dependent |
-
-
-
-Risk state roots: `constitution` direct write at L66; `constitution` read/alias at L45; `constitutionApplied` read/alias at L61, L67; `constitutionBlockUsed` direct write at L67; `constitutionBlockUsed` read/alias at L62.
+| [items/constitution.lua:236](../scripts/items/constitution.lua#L236) | `player.MoveSpeed` | `player.MoveSpeed-SPEED_DOWN` | self-dependent |
 
 
-Unresolved syntax: L60: dynamic field target requires manual review; L92: dynamic field target requires manual review; L93: dynamic field target requires manual review.
+
+Risk state roots: `constitution` direct write at L67; `constitution` read/alias at L46; `constitutionApplied` read/alias at L62, L68; `constitutionBlockUsed` direct write at L68; `constitutionBlockUsed` read/alias at L63.
+
+
+Unresolved syntax: L103: dynamic field target requires manual review; L110: dynamic field target requires manual review; L111: dynamic field target requires manual review; L119: dynamic field target requires manual review; L139: dynamic field target requires manual review; L150: dynamic field target requires manual review; L158: dynamic field target requires manual review; L159: dynamic field target requires manual review; L181: dynamic field target requires manual review; L61: dynamic field target requires manual review.
 
 
 #### scripts/items/decimal_pill.lua

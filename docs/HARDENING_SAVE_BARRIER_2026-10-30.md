@@ -40,6 +40,8 @@ Run `texlua tests/full_mod_save_barrier_test.lua .` and `bash tools/check.sh`. T
 
 ## Remaining boundaries and next work
 
+Follow-up on 2026-10-30: the [Constitution ownership correction](CONSTITUTION_OWNER_CONTINUITY.md) reproduces the concern below and adds its save hook with slot/body-group regressions. The paragraph below describes this earlier review's scope; native special-body and save-order acceptance remain open.
+
 Constitution's saved state uses a separate lazy slot/body-key policy, including Forgotten and Lazarus handling. It is not registered with this barrier. Its behavior on an ordinary same-owner slot move needs a separate reproduction and focused review; this unit does not claim that all saved maps or special bodies are covered.
 
 Native save/exit/Continue, player-list availability during exit, special bodies and revival, external callback priorities, native inventory restoration, older-version migration beyond existing fixtures, disk errors and broader error/performance isolation remain open. Saving after another mod has already destroyed identities cannot reconstruct them. No new child-laser/Parent/derived billing rule is authorized by this result; E2 still gates that work.
