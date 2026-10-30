@@ -2,6 +2,12 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U4: optional EID isolation (2026-10-30; offline)
+
+The [EID isolation regression](EID_ISOLATION.md) reproduces optional registration errors escaping the adapter on baseline `4fadee1`. The source fix skips failed descriptions while retaining healthy entries and completing the rest of `main.lua`. Cases cover malformed globals, partial APIs, lookup/call errors, one rejected collectible and bounded startup diagnostics. The existing EID content assertions remain unchanged; the full entry-point smoke fixture runs with an injected external error and requires its final callback registration.
+
+This proves only the supplied API boundary. Native startup with EID absent/present, description rendering, external side effects and late-loading integrations remain open. Other production modules, actual saves and installed `8fd6a8c` are unchanged.
+
 ## U3: All Tests Passing in Greed modes (2026-10-30; offline)
 
 `tests/door_safety_test.lua` reproduces an uncleared ordinary room being force-cleared by All Tests Passing on main `9888186` with a supplied true `Game:IsGreedMode()` result. The guard now refuses while the room is uncleared, retaining the item and charge request and showing the existing required-review caption. The expanded fixture covers repeated attempts, ordinary/boss rooms, no `SetClear` call or door mutation on refusal, cleared-room use, special-exit preservation, and a later ordinary-mode use. The Greed/Greedier labels both supply the same documented boolean; they are not two engine runs.

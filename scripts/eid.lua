@@ -468,12 +468,31 @@ local characterDescriptions = {
 }
 
 function Eid:Init()
-    if not EID then return end
+    local integration = EID
+    if not integration then return end
+    if type(integration) ~= "table" then
+        print("Claude-chan: optional EID integration skipped (expected a table)")
+        return
+    end
+
+    -- EID is optional. Missing APIs or one rejected entry must not prevent
+    -- other descriptions, later integrations or main.lua from loading.
+    -- Keep diagnostics bounded to one line per category during this Init.
+    local warned = {}
+    local function register(method, id, description, name, language)
+        local ok = pcall(function()
+            integration[method](integration, id, description, name, language)
+        end)
+        if not ok and not warned[method] then
+            warned[method] = true
+            print("Claude-chan: optional EID " .. method .. " failed; some descriptions were skipped")
+        end
+    end
 
     for id, langs in pairs(pillDescriptions) do
         if id > 0 then
             for lang, entry in pairs(langs) do
-                EID:addPill(id, entry[2], entry[1], lang)
+                register("addPill", id, entry[2], entry[1], lang)
             end
         end
     end
@@ -481,7 +500,7 @@ function Eid:Init()
     for id, langs in pairs(characterDescriptions) do
         if id >= 0 then
             for lang, entry in pairs(langs) do
-                EID:addCharacterInfo(id, entry[2] .. "#DROP ability requires at most one pocket item; multiple items keep native cycling", entry[1], lang)
+                register("addCharacterInfo", id, entry[2] .. "#DROP ability requires at most one pocket item; multiple items keep native cycling", entry[1], lang)
             end
         end
     end
@@ -489,7 +508,7 @@ function Eid:Init()
     for id, langs in pairs(trinketDescriptions) do
         if id > 0 then
             for lang, entry in pairs(langs) do
-                EID:addTrinket(id, entry[2], entry[1], lang)
+                register("addTrinket", id, entry[2], entry[1], lang)
             end
         end
     end
@@ -497,7 +516,7 @@ function Eid:Init()
     for id, langs in pairs(descriptions) do
         if id > 0 then
             for lang, entry in pairs(langs) do
-                EID:addCollectible(id, entry[2], entry[1], lang)
+                register("addCollectible", id, entry[2], entry[1], lang)
             end
         end
     end

@@ -197,6 +197,12 @@ local realInclude = include
 include = function(name) local m = realInclude(name); if name == "scripts.risk" and not RISK_REF then RISK_REF = m end; return m end
 dofile(root .. "/main.lua")
 
+local hasRuntimeProbe = false
+for _, callback in ipairs(callbacks) do
+    if callback.id == "ClaudeChan:RunRuntimeProbe" then hasRuntimeProbe = true end
+end
+assert(hasRuntimeProbe, "main.lua must finish registration after optional integrations")
+
 -- Verify the new active is actually registered through the entry point.
 assert(fire("MC_USE_ITEM", 750, 750, nil, player, 0).Discharge == false,
     "Summary Stapler must preserve charge in an empty room")
