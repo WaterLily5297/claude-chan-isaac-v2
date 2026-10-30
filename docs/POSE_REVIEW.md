@@ -2,6 +2,8 @@
 
 Baseline `ffc52bf`; offline geometry review and mechanical packing correction only. Installed `f8b2b0b` is preserved. No game was launched. The owner's historical oversized-hurt-head report remains unclosed in the engine.
 
+Later follow-up: [GLM profile/carry/fallen repair](GLM_PROFILE_POSES_2026-10-31.md) replaces the two GLM side/fallen findings offline. The tables below retain the original O5 observations; they are not the current GLM art status. Native acceptance remains open.
+
 ## What was found and changed
 
 The eight-frame Hit sequence already fits its measured 28x32 envelope on all 22 skins. Death alternates that corrected cell with three other cells still fitted to the old 58-pixel square. All 22 forms therefore had an offline size discontinuity. The two upright Death cells now fit 28x33 with visible bottom 57; the fallen cell fits 36x27 with visible bottom 59 in its actual crop. These are separate measured native envelopes, not a global 28x32 rule. Horizontal packing stays centered.

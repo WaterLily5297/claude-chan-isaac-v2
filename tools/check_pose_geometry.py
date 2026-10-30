@@ -5,6 +5,8 @@ anatomical proportions. They do not establish in-engine visual acceptance.
 """
 from pathlib import Path
 import struct
+import hashlib
+import json
 import xml.etree.ElementTree as ET
 import zlib
 
@@ -90,6 +92,11 @@ def alpha_bounds(rows, crop):
 def main():
     players = ET.parse(ROOT / 'content/players.xml').getroot()
     failures = []
+    profiles = json.loads((ROOT / 'docs/profile-pose-repairs.json').read_text(encoding='utf-8'))['repairs']
+    for profile in profiles:
+        for source in profile['sources']:
+            if hashlib.sha256((ROOT / source['path']).read_bytes()).hexdigest() != source['sha256']:
+                failures.append(f'{source["path"]}: profile source hash mismatch')
     for player in players:
         path = ROOT / 'resources' / players.get('root') / player.get('skin')
         width, height, rows = read_rgba(path)
@@ -103,6 +110,32 @@ def main():
         if found:
             cells = ', '.join(f'{cell} {len(points)}px' for cell, points in found)
             failures.append(f'{path.name} crop leftovers in pose cells: {cells}; run tools/clean_pose_cells.py')
+        key = path.stem.removeprefix('character_').removesuffix('_b').removesuffix('chan')
+        profile = next((p for p in profiles if p['key'] == key), None)
+        if profile:
+            cycle = profile['side']['cycle']
+            if len(cycle) != 10 or set(cycle) != {0, 1, 2}:
+                failures.append(f'{key}: expected ten frames using three reviewed phases')
+                continue
+            for carry in (False, True):
+                phases = {}
+                for i, phase in enumerate(cycle):
+                    x, y = (i*32, 64) if i < 8 else ((i-8)*32, 96)
+                    x += 256 if carry else 0
+                    box = alpha_bounds(rows, (x, y, 32, 32))
+                    if not (box and box[0] > 0 and box[1] > 0 and box[2] < 32
+                            and box[3] == 26 and box[2]-box[0] <= 20
+                            and box[3]-box[1] <= (22 if carry else 18)):
+                        failures.append(f'{path.name}: profile cell {i}, carry={carry}: {box}')
+                    pixels = b''.join(row[x*4:(x+32)*4] for row in rows[y:y+32])
+                    if phase in phases and phases[phase] != pixels:
+                        failures.append(f'{path.name}: inconsistent repeated profile phase {phase}')
+                    phases[phase] = pixels
+                if len(set(phases.values())) != 3:
+                    failures.append(f'{path.name}: profile stride lost one of three source phases')
+            box = alpha_bounds(rows, (192, 130, 64, 64))
+            if not box or box[2]-box[0] < 1.6*(box[3]-box[1]):
+                failures.append(f'{path.name}: repaired fallen silhouette is no longer horizontal')
     if failures:
         raise SystemExit('\n'.join(failures))
     print(f'  OK: {len(players)} skins retain measured Hit/Death envelopes and anchors, with no crop leftovers')
