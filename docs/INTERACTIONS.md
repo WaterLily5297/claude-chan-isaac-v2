@@ -37,6 +37,7 @@ This is a lexical scanner, not a Lua parser, data-flow analyser or engine model.
 | Optional EID registration | Missing or throwing EID registration methods previously escaped `Eid:Init()` and interrupted later entry-point registrations. The indexed `warned[method]` assignment is a local diagnostic map, not engine or Risk state. | [Isolated at the adapter boundary](EID_ISOLATION.md), with failing-before fixtures, unchanged healthy description records and real-entry-point smoke coverage. Native EID versions, rendering and other optional integrations remain open. |
 | Meal completion versus cancellation | MealBreak clears its timer on death before the backlog update. Rice Cooker formerly interpreted that zero as completed lunch. | F16 is corrected by requiring a living owner for a new reward. [Real-service composition](HARDENING_2026-10-30.md) preserves normal completion, owner isolation, character-meal cancellation and primary weapon damage/payment. Native death/revival remains open. |
 | Unspent Rate-Limit Valve prime after removal | A prime earned while holding the passive previously survived item removal and boosted a later attack. | [F17 corrected offline](VALVE_REMOVAL.md): consumption checks required ownership even before an update; an inventory-loss update removes the pending record. Resolved attack leases and completed active rewards remain unchanged. Native inventory/weapon timing remains open. |
+| Shared meal and Rice slot ownership | Both binders previously discarded progress when the same live players changed slots, including an unfinished food lockout. | [F18 corrected offline](O6_RICE_MEAL_IDENTITY.md): atomic remapping retains the same owner's counters, meal delay lease and Thought clock. Replacements, type transitions, migration, supplied saves and knife-exit cleanup have bounded coverage; native reassignment and save/cleanup order remain open. |
 
 No gameplay fix was bundled with the original audit because those findings needed semantic checks before code changes. The later W2 audit reproduced normal-Claude account transfer on live slot replacement and added transient owner isolation with failing-before regressions; [TESTING.md](TESTING.md) retains the precise scope, same-entity debt exception and native limits. W4.2 takes other confirmed defects individually. W4.3 expands native categories and W4.4 adds seeded mod-item combinations. W2/W3 completion tables should link findings to exact registered content and current EID/HUD rules. W6 owns serialization/performance review. Do not treat an empty or manually classified overlap list as engine acceptance.
 
@@ -54,7 +55,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `6cff9a18a5f3a82fe6629301a38a0f93aabdae6b3deb7acc91bee4db9ec021a9`.
+111 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `e730c9a2799119a81608ef9cdba8651c05e9155707241ef7397daef63db5d590`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -284,7 +285,7 @@ Unresolved syntax: L226: dynamic field target requires manual review; L238: dyna
 #### scripts/characters/deepseek_rice.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/deepseek_rice.lua:98](../scripts/characters/deepseek_rice.lua#L98)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/deepseek_rice.lua:109](../scripts/characters/deepseek_rice.lua#L109)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/deepseek_rice.lua:112](../scripts/characters/deepseek_rice.lua#L112)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/deepseek_rice.lua:122](../scripts/characters/deepseek_rice.lua#L122)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/deepseek_rice.lua:123](../scripts/characters/deepseek_rice.lua#L123)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/deepseek_rice.lua:129](../scripts/characters/deepseek_rice.lua#L129)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/deepseek_rice.lua:141](../scripts/characters/deepseek_rice.lua#L141)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/deepseek_rice.lua:257](../scripts/characters/deepseek_rice.lua#L257)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [characters/deepseek_rice.lua:101](../scripts/characters/deepseek_rice.lua#L101)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [characters/deepseek_rice.lua:112](../scripts/characters/deepseek_rice.lua#L112)), `ModCallbacks.MC_POST_NEW_ROOM` (`default`, [characters/deepseek_rice.lua:115](../scripts/characters/deepseek_rice.lua#L115)), `ModCallbacks.MC_POST_NEW_LEVEL` (`default`, [characters/deepseek_rice.lua:125](../scripts/characters/deepseek_rice.lua#L125)), `ModCallbacks.MC_EVALUATE_CACHE` (`default`, [characters/deepseek_rice.lua:126](../scripts/characters/deepseek_rice.lua#L126)), `ModCallbacks.MC_PRE_SPAWN_CLEAN_AWARD` (`default`, [characters/deepseek_rice.lua:132](../scripts/characters/deepseek_rice.lua#L132)), `ModCallbacks.MC_POST_UPDATE` (`default`, [characters/deepseek_rice.lua:144](../scripts/characters/deepseek_rice.lua#L144)), `ModCallbacks.MC_POST_RENDER` (`default`, [characters/deepseek_rice.lua:260](../scripts/characters/deepseek_rice.lua#L260)).
 
 
 Cache flag references: `CACHE_SPEED`.
@@ -293,14 +294,14 @@ Cache flag references: `CACHE_SPEED`.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/deepseek_rice.lua:126](../scripts/characters/deepseek_rice.lua#L126) | `p.MoveSpeed` | `p.MoveSpeed+0.15` | self-dependent |
+| [characters/deepseek_rice.lua:129](../scripts/characters/deepseek_rice.lua#L129) | `p.MoveSpeed` | `p.MoveSpeed+0.15` | self-dependent |
 
 
 
-Risk state roots: `deepseekRice` direct write at L25, L100; `deepseekRice` read/alias at L25, L26.
+Risk state roots: `deepseekRice` direct write at L25, L103; `deepseekRice` read/alias at L25, L26.
 
 
-Unresolved syntax: L39: dynamic field target requires manual review; L44: dynamic field target requires manual review; L62: dynamic field target requires manual review; L65: dynamic field target requires manual review; L68: dynamic field target requires manual review; L70: dynamic field target requires manual review.
+Unresolved syntax: L65: dynamic field target requires manual review; L70: dynamic field target requires manual review; L72: dynamic field target requires manual review.
 
 
 #### scripts/characters/dossiers.lua
@@ -2108,7 +2109,7 @@ Risk state roots: `vibeMistakes` direct write at L30, L91; `vibeMistakes` read/a
 #### scripts/meal_break.lua
 
 
-Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [meal_break.lua:94](../scripts/meal_break.lua#L94)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [meal_break.lua:106](../scripts/meal_break.lua#L106)), `ModCallbacks.MC_POST_UPDATE` (`default`, [meal_break.lua:110](../scripts/meal_break.lua#L110)), `ModCallbacks.MC_INPUT_ACTION` (`default`, [meal_break.lua:132](../scripts/meal_break.lua#L132)).
+Callbacks: `ModCallbacks.MC_POST_GAME_STARTED` (`default`, [meal_break.lua:99](../scripts/meal_break.lua#L99)), `ModCallbacks.MC_PRE_GAME_EXIT` (`default`, [meal_break.lua:111](../scripts/meal_break.lua#L111)), `ModCallbacks.MC_POST_UPDATE` (`default`, [meal_break.lua:115](../scripts/meal_break.lua#L115)), `ModCallbacks.MC_INPUT_ACTION` (`default`, [meal_break.lua:137](../scripts/meal_break.lua#L137)).
 
 
 Cache flag references: none detected.
@@ -2117,16 +2118,16 @@ Cache flag references: none detected.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [meal_break.lua:57](../scripts/meal_break.lua#L57) | `player.FireDelay` | `math.max(player.FireDelay,remaining)` | self-dependent |
+| [meal_break.lua:62](../scripts/meal_break.lua#L62) | `player.FireDelay` | `math.max(player.FireDelay,remaining)` | self-dependent |
 
-| [meal_break.lua:88](../scripts/meal_break.lua#L88) | `player.FireDelay` | `math.min(player.FireDelay,b.state.priorDelay or 0)` | self-dependent |
-
-
-
-Risk state roots: `mealBreaks` direct write at L15, L96; `mealBreaks` read/alias at L15, L16.
+| [meal_break.lua:93](../scripts/meal_break.lua#L93) | `player.FireDelay` | `math.min(player.FireDelay,b.state.priorDelay or 0)` | self-dependent |
 
 
-Unresolved syntax: L34: dynamic field target requires manual review; L36: dynamic field target requires manual review; L46: dynamic field target requires manual review; L47: dynamic field target requires manual review; L49: dynamic field target requires manual review.
+
+Risk state roots: `mealBreaks` direct write at L15, L101; `mealBreaks` read/alias at L15, L16.
+
+
+Unresolved syntax: L50: dynamic field target requires manual review; L51: dynamic field target requires manual review; L53: dynamic field target requires manual review.
 
 
 #### scripts/pickup_safety.lua

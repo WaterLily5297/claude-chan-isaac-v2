@@ -35,13 +35,17 @@ function Rice:Init(mod, Risk, Meal)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if normal(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                local s = all[key]
+                local b = bindings[pointer]
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Slot changes alone do not change the owner. Keep the live
+                -- attack clock/window as well as its scalar saved progress.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
                 if type(s) ~= "table" or (s.version ~= 1 and s.version ~= 2)
                     or not integer(s.bowls,2) or not integer(s.clears,1)
                     or not integer(s.thought,150) or not integer(s.speed,180) then
-                    s=fresh(); all[key]=s
+                    s=fresh()
                 end
                 if s.version == 1 then s.version=2; s.mealToken=nil end
                 s.mealToken=integer(s.mealToken,2147483647)
@@ -52,22 +56,21 @@ function Rice:Init(mod, Risk, Meal)
                     s.windowRemaining=0; s.windowFactor=1
                 end
                 if type(s.awards) ~= "table" then s.awards={} end
-                local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount(), clock=0}
                     if s.windowRemaining>0 then
                         b.window={clock=s.windowRemaining-6,multiplier=s.windowFactor}
                     end
                 end
-                b.state=s; nextBindings[pointer]=b
+                b.slot=key; b.state=s; nextBindings[pointer]=b
             else
                 -- Observed character changes discard the former form's rewards.
-                all[key]=nil
                 if bindings[pointer] then refresh(p) end
             end
             nextSlots[key]={pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key]=nil end end
+        for key in pairs(all) do all[key]=nil end
+        for _, b in pairs(nextBindings) do all[b.slot]=b.state end
         bindings, slots = nextBindings, nextSlots
     end
     local function binding(p)

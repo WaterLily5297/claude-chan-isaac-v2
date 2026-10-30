@@ -30,23 +30,28 @@ function MealBreak:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer = GetPtrHash(p)
             local old = slots[key]
-            if old and (old.pointer ~= pointer or old.seed ~= p.InitSeed) then
-                all[key] = nil -- A replacement entity cannot inherit a departed player's meal.
-            end
-            if not valid(all[key]) then all[key] = {version = 2, remaining = 0, serial = 0} end
-            if all[key].version == 1 then
-                -- Legacy timers have no reliable source identity; never cancel them as Rice.
-                all[key].version = 2; all[key].serial = 0; all[key].owner = nil
-            end
             local b = bindings[pointer]
-            if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+            local sameOwner = b and b.seed == p.InitSeed
+            -- Read every old slot before rewriting the map: a cyclic move must
+            -- retain each live owner's debt, frame guard and delay lease.
+            local s = all[sameOwner and b.slot or key]
+            if not sameOwner and old and (old.pointer ~= pointer or old.seed ~= p.InitSeed) then
+                s = nil -- A replacement entity cannot inherit a departed player's meal.
+            end
+            if not valid(s) then s = {version = 2, remaining = 0, serial = 0} end
+            if s.version == 1 then
+                -- Legacy timers have no reliable source identity; never cancel them as Rice.
+                s.version = 2; s.serial = 0; s.owner = nil
+            end
+            if not sameOwner then
                 b = {seed = p.InitSeed, slot = key, frame = Game():GetFrameCount()}
             end
-            b.state = all[key]
+            b.slot, b.state = key, s
             nextBindings[pointer] = b
             nextSlots[key] = {pointer = pointer, seed = p.InitSeed}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
     local function binding(player)
