@@ -7,8 +7,9 @@ CacheFlag = {CACHE_DAMAGE=1, CACHE_SPEED=2}
 PlayerType = {PLAYER_JACOB=19, PLAYER_ESAU=20, PLAYER_LAZARUS_B=29, PLAYER_THEFORGOTTEN_B=35,
     PLAYER_LAZARUS2_B=38, PLAYER_THESOUL_B=40}
 function include(name)
-    assert(name == "scripts.constants")
-    return {Item={CONSTITUTION=746}}
+    if name == "scripts.constants" then return {Item={CONSTITUTION=746}} end
+    assert(name == "scripts.save_sync")
+    return dofile(root.."/scripts/save_sync.lua")
 end
 local callbacks, players = {}, {}
 local Risk = {state={}}
@@ -118,6 +119,10 @@ assert(hit(jacob)==false and hit(esau)==false,"each twin has an independent firs
 assert(hit(jacob)==nil and hit(esau)==nil,"one twin cannot spend the other's shield")
 fire("MC_POST_NEW_LEVEL")
 assert(hit(esau)==false and hit(jacob)==false,"both twin slots rearm on a new floor")
+fire("MC_POST_NEW_LEVEL");assert(hit(jacob)==false)
+players={esau,jacob};tick(esau);tick(jacob)
+assert(jacob.soul==2 and esau.soul==2,"separate twin moves cannot regrant pickup rewards")
+assert(hit(jacob)==nil and hit(esau)==false,"separate twin moves preserve asymmetric shield debt")
 
 -- Flip swaps active entities in a slot; returning is not a new co-op join.
 local living,dead=player(370),player(380)
@@ -137,6 +142,63 @@ assert(hit(living)==false and hit(dead)==false,"Birthright bodies remain indepen
 start({constitutionApplied=true,constitutionBlockUsed=true});tick(dead)
 players[1]=living;tick(living)
 assert(living.soul==2 and hit(living)==nil,"legacy migration must include the initially hidden body")
+
+-- Two independently observed Lazarus body groups move as whole groups even
+-- when the inactive bodies are hidden. Recreated groups adopt saved slot keys.
+local a,b,c,d=player(510),player(520),player(530),player(540)
+a.kind,b.kind,c.kind,d.kind=29,38,29,38
+players={a,c};start();tick(a);tick(c);assert(hit(a)==false)
+players={b,d};tick(b);tick(d);assert(hit(d)==false)
+players={a,c};tick(a);tick(c)
+players={c,a};tick(c);tick(a)
+assert(a.soul==2 and c.soul==2,"Lazarus group rotation cannot regrant active rewards")
+players={d,b};tick(d);tick(b)
+assert(b.soul==2 and d.soul==2,"hidden body records move with their known group")
+assert(hit(d)==nil and hit(b)==false,"moved hidden bodies keep independent shield bits")
+local moved=Risk.state.constitution.players
+assert(moved["0:29"].applied and not moved["0:29"].used and moved["1:29"].used,
+    "inactive group state is retained under its new slot")
+include("scripts.save_sync").Run(Risk)
+saved=copy(Risk.state)
+a,b,c,d=player(610),player(620),player(630),player(640)
+a.kind,b.kind,c.kind,d.kind=29,38,29,38
+players={d,b};start(saved);tick(d);tick(b)
+players={c,a};tick(c);tick(a)
+assert(a.soul==0 and b.soul==0 and c.soul==0 and d.soul==0,"Continue keeps both hidden pickup bits")
+assert(hit(c)==false and hit(a)==nil,"first hidden Flip after Continue keeps the appropriate debt")
+
+-- A visible, known counterpart can identify a newly exposed body during a
+-- simultaneous move. An unrelated unknown body must not steal a moved group.
+a,b,c=player(710),player(720),player(730);a.kind,b.kind,c.kind=29,38,0
+players={a,c};start({constitutionApplied=true,constitutionBlockUsed=true});tick(a);tick(c)
+function b:GetOtherTwin() return a end
+players={c,b};tick(b);tick(a)
+assert(a.soul==0 and b.soul==0 and hit(a)==nil and hit(b)==nil,
+    "known counterpart locates both legacy records during a first exposure and move")
+local replacement=player(735);replacement.kind=29
+function replacement:GetOtherTwin() return b end
+players={c,replacement};tick(replacement);tick(b)
+assert(replacement.soul==2 and hit(replacement)==false,"replaced body starts fresh within a known group")
+assert(b.soul==0 and hit(b)==nil,"body replacement preserves the surviving counterpart")
+local newcomer=player(740);newcomer.kind=38
+players={a,c};start({constitutionApplied=true,constitutionBlockUsed=true});tick(a);tick(c)
+players={newcomer,a};tick(newcomer);tick(a)
+assert(newcomer.soul==2 and hit(newcomer)==false,"unknown join cannot inherit a moved group's hidden bits")
+assert(a.soul==0 and hit(a)==nil,"unknown join cannot overwrite the known moved owner")
+
+-- Shared Forgotten state follows the root while callbacks may name its Soul.
+local rootBody,sharedSoul,partner=player(810),player(820),player(830)
+function rootBody:GetSubPlayer() return sharedSoul end
+players={rootBody,partner};start();tick(sharedSoul);tick(partner);assert(hit(sharedSoul)==false)
+players={partner,rootBody};tick(rootBody);tick(sharedSoul);tick(partner)
+assert(sharedSoul.soul==2 and rootBody.soul==0 and partner.soul==2,"shared body move keeps one pickup reward")
+assert(hit(rootBody)==nil and hit(sharedSoul)==nil and hit(partner)==false,"shared body move keeps separate co-op debt")
+rootBody.GetSubPlayer=nil;rootBody.kind=35;sharedSoul.kind=40
+function rootBody:GetOtherTwin() return sharedSoul end
+start();tick(sharedSoul);tick(partner);assert(hit(sharedSoul)==false)
+players={rootBody,partner};tick(rootBody);tick(sharedSoul);tick(partner)
+assert(sharedSoul.soul==4 and rootBody.soul==0 and partner.soul==4,"tainted shared-body move keeps one pickup reward")
+assert(hit(rootBody)==nil and hit(sharedSoul)==nil and hit(partner)==false,"tainted shared-body move retains shared debt")
 
 -- Dead and ghost players cannot consume rewards while inactive.
 players={player(410)};p=players[1];start();p.ghost=true;tick(p)
