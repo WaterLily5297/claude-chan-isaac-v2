@@ -1,0 +1,181 @@
+{
+  "version": 1,
+  "kind": "approved_character_design_sources",
+  "base_commit": "4bbfe32f6a8920d529e491e623dd209bd6add87f",
+  "owner_approval": {
+    "date": "2026-10-31",
+    "statement": "All nine approved (English translation of the owner response to the displayed comparison).",
+    "scope": "GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM alternate designs; not native sprite acceptance or installation."
+  },
+  "license": "resources/ART_LICENSE.md",
+  "prompts": "docs/tainted-portrait-prompts.json",
+  "comparison": {
+    "path": "docs/art/tainted-designs/approval-comparison.jpg",
+    "sha256": "1abfe6f358934d147d7d6ef3bd3c7a3b4f550cc036fbeb7a0b2beb0f4c576c85",
+    "note": "Exact comparison shown before the approval reply; pending labels describe that pre-approval screen."
+  },
+  "assets": [
+    {
+      "key": "gpt_b",
+      "path": "docs/art/tainted-designs/gpt_b.png",
+      "sha256": "58ad4dccd840ab7e3efd9bc657bedd320da36e145d56d66398a20f72adeae587",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/gpt.png",
+        "sha256": "5819f0eceb4d3879b4129844494d0358411bf635b25946801c74c6374b34526f"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "gpt_b"
+    },
+    {
+      "key": "gemini_b",
+      "path": "docs/art/tainted-designs/gemini_b.png",
+      "sha256": "9563217f4746288886eeabd8ef69c042a04763ea597c8553a74786226cc2861b",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/gemini.png",
+        "sha256": "32bad7a3e4ef924bcf2d99778bc6cdc0f01cb81f0c2586a3e928e2c747428b18"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "gemini_b"
+    },
+    {
+      "key": "grok_b",
+      "path": "docs/art/tainted-designs/grok_b.png",
+      "sha256": "5f6770139bfee0a0164046a32fb211bbdcd08ca0a1b6c1371dbd487e87b81825",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/grok.png",
+        "sha256": "10208fe5c043b41c22e9dc0e43a42a10dc042b8e41ea201bf00bc8b7e180cdba"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "grok_b"
+    },
+    {
+      "key": "qwen_b",
+      "path": "docs/art/tainted-designs/qwen_b.png",
+      "sha256": "929fda45291a1d97406b4dec4ba73c62879f021b10cb7688c826c6bfa1a6fb7e",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/qwen.png",
+        "sha256": "f19528803cb07ccfe4d11a8fb09d2e9e3f0ab6906d436d5e36bf2c47ce18ad29"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "qwen_b"
+    },
+    {
+      "key": "llama_b",
+      "path": "docs/art/tainted-designs/llama_b.png",
+      "sha256": "1afe388d1022b7c5dd8e7ceacc082d4931ba0128bca61d72d0824bb4c5b30547",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/llama.png",
+        "sha256": "4cbc5d846ab7751e6c74a609eb680097ce483440b68d8a4ee5a86437ddb90a82"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "llama_b"
+    },
+    {
+      "key": "mistral_b",
+      "path": "docs/art/tainted-designs/mistral_b.png",
+      "sha256": "b5e72c5b4806b5077eeee3d29e8a360bddabc7da22fdd80f4b04ada129c96cf5",
+      "size": [
+        1023,
+        1538
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/mistral.png",
+        "sha256": "6a4b6adcf5030a2a3e0b12bd52366ccab99018ef880ec632a32145848d22a2c2"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "mistral_b"
+    },
+    {
+      "key": "doubao_b",
+      "path": "docs/art/tainted-designs/doubao_b.png",
+      "sha256": "943d2803b046da7139aefda57111363693cb0739db70a3adc17a4677a23bacaa",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/doubao.png",
+        "sha256": "05c6d35249756a8e2ff41d11242430a45d3bf00bb72f47f693d787ff35bff387"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "doubao_b"
+    },
+    {
+      "key": "kimi_b",
+      "path": "docs/art/tainted-designs/kimi_b.png",
+      "sha256": "e03b085e3d4d3d14d78207e44cd31c57b48a9fd783da982e83378d21a12d7c31",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/kimi.png",
+        "sha256": "c982ff6a3600085e1dd60371c23e4433b118cd2af396acfe70d8e7e2d142257c"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "kimi_b"
+    },
+    {
+      "key": "glm_b",
+      "path": "docs/art/tainted-designs/glm_b.png",
+      "sha256": "e2d10dac4f26a6d54099fbdd202269557890ded5ffea7e15318ed57a9c5abc0f",
+      "size": [
+        1024,
+        1536
+      ],
+      "png_bit_depth": 8,
+      "png_color_type": 6,
+      "normal_reference": {
+        "path": "resources/gfx/ui/dossiers/glm.png",
+        "sha256": "7ebf1b1ff9e3530c9f3653568003279f3cb06861147a08f3074a1576eb7ba5b1"
+      },
+      "status": "owner_approved_design_source",
+      "runtime_status": "not_integrated",
+      "prompt_entry": "glm_b"
+    }
+  ]
+}

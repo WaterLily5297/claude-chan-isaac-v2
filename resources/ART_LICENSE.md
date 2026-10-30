@@ -2,6 +2,12 @@
 
 The MIT license in the project root covers **code only**. It does not cover the character designs or the art in this folder.
 
+## Approved nine-family tainted design sources (2026-10-31)
+
+The nine PNG sources under `docs/art/tainted-designs/` depict owner-approved alternate GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM identities derived from the credited ZipZipPipe AI-personification designs. They retain the same attribution and non-commercial conditions as the roster artwork below; neither AI generation nor owner design approval places them under the code's MIT licence or establishes new exclusive rights. The comparison JPEG includes existing normal designs and these alternate sources under the same design terms.
+
+The exact accepted bytes and source references are recorded in `docs/approved-tainted-designs.json`; available actual generation/edit requests are in `docs/tainted-portrait-prompts.json`. The earlier original Kimi/GLM requests were not recovered and are explicitly marked unavailable. No new direct rights clearance is claimed. These are approved illustration sources, not a completed gameplay-sheet adaptation, native acceptance or Workshop permission.
+
 ## Character designs
 
 | Character | Designer | Terms |
