@@ -2,6 +2,12 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U4: full entry-point update budget (2026-10-30; offline)
+
+The [performance workload](PERFORMANCE.md) loads real `main.lua` and all production modules. The new gate fixture checks 22 idle forms, one/four Preview holders with 0/12/96 enemies, target/lifecycle controls and a four-form mixed inventory with actual Kimi/GLM scheduled damage. The exported `1e20c4c` Gemini module fails the query budget but passes the behavior controls. Preview now shares one enemy enumeration per five-frame refresh across owners/markers; no list is retained between callbacks. Four holders over 180 supplied updates reduce room scans from 288 to 36.
+
+The profiler records 27 workloads and instrumented allocation/time with explicit limits. Native AI/physics/rendering, all weapon callbacks, actual frame rate, optional-mod interactions and full combat/performance acceptance remain open. No installed file changes are made.
+
 ## U4/O6/F18: Rice and shared-meal ownership (2026-10-30; offline)
 
 The [O6 identity fixture](O6_RICE_MEAL_IDENTITY.md) initializes real Risk, MealBreak and Rice/Thought callbacks with detached snapshot serialization. Baseline `941b4af` independently loses meal debt and Rice progress when the same live players change slots. The corrected binders preserve their own state and transient clocks through an atomic map rebuild; actual replacements still start fresh.
