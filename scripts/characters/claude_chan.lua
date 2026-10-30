@@ -93,57 +93,64 @@ function ClaudeChan:Init(mod, Risk)
     local applied = {} -- Transient: player pointer -> Limited state in the damage stat.
     local owners, refreshNeeded = {}, {} -- Live slot identity; never serialized.
 
-    local function retireOwner(key, previous, replacement)
-        local all = Risk.state.claudeUsage
-        if type(all) == "table" then all[key] = nil end
-        volleys[key] = nil
-        if previous then
-            updates[previous.pointer] = nil
-            applied[previous.pointer] = nil
-            refreshNeeded[previous.pointer] = nil
-        end
-        if replacement then
-            local pointer = GetPtrHash(replacement)
-            replacement:GetData().ccUsage = nil
-            updates[pointer] = nil; applied[pointer] = nil
-            refreshNeeded[pointer] = nil
-            drop:Forget(replacement)
-        end
+    local function forgetRuntime(pointer)
+        updates[pointer] = nil; applied[pointer] = nil; refreshNeeded[pointer] = nil
     end
 
     local function observeOwners()
         if not ready then return end
-        local count = Game():GetNumPlayers()
-        local replacements
+        local count, all = Game():GetNumPlayers(), Risk.state.claudeUsage
+        local changed = false
+        for i = 0, count - 1 do
+            local p, previous = Isaac.GetPlayer(i), owners[tostring(i)]
+            if not previous or previous.pointer ~= GetPtrHash(p) or previous.seed ~= p.InitSeed then
+                changed = true; break
+            end
+        end
+        for key in pairs(owners) do if tonumber(key) >= count then changed = true; break end end
+        if not changed then
+            if type(all) == "table" then
+                for key in pairs(all) do if not owners[key] then all[key] = nil end end
+            end
+            return
+        end
+
+        -- Stage every read before rewriting slots. A continuously observed
+        -- pointer/seed keeps its account and paid volley through cyclic moves.
+        -- Loaded slots bind once at startup/Continue, before live owners exist.
+        local bootstrap = next(owners) == nil
+        local oldByPointer, nextOwners, nextAccounts, nextVolleys = {}, {}, {}, {}
+        local retained, replacements = {}, {}
+        for key, owner in pairs(owners) do oldByPointer[owner.pointer] = {slot=key, owner=owner} end
         for i = 0, count - 1 do
             local p, key = Isaac.GetPlayer(i), tostring(i)
-            local pointer, previous = GetPtrHash(p), owners[key]
-            if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed) then
-                retireOwner(key, previous, p)
-                replacements = replacements or {}
+            local pointer = GetPtrHash(p)
+            local old = oldByPointer[pointer]
+            local sameOwner = old and old.owner.seed == p.InitSeed
+            if sameOwner or bootstrap then
+                local source = sameOwner and old.slot or key
+                nextAccounts[key] = type(all) == "table" and all[source] or nil
+                nextVolleys[key] = volleys[source]
+            else
+                p:GetData().ccUsage = nil
+                forgetRuntime(pointer); drop:Forget(p)
                 replacements[pointer] = true
-                previous = nil
             end
-            if not previous then owners[key] = {pointer=pointer, seed=p.InitSeed} end
+            if sameOwner then retained[pointer] = true end
+            nextOwners[key] = sameOwner and old.owner or {pointer=pointer, seed=p.InitSeed}
         end
-        for key, previous in pairs(owners) do
-            if tonumber(key) >= count then
-                retireOwner(key, previous, nil)
-                owners[key] = nil
-            end
+        for _, previous in pairs(owners) do
+            if not retained[previous.pointer] then forgetRuntime(previous.pointer) end
         end
-        -- A removed player's record must not survive a save and later co-op join.
-        local all = Risk.state.claudeUsage
         if type(all) == "table" then
-            for key in pairs(all) do if not owners[key] then all[key] = nil end end
+            for key in pairs(all) do all[key] = nil end
+            for key, account in pairs(nextAccounts) do all[key] = account end
         end
-        -- Finish every retirement before marking replacements: a slot swap
-        -- can retire a pointer that was just rebound in an earlier slot.
-        if replacements then
-            for pointer in pairs(replacements) do refreshNeeded[pointer] = true end
-        end
-        -- Type changes on the same pointer/seed deliberately keep existing debt.
-        -- Only the live owner changes above invalidate an account.
+        owners, volleys = nextOwners, nextVolleys
+        -- Retire all old identities before scheduling replacement refreshes.
+        for pointer in pairs(replacements) do refreshNeeded[pointer] = true end
+        -- Type changes on the same pointer/seed deliberately retain Claude debt.
+        -- An observed departure or a new pointer/seed still ends that account.
     end
 
     local function getUsage(player)
