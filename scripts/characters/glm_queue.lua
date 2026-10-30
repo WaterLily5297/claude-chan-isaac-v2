@@ -135,7 +135,8 @@ function GLM:Init(mod, Risk)
             local s = b.state
             observeFloor(b)
             if p:IsDead() then drop:Forget(p); return end
-            if drop:Poll(p, s.queue >= QUEUE_MAX and not passActive(s)) then
+            if drop:Poll(p, s.queue >= QUEUE_MAX and not passActive(s),
+                passActive(s) and "Access Pass active" or "Queue below 3/3") then
                 s.queue = 0
                 s.pass = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_ROOMS or PASS_ROOMS
                 Game():GetHUD():ShowItemText("GLM-chan", "Access granted")
@@ -177,7 +178,8 @@ function GLM:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text
             if boosted(s) then text = string.format("GLM-chan: Access active  %d room(s) left", s.pass)

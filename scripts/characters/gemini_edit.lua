@@ -121,13 +121,16 @@ function Edit:Init(mod, Risk)
                     if chain.remaining <= 0 then b.chain = nil end
                 end
             end
-            if drop:Poll(p, b.state.doneRoom ~= room) then
+            if drop:Poll(p, b.state.doneRoom ~= room,
+                "Already exported this room") then
                 -- Starting again erases progress, even on the same target.
                 local target = Tools.Nearest(p.Position, RADIUS)
                 if target then
                     local frames = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_FRAMES or CHAIN_FRAMES
                     b.chain = {ref=EntityPtr(target), hash=GetPtrHash(target), remaining=frames, hits={}, step=0}
                     Game():GetHUD():ShowItemText("Gemini-chan", "One more edit")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -165,7 +168,8 @@ function Edit:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         local room = roomKey()
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text
             if b.chain then
                 text = string.format("Gemini-chan: %s %d/%d  %ds", STEPS[b.chain.step + 1], b.chain.step, #STEPS,

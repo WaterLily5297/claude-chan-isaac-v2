@@ -153,7 +153,8 @@ function Mistral:Init(mod, Risk)
                 end
             end
             b.frame = now
-            if drop:Poll(p, s.ready) then
+            if drop:Poll(p, s.ready,
+                "Charge: move while firing") then
                 s.ready = false; b.cooldown = COOLDOWN_FRAMES; b.charge = 0
                 swipe(p, s)
                 Game():GetHUD():ShowItemText("Mistral-chan", "Pounce!")
@@ -167,7 +168,8 @@ function Mistral:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text
             if b.state.ready then text = "Mistral-chan: Pounce Ready "..direction(b.state)
             elseif b.cooldown > 0 then text = string.format("Mistral-chan: Cooldown %ds", math.ceil(b.cooldown / 30))

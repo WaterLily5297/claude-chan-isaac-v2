@@ -53,7 +53,7 @@ local function player()
     end
     return p
 end
-Isaac={GetPlayer=function(i) return players[i+1] end, GetScreenHeight=function() return 270 end, GetRoomEntities=function() return enemies end}
+Isaac={GetPlayer=function(i) return players[i+1] end, GetScreenHeight=function() return 270 end, GetScreenWidth=function() return 480 end, GetRoomEntities=function() return enemies end}
 function Game() return {GetNumPlayers=function() return #players end,
     GetFrameCount=function() return frame end, IsPaused=function() return paused end,
     GetRoom=function() return {IsClear=function() return clear end} end,

@@ -160,7 +160,7 @@ local p,q=players[1],players[2]
 near(p.MoveSpeed,1)
 
 -- Checks need a hostile room and a target within 220 units.
-local foe=enemy(100); tap(p); assert(hud()=="Grok-chan: DROP: Is this true?","a cleared room cannot be checked")
+local foe=enemy(100); tap(p); assert(hud()=="DROP: Needs combat","a cleared room cannot be checked")
 enter(2,true)
 enemy(400); tap(p); assert(state().checkRoom==nil,"no target spends nothing")
 local friend=enemy(40); friend.friendly=true; tap(p); assert(state().checkRoom==nil,"friendly enemies are ignored")
@@ -174,7 +174,8 @@ near(hit(target,tear(p)),13); near(hit(other,tear(p)),9); near(hit(target,tear(q
 assert(hud()=="Grok-chan: Check 1/3  6s",hud())
 tick(); local v=tear(p); near(hit(target,v),13); near(hit(target,v),13)
 assert(hud()=="Grok-chan: Check 2/3  6s","one volley is one attack")
-tap(p); assert(hud()=="Grok-chan: Check 2/3  6s","no second check in the same room")
+tap(p); assert(hud()=="DROP: Check in progress","no second check in the same room")
+tick(45); assert(hud():find("Check 2/3"),"the existing check was not restarted")
 
 -- A third distinct attack verifies: modifiers end and speed rises for the room.
 tick(); near(hit(target,tear(p)),13)
@@ -211,7 +212,8 @@ p.birthright=false
 
 -- Continue keeps the spent check and the verified room's speed.
 reload({player(101,11,0),player(102,22,1)}); p,q=players[1],players[2]; tick()
-near(p.MoveSpeed,1.15); target=enemy(30); tap(p); assert(hud()=="Grok-chan: Verified","no second check after continue")
+near(p.MoveSpeed,1.15); target=enemy(30); tap(p); assert(hud()=="DROP: Check spent this room","no second check after continue")
+tick(45); assert(hud()=="Grok-chan: Verified","saved verification remains after the cue")
 
 -- Character and identity changes discard the flags.
 players[1]=player(101,999,0); p=players[1]; tick(); assert(state().verifiedRoom==nil)
@@ -229,7 +231,8 @@ assert(hud():find("Check"),"pause/duplicate callbacks do not consume the grace i
 tick(); assert(hud()=="Grok-chan: Unverified" and not state().verifiedRoom)
 assert(sightWarning,"obstruction has a visible counterplay cue")
 near(hit(target,tear(p)),10); near(p.MoveSpeed,1)
-lineOfSight=true; tap(p); assert(hud()=="Grok-chan: Unverified","no second check after losing sight")
+lineOfSight=true; tap(p); assert(hud()=="DROP: Check spent this room","no second check after losing sight")
+tick(45); assert(hud()=="Grok-chan: Unverified","lost check remains spent after the cue")
 enter(101,true); target=enemy(50); tap(p)
 lineOfSight=false; tick(20); lineOfSight=true; tick(); lineOfSight=false; tick(29)
 assert(hud():find("Check"),"seeing the target resets the consecutive obstruction interval")

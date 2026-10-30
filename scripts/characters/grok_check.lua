@@ -151,7 +151,8 @@ function Grok:Init(mod, Risk)
                     elseif b.check.remaining <= 0 then b.check = nil end
                 end
             end
-            if drop:Poll(p, combat and s.checkRoom ~= room and b.check == nil) then
+            if drop:Poll(p, combat and s.checkRoom ~= room and b.check == nil,
+                not combat and "Needs combat" or b.check and "Check in progress" or "Check spent this room") then
                 local target = Tools.Nearest(p.Position, CHECK_RADIUS)
                 -- No target means the room's check is not spent.
                 if target then
@@ -159,6 +160,8 @@ function Grok:Init(mod, Risk)
                     b.check = {ref=EntityPtr(target), hash=GetPtrHash(target),
                         remaining=CHECK_FRAMES, hits={}, count=0}
                     Game():GetHUD():ShowItemText("Grok-chan", "Is this true?")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -212,7 +215,8 @@ function Grok:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         local room = roomKey()
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s, text = b.state, nil
             if b.check then
                 text = string.format("Grok-chan: Check %d/%d  %ds", b.check.count, CHECK_HITS,

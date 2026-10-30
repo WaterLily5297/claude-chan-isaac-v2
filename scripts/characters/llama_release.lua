@@ -129,9 +129,10 @@ function Llama:Init(mod, Risk)
             observeFloor(b)
             if p:IsDead() then drop:Forget(p); return end
             if combat then b.armed[room] = true end
-            if drop:Poll(p, s.releases > 0) then
+            if drop:Poll(p, s.releases > 0,
+                "No Releases left") then
                 if combat then
-                    Game():GetHUD():ShowItemText("Llama-chan", "Prepare the release between fights")
+                    drop:Refuse(p, "Release between fights")
                 else
                     s.releases = s.releases - 1
                     release(p)
@@ -162,7 +163,8 @@ function Llama:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = string.format("Llama-chan: Releases %d/%d  Next %d/%d", s.releases, RELEASE_CAP,
                 s.clears, CLEARS_PER_RELEASE)

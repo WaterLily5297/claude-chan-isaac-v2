@@ -151,8 +151,9 @@ enter(2,true)
 assert(hud()=="Gemini-chan: DROP: start an edit",hud())
 
 -- DROP targets the nearest hostile within 180 units; no target starts nothing.
-enemy(300); tap(p); assert(hud()=="Gemini-chan: DROP: start an edit","beyond 180 units")
-local friend=enemy(40); friend.friendly=true; tap(p); assert(hud()=="Gemini-chan: DROP: start an edit","friendly ignored")
+enemy(300); tap(p); assert(hud()=="DROP: No target in range","beyond 180 units")
+local friend=enemy(40); friend.friendly=true; tap(p); assert(hud()=="DROP: No target in range","friendly ignored")
+tick(45); assert(hud()=="Gemini-chan: DROP: start an edit","normal HUD returns after refusal")
 local far,close=enemy(170),enemy(90)
 down[0]=true; tick(20); down[0]=false; tick(); assert(hud()=="Gemini-chan: DROP: start an edit","a long hold keeps native DROP")
 tap(p); assert(texts[#texts]=="One more edit")
@@ -169,7 +170,8 @@ p.Position=vec(90,-90); frame=frame+1; hit(close,tear(p)); assert(hud()=="Gemini
 p.Position=vec(180,0); frame=frame+1; hit(close,tear(p))
 assert(texts[#texts]=="Exported" and close.taken[#close.taken-1]==18 and close.taken[#close.taken]==10,"export pulses 2x player damage")
 assert(hud()=="Gemini-chan: Exported")
-tap(p); assert(hud()=="Gemini-chan: Exported","one completed chain per room")
+tap(p); assert(hud()=="DROP: Already exported this room","one completed chain per room")
+tick(45); assert(hud()=="Gemini-chan: Exported","exported HUD returns")
 
 -- Retargeting erases progress; an early defeat never completes; the chain times out.
 p.Position=vec(0); enter(3,true); local a,b=enemy(20),enemy(60)

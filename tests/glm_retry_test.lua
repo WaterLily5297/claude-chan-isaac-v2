@@ -164,7 +164,7 @@ p:EvaluateItems(); near(p.Damage,9); assert(hud()=="GLM-chan: Retries 0/3",hud()
 
 -- No requests outside combat; no target means no cooldown.
 local idle=enemy(40); tap(p); assert(not texts[1])
-enter(2,true); local far=enemy(250); tap(p); assert(not texts[1] and hud()=="GLM-chan: Retries 0/3")
+enter(2,true); local far=enemy(250); tap(p); assert(not texts[1] and hud()=="DROP: No target in range")
 
 -- DROP queues a two-second request; a surviving target takes 2x.
 local e=enemy(50); tap(p); assert(last()=="Request queued" and hud()=="GLM-chan: Retries 0/3  Request Pending 2s",hud())
@@ -174,7 +174,8 @@ assert(#far.taken==0)
 -- The three-second cooldown starts at selection and blocks DROP.
 assert(hud()=="GLM-chan: Retries 0/3  Cooldown 1s",hud())
 local shown=#texts; tap(p); assert(#texts==shown,"cooldown")
-tick(26); assert(hud():find("Cooldown 1s")); tick(); assert(hud()=="GLM-chan: Retries 0/3")
+tick(26); assert(hud()=="DROP: Request cooling down"); tick()
+tick(18); assert(hud()=="GLM-chan: Retries 0/3","request HUD returns after refusal")
 
 -- Early death earns a Retry, up to three; another player's state is separate.
 for i=1,4 do

@@ -147,7 +147,8 @@ function Baguette:Init(mod, Risk)
                 end
             end
             b.frame = now
-            if drop:Poll(p, s.baguettes > 0 and b.cooldown == 0) then
+            if drop:Poll(p, s.baguettes > 0 and b.cooldown == 0,
+                b.cooldown > 0 and "Wave cooling down" or "No Baguettes left") then
                 s.baguettes = s.baguettes - 1; b.cooldown = COOLDOWN_FRAMES
                 b.wave = {origin=p.Position, dir=forward(p), travel=0, hit={}}
                 Game():GetHUD():ShowItemText("Mistral-chan", "Baguette!")
@@ -163,7 +164,8 @@ function Baguette:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Mistral-chan: Baguettes %d/%d", b.state.baguettes, BAGUETTE_CAP)
             if b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
             if Game():GetRoom():IsClear() and b.state.baguettes < BAGUETTE_CAP then text = text.."  Combat to bake" end

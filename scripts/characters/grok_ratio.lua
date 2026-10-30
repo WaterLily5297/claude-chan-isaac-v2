@@ -146,13 +146,16 @@ function Ratio:Init(mod, Risk)
                 end
             end
             -- The cooldown outlasts the quote, so it also blocks retargeting.
-            if drop:Poll(p, s.cooldown == 0) then
+            if drop:Poll(p, s.cooldown == 0,
+                "Quote cooling down") then
                 local target = Tools.Nearest(p.Position, RADIUS)
                 if target then
                     s.cooldown = COOLDOWN_FRAMES
                     b.quote = {ref=EntityPtr(target), hash=GetPtrHash(target), position=target.Position,
                         remaining=QUOTE_FRAMES, ratio=0, choices=Choices.New()}
                     Game():GetHUD():ShowItemText("Grok-chan", "Quoted")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -182,7 +185,8 @@ function Ratio:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text
             if b.quote then
                 text = string.format("Grok-chan: Ratio %d/%d  %ds", b.quote.ratio, RATIO_CAP, math.ceil(b.quote.remaining / 30))

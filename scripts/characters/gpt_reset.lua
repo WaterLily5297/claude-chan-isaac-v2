@@ -153,6 +153,8 @@ function Reset:Init(mod, Risk)
                     s.fullSend = not s.fullSend
                     Game():GetHUD():ShowItemText("GPT-chan", s.fullSend and "Full Send" or "Standard")
                     refresh(p)
+                else
+                    drop:Refuse(p, s.ready and "Claim reset between fights" or "No Credits left")
                 end
             end
         end)
@@ -202,6 +204,7 @@ function Reset:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = string.format("Credits %d/%d  %s  ", s.credits, cap(p), s.fullSend and "Full Send" or "Standard")
             text = text..(s.ready and (Game():GetRoom():IsClear() and "Tibo: Reset Ready" or "Tibo: after combat")

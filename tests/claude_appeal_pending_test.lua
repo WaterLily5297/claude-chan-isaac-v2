@@ -38,7 +38,7 @@ function Game() return {
     GetHUD=function() return {IsVisible=function() return true end,
         ShowItemText=function(_,title) texts[#texts+1]=title end} end,
 } end
-Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end}
+Isaac={GetPlayer=function(i) return players[i+1] end,GetScreenHeight=function() return 270 end, GetScreenWidth=function() return 480 end}
 local mod={AddCallback=function(_,id,fn,param) callbacks[#callbacks+1]={id=id,fn=fn,param=param} end}
 function mod:SaveData(s) self.saved=s end
 function mod:LoadData() return self.saved end
@@ -161,7 +161,8 @@ assert(texts[#texts]=="Appeal accepted")
 
 -- No Pages means no review.
 state().quota=0; tick(); tap(p); assert(state().review==nil and state().pages==0)
-draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="Suspended  Pages 0/2",draws[1])
+draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="DROP: No Pages left",draws[1])
+tick(45); draws={}; fire("MC_POST_RENDER"); assert(draws[1]=="Suspended  Pages 0/2",draws[1])
 
 -- Three unique combat clears earn a Page, capped at two; re-entry cannot farm.
 finish(); assert(state().clears==1,"the hostile room counts once cleared")

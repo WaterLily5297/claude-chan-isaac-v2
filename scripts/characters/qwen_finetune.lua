@@ -140,9 +140,10 @@ function FineTune:Init(mod, Risk)
             if p:IsDead() then drop:Forget(p); return end
             if combat then b.armed[room] = true end
             -- A new choice commits to two new combat clears, even in safe rooms.
-            if drop:Poll(p, not combat) then
+            if drop:Poll(p, not combat,
+                "Change build between fights") then
                 if s.pinned > 0 then
-                    Game():GetHUD():ShowItemText("Qwen-chan", "Pinned: clear "..s.pinned.." new combat rooms")
+                    drop:Refuse(p, "Pinned: clear "..s.pinned.." new rooms")
                 else
                     s.build = s.build % #BUILDS + 1; s.pinned = PIN_CLEARS
                     refresh(p)
@@ -184,7 +185,8 @@ function FineTune:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = string.format("Qwen-chan: %s  Variants %d/%d  Awards %d/%d", BUILDS[s.build].name,
                 count(s.used), #BUILDS, s.awards, AWARD_CAP)

@@ -147,7 +147,8 @@ function Hype:Init(mod, Risk, Backlog)
                 if helper.remaining <= 0 then b.helper = nil end
             end
             -- Spending all Hype replaces any helper and its remaining time.
-            if drop:Poll(p, s.hype > 0) then
+            if drop:Poll(p, s.hype > 0,
+                "No Hype yet") then
                 local per = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_FRAMES or FRAMES_PER_HYPE
                 b.helper = {position=p.Position, remaining=s.hype * per, shot=0}
                 s.hype = 0
@@ -173,6 +174,7 @@ function Hype:Init(mod, Risk, Backlog)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Llama-chan: Hype %d/%d", b.state.hype, HYPE_CAP)
             if b.helper then text = text..string.format("  Helper %ds", math.ceil(b.helper.remaining / 30)) end
             if b.helper and p.Position:Distance(b.helper.position) > OWNER_RANGE then text = text.."  Return to demo" end

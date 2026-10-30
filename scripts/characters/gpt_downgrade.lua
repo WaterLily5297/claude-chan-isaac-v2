@@ -157,13 +157,16 @@ function Gpt:Init(mod, Risk)
                 end
             end
             local canCheck = not s.verified and s.checkRoom ~= room and b.check == nil
-            if drop:Poll(p, canCheck) then
+            if drop:Poll(p, canCheck,
+                s.verified and "Already Verified" or b.check and "Check in progress" or "Check spent this room") then
                 local target = Tools.Nearest(p.Position, CHECK_RADIUS)
                 -- No target means no attempt is spent.
                 if target then
                     s.checkRoom = room
                     b.check = {ref=EntityPtr(target), hash=GetPtrHash(target), choices=Choices.New(), count=0}
                     Game():GetHUD():ShowItemText("GPT-chan", "Sanity Check")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -219,6 +222,7 @@ function Gpt:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text
             if s.verified then

@@ -127,7 +127,8 @@ function Again:Init(mod, Risk)
                     end
                 end
             end
-            if drop:Poll(p, s.phase == nil) then
+            if drop:Poll(p, s.phase == nil,
+                s.phase == "confident" and "Already Confident" or "Still recovering") then
                 s.phase = "confident"; s.remaining = CONFIDENT_FRAMES
                 Game():GetHUD():ShowItemText("Doubao-chan", "Leave it to me!")
                 refresh(p)
@@ -163,7 +164,8 @@ function Again:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s, text = b.state, "Doubao-chan: Ready to promise"
             if s.phase == "confident" then text = string.format("Doubao-chan: Confident %ds  Clear -> Apology", math.ceil(s.remaining / 30))
             elseif s.phase == "apology" then text = string.format("Doubao-chan: Apology %ds", math.ceil(s.remaining / 30)) end

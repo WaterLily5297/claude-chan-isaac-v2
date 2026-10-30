@@ -198,7 +198,8 @@ function TaintedClaude:Init(mod, Risk)
                     if wasSuspended then refresh(p) end
                 end
             end
-            if drop:Poll(p, s.quota == 0 and s.pages > 0 and s.review == nil) then
+            if drop:Poll(p, s.quota == 0 and s.pages > 0 and s.review == nil,
+                s.review and "Review in progress" or s.quota > 0 and "Quota remains" or "No Pages left") then
                 s.pages = s.pages - 1
                 s.review = {remaining=REVIEW_FRAMES, room=room}
                 Game():GetHUD():ShowItemText("Appeal submitted", "Under review")
@@ -277,6 +278,7 @@ function TaintedClaude:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not ready or not Game():GetHUD():IsVisible() then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local y = HudLayout.PlayerRow(i)
             local pages = string.format("  Pages %d/%d", s.pages, PAGES)

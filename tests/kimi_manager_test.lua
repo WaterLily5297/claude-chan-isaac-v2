@@ -168,10 +168,11 @@ tick(66); assert(#e1.taken==3 and #e2.taken==3 and #e3.taken==3,"three pulses ea
 assert(#e4.taken==0 and #far.taken==0,"only assigned enemies are hit")
 tick(120); assert(#e1.taken==3 and hud()=="Kimi-chan: Tasks 0/3  Budget 0/9","tasks end after three pulses")
 tap(p); assert(#texts==3,"the room budget is spent")
-assert(hud():find("Tasks 0/3") and state(1).budget["10:26"]==nil,"each player has a budget")
+assert(hud()=="DROP: Room pulse budget spent" and state(1).budget["10:26"]==nil,"each player has a budget")
+tick(45); assert(hud():find("Tasks 0/3"),"task HUD returns after refusal")
 
 -- No target, no spend; early death frees the slot but not the budget.
-enter(3,true); far=enemy(225); tap(p); assert(hud()=="Kimi-chan: Tasks 0/3  Budget 9/9",hud())
+enter(3,true); far=enemy(225); tap(p); assert(hud()=="DROP: No unassigned target nearby",hud())
 local quick=enemy(60); tap(p); tick(59); quick.dead=true; tick(); assert(#quick.taken==0,"no pulse on a dead target")
 assert(hud()=="Kimi-chan: Tasks 0/3  Budget 6/9",hud())
 quick.dead=false; tick(70); assert(#quick.taken==0,"a cancelled task never resumes"); quick.dead=true

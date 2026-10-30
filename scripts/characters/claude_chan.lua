@@ -369,10 +369,15 @@ function ClaudeChan:Init(mod, Risk)
         if refreshNeeded[pointer] or (usage.limited > 0) ~= (applied[pointer] or false) then refreshDamage(player) end
 
         -- No usage means nothing to appeal: the Appeal is kept.
-        if drop:Poll(player, true) and usage.appeals > 0 and usage.limited == 0 and usage.value > 0 then
-            usage.appeals = usage.appeals - 1
-            usage.value = math.max(0, usage.value - APPEAL_RELIEF)
-            Game():GetHUD():ShowItemText("Appeal filed", "Another love letter.")
+        if drop:Poll(player, true) then
+            if usage.appeals > 0 and usage.limited == 0 and usage.value > 0 then
+                usage.appeals = usage.appeals - 1
+                usage.value = math.max(0, usage.value - APPEAL_RELIEF)
+                Game():GetHUD():ShowItemText("Appeal filed", "Another love letter.")
+            else
+                drop:Refuse(player, usage.limited > 0 and "Usage limit active"
+                    or usage.appeals == 0 and "No Appeals left" or "No Usage to appeal")
+            end
         end
     end)
 
@@ -391,10 +396,13 @@ function ClaudeChan:Init(mod, Risk)
                 ageText = ageText..(usage.review and labels[usage.review.phase] or "")
                 HudText:Draw(ageText, 50, HudLayout.PlayerRow(i, 1), 1, 0.85, 0.5, 0.9)
                 local appeals = string.format("  Appeals %d/%d", usage.appeals, APPEAL_MAX)
-                if usage.limited > 0 then
-                    HudText:Draw(HudText:T("limited", math.ceil(usage.limited / 30)) .. appeals, 50, y, 1, 0.3, 0.3, 1)
-                else
-                    HudText:Draw(HudText:T("usage", usage.value) .. appeals, 50, y, 1, 0.65, 0.3, 1)
+                -- Keep the separate account-age row visible during a refusal.
+                if not drop:DrawRefusal(player, HudText, HudLayout, i) then
+                    if usage.limited > 0 then
+                        HudText:Draw(HudText:T("limited", math.ceil(usage.limited / 30)) .. appeals, 50, y, 1, 0.3, 0.3, 1)
+                    else
+                        HudText:Draw(HudText:T("usage", usage.value) .. appeals, 50, y, 1, 0.65, 0.3, 1)
+                    end
                 end
             end
         end

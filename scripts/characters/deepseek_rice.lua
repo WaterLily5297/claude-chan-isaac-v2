@@ -197,12 +197,19 @@ function Rice:Init(mod, Risk, Meal)
                     s.thought=math.min(150,s.thought+1)
                 end
             end
-            if drop:Poll(p,true) and s.bowls>0 and not s.lunch and Meal:Remaining(p)==0
-                and p:GetMovementInput():LengthSquared()==0 then
-                local duration=p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 30 or 60
-                local started, token=Meal:Start(p,duration,"rice")
-                if started then
-                    s.bowls=s.bowls-1; s.lunch=true; s.mealToken=token
+            if drop:Poll(p,true) then
+                if s.bowls>0 and not s.lunch and Meal:Remaining(p)==0
+                    and p:GetMovementInput():LengthSquared()==0 then
+                    local duration=p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and 30 or 60
+                    local started, token=Meal:Start(p,duration,"rice")
+                    if started then
+                        s.bowls=s.bowls-1; s.lunch=true; s.mealToken=token
+                    else
+                        drop:Refuse(p, "Meal unavailable")
+                    end
+                else
+                    drop:Refuse(p, (s.lunch or Meal:Remaining(p)>0) and "Meal in progress"
+                        or s.bowls==0 and "No Rice bowls left" or "Stand still to eat")
                 end
             end
         end)
@@ -261,7 +268,8 @@ function Rice:Init(mod, Risk, Meal)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(p,b,i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s=b.state
             local text=string.format("Thought %.1fs  Rice %d/2",s.thought/30,s.bowls)
             if s.lunch then text=text..string.format("  Lunch %.1fs: stay still",Meal:Remaining(p)/30) end
