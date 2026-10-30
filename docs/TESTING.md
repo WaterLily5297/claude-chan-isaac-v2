@@ -2,6 +2,12 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U3/G2: full entry-point ordinary primary attacks (2026-10-30; offline)
+
+The [full-main primary matrix](FULL_MOD_PRIMARY_COMPOSITION.md) covers 22 duplicate-form pairs, an earned Thought/Cooker case, five synchronous One More Finger helper cases and 88 mixed two-owner inventories. Actual fire/update/hit callbacks check resolved damage, raw forks, Context aging, owner-specific resource payments, Opus charges and removal/room cleanup. Four isolated source faults fail the intended assertions. No production defect or gameplay change is claimed.
+
+The fixture now supplies typed raw tears and distinct raw-Spawn/synchronous-FireTear paths. Those event contracts, projectile properties and RNG are modeled inputs. Native weapon physics, callback ancestry, all active loops and engine acceptance remain open; E2 still gates child-billing changes. Installed `8fd6a8c` is preserved.
+
 ## U3/W4.4: full entry-point cache mixtures (2026-10-30; offline)
 
 The [full-main cache matrix](FULL_MOD_CACHE_COMPOSITION.md) loads actual form and item modules. It covers 46 initial-form arithmetic/wallet cases, a native-input/removal control and 176 two-owner inventory cases (22 holding all 80 IDs, 154 sampled). Repeated evaluation, partner isolation, inventory replacement/removal, flight, flags and colour are checked. Four deliberate source faults fail the intended assertions; no new production bug or value change is claimed.
