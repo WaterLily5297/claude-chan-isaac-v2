@@ -2,6 +2,12 @@
 
 The MIT license in the project root covers **code only**. It does not cover the character designs or the art in this folder.
 
+## Llama profile/carry sources (2026-10-31)
+
+The two Llama sources under `docs/art/pose-sources/` and the comparison under `docs/art/llama-profile-review/` retain the credited normal ZipZipPipe identity and its non-commercial derivative terms. The built-in image tool generated the parts; the exact requests, accepted hashes, input references and rejected carry candidate provenance are in `docs/profile-pose-repairs.json`. The existing Grok carry source was a proportion reference only. Mechanical packing and the unchanged legacy tainted recolor do not create new design rights or MIT character artwork.
+
+The review contains only project pixels. Privately inspected native animation geometry is not redistributed. This work does not integrate the approved distinct tainted Llama design, establish engine acceptance or authorize Workshop publication.
+
 ## Grok and Qwen profile/carry sources (2026-10-31)
 
 The four generated sources under `docs/art/pose-sources/` and the two `docs/art/profile-batch-03-review/` comparisons retain the credited normal ZipZipPipe identities and their non-commercial derivative terms. Exact executed requests, intermediate-reference provenance, hashes and packing settings are in `docs/profile-pose-repairs.json`. Mechanical packing and the unchanged legacy tainted recolor do not create new design rights or MIT character artwork.

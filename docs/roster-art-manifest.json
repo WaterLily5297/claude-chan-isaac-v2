@@ -49,8 +49,9 @@
     "key": "llama",
     "portrait_sha256": "31ed8d9b643ba64bfeea1a5f8d71a0a11173e2bfa39bdffe2b77c73807e6a04f",
     "sprite_sha256": "0c803ea0970df6614f8c912c63881f0e5eadaa78d66f9d5d650a318065ec72f8",
-    "packed_sprite_sha256": "9882fd4ae35d1b9c3d42397afd5baa577a2d69ad2bc1165269baf19da6219d86",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "911f19e395db3a6794e021a043f4096571ec0e6abd1f28f908034e43f4841e99",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "mistral",

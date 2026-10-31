@@ -6,6 +6,8 @@ Later follow-up: [GLM profile/carry/fallen repair](GLM_PROFILE_POSES_2026-10-31.
 
 ## What was found and changed
 
+Current Llama follow-up: [profile and four-direction carry repair](LLAMA_CARRY_PROFILES_2026-10-31.md) replaces only its normal/legacy-tainted side and carry bodies. The separate face stays visible in the supplied foreground composition. All Llama head, Hit/Death and repaired Death-start crop pixels remain unchanged; the historical observations below and native oversized-hurt report retain their original evidence scope.
+
 The eight-frame Hit sequence already fits its measured 28x32 envelope on all 22 skins. Death alternates that corrected cell with three other cells still fitted to the old 58-pixel square. All 22 forms therefore had an offline size discontinuity. The two upright Death cells now fit 28x33 with visible bottom 57; the fallen cell fits 36x27 with visible bottom 59 in its actual crop. These are separate measured native envelopes, not a global 28x32 rule. Horizontal packing stays centered.
 
 The fallen crop starts at (192,130), two rows below its storage cell: packing ends at local storage y=61. The upright crops start at (0,128) and (0,192). Llama's (0,192) source crop also stopped through the body; it now uses the same corrected source-row bounds as its existing hurt pose, retaining hands and feet. No pixels were drawn or source illustrations changed.

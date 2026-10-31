@@ -63,8 +63,8 @@
     },
     "resources/gfx/characters/costumes/character_llamachan_b.png": {
       "source": "resources/gfx/characters/costumes/character_llamachan.png",
-      "source_sha256": "9882fd4ae35d1b9c3d42397afd5baa577a2d69ad2bc1165269baf19da6219d86",
-      "sha256": "ff9a7e5ec63239318f5bcea6fc8783e27e94024be601d3485fc82efba055dd58"
+      "source_sha256": "911f19e395db3a6794e021a043f4096571ec0e6abd1f28f908034e43f4841e99",
+      "sha256": "6753322bb78afe48905a42d55f5bcd8a2f6f49582dc912f2da26d837ff367657"
     },
     "resources/gfx/ui/stage/playerportrait_llamachan_b.png": {
       "source": "resources/gfx/ui/stage/playerportrait_llamachan.png",

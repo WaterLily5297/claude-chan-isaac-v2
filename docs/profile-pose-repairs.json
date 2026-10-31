@@ -2,7 +2,7 @@
   "version": 1,
   "tool": "built-in image_gen",
   "date": "2026-10-31",
-  "scope": "Normal GLM, GPT, Gemini, Grok and Qwen profiles; Grok/Qwen also replace front/back carry parts, and only GLM has a fallen repair. Legacy tainted recolors inherit geometry, not approved alternate identities. Offline only.",
+  "scope": "Normal GLM, GPT, Gemini, Grok, Qwen and Llama profiles; Grok/Qwen/Llama also replace front/back carry parts, and only GLM has a fallen repair. Legacy tainted recolors inherit geometry, not approved alternate identities. Offline only.",
   "repairs": [
     {
       "key": "glm",
@@ -562,6 +562,190 @@
           1
         ],
         "note": "Front/back share row 0; left/right share row 1. Opening centered at x=16. Central x=9..22,y=0..12 stays empty; hands flank it."
+      }
+    },
+    {
+      "key": "llama",
+      "reference_commit": "318525b56a07d79f8eda3a313543875225024f19",
+      "sources": [
+        {
+          "path": "docs/art/pose-sources/llama_side_parts.png",
+          "sha256": "49ffa63d678f43a4637ccc73643c21906dde0f4498f1f51193fd600aa6d56f43",
+          "prompt": "Use case: identity-preserve.\nAsset type: headless costume parts for an existing Binding of Isaac chibi character. Image 1 is the credited NORMAL Llama-chan costume identity reference. Image 2 is the existing gameplay atlas for the tiny chibi style only. Make new true RIGHT-SIDE walking body parts, never a narrowed front view. Preserve the normal cream-white hoodie and short layered ivory skirt, muted warm taupe outlines/shadows, tiny blue drawstring accent, and two separate fluffy llama slippers. No head, hair, ears, hood over a head, neck stump, face, animal face above the collar, prop or weapon. A closed small neckline is the top of the body; the game draws the head separately.\nComposition: transparent landscape 1536x1024 PNG, EXACTLY THREE isolated parts in a single horizontal row. Each occupies its own 512x1024 column, with at least 60px clear outer gutters. All three have the same body size, neckline height and shoe ground line; large empty padding above and below. Left to right: near foot forward/far foot back, close-foot passing phase with far knee bent, near foot back/far foot forward. Genuine rightward torso and slipper profiles, the near sleeve overlapping the far one. The stride must remain visibly distinct at tiny size.\nStyle: extremely squat cute sprite body, very short legs, chunky little shoes, broad flat pixel-art clusters and a strong dark outline. These parts will be ELEVEN logical pixels tall under a larger separate head; simplify lace and tiny details into a few clear shapes. Small hoodie, small skirt, little blue accent, not a realistic adult torso. Three parts only, not full characters.\nTrue transparent RGBA, no backdrop, glow, shadow, haze, grid, labels, letters, logos, extra limbs or other objects. Noncommercial derivative of the credited ZipZipPipe character, no copied native game pixels.",
+          "references": [
+            {
+              "path": "resources/gfx/ui/dossiers/llama.png",
+              "sha256": "4cbc5d846ab7751e6c74a609eb680097ce483440b68d8a4ee5a86437ddb90a82"
+            },
+            {
+              "path": "resources/gfx/characters/costumes/character_llamachan.png",
+              "sha256": "9882fd4ae35d1b9c3d42397afd5baa577a2d69ad2bc1165269baf19da6219d86"
+            }
+          ]
+        },
+        {
+          "path": "docs/art/pose-sources/llama_carry_parts.png",
+          "sha256": "941ded81120a183391e9bd1a1e980dece127677c07d3e85ffc0067e908ab2e12",
+          "prompt": "Use case: precise-object-edit.\nImage 1 is the NORMAL Llama-chan carry-parts sheet to revise. Image 2 is an already packed costume-part geometry reference from another character: copy ONLY its wide low proportions and large empty head opening, NEVER its black/red/gold costume. Keep Llama's cream-white hoodie sleeves, tiny blue cord, ivory short skirt, pale hands and fluffy cream llama slippers.\nChange ONLY proportions and simplification: make EACH of the six Llama components as wide and low as the matching component in image 2. About 460px wide and at most 300px tall in a 512px cell. Reduce the hoodie/torso/skirt/shoes to a very tiny unit confined to the lowest third. THIN the raised sleeves along the outside sides so the central upper opening is at least 60 percent of total width; its upper 65 percent height must be empty. Move both hands toward the two far outside ends, keeping exactly TWO hands. No shoulder bridge or torso in that opening. Keep a wide U silhouette, never a tall V or square body. Keep all three foot phases distinct, front row frontal and lower row right-facing torso/shoes. Preserve the source's six-cell arrangement with clear gutters and consistent foot ground line. Do not add a head, face, hair, neck stump, carried prop, new costume feature or third hand.\nTransparent 1536x1024 RGBA, crisp chunky pixel art, same cream/blue identity and dark taupe outline. No text, background, glow, guide marks or logos. Noncommercial credited ZipZipPipe derivative. This is a technical body-layer repair, not a new character design.",
+          "references": [
+            {
+              "description": "Unbundled initial Llama carry candidate; taller body rejected in proportion review.",
+              "sha256": "5ec1894538e866ffde78bab5d61e1d8c615f06f9c80af12cd48aa3527c21614b",
+              "generation_prompt": "Use case: identity-preserve.\nAsset type: six headless carry-walking sprite costume parts for the NORMAL Llama-chan in a Binding of Isaac mod. Image 1 provides the existing credited cream-white hoodie/skirt costume with tiny blue cords and fluffy llama slippers. Image 2 is an ORIGINAL geometric spacing guide only. Image 3 is the existing tiny gameplay art style reference. Keep this normal identity, not the distinct neon tainted design.\nCreate a transparent 1536x1024 PNG, exactly three columns by two rows, six isolated pieces. Top row FRONT carry-walk phases: left foot forward, feet passing, right foot forward. Bottom row RIGHT-PROFILE torso/shoes in those phases. Each complete piece stays inside its 512x512 cell with generous clear gutters and equal baseline/scale.\nCRITICAL: each part is a VERY WIDE U-shaped pair of raised arms, with a TINY squat hoodie/skirt and two tiny shoes at the BOTTOM. Overall each part about 1.5 TIMES AS WIDE AS TALL. Two hands at the far left and far right, sleeves along the outer sides, a LARGE TRANSPARENT HOLE in the upper center for a separate face. Keep the central 60 percent of the part width EMPTY through its upper 65 percent height. The collar, body, skirt and shoes fit ONLY in the LOWEST THIRD. Never stretch a tall torso up between the arms. Even in the rightward side view both hands flank the opening; tiny body and shoes remain in right profile. Exactly TWO hands and TWO slippers per part. Simplify oversized sleeves so they never bridge the central opening. No head, hair, ears, face or neck stump, and no held item.\nChunky flat pixel art, dark muted taupe outlines, cream-white clothing, tiny blue waist/cord accent, short legs, no delicate texture or realistic adult proportions. Follow the guide only for empty head space and flanking hands; do NOT copy guide labels, borders, red/blue colors or background. True transparent RGBA without glow, shadows, haze, text, logos, extra pieces or native game pixels. Noncommercial derivative of the credited ZipZipPipe design.",
+              "generation_references": [
+                {
+                  "path": "resources/gfx/ui/dossiers/llama.png",
+                  "sha256": "4cbc5d846ab7751e6c74a609eb680097ce483440b68d8a4ee5a86437ddb90a82"
+                },
+                {
+                  "path": "docs/art/pose-sources/carry-layout-guide.png",
+                  "sha256": "3d580de792794c50c796d0dad11b71ff9cb81946842ac32a99146c30f102dacd"
+                },
+                {
+                  "path": "resources/gfx/characters/costumes/character_llamachan.png",
+                  "sha256": "9882fd4ae35d1b9c3d42397afd5baa577a2d69ad2bc1165269baf19da6219d86"
+                }
+              ]
+            },
+            {
+              "path": "docs/art/pose-sources/grok_carry_parts.png",
+              "sha256": "f075f0e7d003583079359d23e8a6d9b3502b3036291e558564c6fb998f7d9869"
+            }
+          ]
+        }
+      ],
+      "side": {
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          11,
+          503
+        ],
+        "collar_x": [
+          [
+            270,
+            270,
+            270
+          ]
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "source_cells": [
+          [
+            [
+              0,
+              0,
+              512,
+              1024
+            ],
+            [
+              512,
+              0,
+              1024,
+              1024
+            ],
+            [
+              1024,
+              0,
+              1536,
+              1024
+            ]
+          ]
+        ]
+      },
+      "carry": {
+        "source_index": 1,
+        "size": [
+          1536,
+          1024
+        ],
+        "cell_size": 512,
+        "scale": [
+          26,
+          498
+        ],
+        "ground": 26,
+        "cycle": [
+          1,
+          0,
+          0,
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1
+        ],
+        "anchor_x": [
+          [
+            276.0,
+            256.0,
+            236.5
+          ],
+          [
+            274.5,
+            246.0,
+            248.5
+          ]
+        ],
+        "source_cells": [
+          [
+            [
+              0,
+              0,
+              536,
+              512
+            ],
+            [
+              536,
+              0,
+              1048,
+              512
+            ],
+            [
+              1048,
+              0,
+              1536,
+              512
+            ]
+          ],
+          [
+            [
+              0,
+              512,
+              532,
+              1024
+            ],
+            [
+              532,
+              512,
+              1024,
+              1024
+            ],
+            [
+              1024,
+              512,
+              1536,
+              1024
+            ]
+          ]
+        ],
+        "note": "Front/back share row 0; left/right share row 1. Row-specific crops retain every hand. Central face strip stays empty; hands flank it."
       }
     }
   ]
