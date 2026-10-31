@@ -14,6 +14,7 @@ function Full.New(root, kinds, options)
     function include(name)
         local module
         if name=="scripts.items.backlog.gemini" and options.geminiModule then module=dofile(options.geminiModule)
+        elseif name=="scripts.items.backlog.grok" and options.grokModule then module=dofile(options.grokModule)
         else module=rawInclude(name) end
         if name=="scripts.risk" then env.Risk=module end
         if name=="scripts.meal_break" then env.Meal=module end

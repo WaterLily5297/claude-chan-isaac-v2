@@ -95,11 +95,26 @@ function Grok:Init(mod, Risk, C)
 
     C.On("update", function(frame)
         if frame % 5 ~= 0 then return end
+        local roomEntities
         for _, p in ipairs(C.Players()) do
             if p:HasCollectible(Item.LIVE_WIRE) then
                 local d = C.Data(p)
-                local near = #C.Bullets(p.Position, WIRE_RANGE, 1) > 0
-                if near ~= (d.wire == true) then d.wire = near or nil; C.Refresh(p) end
+                -- Existence is enough: avoid a sorted result per owner. Share
+                -- this observation only until a callback can change the room.
+                roomEntities = roomEntities or Isaac.GetRoomEntities()
+                local near = false
+                for _, entity in ipairs(roomEntities) do
+                    local bullet = C.OrdinaryBullet(entity)
+                    if bullet and (bullet.Position - p.Position):LengthSquared() <= WIRE_RANGE * WIRE_RANGE then
+                        near = true
+                        break
+                    end
+                end
+                if near ~= (d.wire == true) then
+                    d.wire = near or nil
+                    C.Refresh(p)
+                    roomEntities = nil -- Cache callbacks may spawn or remove bullets.
+                end
             end
             if C.Primed(p, "retort") then C.Label(p, "retort", "Retort +50% ready") else C.Label(p, "retort", nil) end
         end

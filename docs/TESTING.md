@@ -2,6 +2,14 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U4: Live Wire room-observation budget (2026-10-31; offline)
+
+The [performance follow-up](PERFORMANCE.md#live-wire-observation-budget-2026-10-31) replaces per-holder bullet sorting with an existence check and one callback-local room snapshot. A speed/cache refresh invalidates the snapshot before the next holder, preserving synchronous projectile changes. Radius, eligibility, cadence, speed and other sorted-bullet consumers remain unchanged.
+
+The full-entry suite preserves 22-form/co-op behavior, ten projectile exclusions, current spawner rules, removal/reacquisition, room replacement, detached Continue/restart and four cache-callback mutations. Six population cases bound stable queries and assert no queries without holders. Baseline behavior passes but its query budget fails; seven isolated source faults fail their intended checks. All 33 profiler scenarios complete, and existing Preview/backlog/lifecycle controls pass.
+
+For four stable holders, 180 updates now make 36 room queries instead of 144; the mixed-item workload makes 72 instead of 180. Interpreter heap measurements include fixture allocations and do not establish native FPS or retained memory. Native callbacks, projectile lifetime, crowded combat and long-run performance remain unaccepted. Installed `8fd6a8c`, artwork, private saves/settings and PR #2's files are unchanged. This section and PERFORMANCE supply the focused handoff pending consolidation.
+
 ## U4/F23: stale meal-delay metadata (2026-10-31; offline)
 
 The [scheduled review](HARDENING_MEAL_MIGRATION_2026-10-31.md) reproduces an update arithmetic error when legacy or version-2 unowned meal timers contain a malformed leftover priorDelay. Normalization now discards that irrelevant field while retaining valid countdowns and serials. Owned Rice delay/cancellation rules, invalid-owned rejection, durations and rewards are unchanged.
