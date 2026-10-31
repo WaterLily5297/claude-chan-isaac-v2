@@ -1,5 +1,41 @@
 # Offline performance measurements
 
+## Live Wire observation budget (2026-10-31)
+
+This U4 unit compares v2 main `3949af70fe30bf1411684513de6a19be1a67b5de` with a focused Live Wire optimization. The item needs a yes/no answer, but previously enumerated the room and sorted matching bullets separately for every holder on each fifth update. It now stops on the first eligible nearby bullet and shares the room enumeration among holders within that update. The list is local to that callback and is discarded after any Live Wire cache refresh: synchronous cache callbacks may create/remove projectiles before the next owner is observed. Eligibility and position are still checked for each owner. No global or cross-frame entity cache is introduced.
+
+The existing ordinary-bullet predicate, inclusive 100-unit radius, five-frame cadence, +0.15 speed, non-stacking rule, owner order and cache-on-change behavior are preserved. Other users of the sorted `Common.Bullets` service remain unchanged. This is a measured performance improvement, not a newly claimed gameplay defect; no balance, save format, weapon, billing or art rule changes.
+
+```sh
+texlua tests/full_mod_live_wire_test.lua .
+texlua tools/profile_mod_updates.lua . 180 wire_4_96
+texlua tools/profile_mod_updates.lua . 180 mixed_items_four
+```
+
+The profiler adds six stable Live Wire workloads (one/four vanilla holders with 0/12/96 supplied bullets) to its previous 27 scenarios. Each new case has 48 enemies plus a separate bullet spawner; holders stand 150 units apart. A five-frame warmup settles speed transitions before measurement. All 33 scenarios complete. Export the baseline Grok module outside the repository and pass its path as the fifth argument after `-` for an omitted Gemini override to repeat the before/after comparison.
+
+| Supplied workload, 180 updates | Room queries before / after | Fixture entries before / after | Heap KiB before / after |
+|---|---:|---:|---:|
+| One holder, no bullets | 36 / 36 | 1764 / 1764 | 1491.396 / 1487.428 |
+| One holder, 12 bullets | 36 / 36 | 2196 / 2196 | 1602.209 / 1491.646 |
+| One holder, 96 bullets | 36 / 36 | 5220 / 5220 | 2481.959 / 1599.646 |
+| Four holders, no bullets | 144 / 36 | 7056 / 1764 | 4159.053 / 4029.365 |
+| Four holders, 12 bullets | 144 / 36 | 8784 / 2196 | 4423.428 / 4071.553 |
+| Four holders, 96 bullets | 144 / 36 | 20880 / 5220 | 6690.303 / 4179.553 |
+| Four mixed forms, all item IDs, Preview and DROP | 180 / 72 | 10200 / 4080 | 4729.075 / 4599.388 |
+
+The mixed workload retains 36 Preview scans and now makes 36 Live Wire scans; it still includes the real Kimi/GLM scheduled callbacks. It executes 17,700 callbacks and four cache rebuilds. Callback/player/type-read/cache counts match before and after for every compared workload. These current-baseline numbers supersede neither the older Preview comparison nor its original source/fixture checkpoint.
+
+Heap growth is GC-stopped allocation pressure under local Lua 5.3, including stand-in query copies; it is not retained memory or native FPS. Fixture entries count room snapshots, not every predicate iteration or the engine's spatial work. Frequent speed transitions can still require one query per holder because cache callbacks invalidate the observation. No portable CPU/heap threshold is added to CI.
+
+### Regression and handoff
+
+The new automatically discovered [full-entry suite](../tests/full_mod_live_wire_test.lua) covers all 22 forms with a separate vanilla owner, unchanged cadence, exact radius, movement, removal and one-time speed changes. It also preserves ten projectile exclusions and the existing acceptance of non-friendly dead/invulnerable NPC spawners; the latter is current predicate behavior, not a new rule. Item removal/reacquisition, multiple copies, room replacement, detached Continue and restart are supplied explicitly. Four cache-callback controls spawn/remove/move/change allegiance of bullets before the next owner is sampled.
+
+Six steady-population cases assert one query per refresh regardless of holder count, zero queries without holders and no repeated stable-state cache rebuilds. The baseline passes the complete behavior selector but intentionally fails the budget. An isolated current-source control passes; seven source faults are rejected: missing post-cache invalidation, retaining the snapshot across updates, exclusive radius, skipped eligibility, per-owner query, missing speed refresh and wrong owner position. Existing full-entry Preview, backlog item and lifecycle controls pass.
+
+This section, TESTING and CHARACTER_COMPLETION provide the focused handoff while PR #2 protects consolidated HANDOFF/CHANGELOG edits. The interaction fingerprint is refreshed. PR #2/draft #7, all artwork, approved tainted designs and installed `8fd6a8c` are unchanged. No game, input, installation, owner save/settings or Workshop action occurs. Native projectile/callback lifetime, collector/frame-time behavior, full combat/familiar workloads and long-run/error isolation remain open. This is the first substantive unit since PR #31 hardening; retain the three-to-five-unit review cadence.
+
 ## Full entry-point update workloads and Preview scans (2026-10-30)
 
 U4 follow-up from v2 main `1e20c4c`. The earlier two-binder measurement below remains valid within its original scope. This unit loads the real `main.lua` and measures supplied update/render workloads through all registered modules:
