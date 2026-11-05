@@ -1,5 +1,11 @@
 # Changelog
 
+## Install package (2026-11-05; tooling)
+
+- `tools/package_mod.py` builds the installable mod folder: one `claude-chan-isaac/` folder with only the files the game loads, so the folder name matches existing installs and saves. GitHub's "Download ZIP" of the v2 repository is named `claude-chan-isaac-v2-main` and carries about 40 MB of docs, tests and tools.
+- CI uploads the package as a `claude-chan-isaac-<commit>` artifact on every run. The install steps in all three READMEs now use it.
+- `tests/test_package.py` runs in `tools/check.sh`. No gameplay change; installed 8fd6a8c is untouched.
+
 ## MAP dossier portraits bind their image directly (2026-11-05; offline fix)
 
 - The MAP dossier card loaded its portrait only through the ANM2 Spritesheet Path, whose resolution rule (from `gfx/` or from the ANM2 folder) is not engine-confirmed, so the portrait could render blank. The card now binds `gfx/ui/dossiers/<key>.png` with ReplaceSpritesheet after loading, which works under either rule.

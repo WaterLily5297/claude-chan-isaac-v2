@@ -422,7 +422,11 @@ Ultrathink、Compact、Vibe Coding、Subagent Swarm、--dangerously-skip-permiss
 
 ## 開発用の導入方法
 
-1. このフォルダを `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/claude-chan-isaac/` にコピー（またはシンボリックリンク）します。先に他のMODとセーブデータをバックアップしてください。
+1. 先に他のMODとセーブデータをバックアップしてください。次のどちらかでMODのファイル一式を用意します：
+   - **CIから（ツール不要）：** main の最新の成功した [check 実行](https://github.com/WaterLily5297/claude-chan-isaac-v2/actions/workflows/check.yml?query=branch%3Amain) を開き、`claude-chan-isaac-<commit>` アーティファクトをダウンロードして展開します。中身は `claude-chan-isaac/` フォルダ1つです。
+   - **チェックアウトから：** `python3 tools/package_mod.py` を実行し、`dist/claude-chan-isaac.zip` を展開します。
+
+   その `claude-chan-isaac/` フォルダを `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/` に置き、古いものと置き換えます。フォルダ名はこのままにしてください。GitHubの「Download ZIP」は `claude-chan-isaac-v2-main` という名前で、約40 MBの資料とテストも含むので、そのまま導入しないでください。開発者はリポジトリのフォルダを `claude-chan-isaac` という名前でシンボリックリンクしても構いません。
 2. デバッグコンソールを有効にします：`options.ini`（`Documents/My Games/Binding of Isaac Repentance+/`）で `EnableDebugConsole=1` にします。
 3. ランを始めて `~` を押し、`giveitem Ban Hammer` を試すか、編集後に `luamod claude-chan-isaac` でLuaを再読み込みします。
 
