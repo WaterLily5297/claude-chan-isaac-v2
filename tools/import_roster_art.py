@@ -142,7 +142,7 @@ def main():
         save(labels.crop((0,index*32,128,index*32+32)),ROOT/f'resources/gfx/ui/boss/playername_{gamekey}.png')
         # Clone the known valid one-frame structure for each dossier.
         actor=ET.parse(ROOT/'content/gfx/characterportraits.anm2').getroot()
-        actor.find('./Content/Spritesheets/Spritesheet').set('Path',f'{key}.png')  # relative to the .anm2 folder
+        actor.find('./Content/Spritesheets/Spritesheet').set('Path',f'ui/dossiers/{key}.png')  # starts from gfx/
         animations=actor.find('Animations')
         first=copy.deepcopy(animations[0])
         animations.clear(); animations.set('DefaultAnimation','Idle')
@@ -179,7 +179,7 @@ def main():
         save(fitted(image,(144,144)),ROOT/f'resources/gfx/ui/stage/playerportrait_{key}chan_b.png')
         tainted_menu.alpha_composite(fitted(image.crop((0,0,image.width,int(image.height*0.45))),(60,60)),(index*64+2,2))
         tree=ET.parse(ROOT/f'resources/gfx/ui/dossiers/{key}.anm2')
-        tree.find('./Content/Spritesheets/Spritesheet').set('Path',f'gfx/ui/dossiers/{key}_b.png')
+        tree.find('./Content/Spritesheets/Spritesheet').set('Path',f'ui/dossiers/{key}_b.png')
         tree.write(ROOT/f'resources/gfx/ui/dossiers/{key}_b.anm2',encoding='utf-8',xml_declaration=True)
         manifest.append({'key':key+'_b','portrait_sha256':hashlib.sha256(source.read_bytes()).hexdigest()})
     save(tainted_menu,ROOT/'content/gfx/ai_portraits_b.png')
