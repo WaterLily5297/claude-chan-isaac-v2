@@ -30,7 +30,7 @@
         "sha256": "5819f0eceb4d3879b4129844494d0358411bf635b25946801c74c6374b34526f"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "gpt_b"
     },
     {
@@ -48,7 +48,7 @@
         "sha256": "32bad7a3e4ef924bcf2d99778bc6cdc0f01cb81f0c2586a3e928e2c747428b18"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "gemini_b"
     },
     {
@@ -66,7 +66,7 @@
         "sha256": "10208fe5c043b41c22e9dc0e43a42a10dc042b8e41ea201bf00bc8b7e180cdba"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "grok_b"
     },
     {
@@ -84,7 +84,7 @@
         "sha256": "f19528803cb07ccfe4d11a8fb09d2e9e3f0ab6906d436d5e36bf2c47ce18ad29"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "qwen_b"
     },
     {
@@ -102,7 +102,7 @@
         "sha256": "4cbc5d846ab7751e6c74a609eb680097ce483440b68d8a4ee5a86437ddb90a82"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "llama_b"
     },
     {
@@ -120,7 +120,7 @@
         "sha256": "6a4b6adcf5030a2a3e0b12bd52366ccab99018ef880ec632a32145848d22a2c2"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "mistral_b"
     },
     {
@@ -138,7 +138,7 @@
         "sha256": "05c6d35249756a8e2ff41d11242430a45d3bf00bb72f47f693d787ff35bff387"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "doubao_b"
     },
     {
@@ -156,7 +156,7 @@
         "sha256": "c982ff6a3600085e1dd60371c23e4433b118cd2af396acfe70d8e7e2d142257c"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "kimi_b"
     },
     {
@@ -174,7 +174,7 @@
         "sha256": "7ebf1b1ff9e3530c9f3653568003279f3cb06861147a08f3074a1576eb7ba5b1"
       },
       "status": "owner_approved_design_source",
-      "runtime_status": "not_integrated",
+      "runtime_status": "portraits_integrated_gameplay_skin_pending",
       "prompt_entry": "glm_b"
     }
   ]

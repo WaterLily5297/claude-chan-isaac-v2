@@ -1,6 +1,6 @@
 """Derive tainted art for the nine newer roster families by deepening colours.
 
-Usage: python3 tools/make_roster_tainted_art.py [--check | --skins-only]
+Usage: python3 tools/make_roster_tainted_art.py [--check | --skins-only | --approved]
 
 No pixels are drawn and no shapes change: every output keeps its normal
 counterpart's outline, alpha and frame placement, so walk-cycle and hurt-pose
@@ -15,6 +15,13 @@ Outputs per family (sizes identical to the inputs):
   content/gfx/ai_portraits_b.png   (menu cells at the normal sheet's column)
 Hashes are recorded in docs/tainted-roster-art-manifest.json; --check only
 verifies the recorded hashes against the files on disk.
+
+--approved replaces the darkened dossier, stage portrait and menu cell of each
+family listed in docs/approved-tainted-designs.json with a mechanical fit of
+its owner-approved design source (same transforms as tools/import_roster_art.py:
+dossier 384x576, stage 144x144, menu bust 60x60 in its 64px cell). Gameplay
+skins are left as they are: a full-body illustration is not a sprite sheet, and
+identity-matched gameplay frames remain separate art work.
 """
 
 import colorsys
@@ -80,6 +87,65 @@ def outputs():
     return pairs
 
 
+APPROVED = ROOT / "docs/approved-tainted-designs.json"
+
+
+def approved_sources():
+    """key -> approved source path, for families whose source hash still matches."""
+    registry = json.loads(APPROVED.read_text(encoding="utf-8"))
+    sources = {}
+    for asset in registry["assets"]:
+        key = asset["key"][:-2] if asset["key"].endswith("_b") else asset["key"]
+        path = ROOT / asset["path"]
+        assert key in FAMILIES, asset["key"]
+        assert sha(path) == asset["sha256"], f"{asset['path']} differs from the approved bytes"
+        sources[key] = path
+    return sources
+
+
+def fitted(image, size):
+    from PIL import Image
+    bounds = image.getchannel("A").point(lambda a: 255 if a >= 128 else 0).getbbox()
+    assert bounds, "Expected visible art"
+    image = image.crop(bounds)
+    image.thumbnail(size, Image.Resampling.LANCZOS)
+    out = Image.new("RGBA", size)
+    out.alpha_composite(image, ((size[0] - image.width) // 2, (size[1] - image.height) // 2))
+    return out
+
+
+def generate_approved():
+    from PIL import Image
+    records = json.loads(MANIFEST.read_text(encoding="utf-8"))["files"]
+    alt_path = ROOT / "content/gfx/ai_portraits_b.png"
+    sheet = Image.open(alt_path).convert("RGBA")
+    assert sheet.width >= CELL * len(MENU_ORDER), "menu sheet lacks roster columns"
+    menu_sources = []
+    for key, source in sorted(approved_sources().items()):
+        image = Image.open(source).convert("RGBA")
+        assert image.getextrema()[3][0] == 0, f"No transparency: {source}"
+        rel = source.relative_to(ROOT).as_posix()
+        for dst, size in ((f"resources/gfx/ui/dossiers/{key}_b.png", (384, 576)),
+                          (f"resources/gfx/ui/stage/playerportrait_{key}chan_b.png", (144, 144))):
+            fitted(image, size).save(ROOT / dst, optimize=True)
+            records[dst] = {"source": rel, "source_sha256": sha(source), "sha256": sha(ROOT / dst)}
+            print(f"wrote {dst}")
+        # Same bust crop as the normal menu cells: top 45% keeps the face legible.
+        x = MENU_ORDER.index(key) * CELL
+        sheet.paste(Image.new("RGBA", (CELL, CELL)), (x, 0))
+        bust = image.crop((0, 0, image.width, int(image.height * 0.45)))
+        sheet.alpha_composite(fitted(bust, (CELL - 4, CELL - 4)), (x + 2, 2))
+        menu_sources.append(rel)
+    sheet.save(alt_path, optimize=True)
+    records["content/gfx/ai_portraits_b.png"] = {
+        "source": "docs/approved-tainted-designs.json", "source_sha256": sha(APPROVED),
+        "sha256": sha(alt_path), "cells_from": menu_sources}
+    print("wrote content/gfx/ai_portraits_b.png")
+    MANIFEST.write_text(json.dumps({"tool": "tools/make_roster_tainted_art.py", "files": records},
+                                   indent=2) + "\n", encoding="utf-8")
+    print(f"wrote {MANIFEST.relative_to(ROOT)}")
+
+
 def sha(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -136,4 +202,9 @@ def check():
 
 
 if __name__ == "__main__":
-    check() if "--check" in sys.argv else generate(skins_only='--skins-only' in sys.argv)
+    if "--check" in sys.argv:
+        check()
+    elif "--approved" in sys.argv:
+        generate_approved()
+    else:
+        generate(skins_only='--skins-only' in sys.argv)

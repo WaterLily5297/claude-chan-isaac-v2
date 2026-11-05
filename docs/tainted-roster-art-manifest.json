@@ -7,14 +7,14 @@
       "sha256": "96b59d7c4552dd25b95370e7b4a4ceb013e6ed0ed9eeba0739bf9a8356aca913"
     },
     "resources/gfx/ui/stage/playerportrait_gptchan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_gptchan.png",
-      "source_sha256": "ef0ca6dcad484aedd7de78a465cf0bc9244bfa14e6b97e7fb52aa191a7faebf4",
-      "sha256": "564468a9fe463f74141623e70dbfb6d6824c4a1a0658a6dcd04a539b9ce4f227"
+      "source": "docs/art/tainted-designs/gpt_b.png",
+      "source_sha256": "58ad4dccd840ab7e3efd9bc657bedd320da36e145d56d66398a20f72adeae587",
+      "sha256": "c1779532b58dbab129eb53fd7e8639544bd3eb78fa161ad516e67eb31320d70f"
     },
     "resources/gfx/ui/dossiers/gpt_b.png": {
-      "source": "resources/gfx/ui/dossiers/gpt.png",
-      "source_sha256": "5819f0eceb4d3879b4129844494d0358411bf635b25946801c74c6374b34526f",
-      "sha256": "19ae32c9f6a35b061e23ec94c908178e7b1643fa69b0afacc0f3295276e2be00"
+      "source": "docs/art/tainted-designs/gpt_b.png",
+      "source_sha256": "58ad4dccd840ab7e3efd9bc657bedd320da36e145d56d66398a20f72adeae587",
+      "sha256": "70493c86c23f143f39c7d38314091c4134b1103dda7439ec07da553d148d2e03"
     },
     "resources/gfx/characters/costumes/character_geminichan_b.png": {
       "source": "resources/gfx/characters/costumes/character_geminichan.png",
@@ -22,14 +22,14 @@
       "sha256": "839a01e323c571631f078b39595d9353796b2dc8a72db320c9d17897ddf40674"
     },
     "resources/gfx/ui/stage/playerportrait_geminichan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_geminichan.png",
-      "source_sha256": "1b3deef19f08771de88523555fe53c79fbcb0df0945ef2aace704973e2c3cbab",
-      "sha256": "484ff98809156029b8879588a3474ed7548e8f519902e140d9fa693fd2e674f5"
+      "source": "docs/art/tainted-designs/gemini_b.png",
+      "source_sha256": "9563217f4746288886eeabd8ef69c042a04763ea597c8553a74786226cc2861b",
+      "sha256": "83a1e664e75d5e31a2ebf7dcd7198fb83de0f2b6b2e5f24c21dd770ec3358c97"
     },
     "resources/gfx/ui/dossiers/gemini_b.png": {
-      "source": "resources/gfx/ui/dossiers/gemini.png",
-      "source_sha256": "32bad7a3e4ef924bcf2d99778bc6cdc0f01cb81f0c2586a3e928e2c747428b18",
-      "sha256": "a20d11a957a8784dbae46bee4476a9db24a5b5ddf4b4819fa9b4153696f21254"
+      "source": "docs/art/tainted-designs/gemini_b.png",
+      "source_sha256": "9563217f4746288886eeabd8ef69c042a04763ea597c8553a74786226cc2861b",
+      "sha256": "18a0d3230cfae1ba865ea0ad6da77679408dffefbca89255d8e619963988b846"
     },
     "resources/gfx/characters/costumes/character_grokchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_grokchan.png",
@@ -37,14 +37,14 @@
       "sha256": "acb5e1fcf4b1f9fce330040b0c18912ff54ac8565cb5062e70a97226bc5c8e0c"
     },
     "resources/gfx/ui/stage/playerportrait_grokchan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_grokchan.png",
-      "source_sha256": "a953c0f09c06eced458134c76edf8a5f935a513148e117bda1e894e53418b94e",
-      "sha256": "4fb2f0cc7a42e893461a8c693f6c4b9121130de3dbae9c504e70e7ed40c0c7d1"
+      "source": "docs/art/tainted-designs/grok_b.png",
+      "source_sha256": "5f6770139bfee0a0164046a32fb211bbdcd08ca0a1b6c1371dbd487e87b81825",
+      "sha256": "00a8281ffbd7445933d885c5baef1665fd1ab2ea96be2502c7122f311156c19f"
     },
     "resources/gfx/ui/dossiers/grok_b.png": {
-      "source": "resources/gfx/ui/dossiers/grok.png",
-      "source_sha256": "10208fe5c043b41c22e9dc0e43a42a10dc042b8e41ea201bf00bc8b7e180cdba",
-      "sha256": "df51bd11986ae0f5fc90ff7835ee623f2d861d6519016ed6808ff200d5537914"
+      "source": "docs/art/tainted-designs/grok_b.png",
+      "source_sha256": "5f6770139bfee0a0164046a32fb211bbdcd08ca0a1b6c1371dbd487e87b81825",
+      "sha256": "329bcabfcafab5dd704335360693303c92fdf32a3358fa1553ee94c329706620"
     },
     "resources/gfx/characters/costumes/character_qwenchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_qwenchan.png",
@@ -52,14 +52,14 @@
       "sha256": "f97fb70d2a6c78cc93a3037bb4a518cd3f16a3af86df0dbdc77ee85f8907c51b"
     },
     "resources/gfx/ui/stage/playerportrait_qwenchan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_qwenchan.png",
-      "source_sha256": "02af3140e2aada1d638b7b4ed411355ee26cfbc876272df7b004390a2dc663e2",
-      "sha256": "cce81ebc9da2d652bcace9d6b6a8bbdd393fd8e27cb85fe4804197694018cc4e"
+      "source": "docs/art/tainted-designs/qwen_b.png",
+      "source_sha256": "929fda45291a1d97406b4dec4ba73c62879f021b10cb7688c826c6bfa1a6fb7e",
+      "sha256": "15f9a76d365a6b82ca48fa3c91757e7ef6a9a537045bbc52c782d62da3e67d4d"
     },
     "resources/gfx/ui/dossiers/qwen_b.png": {
-      "source": "resources/gfx/ui/dossiers/qwen.png",
-      "source_sha256": "f19528803cb07ccfe4d11a8fb09d2e9e3f0ab6906d436d5e36bf2c47ce18ad29",
-      "sha256": "c8b1030a8f9979ea46d92213eb6ba8e26aaf75fcf1db9eab75c35f01e14c31b3"
+      "source": "docs/art/tainted-designs/qwen_b.png",
+      "source_sha256": "929fda45291a1d97406b4dec4ba73c62879f021b10cb7688c826c6bfa1a6fb7e",
+      "sha256": "303340a2c3a2d577bcfcce62a124babd90ac293e3160b5b5ac3b9540b584ae0d"
     },
     "resources/gfx/characters/costumes/character_llamachan_b.png": {
       "source": "resources/gfx/characters/costumes/character_llamachan.png",
@@ -67,14 +67,14 @@
       "sha256": "6753322bb78afe48905a42d55f5bcd8a2f6f49582dc912f2da26d837ff367657"
     },
     "resources/gfx/ui/stage/playerportrait_llamachan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_llamachan.png",
-      "source_sha256": "675781688d6b5c61eb54881478a027b7761ceee301e5b99f46558364845485ee",
-      "sha256": "b2d14a32109ba5f2ad0012f48ad49c965be1812c971b2316db1dcb1a7ae9b76f"
+      "source": "docs/art/tainted-designs/llama_b.png",
+      "source_sha256": "1afe388d1022b7c5dd8e7ceacc082d4931ba0128bca61d72d0824bb4c5b30547",
+      "sha256": "70298eb2a21b138a99c6a44b2946b66817d1f07877d8c52847e242bf26066e42"
     },
     "resources/gfx/ui/dossiers/llama_b.png": {
-      "source": "resources/gfx/ui/dossiers/llama.png",
-      "source_sha256": "4cbc5d846ab7751e6c74a609eb680097ce483440b68d8a4ee5a86437ddb90a82",
-      "sha256": "ac38aa413d9ec99ebee5fc938019ccb65510e167d65d1ce376e65d1ed59aaaf3"
+      "source": "docs/art/tainted-designs/llama_b.png",
+      "source_sha256": "1afe388d1022b7c5dd8e7ceacc082d4931ba0128bca61d72d0824bb4c5b30547",
+      "sha256": "19a8575450571a7992cc4f2cc3df944eca10daa77cd294a94ae78bc084211864"
     },
     "resources/gfx/characters/costumes/character_mistralchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_mistralchan.png",
@@ -82,14 +82,14 @@
       "sha256": "1f6661ef1cfe4a4cd9e5ffdabcfdc78e1c16907abc88f0a18c99b9ded0d0a083"
     },
     "resources/gfx/ui/stage/playerportrait_mistralchan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_mistralchan.png",
-      "source_sha256": "c8ea65ff304aeaf2545b65cd01a7e39e0907af3e2d94be41626461c178a975c5",
-      "sha256": "1c8d7e1bd289fcea033dbfcb0251837dc3020036d2852c66ee1061ae7e2bd1a9"
+      "source": "docs/art/tainted-designs/mistral_b.png",
+      "source_sha256": "b5e72c5b4806b5077eeee3d29e8a360bddabc7da22fdd80f4b04ada129c96cf5",
+      "sha256": "6559e89bf02dbfd54abc6ec659d63c50f77e93c16b1fdda3d02c208c91ae58d3"
     },
     "resources/gfx/ui/dossiers/mistral_b.png": {
-      "source": "resources/gfx/ui/dossiers/mistral.png",
-      "source_sha256": "6a4b6adcf5030a2a3e0b12bd52366ccab99018ef880ec632a32145848d22a2c2",
-      "sha256": "11ae4c1e24e6a5885715feaf1351edd4c8d44f8e0658dea994b242e229c01567"
+      "source": "docs/art/tainted-designs/mistral_b.png",
+      "source_sha256": "b5e72c5b4806b5077eeee3d29e8a360bddabc7da22fdd80f4b04ada129c96cf5",
+      "sha256": "cc68c20c3d30ce42c20ce48614c10c6849fec1fb0274d1019c8568b3a5d401b5"
     },
     "resources/gfx/characters/costumes/character_doubaochan_b.png": {
       "source": "resources/gfx/characters/costumes/character_doubaochan.png",
@@ -97,14 +97,14 @@
       "sha256": "8a72a5399da156f24f34cd8381b77b3b3ec35db1a98e92717025b406c74f8b66"
     },
     "resources/gfx/ui/stage/playerportrait_doubaochan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_doubaochan.png",
-      "source_sha256": "2d067329919594e6000f56a3c6476e897620c2b4dc1242393033f019a47b8e1c",
-      "sha256": "ae9cd15d216fdb77604e12b246acfc08240ca38fa2ba433d6f9e7ebf46388119"
+      "source": "docs/art/tainted-designs/doubao_b.png",
+      "source_sha256": "943d2803b046da7139aefda57111363693cb0739db70a3adc17a4677a23bacaa",
+      "sha256": "ea20e3147d962732fb86510b5e997583c41428eaa9dcc9f45ab66cc68f512113"
     },
     "resources/gfx/ui/dossiers/doubao_b.png": {
-      "source": "resources/gfx/ui/dossiers/doubao.png",
-      "source_sha256": "05c6d35249756a8e2ff41d11242430a45d3bf00bb72f47f693d787ff35bff387",
-      "sha256": "2922101b7e390143b475ee6e1314c050f3a02a2a8af66c90a5e5d73e0faa4f70"
+      "source": "docs/art/tainted-designs/doubao_b.png",
+      "source_sha256": "943d2803b046da7139aefda57111363693cb0739db70a3adc17a4677a23bacaa",
+      "sha256": "9ce9532f148b90a4af60f2def425b8806fcdbbafb16e9a1a762adea30984746c"
     },
     "resources/gfx/characters/costumes/character_kimichan_b.png": {
       "source": "resources/gfx/characters/costumes/character_kimichan.png",
@@ -112,14 +112,14 @@
       "sha256": "664dabdf0106118cbbbf0349a2cf352660118242a12ddee63bad87a99973d83c"
     },
     "resources/gfx/ui/stage/playerportrait_kimichan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_kimichan.png",
-      "source_sha256": "7c65e486df898bf36cb2595090f2a2714a972b68feaf0fc09a6530d165ba691a",
-      "sha256": "095e4a93b74f0231935f75adbf57f13627746bc16dd93330f11b70ac53d3213c"
+      "source": "docs/art/tainted-designs/kimi_b.png",
+      "source_sha256": "e03b085e3d4d3d14d78207e44cd31c57b48a9fd783da982e83378d21a12d7c31",
+      "sha256": "94bdc9ec5d1ace376b7196796a19fd161ed9d1925e5793ce29f1ac54e97359c5"
     },
     "resources/gfx/ui/dossiers/kimi_b.png": {
-      "source": "resources/gfx/ui/dossiers/kimi.png",
-      "source_sha256": "c982ff6a3600085e1dd60371c23e4433b118cd2af396acfe70d8e7e2d142257c",
-      "sha256": "e763402dd11a65c7825f48a5d80b42fcaf8aa2bee925ffeeba01ea5b53e0c37e"
+      "source": "docs/art/tainted-designs/kimi_b.png",
+      "source_sha256": "e03b085e3d4d3d14d78207e44cd31c57b48a9fd783da982e83378d21a12d7c31",
+      "sha256": "a63994fa76294433c189dfced5530e6e47f99c856e69ae4c7dcbb5012eba6b87"
     },
     "resources/gfx/characters/costumes/character_glmchan_b.png": {
       "source": "resources/gfx/characters/costumes/character_glmchan.png",
@@ -127,19 +127,30 @@
       "sha256": "07e3c03f3acdd0ada98c7582e098d5f371481b5b854d10055c772a8556651266"
     },
     "resources/gfx/ui/stage/playerportrait_glmchan_b.png": {
-      "source": "resources/gfx/ui/stage/playerportrait_glmchan.png",
-      "source_sha256": "d780d6cc4e2578fca08ebbf8059e4b68e45aac7e42713018c3cbd35663701932",
-      "sha256": "73c6826d5ca5d529eca43d87653a4ea636bc22d9dd08db6ad39f2cfaffbe1e1d"
+      "source": "docs/art/tainted-designs/glm_b.png",
+      "source_sha256": "e2d10dac4f26a6d54099fbdd202269557890ded5ffea7e15318ed57a9c5abc0f",
+      "sha256": "c642619a05f00bd89de212b3595e022c9bc9135bff7674078e43beb0a4ff319d"
     },
     "resources/gfx/ui/dossiers/glm_b.png": {
-      "source": "resources/gfx/ui/dossiers/glm.png",
-      "source_sha256": "7ebf1b1ff9e3530c9f3653568003279f3cb06861147a08f3074a1576eb7ba5b1",
-      "sha256": "a4bb9d44c25a38a2a9ba30d85d7fd0ff5447545d2fee59493894a5908b6ce927"
+      "source": "docs/art/tainted-designs/glm_b.png",
+      "source_sha256": "e2d10dac4f26a6d54099fbdd202269557890ded5ffea7e15318ed57a9c5abc0f",
+      "sha256": "44cb2fe1c25a92c94d8d5071c5baf79159ab176db83b9eb2486e6a504f113422"
     },
     "content/gfx/ai_portraits_b.png": {
-      "source": "content/gfx/ai_portraits.png",
-      "source_sha256": "2f739720bd64a7e1cee735f7f49a646c96560d3b1c2fd10e9ca18ae68fa0c487",
-      "sha256": "3eeea0e0675771c668a75d8cdc1110f95305b3e41a036b5c3cd1bf4d96878213"
+      "source": "docs/approved-tainted-designs.json",
+      "source_sha256": "26a5a41fe8f41a10b949f31c7c27241b7ea1664ec613a0ba0a3d8d925cdd0357",
+      "sha256": "1aba293fe38b45234390d88ac48c1c98f92ade9a545819834a85e2803880a87d",
+      "cells_from": [
+        "docs/art/tainted-designs/doubao_b.png",
+        "docs/art/tainted-designs/gemini_b.png",
+        "docs/art/tainted-designs/glm_b.png",
+        "docs/art/tainted-designs/gpt_b.png",
+        "docs/art/tainted-designs/grok_b.png",
+        "docs/art/tainted-designs/kimi_b.png",
+        "docs/art/tainted-designs/llama_b.png",
+        "docs/art/tainted-designs/mistral_b.png",
+        "docs/art/tainted-designs/qwen_b.png"
+      ]
     }
   }
 }

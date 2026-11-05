@@ -30,6 +30,8 @@ The comparison loaded all eighteen images. Background switching, enlarged-pair n
 
 ## Production continuation
 
+**2026-11-05 update:** PR #2 is merged. Steps 2 and 4 are done for portraits: `python3 tools/make_roster_tainted_art.py --approved` fits each approved source into its 384x576 dossier, 144x144 stage/VS portrait and 64px tainted menu cell (same transforms as `import_roster_art.py`), keeps tainted Claude/DeepSeek cells and gameplay skins unchanged, and records source/output hashes in the manifest; `tests/test_tainted_approved.py` guards it. Step 3 (identity-matched gameplay frames) and native review remain open.
+
 1. Recheck v2 [PR #2](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/2). At this unit's start it is open at `c6f8bf6b746456474454540bb90e5dab59521dbf` and owns the importer, tainted generator, dossier wrappers and validation entry points. The owner's next-steps brief requires waiting before changing overlapping files. Do not redo, rebase or merge that collaborator PR as part of this art unit.
 2. Use these exact accepted sources for each family's 384x576 dossier, 144x144 stage/VS portrait and existing 64px tainted menu cell. Keep the accepted Claude/DeepSeek cells and all unrelated menu rows unchanged. Record source and output hashes honestly.
 3. Produce identity-matched gameplay frames, including actual side/back views, walk/carry phases, Hit and Death. Keep native cell layout, pivots and the distinct Hit/upright/fallen alpha envelopes in [ART_SPEC.md](ART_SPEC.md). Do not turn the full-body illustration into a gameplay sheet by merely shrinking or darkening it.

@@ -1,5 +1,11 @@
 # Changelog
 
+## Approved tainted designs in menus, stage and dossiers (2026-11-05; art)
+
+- The nine owner-approved tainted designs (GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, GLM) now provide those forms' MAP dossier, stage/VS portrait and tainted menu cell, replacing the darkened copies of the normal art. `tools/make_roster_tainted_art.py --approved` makes them mechanically from the approved sources.
+- Their in-run gameplay skins are unchanged (still darker copies of the normal sheet); new gameplay sprites need separate art work. Tainted Claude and DeepSeek are unchanged.
+- tests/test_tainted_approved.py runs in check.sh. Not yet seen in game; installed 8fd6a8c is untouched.
+
 ## Install package (2026-11-05; tooling)
 
 - `tools/package_mod.py` builds the installable mod folder: one `claude-chan-isaac/` folder with only the files the game loads, so the folder name matches existing installs and saves. GitHub's "Download ZIP" of the v2 repository is named `claude-chan-isaac-v2-main` and carries about 40 MB of docs, tests and tools.
