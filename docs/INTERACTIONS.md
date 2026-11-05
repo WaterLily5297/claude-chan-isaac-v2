@@ -61,7 +61,7 @@ The owner has not tested installed `8fd6a8c`. This unit does not read or replace
 
 ## Generated source inventory
 
-112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `d11f6926ceaf9be55337a42bc92b61df17ec50c5c22541e5aba647d59d60573a`.
+112 files; 406 callback registrations; 109 candidate direct field writes. Source fingerprint: `d38f9326edd0edd7ace3abb828a511c0dce5617e19c5a1950d555de37808c359`.
 
 Counts are lexical findings, not runtime coverage. Helper modules with no matched operations remain listed. See the manual review and scanner limits above.
 
@@ -322,7 +322,7 @@ Cache flag references: none detected.
 | Location | Target | RHS | Classification |
 |---|---|---|---|
 
-| [characters/dossiers.lua:74](../scripts/characters/dossiers.lua#L74) | `sprite.Scale` | `Vector(scale,scale)` | indirect |
+| [characters/dossiers.lua:79](../scripts/characters/dossiers.lua#L79) | `sprite.Scale` | `Vector(scale,scale)` | indirect |
 
 
 

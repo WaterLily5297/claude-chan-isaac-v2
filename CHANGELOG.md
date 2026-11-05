@@ -1,5 +1,10 @@
 # Changelog
 
+## MAP dossier portraits bind their image directly (2026-11-05; offline fix)
+
+- The MAP dossier card loaded its portrait only through the ANM2 Spritesheet Path, whose resolution rule (from `gfx/` or from the ANM2 folder) is not engine-confirmed, so the portrait could render blank. The card now binds `gfx/ui/dossiers/<key>.png` with ReplaceSpritesheet after loading, which works under either rule.
+- tests/dossier_sheet_test.lua covers all 22 cards and fails on the old code. Gameplay is unchanged; installed 8fd6a8c is untouched.
+
 ## Transparent item icons and dossiers (2026-10-29; art wiring)
 
 - The owner reported transparent item textures in game. `content/items.xml` named every icon as `collectibles/<name>.png` or `trinkets/<name>.png`, but the engine adds that folder itself under `gfxroot`, so it looked for `gfx/items/collectibles/collectibles/<name>.png` and found nothing. All 92 entries now give the bare file name; the PNG files do not move.
