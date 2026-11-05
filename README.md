@@ -422,7 +422,11 @@ Timed and zero-charge actives do not benefit from charge-granting items (Please 
 
 ## Install for development
 
-1. Copy (or symlink) this folder to `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/claude-chan-isaac/`. Back up your other mods and saves first.
+1. Back up your other mods and saves first. Then get a clean copy of the mod in one of two ways:
+   - **From CI (no tools needed):** open the latest green [check run on main](https://github.com/WaterLily5297/claude-chan-isaac-v2/actions/workflows/check.yml?query=branch%3Amain), download the `claude-chan-isaac-<commit>` artifact and unzip it. It contains one `claude-chan-isaac/` folder.
+   - **From a checkout:** run `python3 tools/package_mod.py` and unzip `dist/claude-chan-isaac.zip`.
+
+   Put that `claude-chan-isaac/` folder in `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/`, replacing the old one. The folder must keep this exact name; GitHub's "Download ZIP" is named `claude-chan-isaac-v2-main` and also carries about 40 MB of docs and tests, so don't install that directly. Developers can still symlink the repository folder under the name `claude-chan-isaac`.
 2. Turn on the debug console: set `EnableDebugConsole=1` in `options.ini` (`Documents/My Games/Binding of Isaac Repentance+/`).
 3. Start a run, press `~` and try `giveitem Ban Hammer`, or `luamod claude-chan-isaac` to reload the Lua after editing.
 

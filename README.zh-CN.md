@@ -422,7 +422,11 @@ Claude 娘拿着封号锤，自己也得管用量、躲风控、准备申诉。�
 
 ## 开发安装
 
-1. 把本文件夹复制（或建立符号链接）到 `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/claude-chan-isaac/`。请先备份其他MOD和存档。
+1. 请先备份其他MOD和存档。然后用下面任一方式拿到干净的MOD文件：
+   - **从 CI 下载（不需要任何工具）：** 打开 main 上最新一次通过的 [check 运行](https://github.com/WaterLily5297/claude-chan-isaac-v2/actions/workflows/check.yml?query=branch%3Amain)，下载 `claude-chan-isaac-<commit>` artifact 并解压，里面只有一个 `claude-chan-isaac/` 文件夹。
+   - **从本地仓库打包：** 运行 `python3 tools/package_mod.py`，解压 `dist/claude-chan-isaac.zip`。
+
+   把这个 `claude-chan-isaac/` 文件夹放进 `Steam/steamapps/common/The Binding of Isaac Rebirth/mods/`，替换旧的。文件夹名必须完全一致；GitHub 的 "Download ZIP" 解压出来叫 `claude-chan-isaac-v2-main`，还带着约 40 MB 的文档和测试，不要直接安装它。开发者仍可把仓库文件夹以 `claude-chan-isaac` 这个名字建立符号链接。
 2. 打开调试控制台：在 `options.ini`（`Documents/My Games/Binding of Isaac Repentance+/`）中设置 `EnableDebugConsole=1`。
 3. 开始一局，按 `~`，输入 `giveitem Ban Hammer` 试试；修改Lua后可以用 `luamod claude-chan-isaac` 重新加载。
 
