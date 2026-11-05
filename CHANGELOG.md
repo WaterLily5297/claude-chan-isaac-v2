@@ -1,5 +1,10 @@
 # Changelog
 
+## MAP dossier portraits bind their image directly (2026-11-05; offline fix)
+
+- The MAP dossier card loaded its portrait only through the ANM2 Spritesheet Path, whose resolution rule (from `gfx/` or from the ANM2 folder) is not engine-confirmed, so the portrait could render blank. The card now binds `gfx/ui/dossiers/<key>.png` with ReplaceSpritesheet after loading, which works under either rule.
+- tests/dossier_sheet_test.lua covers all 22 cards and fails on the old code. Gameplay is unchanged; installed 8fd6a8c is untouched.
+
 ## Repository move (2026-10-28; documentation)
 
 - Development continues in WaterLily5297/claude-chan-isaac-v2 with main's full history. PR and issue numbers before this entry belong to the original repository, which stays as a read-only record with its old branches.
