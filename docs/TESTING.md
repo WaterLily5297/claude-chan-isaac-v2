@@ -4,7 +4,7 @@ Current acceptance status is summarized in HANDOFF.md. Dated sections preserve t
 
 ## U0: MAP dossier portrait binding (2026-11-05; offline)
 
-The IsaacDocs ANM2 page says a Spritesheet Path starts from `gfx/`; the main branch writes `gfx/ui/dossiers/<key>.png` and PR #2 writes the bare `<key>.png`, which assumes paths relative to the ANM2 folder. Neither is engine-confirmed. The dossier renderer now calls `ReplaceSpritesheet(0, "gfx/ui/dossiers/<key>.png")` and `LoadGraphics()` right after `Load`, so the card no longer depends on the ANM2 path rule. `tests/dossier_sheet_test.lua` renders all 22 cards through the real `Dossiers:Init` callbacks, checks the call order, that each bound PNG exists and that each sprite is built once; it fails on the previous code. Native rendering of the card remains an E3 observation. Installed `8fd6a8c` and PR #2 files are untouched.
+The IsaacDocs ANM2 page says a Spritesheet Path starts from `gfx/`; PR #2 now writes `ui/dossiers/<key>.png` under that rule, but the rule is not engine-confirmed. The dossier renderer now calls `ReplaceSpritesheet(0, "gfx/ui/dossiers/<key>.png")` and `LoadGraphics()` right after `Load`, so the card no longer depends on the ANM2 path rule. `tests/dossier_sheet_test.lua` renders all 22 cards through the real `Dossiers:Init` callbacks, checks the call order, that each bound PNG exists and that each sprite is built once; it fails on the previous code. Native rendering of the card remains an E3 observation. Installed `8fd6a8c` is untouched.
 
 ## U6: Llama profile and four-direction carry (2026-10-31; offline)
 

@@ -23,7 +23,7 @@ class ThumbnailTests(unittest.TestCase):
         (self.root / 'docs/art').mkdir(parents=True)
         (self.root / 'content/items.xml').write_text(
             '<items gfxroot="gfx/items/"><active name="Ban Hammer" '
-            'gfx="collectibles/ban_hammer.png" /></items>', encoding='utf-8')
+            'gfx="ban_hammer.png" /></items>', encoding='utf-8')
         (self.root / 'content/itempools.xml').write_text(
             '<ItemPools><Pool Name="treasure"><Item Name="Ban Hammer" /></Pool></ItemPools>', encoding='utf-8')
         self.entry = deepcopy(art.registry(ROOT)[thumb.GFX])
