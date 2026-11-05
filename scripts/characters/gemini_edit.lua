@@ -1,6 +1,7 @@
 -- Tainted Gemini: One More Edit. A timed Crop / Recolor / Export chain on one target.
 -- The endless-edit exaggeration is original parody. Saved per player: the room
 -- whose chain is already exported. The live chain is transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -47,22 +48,29 @@ function Edit:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isTainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.gemini_edit", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -121,13 +129,16 @@ function Edit:Init(mod, Risk)
                     if chain.remaining <= 0 then b.chain = nil end
                 end
             end
-            if drop:Poll(p, b.state.doneRoom ~= room) then
+            if drop:Poll(p, b.state.doneRoom ~= room,
+                "Already exported this room") then
                 -- Starting again erases progress, even on the same target.
                 local target = Tools.Nearest(p.Position, RADIUS)
                 if target then
                     local frames = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_FRAMES or CHAIN_FRAMES
                     b.chain = {ref=EntityPtr(target), hash=GetPtrHash(target), remaining=frames, hits={}, step=0}
                     Game():GetHUD():ShowItemText("Gemini-chan", "One more edit")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -165,7 +176,8 @@ function Edit:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         local room = roomKey()
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text
             if b.chain then
                 text = string.format("Gemini-chan: %s %d/%d  %ds", STEPS[b.chain.step + 1], b.chain.step, #STEPS,

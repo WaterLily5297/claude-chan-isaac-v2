@@ -1,5 +1,6 @@
 -- Normal Doubao: Sorry, You're Right. The first enemy hit in a room earns an Apology.
 -- It never refunds health or cancels the hit. Saved per player; fictional role.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -49,23 +50,30 @@ function Doubao:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isDoubao(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
-                if all[key].version == 1 then all[key].version = 2; all[key].aimX = 0; all[key].aimY = 1 end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if s.version == 1 then s.version = 2; s.aimX = 0; s.aimY = 1 end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.doubao_apology", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isDoubao(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -148,7 +156,8 @@ function Doubao:Init(mod, Risk)
                 if s.token == 0 then dropToken(s) end
             end
             b.frame = now
-            if drop:Poll(p, s.token ~= nil) then
+            if drop:Poll(p, s.token ~= nil,
+                "No Apology ready") then
                 dropToken(s)
                 apologize(p, s)
                 Game():GetHUD():ShowItemText("Doubao-chan", "Sorry, you're right.")
@@ -173,7 +182,8 @@ function Doubao:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = "Doubao-chan: No apology needed"
             if s.token == 0 then text = "Doubao-chan: Apology Ready"

@@ -2,7 +2,7 @@
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
 local callbacks, players, saved, draws, texts, enemies = {}, {}, nil, {}, {}, {}
-local C={Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
+local C={RISK_MAX=100,Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
 function include(name)
     if name=="scripts.constants" then return C end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
@@ -195,7 +195,9 @@ local e5=enemy(120,0); tick(); assert(#e5.taken==0,"the wave is gone after 120 u
 assert(hud()=="Mistral-chan: Baguettes 1/2  Cooldown 1s",hud()) 
 -- The two-second cooldown blocks DROP.
 tap(p); assert(state().baguettes==1,"cooldown")
-tick(25); assert(hud():find("Cooldown 1s")); tick(); assert(hud()=="Mistral-chan: Baguettes 1/2")
+tick(25); assert(hud()=="DROP: Wave cooling down"); tick()
+assert(hud()=="DROP: Wave cooling down","cue lifetime is independent of cooldown")
+tick(19); assert(hud()=="Mistral-chan: Baguettes 1/2")
 -- Walls stop the wave; a new wave can hit the same enemy again.
 walls={70}; e2.Position=vec(110,0)
 tap(p); tick(40); assert(#e1.taken==2 and #e2.taken==1 and #e3.taken==0,"the wall stops it"); walls={}

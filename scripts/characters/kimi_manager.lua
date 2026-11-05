@@ -1,6 +1,7 @@
 -- Tainted Kimi: You Are the Manager. Delegate tasks to nearby enemies; each task
 -- delivers three small damage pulses. A per-room pulse budget bounds the output.
 -- Saved per player: spent room budgets. Live tasks are transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -62,22 +63,29 @@ function Manager:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isTainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, tasks={}, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.kimi_manager", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -167,7 +175,8 @@ function Manager:Init(mod, Risk)
             end
             b.tasks = kept
             local spent = s.budget[room] or 0
-            if drop:Poll(p, combat and #b.tasks < SLOTS and spent + PULSES <= ROOM_BUDGET) then
+            if drop:Poll(p, combat and #b.tasks < SLOTS and spent + PULSES <= ROOM_BUDGET,
+                not combat and "Needs combat" or #b.tasks >= SLOTS and "All task slots busy" or "Room pulse budget spent") then
                 local target = unassigned(p, b)
                 -- No target means nothing is scheduled or spent.
                 if target then
@@ -176,6 +185,8 @@ function Manager:Init(mod, Risk)
                     -- A light outline marks the assignee; it never hides the enemy.
                     Feedback.Mark(target, TASK_TINT, PULSE_FRAMES)
                     Game():GetHUD():ShowItemText("Kimi-chan", "You are the manager")
+                else
+                    drop:Refuse(p, "No unassigned target nearby")
                 end
             end
         end)
@@ -204,7 +215,8 @@ function Manager:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         local room = roomKey()
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Kimi-chan: Tasks %d/%d  Budget %d/%d", #b.tasks, SLOTS,
                 ROOM_BUDGET - (b.state.budget[room] or 0), ROOM_BUDGET)
             local paused = 0

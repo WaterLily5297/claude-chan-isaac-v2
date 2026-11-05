@@ -4,6 +4,7 @@
 -- starts and 0.2-second beam windows, knife throws, melee swings, Dr. Fetus
 -- bombs, Epic Fetus rockets) buys the same-priced "off-peak boost" instead:
 -- that attack's hits deal 1.3x, re-dealt once behind a recursion guard.
+local SaveSync = include("scripts.save_sync")
 local C = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
@@ -70,24 +71,30 @@ function Peak:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if tainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
-                if all[key].version == 1 then all[key].version = 2; all[key].reserved = 0 end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if s.version == 1 then s.version = 2; s.reserved = 0 end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount(), clock=0, toggleReady=0}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                -- Observed character changes discard the former form's Compute.
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.deepseek_peak", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not tainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -174,8 +181,12 @@ function Peak:Init(mod, Risk)
                     end
                 end
             end
-            if drop:Poll(p, true) and b.clock >= b.toggleReady then
-                s.saving = not s.saving; b.toggleReady = b.clock + TOGGLE_FRAMES
+            if drop:Poll(p, true) then
+                if b.clock >= b.toggleReady then
+                    s.saving = not s.saving; b.toggleReady = b.clock + TOGGLE_FRAMES
+                else
+                    drop:Refuse(p, "Toggle cooling down")
+                end
             end
         end)
     end)
@@ -222,6 +233,7 @@ function Peak:Init(mod, Risk)
             end
             -- Children share this decision, including later unpaid windows.
             info.lease.expires = expires
+            return {epoch=laserEpoch, binding=b, expires=expires}
         else
             entity:GetData()[BOOST] = expires
         end
@@ -288,9 +300,20 @@ function Peak:Init(mod, Risk)
     end)
     PaidAttacks.Observe(mod, function(p, entity)
         if not ready then return end
-        boost(p, entity, entity and entity.Type ~= EntityType.ENTITY_LASER)
+        return boost(p, entity, entity and entity.Type ~= EntityType.ENTITY_LASER)
     end, function(laser)
         return laserInfo(laser).child
+    end, function(p, laser, decision)
+        local b = binding(p)
+        if not decision or not b or p:IsDead() or decision.epoch ~= laserEpoch or decision.binding ~= b then return end
+        local info = laserInfo(laser)
+        if info.child then return end
+        if not info.lease or info.lease.epoch ~= laserEpoch or info.lease.binding ~= b then
+            info.lease = {epoch=laserEpoch, binding=b}
+        end
+        -- Reuse this owner's paid window without charging again or moving its
+        -- deadline. An unpaid decision also clears a sibling's previous bonus.
+        info.lease.expires = decision.expires
     end)
     local redealing = false
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, target, amount, flags, source, countdown)
@@ -317,6 +340,7 @@ function Peak:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = string.format("Compute %d/%d  %s %.1fs  %s", s.compute, cap(p),
                 s.phase == "peak" and "Peak" or "Valley", s.remaining / 30, s.saving and "Saving" or "Forks On")

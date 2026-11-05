@@ -25,13 +25,13 @@ def bounds(im):
     return im.getchannel('A').point(lambda a: 255 if a >= 128 else 0).getbbox()
 
 
-def load_animation(path):
+def load_animation(path, names=NAMES, hold_static_layers=()):
     root = ET.parse(path).getroot()
     sheets = {l.get('Id'): l.get('SpritesheetId') for l in root.findall('Content/Layers/Layer')}
     animations = {}
     for animation in root.findall('Animations/Animation'):
         name = animation.get('Name')
-        if name not in NAMES:
+        if name not in names:
             continue
         # Fail explicitly on an unsupported root rather than silently misalign.
         for f in animation.findall('RootAnimation/Frame'):
@@ -56,12 +56,14 @@ def load_animation(path):
                     raise ValueError(f'{name}: nonpositive frame delay')
                 frames.append((elapsed, data))
                 elapsed += delay
-            if elapsed != int(animation.get('FrameNum')):
+            held = ((name, layer.get('LayerId')) in hold_static_layers
+                    and len(frames) == 1 and elapsed <= int(animation.get('FrameNum')))
+            if elapsed != int(animation.get('FrameNum')) and not held:
                 raise ValueError(f'{name}: frame coverage mismatch')
             layers.append({'id': layer.get('LayerId'), 'sheet': sheets[layer.get('LayerId')],
                            'frames': frames})
         animations[name] = layers
-    if set(animations) != set(NAMES):
+    if set(animations) != set(names):
         raise ValueError('Missing required animation')
     return animations
 

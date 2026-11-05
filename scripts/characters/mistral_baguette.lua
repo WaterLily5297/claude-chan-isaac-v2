@@ -2,6 +2,7 @@
 -- bread shockwave forward. The exaggeration lives in the bread effect; the
 -- player's size and collision are unchanged. Saved per player: stored Baguettes.
 -- Charge, cooldown and the travelling wave are transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -45,22 +46,29 @@ function Baguette:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isTainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, charge=0, cooldown=0, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.mistral_baguette", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -147,7 +155,8 @@ function Baguette:Init(mod, Risk)
                 end
             end
             b.frame = now
-            if drop:Poll(p, s.baguettes > 0 and b.cooldown == 0) then
+            if drop:Poll(p, s.baguettes > 0 and b.cooldown == 0,
+                b.cooldown > 0 and "Wave cooling down" or "No Baguettes left") then
                 s.baguettes = s.baguettes - 1; b.cooldown = COOLDOWN_FRAMES
                 b.wave = {origin=p.Position, dir=forward(p), travel=0, hit={}}
                 Game():GetHUD():ShowItemText("Mistral-chan", "Baguette!")
@@ -163,7 +172,8 @@ function Baguette:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Mistral-chan: Baguettes %d/%d", b.state.baguettes, BAGUETTE_CAP)
             if b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end
             if Game():GetRoom():IsClear() and b.state.baguettes < BAGUETTE_CAP then text = text.."  Combat to bake" end

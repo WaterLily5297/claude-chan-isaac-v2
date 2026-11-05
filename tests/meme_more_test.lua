@@ -64,7 +64,7 @@ function Isaac.GetPlayer(i) return PLAYERS[i + 1] end
 CALLBACKS = {}
 MOD = { AddCallback = function(_, id, fn, filter) CALLBACKS[#CALLBACKS + 1] = { id = id, fn = fn, filter = filter } end }
 -- Registration order only; tests/disgrace_order_test.lua covers priority dispatch.
-CallbackPriority = { LATE = 100 }
+CallbackPriority = {EARLY=-100, LATE = 100 }
 function MOD:AddPriorityCallback(id, _, fn, filter) self:AddCallback(id, fn, filter) end
 local function fire(id, filter, ...)
     local result

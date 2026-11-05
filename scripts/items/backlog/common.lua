@@ -178,7 +178,7 @@ function Common:Init(mod, Risk)
     local stats = { damage = {}, speed = {}, range = {}, shotspeed = {} }
     local leases, volleys, guards, timers, helpers, labels = {}, {}, {}, {}, {}, {}
     local pendingUse, hitThisRoom, lastAttack = {}, {}, {}
-    local dealing = false
+    local dealing, redeal = false, nil
     local started = false
     local owners = SlotOwners.New()
 
@@ -188,6 +188,10 @@ function Common:Init(mod, Risk)
         owners:Observe(all.players)
         return all.players
     end
+
+    include("scripts.save_sync").Register(Risk, "backlog", function()
+        if started then savedPlayers() end
+    end)
 
     function self.On(name, fn)
         listeners[name] = listeners[name] or {}
@@ -266,16 +270,22 @@ function Common:Init(mod, Risk)
         end
     end)
 
-    -- Primed bonuses for the player's next attack.
-    function self.Prime(player, key, mult, frames)
+    -- Primed bonuses for the player's next attack. Passive rewards may require
+    -- continued ownership; completed active rewards omit requiredItem.
+    local function availablePrime(player, prime, frame)
+        return (not prime.expires or prime.expires >= frame)
+            and (not prime.requiredItem or player:HasCollectible(prime.requiredItem))
+    end
+    function self.Prime(player, key, mult, frames, requiredItem)
         local d = self.Data(player)
         d.primes = d.primes or {}
-        d.primes[key] = { mult = mult, expires = frames and (now() + frames) or nil }
+        d.primes[key] = { mult = mult, expires = frames and (now() + frames) or nil,
+            requiredItem = requiredItem }
     end
     function self.Primed(player, key)
         local d = self.Data(player)
         local p = d.primes and d.primes[key]
-        return p ~= nil and (not p.expires or p.expires >= now())
+        return p ~= nil and availablePrime(player, p, now())
     end
     function self.Unprime(player, key)
         local d = self.Data(player)
@@ -292,7 +302,9 @@ function Common:Init(mod, Risk)
             local d = self.Data(player)
             local mult = 1
             for key, p in pairs(d.primes or {}) do
-                if not p.expires or p.expires >= frame then mult = mult * p.mult end
+                -- Inventory can change between an update and the attack. Once
+                -- resolved, the volley/weapon lease keeps its original factor.
+                if availablePrime(player, p, frame) then mult = mult * p.mult end
                 d.primes[key] = nil
             end
             volley = { frame = frame, mult = mult, id = tostring(hash) .. ":" .. frame }
@@ -463,6 +475,12 @@ function Common:Init(mod, Risk)
 
     mod:AddCallback(ModCallbacks.MC_ENTITY_TAKE_DMG, function(_, entity, amount, flags, source, countdown)
         if dealing then return nil end
+        local src = source and source.Entity
+        -- Suppress only this service's replacement of the same source/target
+        -- hit. A character may emit independent player-sourced damage while
+        -- that replacement is being dispatched; it still needs item modifiers.
+        if redeal and redeal.target == GetPtrHash(entity) and src
+            and redeal.source == GetPtrHash(src) then return nil end
         local player = entity:ToPlayer()
         if player then
             local e = source and source.Entity
@@ -489,7 +507,6 @@ function Common:Init(mod, Risk)
         end
         local npc = entity:ToNPC()
         if not npc or npc:HasEntityFlags(EntityFlag.FLAG_FRIENDLY) then return nil end
-        local src = source and source.Entity
         local owner, familiar = Common.Owner(src)
         local lease
         if childLaser(src) then
@@ -510,9 +527,11 @@ function Common:Init(mod, Risk)
         for _, fn in ipairs(modifiers) do mult = mult * (fn(npc, owner, kind, lease) or 1) end
         emit("hit", npc, owner, kind, lease and lease.id ~= "derived" and lease.id or nil, amount * mult)
         if mult ~= 1 and mult > 0 then
-            dealing = true
-            npc:TakeDamage(amount * mult, flags, source, countdown)
-            dealing = false
+            local previous = redeal
+            redeal = {target=GetPtrHash(npc), source=GetPtrHash(src)}
+            local ok, result = pcall(npc.TakeDamage, npc, amount * mult, flags, source, countdown)
+            redeal = previous
+            if not ok then error(result, 0) end
             return false
         end
         return nil

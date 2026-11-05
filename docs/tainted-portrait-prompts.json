@@ -20,5 +20,201 @@
       "key": "deepseek_b",
       "prompt": "Use case: identity-preserve. Edit target: the provided Tainted DeepSeek-chan illustration. User likes this exact design and requests only slightly deeper colors. Darken the blue-teal hair and teal dress midtones subtly, approximately 8 percent, with slightly richer deep ocean shadows. Keep the exact face, expression, pose, anatomy, silhouette, whale fins, teacup, costume details, silver embroidery, dimensions and framing unchanged. Keep face, eyes and icy apron highlights legible. No new objects or redesign. Preserve real transparent alpha background; no backdrop, glow or vignette. Noncommercial derivative of the whale girl by Shangshan Wuxing and maid design by ZipZipPipe, CC BY-NC-SA."
     }
+  ],
+  "approved_roster_designs_2026_10_31": [
+    {
+      "key": "gpt_b",
+      "name": "Tainted GPT-chan",
+      "approved_source": "docs/art/tainted-designs/gpt_b.png",
+      "actual_latest_request": "Use case: identity-preserve.\nAsset type: preview-only full-body tainted character dossier illustration for The Binding of Isaac mod.\nInput image 1: edit target, the currently approved normal GPT-chan design by ZipZipPipe. Preserve her recognizable face, eye shape and eye color, horns, overall silhouette, elegant adult anatomy, original standing pose, hand gestures and premium clean anime illustration quality.\nCreate this specific tainted alternate: silver-black hair with a soft sheen; jet-black layered silk gown with thin luminous mint seams; darker obsidian wings and tail with mint edges. Replace the tiny blue floating blob with one tiny floating hourglass spirit. Give her a bold confident grin. Palette: obsidian #26282e, mint #3ad6a0, silver #c9ccd4. Keep facial features and fabric details readable within the dark palette.\nKeep the full body, both shoes, all wing tips, horns and tail inside the frame with a little clear margin. Preserve the original costume coverage and natural hand anatomy. One character and the single replacement companion only. No injuries, blood, text, letters, logos, watermark, UI, background, vignette or surrounding glow. Actual transparent RGBA cutout; preserve clean antialiased alpha edges. This is a noncommercial derivative of the credited ZipZipPipe character design, for owner approval only.",
+      "request_provenance": "Recorded actual built-in tool request",
+      "input_references": [
+        {
+          "image": 1,
+          "path": "resources/gfx/ui/dossiers/gpt.png",
+          "sha256": "5819f0eceb4d3879b4129844494d0358411bf635b25946801c74c6374b34526f",
+          "description": "Normal dossier edit target at the recorded base commit"
+        }
+      ],
+      "design_summary": "Obsidian silk \u00b7 mint hourglass",
+      "target_palette": [
+        "#26282e",
+        "#3ad6a0",
+        "#c9ccd4"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "gemini_b",
+      "name": "Tainted Gemini-chan",
+      "approved_source": "docs/art/tainted-designs/gemini_b.png",
+      "actual_latest_request": "Use case: identity-preserve.\nAsset type: preview-only full-body tainted character dossier illustration for a game mod.\nInput image 1: edit target, the currently approved normal Gemini-chan design by ZipZipPipe. Create a distinct tainted alternate of this exact character, preserving her recognizable face, eye shape, overall silhouette, original pose, natural anatomy and premium clean anime illustration quality.\nSpecific authorized changes: Deep magenta hair fading to indigo; an indigo outfit with magenta panels and small gold stars. Add a slim stylus-brush with a short sparkle trail and a ribbon of blank film frames at her waist. Give her a smug wink. Keep her feline ears, fluffy tail, star ornaments, distinctive eye design and youthful but nonsexual adventure costume coverage. Palette: indigo #2a2350, magenta #e0469b, star gold #f4c95d.\nComposition: portrait canvas; full body, shoes, hair tips, ears/tail and every accessory tip inside the frame. The whole figure and props should occupy at most 85 percent of the canvas height, leaving clear transparent padding on all sides. Preserve original costume coverage. Clear natural hands gripping any props, no extra fingers.\nOutput: actual transparent RGBA isolated character, clean antialiased alpha edges. No scene, background, vignette or surrounding glow; any sparkle is confined to the requested small prop. No injuries, blood, text, letters, numbers, company logos, watermark, UI or extra characters. Noncommercial derivative of the credited ZipZipPipe character design, for owner approval only.",
+      "request_provenance": "Recorded actual built-in tool request",
+      "input_references": [
+        {
+          "image": 1,
+          "path": "resources/gfx/ui/dossiers/gemini.png",
+          "sha256": "32bad7a3e4ef924bcf2d99778bc6cdc0f01cb81f0c2586a3e928e2c747428b18",
+          "description": "Normal dossier edit target at the recorded base commit"
+        }
+      ],
+      "design_summary": "Indigo & magenta \u00b7 stylus & film",
+      "target_palette": [
+        "#2a2350",
+        "#e0469b",
+        "#f4c95d"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "grok_b",
+      "name": "Tainted Grok-chan",
+      "approved_source": "docs/art/tainted-designs/grok_b.png",
+      "actual_latest_request": "Use case: identity-preserve.\nAsset type: preview-only full-body tainted character dossier illustration for a game mod.\nInput image 1: edit target, the currently approved normal Grok-chan design by ZipZipPipe. Create a distinct tainted alternate of this exact character, preserving her recognizable face, eye shape, overall silhouette, original pose, natural anatomy and premium clean anime illustration quality.\nSpecific authorized changes: Pale platinum twin tails; an ivory dress with deep crimson underlayers and crisp dark outlines. Replace the large halberd with a tall silver quill-staff topped by a blank speech-bubble-shaped ribbon, with no writing. Give her a teasing, unimpressed smirk. Keep her blue eyes, twin-tail silhouette, full layered gothic gown and standing pose. Palette: ivory #f1ece2, crimson #b3213b, platinum #d9dbe0.\nComposition: portrait canvas; full body, shoes, hair tips, ears/tail and every accessory tip inside the frame. The whole figure and props should occupy at most 85 percent of the canvas height, leaving clear transparent padding on all sides. Preserve original costume coverage. Clear natural hands gripping any props, no extra fingers.\nOutput: actual transparent RGBA isolated character, clean antialiased alpha edges. No scene, background, vignette or surrounding glow; any sparkle is confined to the requested small prop. No injuries, blood, text, letters, numbers, company logos, watermark, UI or extra characters. Noncommercial derivative of the credited ZipZipPipe character design, for owner approval only.",
+      "request_provenance": "Recorded actual built-in tool request",
+      "input_references": [
+        {
+          "image": 1,
+          "path": "resources/gfx/ui/dossiers/grok.png",
+          "sha256": "10208fe5c043b41c22e9dc0e43a42a10dc042b8e41ea201bf00bc8b7e180cdba",
+          "description": "Normal dossier edit target at the recorded base commit"
+        }
+      ],
+      "design_summary": "Ivory & crimson \u00b7 quill staff",
+      "target_palette": [
+        "#f1ece2",
+        "#b3213b",
+        "#d9dbe0"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "qwen_b",
+      "name": "Tainted Qwen-chan",
+      "approved_source": "docs/art/tainted-designs/qwen_b.png",
+      "actual_latest_request": "Use case: precise-object-edit.\nImage 1 is the tainted Qwen-chan edit target. Preserve this exact beautiful deep-violet/amber/cream character design, recognizable face, braid, robe, standing pose, fan, purse, proportions and premium anime illustration. Make only these small corrections: reframe the complete figure slightly smaller so there is clear transparent space above the entire hat and below both shoes, with no tips cut off; place the small gold tuning-fork charm on the waist sash alongside the silver wrench charm; make the fan's subtle dial use only tick marks and hands, with no letters or numerals. Preserve her tired but focused expression, natural hands and all costume coverage. Keep deep violet #3b2466, amber #e3a33b and cream #efe4cf. Actual transparent RGBA isolated full-body character, clean edges, no backdrop or surrounding glow, no text, logo, watermark, extra characters, injuries or blood. Noncommercial derivative of the credited ZipZipPipe design. Preview for owner approval only.",
+      "request_provenance": "Recorded actual built-in tool request",
+      "input_references": [
+        {
+          "image": 1,
+          "sha256": "392b7ceaca882277b4683f8e6ceeec07dae3787418c17bb2a06559f84044db8f",
+          "description": "Earlier generated candidate, edit target; not bundled"
+        }
+      ],
+      "design_summary": "Violet craft \u00b7 dial & tools",
+      "target_palette": [
+        "#3b2466",
+        "#e3a33b",
+        "#efe4cf"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "llama_b",
+      "name": "Tainted Llama-chan",
+      "approved_source": "docs/art/tainted-designs/llama_b.png",
+      "actual_latest_request": "Use case: identity-preserve.\nAsset type: preview-only tainted Llama-chan full-body illustration.\nImage 1 is the edit target: the existing charcoal/neon tainted candidate. Image 2 is the approved normal Llama-chan silhouette and skirt-length reference.\nCorrect only the skirt and expression: restore the modest long, calf-length flared skirt silhouette of image 2, rendered in charcoal wool (#3a3640), with restrained neon-pink (#ff5fa2) and orange (#ffa63d) trim. No thigh straps or short skirt. The existing fluffy llama slippers must remain fully visible beneath the long skirt. Give her an energetic, excited friendly smile rather than a sleepy yawn.\nPreserve image 1's recognizable face, cream hair, ears, fluffy tail, charcoal wool hoodie, sunglasses pushed up, single glowstick, hand positions, natural anatomy, palette and premium anime style. One character. Keep the entire figure, ears and both slippers inside the canvas with clear transparent margins. Actual transparent RGBA isolated cutout with clean alpha. No surrounding glow, backdrop, text, numbers, company logo, watermark, injuries or blood. Noncommercial derivative of the credited ZipZipPipe character design. This is a candidate for owner approval, not a game-ready sprite.",
+      "request_provenance": "Recorded actual built-in tool request",
+      "input_references": [
+        {
+          "image": 1,
+          "sha256": "fc4a848f66468d4af40e0b6cd35f2dff9d0120ad2de0a73c9b50351954c047b6",
+          "description": "Earlier generated candidate, edit target; not bundled"
+        },
+        {
+          "image": 2,
+          "sha256": "4cbc5d846ab7751e6c74a609eb680097ce483440b68d8a4ee5a86437ddb90a82",
+          "description": "Current normal Llama dossier, silhouette reference"
+        }
+      ],
+      "design_summary": "Charcoal wool \u00b7 neon night",
+      "target_palette": [
+        "#3a3640",
+        "#ff5fa2",
+        "#ffa63d"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "mistral_b",
+      "name": "Tainted Mistral-chan",
+      "approved_source": "docs/art/tainted-designs/mistral_b.png",
+      "actual_latest_request": "Use case: precise-object-edit.\nImage 1 is the existing tainted Mistral-chan preview edit target. Preserve this exact character, face, calm night-shift baker smile, warm copper-brown hair, cat ears and tail, cream baker beret, navy dress with cream/toast accents, two baguettes, basket, standing pose, anatomy, costume coverage and premium anime illustration style. Make only two small corrections: put a subtle natural dusting of pale flour on the apron, and reframe the whole figure with clear transparent padding so the entire beret, ears, baguette tips, tail and both boots are comfortably inside the canvas. Palette navy #1f2b4a, cream #f2e6cf and toast #8a4a22. Keep the original design and all facial features, do not invent extra accessories. Actual transparent RGBA isolated cutout, no backdrop, surrounding glow, text, logos, watermark, additional characters, injuries or blood. Noncommercial derivative of the credited ZipZipPipe character design. Preview for owner approval only.",
+      "request_provenance": "Recorded actual built-in tool request",
+      "input_references": [
+        {
+          "image": 1,
+          "sha256": "f086efbeb865cf004780c4e25bc03dcfcec2f0513dc8da0b6b54fbdd4160ca9d",
+          "description": "Earlier generated candidate, edit target; not bundled"
+        }
+      ],
+      "design_summary": "Navy & cream \u00b7 night-shift baker",
+      "target_palette": [
+        "#1f2b4a",
+        "#f2e6cf",
+        "#8a4a22"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "doubao_b",
+      "name": "Tainted Doubao-chan",
+      "approved_source": "docs/art/tainted-designs/doubao_b.png",
+      "actual_latest_request": "Use case: precise-object-edit.\nAsset type: preview-only tainted Doubao-chan full-body illustration.\nImage 1 is the exact edit target. Change only the hair and costume accent colors to match the specified tainted palette: coral hair (#ff7a6b) fading to violet (#8f6bd9); charcoal (#3a3340) jacket/outfit with coral and violet panels. Recolor the cyan ponytail ornament and cyan costume details to the same coral/violet family. Keep the hair shape, expressive face, original open collar and covered torso, sleeves, leggings, sneakers, full-body standing pose with slight apologetic lean and one hand raised confidently, and the plush with its single cartoon sweat drop exactly recognizable. Keep the existing confident but sheepish smile and natural hands. Do not redesign the outfit or change its coverage. Preserve premium clean anime rendering and all proportions. Keep both shoes and the ponytail completely inside frame with transparent margins. Actual transparent RGBA isolated character; no backdrop or surrounding glow, text, letters, numbers, logos, watermark, extra characters, injuries or blood. Noncommercial derivative of the credited ZipZipPipe design, preview for owner approval only.",
+      "request_provenance": "Recorded actual built-in tool request",
+      "input_references": [
+        {
+          "image": 1,
+          "sha256": "942ea3cd071ef17091ae57b6bbbd35734b26717bbcaa2cb59de306f9587e5bec",
+          "description": "Earlier generated candidate, edit target; not bundled"
+        }
+      ],
+      "design_summary": "Coral & violet \u00b7 sheepish confidence",
+      "target_palette": [
+        "#ff7a6b",
+        "#3a3340",
+        "#8f6bd9"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "kimi_b",
+      "name": "Tainted Kimi-chan",
+      "approved_source": "docs/art/tainted-designs/kimi_b.png",
+      "actual_latest_request": null,
+      "request_provenance": "Recovered earlier local image-tool candidate; original generation request and input hash were not recovered. No reconstructed wording is presented as an executed prompt.",
+      "input_references": [],
+      "design_summary": "Burgundy blazer \u00b7 task manager",
+      "target_palette": [
+        "#6b1f35",
+        "#e3dde0",
+        "#c9ced8"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    },
+    {
+      "key": "glm_b",
+      "name": "Tainted GLM-chan",
+      "approved_source": "docs/art/tainted-designs/glm_b.png",
+      "actual_latest_request": null,
+      "request_provenance": "Recovered earlier local image-tool candidate; original generation request and input hash were not recovered. No reconstructed wording is presented as an executed prompt.",
+      "input_references": [],
+      "design_summary": "White & ice blue \u00b7 patient hourglass",
+      "target_palette": [
+        "#e9eef5",
+        "#59c8e8",
+        "#1d2230"
+      ],
+      "approval_date": "2026-10-31",
+      "approval_scope": "Full-body alternate design only; game-asset production and native acceptance remain pending."
+    }
   ]
 }

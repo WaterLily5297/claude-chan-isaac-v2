@@ -26,13 +26,45 @@ def bounds(image):
     return image.getchannel('A').point(lambda a: 255 if a >= 128 else 0).getbbox()
 
 
+def verify_unchanged(before_ref):
+    """Check all 22 Hit cells without the historical thirteen-source rebuild.
+
+    This mode is for non-Hit repairs: it requires byte-identical decoded Hit
+    cells and their existing measured geometry. It does not waive the legacy
+    mode's outside-Hit isolation assertion or claim a complete atlas rebuild.
+    """
+    players = ET.parse(ROOT / 'content/players.xml').getroot()
+    for player in players:
+        path = ROOT / 'resources' / players.get('root') / player.get('skin')
+        rel = path.relative_to(ROOT).as_posix()
+        old = Image.open(BytesIO(subprocess.check_output(
+            ['git', 'show', f'{before_ref}:{rel}'], cwd=ROOT))).convert('RGBA')
+        current = Image.open(path).convert('RGBA')
+        if old.size != current.size or old.crop(HIT).tobytes() != current.crop(HIT).tobytes():
+            raise ValueError(f'{rel}: Hit pixels or atlas size changed')
+        box = bounds(current.crop(HIT))
+        if not (box and box[2]-box[0] <= 28 and box[3]-box[1] <= 32
+                and box[3] == 55 and abs(box[0]+box[2]-64) <= 1):
+            raise ValueError(f'{rel}: Hit envelope/anchor changed: {box}')
+    print(f'PASS: {len(players)} unchanged Hit cells, envelopes and anchors; no engine acceptance')
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('source', type=Path)
-    parser.add_argument('movement_source', type=Path)
-    parser.add_argument('output', type=Path)
-    parser.add_argument('--before-ref', required=True)
+    parser.add_argument('source', type=Path, nargs='?')
+    parser.add_argument('movement_source', type=Path, nargs='?')
+    parser.add_argument('output', type=Path, nargs='?')
+    parser.add_argument('--before-ref')
+    parser.add_argument('--unchanged-since', help='Verify all current Hit cells are identical to this ref')
     args = parser.parse_args()
+    legacy = (args.source, args.movement_source, args.output, args.before_ref)
+    if args.unchanged_since:
+        if any(legacy):
+            parser.error('--unchanged-since cannot be combined with historical rebuild inputs')
+        verify_unchanged(args.unchanged_since)
+        return
+    if not all(legacy):
+        parser.error('Historical mode requires source, movement_source, output and --before-ref')
     manifest = json.loads((ROOT / 'docs/roster-art-manifest.json').read_text())
     players = ET.parse(ROOT / 'content/players.xml').getroot()
     skins = {p.get('skin') for p in players}

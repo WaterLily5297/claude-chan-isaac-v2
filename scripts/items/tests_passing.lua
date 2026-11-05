@@ -2,8 +2,9 @@
 -- Reward hacking: instead of fixing the room, mark it as passed. The room
 -- counts as cleared and every door opens, but the enemies are still there.
 -- Boss, Boss Rush and challenge rooms are required reviews: marking them clear
--- would skip the trapdoor, chest or ambush waves and strand the run, so the
--- item refuses there and keeps its charge. Special exits stay closed.
+-- would skip the trapdoor, chest or ambush waves and strand the run. Greed and
+-- Greedier rooms are wave-driven too, so the item refuses there while uncleared.
+-- Special exits stay closed.
 
 local Constants = include("scripts.constants")
 local DoorSafety = include("scripts.door_safety")
@@ -17,8 +18,11 @@ function TestsPassing:Init(mod)
     end
 
     mod:AddCallback(ModCallbacks.MC_USE_ITEM, function()
-        local room = Game():GetRoom()
-        if room.GetType and REVIEWED[room:GetType()] and not room:IsClear() then
+        local game = Game()
+        local room = game:GetRoom()
+        local inGreedMode = game.IsGreedMode and game:IsGreedMode()
+        if not room:IsClear() and (inGreedMode
+                or (room.GetType and REVIEWED[room:GetType()])) then
             Game():GetHUD():ShowItemText("Required review pending", "This check can't be skipped")
             return { Discharge = false, Remove = false, ShowAnim = false }
         end

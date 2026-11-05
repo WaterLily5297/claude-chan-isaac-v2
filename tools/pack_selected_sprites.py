@@ -140,6 +140,12 @@ def main():
     revised = [r for r in manifest if r.get('movement_source_sha256')]
     if revised and not args.movement_source:
         parser.error('--movement-source is required to preserve the original-character revisions')
+    # Validate every private atlas before any write; never adopt a different
+    # source merely because it has the expected filename.
+    for record in manifest:
+        path = args.source / (record['key'] + '.png')
+        if hashlib.sha256(path.read_bytes()).hexdigest() != record['sprite_sha256']:
+            parser.error(f"Selected source hash mismatch: {record['key']}")
     if revised:
         from pack_original_movement import pack as pack_movement
         for record in revised:
@@ -155,6 +161,8 @@ def main():
         if record.get('walk_cycle') == 'tools/animate_roster_walk.py':
             from animate_roster_walk import animate
             atlas = animate(atlas)
+        from pack_profile_poses import apply as apply_profile_poses
+        atlas = apply_profile_poses(atlas, key)
         # Last step: drop neighbour slivers and stray lines caught by pose crops.
         clean_pose_cells(atlas)
         gamekey = key.replace('_b', 'chan_b') if key.endswith('_b') else key+'chan'

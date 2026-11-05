@@ -2,7 +2,7 @@
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
 local callbacks, players, saved, draws, texts, enemies = {}, {}, nil, {}, {}, {}
-local C={Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
+local C={RISK_MAX=100,Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
 function include(name)
     if name=="scripts.constants" then return C end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
@@ -156,7 +156,8 @@ local p=players[1]
 assert(state().releases==1); p:EvaluateItems(); near(p.Damage,9.5)
 assert(hud()=="Llama-chan: Releases 1/2  Next 0/2",hud())
 clear=false; tap(p); assert(p.flies==0 and state().releases==1,"combat keeps the Release")
-assert(texts[#texts]=="Prepare the release between fights")
+assert(texts[#texts]~="Prepare the release between fights","refusal stays out of shared captions")
+assert(hud()=="DROP: Release between fights",hud()); tick(45)
 assert(hud():find("Between fights"),hud()); clear=true
 down[0]=true; tick(20); down[0]=false; tick(); assert(p.flies==0,"a long hold keeps native DROP")
 tap(p); assert(p.flies==4 and state().releases==0 and texts[#texts]=="Released")

@@ -15,7 +15,7 @@ local descriptions = {
         en_us = { "Anniversary Cake", "Each floor finished without an enemy hit or a suspension: +0.15 damage (max +0.6)#A spoiled floor resets only this bonus" },
     },
     [Constants.Item.RICE_COOKER] = {
-        en_us = { "Rice Cooker", "4 room charges#3-second lunch: can't shoot, can move, no healing#Then your next attack within 7 seconds deals x2#Car Battery does not double the meal" },
+        en_us = { "Rice Cooker", "4 room charges#3-second lunch: can't shoot, can move, no healing#Then your next attack within 7 seconds deals x2#Dying before lunch ends cancels the pending reward#Car Battery does not double the meal" },
     },
     [Constants.Item.ONE_BOWL] = {
         en_us = { "One Bowl Only", "The first red heart you pick up in a room grants one guard against an ordinary enemy bullet#Max 1 guard, 3 per floor" },
@@ -144,7 +144,7 @@ local descriptions = {
         en_us = { "Checkpoint Pin", "6 room charges#First use: pin your position for 5 seconds (keeps the charge)#Use again in the same room: return to the pin#Health and items are never restored" },
     },
     [Constants.Item.RATE_LIMIT_VALVE] = {
-        en_us = { "Rate-Limit Valve", "After 2 seconds without attacking, your next attack deals +30%" },
+        en_us = { "Rate-Limit Valve", "After 2 seconds without attacking, your next attack deals +30%#Losing the last copy removes an unused bonus#Shots already fired keep their bonus" },
     },
     [Constants.Item.CONSENSUS_COIN] = {
         en_us = { "Consensus Coin", "Two different damage sources (tears, lasers, knives, bombs, familiars) hitting one enemy within 2 seconds add a 0.5x damage pulse#Once per enemy" },
@@ -250,9 +250,9 @@ local descriptions = {
         ja_jp = { "--dangerously-skip-permissions", "鍵付きの扉と鍵付きの宝箱が勝手に開く（特殊な出口は本来の条件のまま）#部屋ごとに10%の確率でrm -rf。部屋の落ちているアイテムがすべて消える（台座のアイテム、大きな宝箱、トロフィー、ベッドは無事）" },
     },
     [Constants.Item.TESTS_PASSING] = {
-        en_us = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there#Refused in uncleared boss, Boss Rush and challenge rooms (charge kept)" },
-        zh_cn = { "测试全部通过", "房间视为已清理，所有门打开#但敌人还在（断言被删了）#未清理的头目房、Boss Rush和挑战房中无法使用（不消耗充能）" },
-        ja_jp = { "テスト全件パス", "部屋がクリア扱いになり、すべての扉が開く#敵はまだいる（アサーションを消しただけ）#未クリアのボス部屋、ボスラッシュ、チャレンジ部屋では使えない（チャージは減らない）" },
+        en_us = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there#Refused in uncleared boss, Boss Rush or challenge rooms, and any uncleared room in Greed/Greedier (charge kept)" },
+        zh_cn = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there#Refused in uncleared boss, Boss Rush or challenge rooms, and any uncleared room in Greed/Greedier (charge kept)" },
+        ja_jp = { "All Tests Passing", "The room counts as cleared and all doors open#The enemies are still there#Refused in uncleared boss, Boss Rush or challenge rooms, and any uncleared room in Greed/Greedier (charge kept)" },
     },
     [Constants.Item.VIBE_CODING] = {
         en_us = { "Vibe Coding", "Every tear gets a random effect (homing, piercing, spectral, poison, slow)#5% of tears are bugs that fly backwards#Each new floor: lose 25% of your coins (API bill)#Make no mistakes: no hit on the floor waives the bill" },
@@ -468,12 +468,31 @@ local characterDescriptions = {
 }
 
 function Eid:Init()
-    if not EID then return end
+    local integration = EID
+    if not integration then return end
+    if type(integration) ~= "table" then
+        print("Claude-chan: optional EID integration skipped (expected a table)")
+        return
+    end
+
+    -- EID is optional. Missing APIs or one rejected entry must not prevent
+    -- other descriptions, later integrations or main.lua from loading.
+    -- Keep diagnostics bounded to one line per category during this Init.
+    local warned = {}
+    local function register(method, id, description, name, language)
+        local ok = pcall(function()
+            integration[method](integration, id, description, name, language)
+        end)
+        if not ok and not warned[method] then
+            warned[method] = true
+            print("Claude-chan: optional EID " .. method .. " failed; some descriptions were skipped")
+        end
+    end
 
     for id, langs in pairs(pillDescriptions) do
         if id > 0 then
             for lang, entry in pairs(langs) do
-                EID:addPill(id, entry[2], entry[1], lang)
+                register("addPill", id, entry[2], entry[1], lang)
             end
         end
     end
@@ -481,7 +500,7 @@ function Eid:Init()
     for id, langs in pairs(characterDescriptions) do
         if id >= 0 then
             for lang, entry in pairs(langs) do
-                EID:addCharacterInfo(id, entry[2] .. "#DROP ability requires at most one pocket item; multiple items keep native cycling", entry[1], lang)
+                register("addCharacterInfo", id, entry[2] .. "#DROP ability requires at most one pocket item; multiple items keep native cycling", entry[1], lang)
             end
         end
     end
@@ -489,7 +508,7 @@ function Eid:Init()
     for id, langs in pairs(trinketDescriptions) do
         if id > 0 then
             for lang, entry in pairs(langs) do
-                EID:addTrinket(id, entry[2], entry[1], lang)
+                register("addTrinket", id, entry[2], entry[1], lang)
             end
         end
     end
@@ -497,7 +516,7 @@ function Eid:Init()
     for id, langs in pairs(descriptions) do
         if id > 0 then
             for lang, entry in pairs(langs) do
-                EID:addCollectible(id, entry[2], entry[1], lang)
+                register("addCollectible", id, entry[2], entry[1], lang)
             end
         end
     end

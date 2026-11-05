@@ -2,6 +2,28 @@
 
 The MIT license in the project root covers **code only**. It does not cover the character designs or the art in this folder.
 
+## Llama profile/carry sources (2026-10-31)
+
+The two Llama sources under `docs/art/pose-sources/` and the comparison under `docs/art/llama-profile-review/` retain the credited normal ZipZipPipe identity and its non-commercial derivative terms. The built-in image tool generated the parts; the exact requests, accepted hashes, input references and rejected carry candidate provenance are in `docs/profile-pose-repairs.json`. The existing Grok carry source was a proportion reference only. Mechanical packing and the unchanged legacy tainted recolor do not create new design rights or MIT character artwork.
+
+The review contains only project pixels. Privately inspected native animation geometry is not redistributed. This work does not integrate the approved distinct tainted Llama design, establish engine acceptance or authorize Workshop publication.
+
+## Grok and Qwen profile/carry sources (2026-10-31)
+
+The four generated sources under `docs/art/pose-sources/` and the two `docs/art/profile-batch-03-review/` comparisons retain the credited normal ZipZipPipe identities and their non-commercial derivative terms. Exact executed requests, intermediate-reference provenance, hashes and packing settings are in `docs/profile-pose-repairs.json`. Mechanical packing and the unchanged legacy tainted recolor do not create new design rights or MIT character artwork.
+
+`carry-layout-guide.png` is an original project geometric diagram under MIT; it contains no native or character pixels. Privately inspected native animation geometry and artwork are not redistributed. These repairs do not integrate the approved distinct tainted identities, establish engine acceptance or authorize Workshop publication.
+
+## GPT and Gemini profile/carry sources (2026-10-31)
+
+The two sources under `docs/art/pose-sources/` and their `docs/art/profile-batch-02-review/` comparisons use the built-in image tool and existing credited ZipZipPipe normal identities. They remain non-commercial character-design derivatives, not MIT artwork or official company assets. `docs/profile-pose-repairs.json` records the exact executed revision prompts, accepted source hashes and the earlier unbundled input candidates with their original prompts/reference hashes. Mechanical thresholding, nearest-neighbour packing and the existing tainted recolor preserve the inherited terms. Only mod pixels appear in the comparisons; native animation data and extracted artwork are not bundled. This does not authorize Workshop publication or claim new rights clearance.
+
+## Approved nine-family tainted design sources (2026-10-31)
+
+The nine PNG sources under `docs/art/tainted-designs/` depict owner-approved alternate GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi and GLM identities derived from the credited ZipZipPipe AI-personification designs. They retain the same attribution and non-commercial conditions as the roster artwork below; neither AI generation nor owner design approval places them under the code's MIT licence or establishes new exclusive rights. The comparison JPEG includes existing normal designs and these alternate sources under the same design terms.
+
+The exact accepted bytes and source references are recorded in `docs/approved-tainted-designs.json`; available actual generation/edit requests are in `docs/tainted-portrait-prompts.json`. The earlier original Kimi/GLM requests were not recovered and are explicitly marked unavailable. No new direct rights clearance is claimed. These are approved illustration sources, not a completed gameplay-sheet adaptation, native acceptance or Workshop permission.
+
 ## Character designs
 
 | Character | Designer | Terms |
@@ -98,3 +120,9 @@ The two `docs/art/item-batch-05-*.png` sheets combine the existing MIT placehold
 Confident Answer, Smiling Correction, Slide Deadline, Citation Thread, Overtime Slides, Stand-Up Meeting, Queue Ticket, Sold Out, Please Retry and Access Pass use original project pixel geometry and material shading in `tools/make_item_art.py`. Their registry entries record drawing functions, versions, palettes, meanings, provenance and output hashes. These drawings and code are Codex-assisted project contributions under the MIT license, without imported pixels, native artwork or official company logos.
 
 The two `docs/art/item-batch-06-*.png` sheets combine existing MIT placeholders with the original drawings and shared project reference shapes/alphabet. Earlier icons and all character artwork remain unchanged. These original-item terms preserve character-design credits and non-commercial conditions and do not authorize Workshop publication.
+
+## GLM profile/carry and fallen repair (2026-10-31)
+
+The two sources in `docs/art/pose-sources/` were generated with the built-in image tool from the existing normal GLM dossier and gameplay sheet. Exact actual prompts, input hashes, source hashes and packing anchors are recorded in `docs/profile-pose-repairs.json`. The generated sources are preserved byte-for-byte. Mechanical binary-alpha normalization, cropping and nearest-neighbour packing replace only the side/carry and fallen cells. The existing unchanged tainted generator derives the matching legacy darkened skin; this is not production of the newly approved white-haired tainted GLM design.
+
+These are non-commercial derivatives of the credited ZipZipPipe identity under the existing character-art terms above, not new MIT character designs. The review image in `docs/art/glm-profile-review/` renders only project character pixels. Privately read native animation geometry is not redistributed; no extracted game artwork, private files or official logos are bundled. Offline inspection does not establish native acceptance or Workshop permission.

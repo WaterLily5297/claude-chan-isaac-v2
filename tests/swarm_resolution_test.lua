@@ -3,7 +3,7 @@ local root = arg[1]
 function include(name) return dofile(root .. "/" .. name:gsub("%.", "/") .. ".lua") end
 EffectVariant={TARGET=30,ROCKET=31}
 ModCallbacks = setmetatable({}, { __index = function(_, key) return key end })
-CallbackPriority = { DEFAULT = 0, LATE = 1000 }
+CallbackPriority = {EARLY=-100, DEFAULT = 0, LATE = 1000 }
 CacheFlag = {CACHE_SPEED=1}
 CollectibleType = {COLLECTIBLE_BIRTHRIGHT=619}
 TearFlags={TEAR_LUDOVICO="ludo"}

@@ -22,7 +22,7 @@ Player attack adapters require a directly identified player, with the held-weapo
 
 The repeated-hit beam rule is a balance choice: only the initial 0.2-second window receives stored Thought, unless a later Rice reward supplies more Thought. A finite Brimstone beam is also a repeated-hit beam under this rule. It is not a promise of 2x damage for the entire beam lifetime. An ongoing controlled attack cannot recharge itself by releasing the aim buttons. Ordinary travelling tears and a thrown knife do not prevent idle recharge solely by remaining alive.
 
-Six-update windows share one per-player payment and multiplier. They preserve remaining time across continue, pause without advancing, and expire without regenerating Thought from their own activity. A window is a saved scalar budget, not a saved entity reference. Room changes discard the room's window. Character/identity changes and death reset it alongside the Rice economy. Older Rice saves without window fields start with no active window.
+Six-update windows share one per-player payment and multiplier. They preserve remaining time across continue, pause without advancing, and expire without regenerating Thought from their own activity. A window is a saved scalar budget, not a saved entity reference. Room changes discard the room's window. Character changes, replacement identities and death reset it alongside the Rice economy. Moving the same live pointer/seed between slots preserves its progress and clock; [O6 identity coverage](O6_RICE_MEAL_IDENTITY.md) distinguishes this from replacement and tests supplied knife-exit cleanup. Older Rice saves without window fields start with no active window.
 
 ## Damage composition and lifecycle
 

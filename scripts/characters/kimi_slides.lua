@@ -1,5 +1,6 @@
 -- Normal Kimi: Another Slide Deck. Unique clears earn Slides; DROP presents them.
 -- Saved per-player Slides and unique clears. The live presentation is transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -64,22 +65,29 @@ function Kimi:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isKimi(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, armed={}, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.kimi_slides", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isKimi(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -176,13 +184,16 @@ function Kimi:Init(mod, Risk)
                     Feedback.Mark(b.show.marks[focus].Ref, Color(0.7, 0.85, 1, 1, 0, 0.1, 0.3), 2)
                 end
             end
-            if drop:Poll(p, s.slides >= cost(p)) then
+            if drop:Poll(p, s.slides >= cost(p),
+                "Not enough Slides") then
                 local targets = audience(p)
                 -- No audience means no Slides are spent. A new deck replaces the old one.
                 if #targets > 0 then
                     s.slides = s.slides - cost(p)
                     present(p, b, targets)
                     Game():GetHUD():ShowItemText("Kimi-chan", "Another slide deck")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -213,6 +224,7 @@ function Kimi:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Kimi-chan: Slides %d/%d  Cost %d", b.state.slides, SLIDE_CAP, cost(p))
             if b.show then text = text..string.format("  Presenting %ds", math.ceil(b.show.remaining / 30)) end
             HudLayout.DrawPlayer(HudText, i, text, 0.55, 0.65, 1, 0.9)

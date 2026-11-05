@@ -2,10 +2,11 @@
 
 ## Start here
 
-Updated 2026-10-28. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. Histories ([2026-10-27](HANDOFF_HISTORY_2026-10-27.md), [2026-10-25](HANDOFF_HISTORY_2026-10-25.md), [2026-10-24](HANDOFF_HISTORY_2026-10-24.md)) keep their original evidence scope and are not current acceptance.
+Updated 2026-10-30. Read [CLAUDE.md](../CLAUDE.md), [CONTRIBUTING.md](../CONTRIBUTING.md), [TESTING.md](TESTING.md) and [art terms](../resources/ART_LICENSE.md) before editing. Histories ([2026-10-30](HANDOFF_HISTORY_2026-10-30.md), [2026-10-27](HANDOFF_HISTORY_2026-10-27.md), [2026-10-25](HANDOFF_HISTORY_2026-10-25.md), [2026-10-24](HANDOFF_HISTORY_2026-10-24.md)) keep their original evidence scope and are not current acceptance.
 
 - **Repository:** development moved on 2026-10-28 to [claude-chan-isaac-v2](https://github.com/WaterLily5297/claude-chan-isaac-v2) with main's full history; PR numbers restart there. Earlier PR numbers (#1-#148) and old work branches refer to the read-only [original repository](https://github.com/WaterLily5297/claude-chan-isaac), which keeps superseded draft PR #100 (never merge). The mod folder name stays `claude-chan-isaac`.
 - **Current main:** [live main](https://github.com/WaterLily5297/claude-chan-isaac-v2/tree/main). Fetch it and inspect open PRs before editing.
+- **Open v2 PR #2:** [item icon and dossier path fix](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/2) has green CI; the owner had not tested it as of 2026-10-30. Static audit confirms its 92 item-icon paths resolve through item-category routing, but the 22 dossier ANM2 basenames do not resolve under the published [ANM2 `gfx/`-root rule](https://wofsauge.github.io/IsaacDocs/rep/xml/Anm2_files.html). This convention conflicts with the PR's adjacent-file assumption; keep it unverified and do not merge until reconciled with engine evidence.
 - **Installed manual-test build:** exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` (gameplay `ef7d2dd`, #102 plus O4/O5), installed 2026-10-26 after a fresh allowlisted backup of 443 files passed reread SHA-256 verification; all 451 tracked files reverified. Preserve it during source follow-ups; replacing it needs separate owner authorization.
 - **Owner testing:** the owner replied "not tested yet" on 2026-10-26. No manual case is accepted. Keep the [14-item manual checklist](MANUAL_TEST_CHECKLIST.md) available without repeating the question in the same session.
 - **Evidence level:** the offline gate (`bash tools/check.sh`, also run by CI) passes: Lua suites, interaction scanner, item-art, thumbnail, XML, deterministic assets and inventory freshness. Stubs do not prove native callbacks, animation, input, real Continue or playability. Engine evidence is historical only: [ENGINE_AUDIT_2026-10-26.md](ENGINE_AUDIT_2026-10-26.md).
@@ -19,26 +20,19 @@ Pick the top unit that is not gated. A bug the owner reports beats everything.
 1. **Owner-visible correctness first.** Owner reported transparent item textures in game on 2026-10-29: `items.xml` gfx values doubled the engine's `collectibles/`/`trinkets/` folder and dossier `.anm2` paths were not relative to their folder; both fixed in source, not yet engine-confirmed. Remaining [ITEM_COMPLETION.md](ITEM_COMPLETION.md) finding F10's native save/reload case; F12 waits for native completion/removal evidence. F1, F3, F5, F7 and F14 were decided on 2026-10-28 (owner delegated).
 2. **Art.** All 92 icons are designed offline; their native pedestal/EID look is unreviewed ([ART_STATUS.md](ART_STATUS.md)). Character work: proper side profiles for the nine newer families, GLM's fallen pose, special poses, Relay Slime and `thumb.png`. Distinct designs for the nine derived tainted families need an owner preview first.
 3. **Characters.** [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) keeps all 22 rows open on shared gaps G1-G7 and special cases S1-S4; W2.4 refusal conditions are audited in [DROP_REFUSALS.md](DROP_REFUSALS.md) and narrow-screen HUD text in [HUD_TEXT_AUDIT.md](HUD_TEXT_AUDIT.md); refusal cues and native HUD-corner checks remain.
-4. **Compatibility and stability.** Interaction candidates in [INTERACTIONS.md](INTERACTIONS.md), the wider vanilla matrix (special characters, Greed, challenges), seeded mod-item combination invariants, O6 save/continue audit and a whole-mod performance budget ([PERFORMANCE.md](PERFORMANCE.md)).
+4. **Compatibility.** [INTERACTIONS.md](INTERACTIONS.md) and pool/quality/tag audits show no confirmed bug. [PR #5](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/5) adds seeded cache tests; [PR #6](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/6) adds Jacob/Esau slot coverage. 22-form mixes, billing/locks/removal, vanilla/Greed/challenge, O6 and performance remain open.
 5. **Gated content.** Meme batch 3 (O7), character synergies (W5), Chinese/Japanese roster story text and Workshop all need explicit owner decisions.
 
 No further child-laser/Parent/derived-shot billing PR without native E2 evidence. Repeat a scheduled hardening review after three to five substantive units or a concrete failure.
 
-## Recent units (#104-#148)
+## Recent units (v2)
 
-All are offline source/tooling/documentation work; none is installed or engine-accepted. Full entries: [history](HANDOFF_HISTORY_2026-10-27.md).
+Merged units use v2 PR numbers. The old-repository PR #104-#148 table is preserved verbatim in [HANDOFF_HISTORY_2026-10-30.md](HANDOFF_HISTORY_2026-10-30.md).
 
-| Area | PRs | Result |
-|---|---|---|
-| Audits | #105, #106, #108, #110 | [ART_STATUS.md](ART_STATUS.md), [INTERACTIONS.md](INTERACTIONS.md) scanner, [CHARACTER_COMPLETION.md](CHARACTER_COMPLETION.md) (22 forms, G1-G7/S1-S4), [ITEM_COMPLETION.md](ITEM_COMPLETION.md) (97 registrations, F1-F15). |
-| Item art | #111, #112, #115, #118, #122, #126, #129, #134, #135, #136 | Icon pipeline and validator ([make_item_art.py](../tools/make_item_art.py)); all 92 icons designed with 1x/4x review sheets ([batch 01](ITEM_ART_BATCH_01.md) to [09](ITEM_ART_BATCH_09.md)). |
-| Item fixes | #113, #116, #121, #124, #128, #130, #132, #137, #139, #143, #144, #145, #146, #147 | F8, F13, F11, F2, F9 [charm after shields](CHARM_DAMAGE_ORDER.md), F4/F5 text, F15 Rice Cooker Continue, Disgrace Loop text (own bombs count), F10 Seahorse co-op/exit tests, F6 saved item state (and Vibe Coding marks) follows its live owner, Disgrace Loop after shields, F1 Compact enters Limited, F7 Opus partial bill saved. Details in [ITEM_COMPLETION.md](ITEM_COMPLETION.md). |
-| Character art | #141 | [Sprite audit](SPRITE_AUDIT_2026-10-27.md): crop leftovers removed from 7 sheets and gated; cut poses on 4 families need source re-crops. |
-| Characters | #107, #109, #123, #140, #142 | Normal Claude live-owner isolation, T1/T2 text, [Birthright timing](BIRTHRIGHT_TIMING.md) for four tainted forms, [DROP refusal audit](DROP_REFUSALS.md), [HUD text audit](HUD_TEXT_AUDIT.md) (long lines wrap to row 1, dossier portraits clear the text). |
-| Evidence only | #119, #127 | F12 [charged-use replacement](CHARGED_USE_AUDIT.md) reproduced, not fixed; [primary-tear composition](PRIMARY_TEAR_COMPOSITION.md) matrix, no defect found. |
-| Stability | #114, #117, #120, #125 | Usage/Limited load validation, GPT/Grok binding allocation ([PERFORMANCE.md](PERFORMANCE.md)), thumbnail exporter repair, scheduled [hardening](HARDENING_2026-10-27.md). |
-| Install record | #104 | Documentation sync installed as `8fd6a8c`. |
-| Documentation | #131, #133, #138, #148 | Handoff compacted (D2 in TESTING.md), [PUBLISHING.md](PUBLISHING.md) refreshed (Workshop still not authorized), CHANGELOG caught up, F3/F5/F14 decided as coded. |
+| PR | Area | Result | Evidence |
+|---|---|---|---|
+| [#1](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/1) | Repo move | Pointed links to v2 and recorded the PR reset; gameplay unchanged. | CI passed; docs only. |
+| [#3](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/3), [#4](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/4) | Handoff | Archived old PR table; started v2 history. | CI passed; docs only. |
 
 ## Long-term completion gates
 

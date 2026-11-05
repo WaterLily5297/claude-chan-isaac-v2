@@ -13,6 +13,7 @@ local json = require("json")
 local Constants = include("scripts.constants")
 local HudText = include("scripts.hud_text")
 local ModelRoster = include("scripts.characters.model_roster")
+local SaveSync = include("scripts.save_sync")
 
 local Risk = {}
 
@@ -27,6 +28,38 @@ local function defaultState()
         constitutionBlockUsed = false,
         silentMult = 1,
     }
+end
+
+local function numberInRange(value, minimum, maximum)
+    return type(value) == "number" and value == value and value >= minimum and value <= maximum
+end
+
+local function validIp(value)
+    if type(value) ~= "string" or #value > 15 then return false end
+    local a,b,c,d = value:match("^(%d+)%.(%d+)%.(%d+)%.(%d+)$")
+    if not a then return false end
+    for _,octet in ipairs({a,b,c,d}) do
+        if #octet > 3 or tonumber(octet) > 255 then return false end
+    end
+    return true
+end
+
+local function normalizeCore(state)
+    -- Repair only these service-owned scalar fields. Valid owner maps and
+    -- legacy module fields must reach their own migrations unchanged.
+    if not numberInRange(state.risk, 0, Constants.RISK_MAX) or state.risk ~= math.floor(state.risk) then
+        state.risk = 0
+    end
+    if not validIp(state.ip) then state.ip = "0.0.0.0" end
+    -- RollIp generates at most 20 + 200 users; zero is the initial state.
+    if not numberInRange(state.sharedUsers, 0, 220) or state.sharedUsers ~= math.floor(state.sharedUsers) then
+        state.sharedUsers = 0
+    end
+    -- Silent Update's existing floor roll is 0.8..1.3; the neutral default is 1.
+    if not numberInRange(state.silentMult, 0.8, 1.3) then state.silentMult = 1 end
+    for _,key in ipairs({"residentialApplied", "relayApplied", "constitutionApplied", "constitutionBlockUsed"}) do
+        state[key] = state[key] == true
+    end
 end
 
 Risk.state = defaultState()
@@ -176,6 +209,7 @@ function Risk:RollIp()
 end
 
 function Risk:Save(mod)
+    if started then SaveSync.Run(self) end
     mod:SaveData(json.encode(self.state))
 end
 
@@ -189,6 +223,7 @@ function Risk:Load(mod)
             end
         end
     end
+    normalizeCore(self.state)
 end
 
 function Risk:Init(mod)
@@ -210,8 +245,9 @@ function Risk:Init(mod)
         started = true
     end)
 
-    mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function(_, shouldSave)
-        if shouldSave then
+    -- Save while live ownership bindings still exist, before normal cleanup.
+    mod:AddPriorityCallback(ModCallbacks.MC_PRE_GAME_EXIT, CallbackPriority.EARLY, function(_, shouldSave)
+        if started and shouldSave then
             Risk:Save(mod)
         end
         started, checkpoint = false, false
@@ -229,10 +265,11 @@ function Risk:Init(mod)
     -- Checkpoint every floor as well as on exit. If the game closes without a
     -- normal exit (crash, forced close), continuing must not load mod state
     -- from an older session or a different run.
-    mod:AddCallback(ModCallbacks.MC_POST_UPDATE, function()
+    -- Include normal update handlers' floor, cap and ownership changes.
+    mod:AddPriorityCallback(ModCallbacks.MC_POST_UPDATE, CallbackPriority.LATE, function()
         if started and checkpoint then
-            checkpoint = false
             Risk:Save(mod)
+            checkpoint = false
         end
     end)
 

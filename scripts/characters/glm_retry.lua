@@ -1,6 +1,7 @@
 -- Tainted GLM: Please Retry. Schedule a request on one enemy; if it is still
 -- there when the request lands, it hits hard. Failed requests earn bounded,
 -- deterministic Retry stacks. Saved per player: Retry stacks only.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -41,22 +42,29 @@ function Retry:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isTainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, cooldown=0, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.glm_retry", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -149,7 +157,8 @@ function Retry:Init(mod, Risk)
                 end
             end
             -- The cooldown outlasts the request, so only one is ever pending.
-            if drop:Poll(p, combat and b.cooldown == 0) then
+            if drop:Poll(p, combat and b.cooldown == 0,
+                not combat and "Needs combat" or "Request cooling down") then
                 local target = Tools.Nearest(p.Position, RADIUS)
                 -- No target means no request and no cooldown.
                 if target then
@@ -157,6 +166,8 @@ function Retry:Init(mod, Risk)
                     Feedback.Mark(target, Color(1, 1, 1, 1, 0.3, 0.1, 0.35), REQUEST_FRAMES)
                     b.cooldown = COOLDOWN_FRAMES
                     Game():GetHUD():ShowItemText("GLM-chan", "Request queued")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -169,6 +180,7 @@ function Retry:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("GLM-chan: Retries %d/%d", b.state.retries, RETRY_CAP)
             if b.request then text = text..string.format("  Request Pending %ds", math.ceil(b.request.remaining / 30))
             elseif b.cooldown > 0 then text = text..string.format("  Cooldown %ds", math.ceil(b.cooldown / 30)) end

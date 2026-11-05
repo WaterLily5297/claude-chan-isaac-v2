@@ -17,36 +17,41 @@
     "key": "gpt",
     "portrait_sha256": "324a7b0f58020a42006bb1e0145ecae4f140e855d0980126e2ace660348896e1",
     "sprite_sha256": "950a9bacd9c32f0b1ad347210a4ddc810c2bdd12b1fd44abc6996d7e0be48331",
-    "packed_sprite_sha256": "ebc65cda4442e4e88a348656a58eb85fee26dffe20747513a6e5f0e1db68efd0",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "01841bd956823edcfe08141568577184ea3ac18dbf5b9f0cc9f70a8ec004d0f3",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "gemini",
     "portrait_sha256": "abe1e2e41996b140b733c72f6835ca54daa178a537a766a60365a758579d1aa9",
     "sprite_sha256": "e2e919a4707ff7f5cd475a6160acd21582082c5e2b250689a96422142b2f4ded",
-    "packed_sprite_sha256": "0dcd3e326c9afbd30109c3caca003a98ecedfa51b70646ebf9155a274bc25218",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "31a2b13a0b1b5dcc881c270d431694151b9b89e07be894f62a785918a80d7eea",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "grok",
     "portrait_sha256": "d0af816200360d46e29c9e4e0fc3eaaa190e05010900fbd3470e2836550a35f6",
     "sprite_sha256": "22e6f304b9de1e71b2724bf65314705735733131ff28c08ced8858d8d0967c2c",
-    "packed_sprite_sha256": "8b7399b026002abb93a919ffcb073078979c56f27672defa0ff39ac6b92028d8",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "d13824102ba7b4506917d48b74cc67dbe7afd76678034a4aa6b9d7757c43827d",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "qwen",
     "portrait_sha256": "7e184e70bab27072ebd4ae111b4f2c2d4719d39f1e69301dbfb3845f2778375c",
     "sprite_sha256": "f069fd9c69b87d9862350a98f6e8516f707b0d6065b171e38addeb7ee5307c52",
-    "packed_sprite_sha256": "1e698bc02055f3b811cf46201dec9b759f39a7bfde16ad70bd4cdde53b1a7725",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "13677af5a5566f7155750fd9fa0e299bfe0d3738ad332e7e03c14b7c64777ba0",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "llama",
     "portrait_sha256": "31ed8d9b643ba64bfeea1a5f8d71a0a11173e2bfa39bdffe2b77c73807e6a04f",
     "sprite_sha256": "0c803ea0970df6614f8c912c63881f0e5eadaa78d66f9d5d650a318065ec72f8",
-    "packed_sprite_sha256": "9882fd4ae35d1b9c3d42397afd5baa577a2d69ad2bc1165269baf19da6219d86",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "911f19e395db3a6794e021a043f4096571ec0e6abd1f28f908034e43f4841e99",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "mistral",
@@ -73,8 +78,9 @@
     "key": "glm",
     "portrait_sha256": "352f9d539f96df28de96411287bf3c833c78414f7977eca2f6865e11336c6d82",
     "sprite_sha256": "e3ad27bda24556c794e3f050c3f28b5d61834384a8a815c70fb89588f8023d7c",
-    "packed_sprite_sha256": "b034bde830c365e9166ed8049f0251c14aabcddd8504e0cec4ba89ddd642838b",
-    "walk_cycle": "tools/animate_roster_walk.py"
+    "packed_sprite_sha256": "67ceff68589462968bc976b3685e39b42eacd79966b8314ffbe052500e5378ce",
+    "walk_cycle": "tools/animate_roster_walk.py",
+    "profile_poses": "tools/pack_profile_poses.py"
   },
   {
     "key": "claude_b",

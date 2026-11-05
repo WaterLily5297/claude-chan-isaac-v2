@@ -2,6 +2,7 @@
 -- lands on the quoted target when the timer runs out. Original parody; Grok and
 -- the parody account Gork stay distinct. Saved per player: the selection cooldown.
 -- The live selection and Ratio are transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -48,22 +49,29 @@ function Ratio:Init(mod, Risk)
             local changed = not previous or previous.pointer ~= pointer
                 or previous.seed ~= p.InitSeed or previous.kind ~= kind
             if id >= 0 and kind == id then
-                if previous and changed then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and changed then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             -- Keep the immutable identity snapshot while this slot is unchanged.
             nextSlots[key] = changed and {pointer=pointer, seed=p.InitSeed, kind=kind} or previous
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.grok_ratio", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -146,13 +154,16 @@ function Ratio:Init(mod, Risk)
                 end
             end
             -- The cooldown outlasts the quote, so it also blocks retargeting.
-            if drop:Poll(p, s.cooldown == 0) then
+            if drop:Poll(p, s.cooldown == 0,
+                "Quote cooling down") then
                 local target = Tools.Nearest(p.Position, RADIUS)
                 if target then
                     s.cooldown = COOLDOWN_FRAMES
                     b.quote = {ref=EntityPtr(target), hash=GetPtrHash(target), position=target.Position,
                         remaining=QUOTE_FRAMES, ratio=0, choices=Choices.New()}
                     Game():GetHUD():ShowItemText("Grok-chan", "Quoted")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -182,7 +193,8 @@ function Ratio:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text
             if b.quote then
                 text = string.format("Grok-chan: Ratio %d/%d  %ds", b.quote.ratio, RATIO_CAP, math.ceil(b.quote.remaining / 30))

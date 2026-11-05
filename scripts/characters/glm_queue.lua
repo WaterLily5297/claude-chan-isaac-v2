@@ -1,6 +1,7 @@
 -- Normal GLM: Number in Queue. Unique clears advance the Queue; at three, DROP
 -- redeems an Access Pass for the next new hostile rooms. No real purchases or
 -- real-time waiting. Saved per player; the room bonus ends on room exit.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -59,22 +60,29 @@ function GLM:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isGLM(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, armed={}}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.glm_queue", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isGLM(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -135,7 +143,8 @@ function GLM:Init(mod, Risk)
             local s = b.state
             observeFloor(b)
             if p:IsDead() then drop:Forget(p); return end
-            if drop:Poll(p, s.queue >= QUEUE_MAX and not passActive(s)) then
+            if drop:Poll(p, s.queue >= QUEUE_MAX and not passActive(s),
+                passActive(s) and "Access Pass active" or "Queue below 3/3") then
                 s.queue = 0
                 s.pass = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_ROOMS or PASS_ROOMS
                 Game():GetHUD():ShowItemText("GLM-chan", "Access granted")
@@ -177,7 +186,8 @@ function GLM:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text
             if boosted(s) then text = string.format("GLM-chan: Access active  %d room(s) left", s.pass)

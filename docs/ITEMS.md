@@ -10,7 +10,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 
 | Item | Pickup line | Quality | Charge | Effect |
 |---|---|---|---|---|
-| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there; Refused in uncleared boss, Boss Rush and challenge rooms (charge kept) |
+| All Tests Passing | Doors open. Enemies still there | 2 | 6 rooms | The room counts as cleared and all doors open; The enemies are still there; Refused in uncleared boss, Boss Rush or challenge rooms, and any uncleared room in Greed/Greedier (charge kept) |
 | Another Adapter | Fine-tuned again: cycle range/speed/DMG | 2 | 4 rooms | 4 room charges; Cycles a bonus for this room: +60 range, then +0.15 speed, then +15% damage; Each use replaces the last |
 | Ban Hammer | Ban the room. Mostly the right accounts | 3 | 4 rooms | Bans every non-boss enemy in the room; Bosses take 60 damage; Banned enemies never respawn as new accounts; 20% of bans are misbans of innocent developers: +3 risk each |
 | Banked Reset | Thanks for your patience: risk + limits reset | 2 | 12 rooms | Risk -25; Claude-chan: usage meter reset, ends a usage limit early; Tainted Claude-chan: Quota refilled; a pending review is cancelled without returning its Page |
@@ -30,7 +30,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Open Weights | Download for free: blue flies | 2 | 4 rooms | 4 room charges; 2 blue flies for each living player (solo: 4) |
 | Please Retry | Server busy: 3 delayed tears | 2 | 6 rooms | 6 room charges; Fires 3 tears at 0.6x damage, half a second apart, along your aim; Leaving the room cancels the rest |
 | Release Soon | Two more weeks: delayed bullet guards | 1 | 6 rooms | 6 room charges; 2 seconds later: 3 guards against ordinary enemy bullets for 6 seconds; Leaving the room cancels it |
-| Rice Cooker | Lunch first, then a x2 attack | 2 | 4 rooms | 4 room charges; 3-second lunch: can't shoot, can move, no healing; Then your next attack within 7 seconds deals x2; Car Battery does not double the meal |
+| Rice Cooker | Lunch first, then a x2 attack | 2 | 4 rooms | 4 room charges; 3-second lunch: can't shoot, can move, no healing; Then your next attack within 7 seconds deals x2; Dying before lunch ends cancels the pending reward; Car Battery does not double the meal |
 | Sanity Test | Mark an enemy: 3 separate attacks, x3 pulse | 2 | 4 rooms | 4 room charges; Marks the nearest enemy within 220 units for 6 seconds; 3 different attacks hitting it trigger a 3x damage pulse; No target: keeps the charge |
 | Seahorse Emoji | It definitely exists: summon a random wisp | 1 | 3 rooms | 3 room charges; Summons a Book of Virtues wisp of a random vanilla active; It disappears when you leave the room; One per player; using again replaces it |
 | Slide Deadline | Due in eight seconds: kill marks, DMG up | 2 | 4 rooms | 4 room charges; Marks up to 3 enemies within 250 units for 8 seconds; Kill them all in time: +15% damage for this room |
@@ -79,7 +79,7 @@ The pickup line is what the game shows when you pick the item up. The effect col
 | Please Come Back | Don't leave us: clears recharge actives | 2 | 3 new rooms cleared without using a charged active: +1 charge to your active item; Timed and zero-charge actives don't benefit |
 | Queue Ticket | Now serving: clears recharge actives | 2 | Every 4th new room cleared: +1 charge to your active item; Timed and zero-charge actives don't benefit |
 | Quote Retort | Ratio: hit back harder after damage | 2 | After you take enemy damage, your next attack within 4 seconds deals +50% |
-| Rate-Limit Valve | Please slow down: pause for +30% DMG | 2 | After 2 seconds without attacking, your next attack deals +30% |
+| Rate-Limit Valve | Please slow down: pause for +30% DMG | 2 | After 2 seconds without attacking, your next attack deals +30%; Losing the last copy removes an unused bonus; Shots already fired keep their bonus |
 | Rejection Letter | Getting hit clears nearby bullets | 1 | After a real enemy hit, removes up to 3 ordinary enemy bullets within 120 units; Once per room; you still take the hit |
 | Residential IP | Clean connection: risk down, rises slower | 2 | Risk -30 on pickup; All risk increases are halved |
 | Routing Receipt | Every 3 clears: DMG up next room | 2 | Every 3 new rooms cleared: +20% damage in the next combat room; Re-entering rooms does not count |

@@ -1,6 +1,7 @@
 -- Normal Grok: Is This True? A once-per-room fact check on one enemy.
 -- Saved per-player room flags only; the live check is transient. Grok and the
 -- parody account Gork remain distinct; this is a fictional gameplay role.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -50,22 +51,29 @@ function Grok:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isGrok(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.grok_check", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isGrok(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -151,7 +159,8 @@ function Grok:Init(mod, Risk)
                     elseif b.check.remaining <= 0 then b.check = nil end
                 end
             end
-            if drop:Poll(p, combat and s.checkRoom ~= room and b.check == nil) then
+            if drop:Poll(p, combat and s.checkRoom ~= room and b.check == nil,
+                not combat and "Needs combat" or b.check and "Check in progress" or "Check spent this room") then
                 local target = Tools.Nearest(p.Position, CHECK_RADIUS)
                 -- No target means the room's check is not spent.
                 if target then
@@ -159,6 +168,8 @@ function Grok:Init(mod, Risk)
                     b.check = {ref=EntityPtr(target), hash=GetPtrHash(target),
                         remaining=CHECK_FRAMES, hits={}, count=0}
                     Game():GetHUD():ShowItemText("Grok-chan", "Is this true?")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -212,7 +223,8 @@ function Grok:Init(mod, Risk)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         local room = roomKey()
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s, text = b.state, nil
             if b.check then
                 text = string.format("Grok-chan: Check %d/%d  %ds", b.check.count, CHECK_HITS,

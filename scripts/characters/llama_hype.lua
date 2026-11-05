@@ -1,6 +1,7 @@
 -- Tainted Llama: Still Waiting. Save up Hype, then spend it all on a short-lived
 -- helper that fires weak native tears. Fictional gameplay; no claim about any
 -- company's release plans. Saved per player: Hype and unique clears. The helper is transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -55,22 +56,29 @@ function Hype:Init(mod, Risk, Backlog)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isTainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, armed={}, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.llama_hype", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -147,7 +155,8 @@ function Hype:Init(mod, Risk, Backlog)
                 if helper.remaining <= 0 then b.helper = nil end
             end
             -- Spending all Hype replaces any helper and its remaining time.
-            if drop:Poll(p, s.hype > 0) then
+            if drop:Poll(p, s.hype > 0,
+                "No Hype yet") then
                 local per = p:HasCollectible(CollectibleType.COLLECTIBLE_BIRTHRIGHT) and BIRTHRIGHT_FRAMES or FRAMES_PER_HYPE
                 b.helper = {position=p.Position, remaining=s.hype * per, shot=0}
                 s.hype = 0
@@ -173,6 +182,7 @@ function Hype:Init(mod, Risk, Backlog)
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
         each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Llama-chan: Hype %d/%d", b.state.hype, HYPE_CAP)
             if b.helper then text = text..string.format("  Helper %ds", math.ceil(b.helper.remaining / 30)) end
             if b.helper and p.Position:Distance(b.helper.position) > OWNER_RANGE then text = text.."  Return to demo" end

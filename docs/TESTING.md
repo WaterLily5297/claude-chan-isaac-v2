@@ -2,6 +2,186 @@
 
 Current acceptance status is summarized in HANDOFF.md. Dated sections preserve their original evidence scope. The installed gameplay checkpoint is `ef7d2dded1f5d849c8a638a310074278a90e81c2`, including owner-approved B1 PR #102, O4 transformation costume restoration and O5 Death packing. On 2026-10-26, 443 prior allowlisted files were backed up and reread-hash verified before replacement; all 451 installed tracked files then matched canonical Git bytes. No files were removed. No game was launched or controlled, and saves, settings and other mods were untouched. The game was closed during installation. Preserve this manual-test checkpoint during offline follow-ups. Documentation sync #104 installed exact source `8fd6a8c8a543226f414a01c654ff1f85bde1214c` and independently reverified all 451 tracked files. The owner replied "not tested yet" for that build; source follow-ups preserve it. Installation and successful CI are not engine acceptance. The earlier f8b2b0b startup attempt remains historical in ENGINE_AUDIT_2026-10-26.md.
 
+## U6: Llama profile and four-direction carry (2026-10-31; offline)
+
+The [focused handoff](LLAMA_CARRY_PROFILES_2026-10-31.md) replaces thirty side-walking/carry cells on each normal and legacy-tainted Llama sheet. Genuine right-profile bodies and raised arms around a transparent face opening replace the old narrowed-front and face-covering parts. Two exact image-tool sources, actual prompts and reviewed packing anchors are recorded. Heads, front/back walking, Hit/Death/fallen and the other twenty skins remain unchanged.
+
+Source reconstruction, idempotence, legacy recolor equality, all-22 unchanged Hit and isolation checks pass. All eighty supplied carry keys keep the face strip clear, with both hands and no sampled clipping. Seven local source/pixel faults are rejected and restored controls pass. CI retains geometry/source-hash guards; private-animation previews use an explicit held-head assumption. Native animation, hurt/revival, item/costume effects and gameplay acceptance remain open. Installed `8fd6a8c` and PR #2 files are untouched; the approved distinct tainted design is still awaiting its separate production integration.
+
+## U4: Live Wire room-observation budget (2026-10-31; offline)
+
+The [performance follow-up](PERFORMANCE.md#live-wire-observation-budget-2026-10-31) replaces per-holder bullet sorting with an existence check and one callback-local room snapshot. A speed/cache refresh invalidates the snapshot before the next holder, preserving synchronous projectile changes. Radius, eligibility, cadence, speed and other sorted-bullet consumers remain unchanged.
+
+The full-entry suite preserves 22-form/co-op behavior, ten projectile exclusions, current spawner rules, removal/reacquisition, room replacement, detached Continue/restart and four cache-callback mutations. Six population cases bound stable queries and assert no queries without holders. Baseline behavior passes but its query budget fails; seven isolated source faults fail their intended checks. All 33 profiler scenarios complete, and existing Preview/backlog/lifecycle controls pass.
+
+For four stable holders, 180 updates now make 36 room queries instead of 144; the mixed-item workload makes 72 instead of 180. Interpreter heap measurements include fixture allocations and do not establish native FPS or retained memory. Native callbacks, projectile lifetime, crowded combat and long-run performance remain unaccepted. Installed `8fd6a8c`, artwork, private saves/settings and PR #2's files are unchanged. This section and PERFORMANCE supply the focused handoff pending consolidation.
+
+## U4/F23: stale meal-delay metadata (2026-10-31; offline)
+
+The [scheduled review](HARDENING_MEAL_MIGRATION_2026-10-31.md) reproduces an update arithmetic error when legacy or version-2 unowned meal timers contain a malformed leftover priorDelay. Normalization now discards that irrelevant field while retaining valid countdowns and serials. Owned Rice delay/cancellation rules, invalid-owned rejection, durations and rewards are unchanged.
+
+The actual-main suite covers sixteen migration/unowned cases, two independent Rice Cooker debts and one-time rewards on all 22 forms, valid owned delay restoration and foreign cooldown preservation. Baseline fails the migration and Rice Cooker selectors; the valid-owned selector passes before and after. An isolated control and five deliberate source faults validate the assertions. Existing O6, core-field and full-entry save composition cases still pass. These are supplied-event/table-codec results, not native Continue or JSON/disk acceptance.
+
+Recent profile sources, geometry, all-22 Hit cells and all nine approved tainted design hashes remain valid and unchanged. PR #2 files, installed 8fd6a8c, saves/settings and Workshop are untouched. The focused review supplies the handoff pending consolidation; broader nested-state/error isolation remains open.
+
+## U6: Grok/Qwen profiles and four-direction carry (2026-10-31; offline)
+
+[The focused handoff](GROK_QWEN_CARRY_PROFILES_2026-10-31.md) replaces foreground torsos that cover the face with side arms and a low torso. Four normal/legacy-tainted sheets each change exactly thirty side-walking/front-carry/side-carry cells. Heads, ordinary front/back walking, Hit/Death/fallen and the other eighteen skins remain unchanged. The geometry gate requires central face clearance and both raised hands, with the earlier GLM/GPT/Gemini contracts retained.
+
+Baseline reconstruction, idempotence, unchanged tainted-generator equality, all-22 Hit and isolation checks pass. All 160 supplied carry keys retain the central strip without sampled clipping. Seven local faults are rejected: face pixel, missing hand, head/fallen/front-walk edits, unrelated-family edit and source-hash mismatch; restored controls pass. Reconstruction/fault checks are local, while CI includes the geometry/source-hash gate. Carry-head holding remains a preview assumption.
+
+Other carry bodies, head views, special animations and native animation/gameplay acceptance remain open. All nine tainted designs stay approved, with production pending the PR #2 dependency. PR #2 files and installed 8fd6a8c are unchanged. This section and the focused document supply the handoff pending consolidation.
+
+## U6: GLM carry foreground clearance (2026-10-31; offline)
+
+[The focused follow-up](GLM_CARRY_CLEARANCE_2026-10-31.md) corrects a foreground body obscuring the face in the supplied carry composition. Repacking the unchanged source at one 11/392 scale keeps all carry cells at y>=13. Each normal/legacy-tainted GLM sheet changes exactly twenty side/carry cells; every head, front/back, Hit/Death/fallen pixel and the other twenty skins are unchanged. The selected central face band changes from 47-50 overlapping body pixels per key to zero under the explicit preview head-hold assumption.
+
+Source reconstruction, idempotence, existing tainted-generator equality, all-22 unchanged Hit and body-only isolation pass. The 22-form/45-key preview has no sampled clipping warnings and preserves mirrors and three GLM phases. Four local faults are rejected: fallen/head/unrelated-family pixel edits and repeated carry pixels crossing the face boundary; positives pass afterward. CI includes the existing geometry/source-hash gate with the GLM clearance setting, while these additional reconstruction/fault controls remain local.
+
+No native animation, input, costume, weapon, save or playability acceptance is claimed. Sources and prompts, PR #2 files, installed 8fd6a8c and private saves/settings are unchanged. This section and the focused record supply the handoff pending consolidation.
+
+## U6: GPT/Gemini profile and carry fit (2026-10-31; offline)
+
+[The focused handoff](GPT_GEMINI_PROFILE_POSES_2026-10-31.md) records two revised image-tool sources, actual prompts, per-family collar/ground fit and fixed-origin native-transform comparisons. Four normal/legacy-tainted sheets change exactly twenty side/carry cells each. All heads, front/back bodies, Hit/Death cells and the other eighteen skins remain pixel-identical to baseline.
+
+Baseline reconstruction, idempotence, unchanged tainted recolor generation, all-22 unchanged Hit checks and selected-family isolation pass. The 22-form/45-key preview has no sampled clipping warnings; the changed forms retain exact mirrored side compositions and three distinct phases. An initial larger carry fit covered the face in this offline composition. The final common scale preserves the face, with a new per-record y>=13 guard in the existing standard-library geometry gate. Explicit Gemini source rectangles prevent a boot being cut by an equal-width crop.
+
+Local negative controls reject invalid source hashes/dimensions, the clipped fixed-grid crop, an out-of-source crop, an unauthorized fallen edit, an unrelated GLM edit and repeated carry pixels entering the face clearance. Positive controls pass afterward. These additional reconstruction/fault checks are local; CI runs the existing full gate including geometry/source hashes. Carry-head holding is an explicit preview assumption, not native behavior acceptance.
+
+All nine tainted design approvals remain valid; these legacy recolors are not their production replacements. PR #2 files and installed 8fd6a8c are untouched. Native animation/input, costumes, weapons, size/flight, saves and playability remain open. This section and the focused document provide the handoff pending consolidation.
+
+## U4/F22: damaged core save fields (2026-10-31; offline)
+
+The [scheduled review](HARDENING_SAVE_SCALARS_2026-10-31.md) reproduces Continue/HUD/cache errors from successfully decoded but malformed Risk, shared-user and Silent Update values on `2da0add`. Loading now repairs each of the eight base scalar fields independently, preserving valid character/item maps and legacy inputs. The fixture covers 45 isolated invalid fields, valid bounds, missing/non-table payloads, decode/non-finite fault inputs, all 22 forms through Continue/update/render/cache/re-save and valid legacy Constitution/Claude migration. Old source fails the malformed-field and Continue selectors; the legacy control passes both versions. Eight isolated source faults are rejected. Existing Constitution ownership/body and save-barrier failure/retry controls still pass.
+
+This does not validate arbitrary nested save state, real JSON/disk recovery, native Continue or broad callback isolation. The related art review reconfirms the nine approved design-source hashes and GLM source-packing/Hit isolation; no art changes are included. Installed `8fd6a8c`, PR #2 files, private saves/settings and Workshop remain untouched. This section and the focused document supply the handoff pending consolidation.
+
+## U6: GLM profile, carry and fallen repair (2026-10-31; offline)
+
+[The focused handoff](GLM_PROFILE_POSES_2026-10-31.md) records two image-tool sources, exact prompts, reviewed collar/ground anchors and a native-transform before/after sheet. Each GLM form changes only ten side, ten carry-side and one fallen storage cell. The existing unchanged tainted generator supplies the old darkened variant; the approved white-haired tainted identity is still pending production.
+
+Repacking from the previous normal sheet matches current decoded pixels exactly and is idempotent; legacy tainted pixels match the unchanged generator. All 22 skins pass pose geometry and the dedicated unchanged-Hit comparison. Cross-family pixel isolation confirms other cells and skins unchanged. The standard-library CI geometry check now guards source hashes, three-phase repetition, profile gutters/ground/envelopes and a horizontal fallen envelope. Focused local checks reject changed source bytes, wrong atlas size, legacy art, an extra below-ground pixel, inconsistent repeated phases, a same-bounds Hit mutation, a head mutation and an unrelated-family mutation. Source reconstruction, isolation and private-animation previews are additional local checks, not part of CI.
+
+The 22-form/45-key preview retains all Hit envelopes; both GLM forms have exact mirrored side compositions, three distinct side phases and no sampled clipping warnings. The separate carry preview explicitly holds the native single-key head layer; native interpolation, held items, costumes, size/flight, hurt/death and shared special animations still require engine testing. Installed `8fd6a8c`, PR #2's files, settings and saves are untouched. This focused record supplies the handoff while HANDOFF/CHANGELOG consolidation remains deferred.
+
+## U6: nine tainted design sources approved (2026-10-31; offline)
+
+The owner approved all nine alternate illustrations after viewing the complete normal/candidate comparison. [The focused handoff](TAINTED_DESIGN_APPROVAL_2026-10-31.md) and [source registry](approved-tainted-designs.json) preserve the exact accepted PNGs, source hashes, approval scope and available actual prompt provenance. Kimi/GLM's unrecovered original requests are explicitly unavailable. Each published source was copied without pixel edits and reread-hash matched; all nine have RGBA transparency. Checker/light/dark browser inspection, all eighteen loaded images, enlarged-pair navigation and zero observed console errors support only the offline design review.
+
+The production resources, menu sheets, wrappers, runtime manifests and installed build are unchanged. The current tainted generator still darkens normal art; it overlaps open PR #2 and must be reconciled after that work resolves. Native sprites, layout/animation, hurt/death, item effects and gameplay acceptance are not established by illustration approval. This focused record provides the handoff while consolidated HANDOFF/CHANGELOG edits remain deferred.
+
+## U4/F21: Constitution owner and body continuity (2026-10-30; offline)
+
+The [Constitution follow-up](CONSTITUTION_OWNER_CONTINUITY.md) reproduces repeated pickup rewards, renewed spent shields and wrong final-save ownership on `b972330`. Atomic slot/body-group reconciliation now runs before effect/damage access and through SaveSync. Existing reward amounts, stats, legacy migration and shared/separate-body contracts remain; an unseen body moving without a known counterpart remains an explicit native identity boundary.
+
+Six actual-main four-owner update/direct/exit/Continue cases and a lifecycle case cover asymmetric applied/used bits, pending rewards, repeated saves, inventory changes, floor reset, wrapper/controller, replacement and departure. The focused body suite adds Jacob/Esau moves, hidden Lazarus pairs and Continue, known-counterpart discovery, body replacement, a claimed-slot join and both Forgotten aliases. Current controls pass; old source fails all four full-entry selectors and the body fixture, and eight isolated source faults fail their intended assertions. Native health/callback/body identity and actual save/Continue remain open. Installed `8fd6a8c` and PR #2's files are untouched; this record and the focused document are the handoff pending consolidation.
+
+## U4/G5: final ownership observation before save (2026-10-30; offline)
+
+The [scheduled save review](HARDENING_SAVE_BARRIER_2026-10-30.md) reproduces F20 on `cdd0a98`: moving owners immediately before serialization writes progress under the wrong slots. A transient named synchronizer now observes ownership before encoding; exit saves precede ordinary cleanup and floor checkpoints follow normal update settlement. Shared MemeState imports use one observer per Risk instance. Gameplay values, save versions and transient-attack policies are unchanged.
+
+The full-entry suite covers all 22 forms in 88 four-player direct/exit rotation-and-Continue scenarios, plus per-form identity/type boundaries, mixed meal/item ownership, separate meme imports, repeated saves, cap settlement, duplicate/non-saving exits and a failed hook followed by a single checkpoint retry. Old production fails every form's direct-save selector and the meme-import case; eight isolated source faults fail their intended assertions. A passing current-source control includes the complete suite. These are supplied-event offline results, not native save acceptance.
+
+Constitution's custom body-key map is outside this registry and requires a separate reproduced ownership review. Native player lifetime, special bodies, callback/cleanup order, actual Continue and broader failure isolation remain open. Installed `8fd6a8c` and PR #2's files are untouched; this record and the focused review provide the handoff while HANDOFF/CHANGELOG consolidation is deferred.
+
+## U5/G4: all-form Birthright timing (2026-10-30; offline)
+
+The [full-entry timing matrix](BIRTHRIGHT_FULL_ENTRY.md) adds 22 duplicate-form cases through actual main.lua. Opposite owner inventories change while Reviews, meals, marks, checks, quotes, installations, helpers, charge/recovery phases, presentations, tasks and passes are pending. Assertions cover exact selected deadlines, live caps/thresholds/cache coefficients, activation costs, emitted effects and one-time completion rewards. Existing snapshot-versus-live policies and all gameplay values remain unchanged.
+
+The unchanged-source control passes. Six deliberately faulty isolated copies fail the intended assertions: renewing a spent age shield, sampling Review inventory too early, resizing a bought chain, caching Fine-tune awards, using a teammate's Release inventory and revoking a room-bound Apology token. This is new regression coverage, not six discovered bugs. Actual pickup/reroll, native cache scheduling, special bodies, save/Continue at these boundaries and rendering remain unaccepted. Installed `8fd6a8c` is untouched; this record and the focused matrix provide the handoff while PR #2 prevents consolidated HANDOFF/CHANGELOG edits.
+
+## U3/U4/G3: character state follows observed owners (2026-10-30; offline)
+
+[Character slot continuity](CHARACTER_SLOT_OWNERS.md) reproduces resource resets on all 21 previously slot-bound forms (normal Rice already passes): a same-owner move could reset Credits, age, cooldowns and pending bindings. Atomic remapping now preserves each continuously observed pointer/seed's state, including Claude's paid volley, while actual replacements and observed departures remain fresh-owner boundaries.
+
+All 22 forms have duplicate/mixed four-player moves, pause, wrapper/controller, departure/join, pointer/seed/type replacement and observed-move-before-Continue cases through main.lua. Seventeen actual ability timelines compare moved and stationary owners for 300 frames each, with explicit positive controls. Baseline fails each changed form; seven intentional production faults fail the intended assertions. Older Claude/GPT/Grok swap-reset expectations are explicitly superseded by the owner-delegated continuity rule, while their replacement tests remain.
+
+Native special-body identity, Flip/revival, callbacks before the next rebind, real save/exit order, rendering and both engine versions remain unaccepted. This does not close S1-S4 or E2-E6. Installed `8fd6a8c` and PR #2's files remain untouched; the focused record is this unit's handoff pending consolidated HANDOFF/CHANGELOG updates.
+
+## U5/G6: quiet DROP refusal cues (2026-10-30; offline)
+
+[DROP_REFUSALS.md](DROP_REFUSALS.md) records the owner-delegated choice and current per-form conditions. Refused taps show one English line for 45 frames in the tapping player's existing HUD band; no shared caption, sound or extra row. A separate feedback observer preserves the original action cancellation rules, costs, cooldowns and native pocket/hold ownership.
+
+New coverage exercises 49 four-player refusal cases through main.lua, 44 all-form multi-pocket/long-hold cases, mixed-family isolation, accepted Qwen/target actions, detached saves and room/Continue cleanup. Direct observer cases cover eligibility changes during a held gesture, duplicate frames, controls, ghosts, identity changes, expiry and repeated refusal/success. The existing DROP contract suite remains unchanged. Physical input, native timing/fonts, HUD corners and actual Continue are still E4/E5 work. Installed `8fd6a8c` is preserved; this record and the focused refusal document are the handoff while PR #2 prevents HANDOFF/CHANGELOG consolidation.
+
+## U3/U4: active target composition review (2026-10-30; offline)
+
+The [scheduled target-ability review](HARDENING_TARGET_COMPOSITION_2026-10-30.md) reproduces F19: a backlog replacement's global recursion guard skipped an independent tainted-Gemini Export pulse's item modifier (`11.34` instead of `15.309`). A source/target-scoped guard now restores nested state even on errors, while explicit common pulses retain their exemption. The new suite runs 25 two-owner weapon/active-loop cases, an actual Retry pair and supplied nested/error controls through main.lua. Old production and six isolated production/fixture faults are rejected.
+
+The fixture now supplies distinct room SpawnSeeds instead of changing only SafeGridIndex. This models room identities, not the engine's seed formula. Native callback order, event identity, all active phases and real Continue remain unaccepted. Installed `8fd6a8c` and PR #2's files are unchanged; this focused review is the handoff until HANDOFF/CHANGELOG consolidation can proceed.
+
+## U3/G2: full entry-point primary weapons (2026-10-30; offline)
+
+The [full weapon matrix](FULL_MOD_WEAPON_COMPOSITION.md) adds 176 two-owner cases across all 22 forms and eight supplied weapon categories, plus eight earned Rice/Thought compositions. A four-owner primary-beam regression reproduces and fixes tainted DeepSeek's later primary beam losing its paid window bonus or keeping an old bonus at an unaffordable boundary. The optional sharing hook copies the existing decision without another payment or a renewed deadline. Old main and four isolated faults fail the intended assertions.
+
+Exact source/window bills, hit composition, exhaustion, owner replacement, pause, room reset and detached save controls are offline only. This does not change child-laser classification/billing policy or accept native E2, all active loops, ancestry, weapon physics or Continue. Installed `8fd6a8c` is preserved; HANDOFF/CHANGELOG consolidation remains deferred because of open PR #2.
+
+## U3/G2: full entry-point ordinary primary attacks (2026-10-30; offline)
+
+The [full-main primary matrix](FULL_MOD_PRIMARY_COMPOSITION.md) covers 22 duplicate-form pairs, an earned Thought/Cooker case, five synchronous One More Finger helper cases and 88 mixed two-owner inventories. Actual fire/update/hit callbacks check resolved damage, raw forks, Context aging, owner-specific resource payments, Opus charges and removal/room cleanup. Four isolated source faults fail the intended assertions. No production defect or gameplay change is claimed.
+
+The fixture now supplies typed raw tears and distinct raw-Spawn/synchronous-FireTear paths. Those event contracts, projectile properties and RNG are modeled inputs. Native weapon physics, callback ancestry, all active loops and engine acceptance remain open; E2 still gates child-billing changes. Installed `8fd6a8c` is preserved.
+
+## U3/W4.4: full entry-point cache mixtures (2026-10-30; offline)
+
+The [full-main cache matrix](FULL_MOD_CACHE_COMPOSITION.md) loads actual form and item modules. It covers 46 initial-form arithmetic/wallet cases, a native-input/removal control and 176 two-owner inventory cases (22 holding all 80 IDs, 154 sampled). Repeated evaluation, partner isolation, inventory replacement/removal, flight, flags and colour are checked. Four deliberate source faults fail the intended assertions; no new production bug or value change is claimed.
+
+The full-entry fixture now supplies the formerly omitted tear-flag cache branch. Native stats, full cache evaluation and inventory changes remain fixture inputs; actual invalidation, firing, damage, item activation, later form phases and native reroll/Continue are not accepted. U3 and character completion remain open. Installed `8fd6a8c` is preserved.
+
+## U4: full entry-point save composition (2026-10-30; offline)
+
+The [scheduled integration review](HARDENING_SAVE_COMPOSITION_2026-10-30.md) runs actual `main.lua` and all production modules through detached snapshot save/Continue cases: 22 form/item pairs, a four-owner Rice/Cooker rotation, an actual Kimi task budget, same-session Continue/fresh-start controls and a runtime-object rejection control. Distinct item choices, pending rewards and meal locks restore; Preview markers and explicitly transient task/room effects do not. Five isolated source faults fail the intended assertions. No new production defect or balance change is claimed.
+
+The codec and startup order are supplied offline inputs. Native serialization, callbacks, inventory, weapons, special subplayers, unobserved slot changes before saving and all-form gameplay/Continue acceptance remain open. The existing update-budget suite remains active. Installed `8fd6a8c` is preserved, and HANDOFF/CHANGELOG consolidation remains deferred while their files overlap open PR #2.
+
+## U4: full entry-point update budget (2026-10-30; offline)
+
+The [performance workload](PERFORMANCE.md) loads real `main.lua` and all production modules. The new gate fixture checks 22 idle forms, one/four Preview holders with 0/12/96 enemies, target/lifecycle controls and a four-form mixed inventory with actual Kimi/GLM scheduled damage. The exported `1e20c4c` Gemini module fails the query budget but passes the behavior controls. Preview now shares one enemy enumeration per five-frame refresh across owners/markers; no list is retained between callbacks. Four holders over 180 supplied updates reduce room scans from 288 to 36.
+
+The profiler records 27 workloads and instrumented allocation/time with explicit limits. Native AI/physics/rendering, all weapon callbacks, actual frame rate, optional-mod interactions and full combat/performance acceptance remain open. No installed file changes are made.
+
+## U4/O6/F18: Rice and shared-meal ownership (2026-10-30; offline)
+
+The [O6 identity fixture](O6_RICE_MEAL_IDENTITY.md) initializes real Risk, MealBreak and Rice/Thought callbacks with detached snapshot serialization. Baseline `941b4af` independently loses meal debt and Rice progress when the same live players change slots. The corrected binders preserve their own state and transient clocks through an atomic map rebuild; actual replacements still start fresh.
+
+Eight supplied scenarios cover three/four-player moves, pause, owned cancellation/refund, foreign cooldowns, controller/type changes, departure/replacement, reordered saves, both restart styles, version-1 migration and knife-flight exit cleanup. Runtime objects are rejected from the exercised save snapshot. Native identity, serializer, callback/save ordering, continued weapons and special subplayers remain open; no all-form O6 or engine acceptance is claimed. Installed `8fd6a8c` is preserved.
+
+## U3/F17: Rate-Limit Valve inventory loss (2026-10-30; offline)
+
+The [inventory-loss fixture](VALVE_REMOVAL.md) reproduces an unspent passive bonus surviving removal on baseline `359665e`, both with an update and when the next event is an attack. Six scenarios check cleanup, the attack-time ownership guard, remaining copies, another holder, resolved same-frame/in-flight attacks, an independent completed Rice Cooker reward and reacquisition under the existing idle threshold. The fixture uses real backlog modules with supplied inventory, attack and damage events.
+
+Native D4/D100/Clicker/Genesis timing, charged/controlled weapons and real Continue remain unverified. No active reward is newly tied to item ownership, and no save or installed file changes are made. The earlier DeepSeek composition matrix remains active.
+
+## U3/F16: DeepSeek, meals and backlog composition (2026-10-30; offline)
+
+The [scheduled integration review](HARDENING_2026-10-30.md) loads real MealBreak, all backlog modules, DeepSeek base stats, Rice First/Thought and Peak/Valley callbacks. Twelve seeded four-player scenarios check independent locks, character-meal cancellation/refund, active completion, inventory removal, same-frame Thought/Compute payment, nested item/knife damage, both scheduled phases and room cleanup. Native APIs, event order and weapon states are supplied; this is not all-form or engine acceptance.
+
+F16 fails on baseline `6af1bc7`: a death-cancelled Rice Cooker meal grants the unfinished reward. The correction clears the pending flag without granting a new prime. Controls preserve completed rewards and prevent an already earned prime being refreshed by another cancelled meal. Real Continue, native revival and the separate unspent Rate-Limit Valve removal candidate remain open.
+
+## U4: optional EID isolation (2026-10-30; offline)
+
+The [EID isolation regression](EID_ISOLATION.md) reproduces optional registration errors escaping the adapter on baseline `4fadee1`. The source fix skips failed descriptions while retaining healthy entries and completing the rest of `main.lua`. Cases cover malformed globals, partial APIs, lookup/call errors, one rejected collectible and bounded startup diagnostics. The existing EID content assertions remain unchanged; the full entry-point smoke fixture runs with an injected external error and requires its final callback registration.
+
+This proves only the supplied API boundary. Native startup with EID absent/present, description rendering, external side effects and late-loading integrations remain open. Other production modules, actual saves and installed `8fd6a8c` are unchanged.
+
+## U3: All Tests Passing in Greed modes (2026-10-30; offline)
+
+`tests/door_safety_test.lua` reproduces an uncleared ordinary room being force-cleared by All Tests Passing on main `9888186` with a supplied true `Game:IsGreedMode()` result. The guard now refuses while the room is uncleared, retaining the item and charge request and showing the existing required-review caption. The expanded fixture covers repeated attempts, ordinary/boss rooms, no `SetClear` call or door mutation on refusal, cleared-room use, special-exit preservation, and a later ordinary-mode use. The Greed/Greedier labels both supply the same documented boolean; they are not two engine runs.
+
+Native checks remain open: in both Repentance and Repentance+, use the item during Greed and Greedier waves, between waves and after the arena is cleared. Check actual charge retention, continued waves/rewards, no premature doors, and ordinary-room use in a later normal run. Native `IsClear()` timing between waves is not modeled. See [the focused handoff](GREED_CLEAR_SAFETY_2026-10-30.md). The installed checkpoint remains unchanged.
+
+## U3/G7: Agentic and fixed-look composition (2026-10-30; offline)
+
+The [shared-service composition fixture](AGENTIC_COSTUME_COMPOSITION.md) runs the real backlog, Agentic transformation and costume-lock callbacks across 264 seeded four-slot cases covering all 22 registered normal/tainted IDs. It checks distinct-item thresholds, finite and repeatable cache rebuilding, independent native flight, size preservation, vanilla costume controls, type departure/return, inventory removal and room-state cleanup. Three injected source faults fail the intended assertions.
+
+The fixture does not load family-specific ability callbacks or the non-backlog individual item modules, and its native flight/delay/scale values are supplied inputs. It therefore does not establish full item/character combinations, no double billing, no stuck shooting locks or native visual/gameplay acceptance. See the record for commands and exact limits. The existing gate automatically includes the new Lua test.
+
+## U3: seeded backlog cache mixtures (2026-10-30; offline stub)
+
+`backlog_seeded_compatibility_test.lua` samples 32 fixed seeds, with two owners and inventory sets drawn from all 80 registered collectible IDs. It loads the real backlog service/family modules, evaluates damage, speed, range and shot-speed caches, dispatches three updates and one supplied ordinary tear hit per owner, then removes inventory before a room transition. The matrix checks finite stats, baseline cache restoration and cleared room-scoped backlog data. The fixture passed under `texlua`.
+
+This is not a 22-form integration test: it does not load character callbacks or the non-backlog item modules. It does not prove no double billing, release every character shooting lock, or define persistence for every item after removal. Focused existing suites cover selected real-module billing/lifecycle rules; all native timing, damage and visual checks remain open. PR #2's pedestal, trinket and dossier appearance is still untested by the owner.
+
 ## W1.3 batch 06: ten original item icons (2026-10-27; offline)
 
 [Batch 06](ITEM_ART_BATCH_06.md) replaces ten Doubao/Kimi/GLM placeholders with original object drawings, explicit palettes/provenance and deterministic hashes. Initial/final 1x/4x sheets were viewed on light/dark fields. Fly wings and gear teeth were separated; the existing margin check caught a projection-foot edge contact, corrected before the final generation and review. Names, effects and registration remain unchanged.
@@ -432,6 +612,8 @@ When engine testing resumes, give a holder The Battery and an ordinary room-char
 ## CONSTITUTION-COOP-01: independent holders (offline passed; engine pending)
 
 `tests/constitution_players_test.lua` exercises the real item callbacks with two holders. Main `9805683` fails both reward and shield isolation. The fixture preserves independent consumed bits through a detached save/load, models Risk loading after Constitution's start callback, resets only shields on new floors, and tests live slot replacement, legacy migration, ghost/death and excluded damage. Ten injected faults independently fail. Normal/tainted Forgotten fixtures share their root holder's reward and shield. Tainted Lazarus fixtures alternate active entities, revisit both consumed bodies, continue, expose a Birthright twin and migrate a hidden body. The initial candidate failed the Flip-back regression before this correction. This is not native JSON, health or callback-order acceptance. API reference: [EntityPlayer.GetSubPlayer](https://wofsauge.github.io/IsaacDocs/rep/EntityPlayer.html#getsubplayer).
+
+Jacob and Esau are additionally modeled as separate slots (player IDs 0 and 1 in the official API) with reciprocal `GetOtherTwin` links. The fixture confirms independent pickup and floor shield state; it does not settle native pickup-health behavior. See [Isaac.GetPlayer](https://wofsauge.github.io/IsaacDocs/rep/Isaac.html#getplayer) and [EntityPlayer.GetOtherTwin](https://wofsauge.github.io/IsaacDocs/rep/EntityPlayer.html#getothertwin).
 
 In a muted disposable run, give The Constitution to two players: each eligible holder gets one soul heart once per run and independently blocks the first ordinary hit each floor with hurt invincibility. The second hit on each must damage normally; dropping/regaining the item must not farm hearts. Save with one shield spent and the other unused, fully close, continue, and check both separately. Next floor rearms both but grants no new hearts. Test ordinary co-op, join/replacement, death/revival, Jacob/Esau, both Lazarus forms (repeated Flip, with/without Birthright, after continue and legacy migration) and normal/tainted Forgotten/Soul identities. With an old shared-state save, existing consumed bits are inherited conservatively by players present during migration; a later new player starts independently. Verify IV Bag, blood donation, fake/no-penalty hits, shield ordering and native soul-heart restrictions/conversions.
 

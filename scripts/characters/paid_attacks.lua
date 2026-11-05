@@ -36,7 +36,7 @@ local function ludovico(entity)
         and entity:HasTearFlags(TearFlags.TEAR_LUDOVICO) or false
 end
 
-function Paid.Observe(mod, pay, ignoreLaser)
+function Paid.Observe(mod, pay, ignoreLaser, shareLaserWindow)
     -- Entity-local, transient identity per subscriber. A shared marker lets
     -- Opus consume the event before character meters, even without the item.
     local key = {}
@@ -52,9 +52,16 @@ function Paid.Observe(mod, pay, ignoreLaser)
         if not p then return end
         local now, pointer = Game():GetFrameCount(), GetPtrHash(p)
         local last = windows[pointer]
-        if last and now >= last and now - last < WINDOW then return end
-        windows[pointer] = now
-        pay(p, entity)
+        if not last or now < last.frame or now - last.frame >= WINDOW then
+            last = {frame=now}
+            windows[pointer] = last
+            last.decision = pay(p, entity)
+        end
+        -- Optional effect sharing is separate from payment. Only eligible
+        -- primary held lasers reach this hook; each subscriber owns its result.
+        if shareLaserWindow and entity.Type == EntityType.ENTITY_LASER then
+            shareLaserWindow(p, entity, last.decision)
+        end
     end
     local function once(entity, p)
         local data = entity:GetData()

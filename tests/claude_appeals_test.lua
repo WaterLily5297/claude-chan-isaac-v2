@@ -8,7 +8,7 @@ local paused=false
 EntityFlag={FLAG_FRIENDLY=1}
 function EntityPtr(e) return {Ref=e} end
 local function pos(x) return {X=x,Y=0,Distance=function(self,o) return math.abs(self.X-o.X) end} end
-local C = {Player={CLAUDE_CHAN=41}, Item={BAN_HAMMER=733, SUBAGENT_SWARM=745}}
+local C = {RISK_MAX=100,Player={CLAUDE_CHAN=41}, Item={BAN_HAMMER=733, SUBAGENT_SWARM=745}}
 local Hud = {T=function(_,key,...) return key..":"..table.concat({...},",") end,
     Draw=function(_,text) draws[#draws+1]=text end}
 function include(name)
@@ -53,7 +53,7 @@ local function player()
     end
     return p
 end
-Isaac={GetPlayer=function(i) return players[i+1] end, GetScreenHeight=function() return 270 end, GetRoomEntities=function() return enemies end}
+Isaac={GetPlayer=function(i) return players[i+1] end, GetScreenHeight=function() return 270 end, GetScreenWidth=function() return 480 end, GetRoomEntities=function() return enemies end}
 function Game() return {GetNumPlayers=function() return #players end,
     GetFrameCount=function() return frame end, IsPaused=function() return paused end,
     GetRoom=function() return {IsClear=function() return clear end} end,

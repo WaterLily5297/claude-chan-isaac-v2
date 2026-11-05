@@ -1,6 +1,7 @@
 -- Tainted Qwen: Final Final Fine-Tune. Pick a build between fights; clearing rooms
 -- with all three builds earns a floor bonus. The joke is community enthusiasm for
 -- variants and derivatives, not a claim that any product is copied. Saved per player.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -63,23 +64,30 @@ function FineTune:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isTainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
-                if all[key].version == 1 then all[key].version = 2; all[key].pinned = 0 end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if s.version == 1 then s.version = 2; s.pinned = 0 end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, armed={}}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.qwen_finetune", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -140,9 +148,10 @@ function FineTune:Init(mod, Risk)
             if p:IsDead() then drop:Forget(p); return end
             if combat then b.armed[room] = true end
             -- A new choice commits to two new combat clears, even in safe rooms.
-            if drop:Poll(p, not combat) then
+            if drop:Poll(p, not combat,
+                "Change build between fights") then
                 if s.pinned > 0 then
-                    Game():GetHUD():ShowItemText("Qwen-chan", "Pinned: clear "..s.pinned.." new combat rooms")
+                    drop:Refuse(p, "Pinned: clear "..s.pinned.." new rooms")
                 else
                     s.build = s.build % #BUILDS + 1; s.pinned = PIN_CLEARS
                     refresh(p)
@@ -184,7 +193,8 @@ function FineTune:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = string.format("Qwen-chan: %s  Variants %d/%d  Awards %d/%d", BUILDS[s.build].name,
                 count(s.used), #BUILDS, s.awards, AWARD_CAP)

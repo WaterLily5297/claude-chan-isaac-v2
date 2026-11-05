@@ -5,6 +5,7 @@
 -- last: damage x0.9. And it is a long document: speed -0.1.
 
 local Constants = include("scripts.constants")
+local SaveSync = include("scripts.save_sync")
 
 local Constitution = {}
 
@@ -17,7 +18,7 @@ local SELF_INFLICTED = DamageFlag.DAMAGE_IV_BAG | DamageFlag.DAMAGE_RED_HEARTS |
 local REFUSED_COOLDOWN = 60
 
 function Constitution:Init(mod, Risk)
-    local started, bindings = false, {}
+    local started, slots, boundMap, boundCount = false, {}, nil, 0
     local function active(player)
         return player and not player:IsDead()
             and not (player.IsCoopGhost and player:IsCoopGhost())
@@ -68,9 +69,100 @@ function Constitution:Init(mod, Risk)
         end
         return all.players
     end
+    local function identity(player)
+        return tostring(GetPtrHash(player)) .. ":" .. tostring(player.InitSeed)
+    end
+    local function otherBody(player)
+        local twin = lazarus(player) and player.GetOtherTwin and player:GetOtherTwin()
+        if twin and lazarus(twin) then return twin end
+    end
+    local function observe(all)
+        local count = Game():GetNumPlayers()
+        local initial = boundMap ~= all
+        local changed = initial or count ~= boundCount
+        if not changed then
+            for i = 0, count - 1 do
+                local p, old = Isaac.GetPlayer(i), slots[tostring(i)]
+                local twin = otherBody(p)
+                if not old or old.pointer ~= GetPtrHash(p) or old.seed ~= p.InitSeed
+                    or old.body ~= lazarus(p)
+                    or old.twinPointer ~= (twin and GetPtrHash(twin))
+                    or old.twinSeed ~= (twin and twin.InitSeed)
+                    or old.twinBody ~= (twin and lazarus(twin)) then
+                    changed = true; break
+                end
+            end
+        end
+        if not changed then return end
+
+        -- Move a whole slot's body records atomically. A known inactive Lazarus
+        -- body can identify its group too; ordinary twins never share a group.
+        local known, groups, rows, claimed = {}, {}, {}, {}
+        if not initial then
+            for key, old in pairs(slots) do
+                for _, id in pairs(old.owners) do known[id] = key end
+            end
+        end
+        for key, value in pairs(all) do
+            local slot, suffix
+            if type(key) == "string" then slot, suffix = key:match("^(%d+)(.*)$") end
+            if slot then
+                groups[slot] = groups[slot] or {}
+                groups[slot][suffix] = value
+            end
+        end
+        for i = 0, count - 1 do
+            local p = Isaac.GetPlayer(i)
+            local twin = otherBody(p)
+            local source = known[identity(p)] or (twin and known[identity(twin)])
+            local row = {player=p, twin=twin, key=tostring(i), body=lazarus(p)}
+            if source and not claimed[source] then row.source=source; claimed[source]=true end
+            rows[#rows + 1] = row
+        end
+        for _, row in ipairs(rows) do
+            if not row.source and not claimed[row.key] then
+                local old = not initial and slots[row.key]
+                -- Keep lazy first-Flip/legacy adoption in an unclaimed slot. Its
+                -- identity is ambiguous if an unseen body also moves. It cannot
+                -- steal a group whose known owner has moved elsewhere.
+                if initial or (old and old.body and row.body and old.body ~= row.body
+                    and not old.owners[":" .. row.body]) then
+                    row.source=row.key; claimed[row.key]=true
+                end
+            end
+        end
+
+        local nextAll, nextSlots = {}, {}
+        for _, row in ipairs(rows) do
+            local old = not initial and row.source and slots[row.source]
+            local owners = {}
+            if old then for suffix, id in pairs(old.owners) do owners[suffix]=id end end
+            for suffix, value in pairs((row.source and groups[row.source]) or {}) do
+                nextAll[row.key .. suffix] = value
+            end
+            local function bindBody(p)
+                local key, id = keyFor(row.key, p), identity(p)
+                local suffix = key:sub(#row.key + 1)
+                local s = nextAll[key]
+                if owners[suffix] and owners[suffix] ~= id then s = nil end
+                if type(s) ~= "table" then s = {applied=false, used=false} end
+                s.applied, s.used = s.applied == true, s.used == true
+                nextAll[key], owners[suffix] = s, id
+            end
+            bindBody(row.player)
+            if row.twin then bindBody(row.twin) end
+            nextSlots[row.key] = {pointer=GetPtrHash(row.player), seed=row.player.InitSeed,
+                body=row.body, owners=owners, twinPointer=row.twin and GetPtrHash(row.twin),
+                twinSeed=row.twin and row.twin.InitSeed, twinBody=row.twin and lazarus(row.twin)}
+        end
+        for key in pairs(all) do all[key]=nil end
+        for key, value in pairs(nextAll) do all[key]=value end
+        slots, boundMap, boundCount = nextSlots, all, count
+    end
     local function state(player)
         if not started then return end
         local all = states()
+        observe(all)
         for i = 0, Game():GetNumPlayers() - 1 do
             local p = Isaac.GetPlayer(i)
             -- The Forgotten's Soul is a subplayer with shared inventory, not
@@ -83,14 +175,10 @@ function Constitution:Init(mod, Risk)
             if GetPtrHash(p) == GetPtrHash(player)
                 or (sub and GetPtrHash(sub) == GetPtrHash(player)) then
                 local key = keyFor(i, p)
-                local previous, s = bindings[key], all[key]
-                if previous and (previous.pointer ~= GetPtrHash(p) or previous.seed ~= p.InitSeed) then
-                    s = nil -- A replacement in a live slot cannot inherit a departed holder's reward.
-                end
+                local s = all[key]
                 if type(s) ~= "table" then s = {applied = false, used = false} end
                 s.applied, s.used = s.applied == true, s.used == true
                 all[key] = s
-                bindings[key] = {pointer = GetPtrHash(p), seed = p.InitSeed}
                 return s
             end
         end
@@ -98,14 +186,19 @@ function Constitution:Init(mod, Risk)
     mod:AddCallback(ModCallbacks.MC_POST_GAME_STARTED, function()
         -- Constitution registers before Risk. Read saved state lazily, after
         -- Risk's GAME_STARTED callback has loaded or reset the run.
-        started, bindings = true, {}
+        started, slots, boundMap, boundCount = true, {}, nil, 0
     end)
     mod:AddCallback(ModCallbacks.MC_PRE_GAME_EXIT, function()
-        started, bindings = false, {}
+        started, slots, boundMap, boundCount = false, {}, nil, 0
+    end)
+    SaveSync.Register(Risk, "constitution", function()
+        if started then observe(states()) end
     end)
     mod:AddCallback(ModCallbacks.MC_POST_NEW_LEVEL, function()
         if not started then return end
-        for _, s in pairs(states()) do
+        local all = states()
+        observe(all)
+        for _, s in pairs(all) do
             if type(s) == "table" then s.used = false end
         end
     end)

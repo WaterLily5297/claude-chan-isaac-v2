@@ -1,5 +1,6 @@
 -- Normal Gemini: Nano Banana / One More Edit. Paint marks and banana peels.
 -- Saved per-player Paint and unique clears. The live mark and peel are transient.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -58,23 +59,29 @@ function Gemini:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isGemini(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, armed={}, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                -- A character change discards Gemini's Paint instead of transferring it.
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.gemini_paint", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isGemini(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -142,13 +149,16 @@ function Gemini:Init(mod, Risk)
                     if b.mark.remaining <= 0 then b.mark = nil end
                 end
             end
-            if drop:Poll(p, s.paint > 0) then
+            if drop:Poll(p, s.paint > 0,
+                "No Paint left") then
                 local target = Tools.Nearest(p.Position, MARK_RADIUS)
                 -- No target means no Paint is spent. A new mark replaces the old one.
                 if target then
                     s.paint = s.paint - 1
                     b.mark = {ref=EntityPtr(target), hash=GetPtrHash(target), remaining=MARK_FRAMES}
                     Game():GetHUD():ShowItemText("Gemini-chan", "Wet paint: wait one second")
+                else
+                    drop:Refuse(p, "No target in range")
                 end
             end
         end)
@@ -202,7 +212,8 @@ function Gemini:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local text = string.format("Gemini-chan: Paint %d/%d", b.state.paint, PAINT_CAP)
             if b.mark then
                 local drying = b.mark.remaining - (MARK_FRAMES - DRY_FRAMES)

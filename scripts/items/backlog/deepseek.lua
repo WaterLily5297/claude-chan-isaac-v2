@@ -48,7 +48,9 @@ function DeepSeek:Init(mod, Risk, C, MealBreak)
                 d.riceMeal = nil
                 local s = C.Peek(p)
                 if s then s.riceCooker = nil end
-                C.Prime(p, "rice", 2, RICE_WINDOW)
+                -- MealBreak also clears its timer on death. Cancellation is
+                -- not completion and must not bank a reward for revival.
+                if not p:IsDead() then C.Prime(p, "rice", 2, RICE_WINDOW) end
             end
             C.Label(p, "rice", C.Primed(p, "rice") and "Rice: 2x ready" or nil)
         end

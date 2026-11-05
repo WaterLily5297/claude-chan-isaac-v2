@@ -1,6 +1,7 @@
 -- Normal Llama: Please Stay Open. Spend a Release to share blue flies.
 -- Fictional gameplay; no claim about any company's future release policy.
 -- Saved per player; duplicate Llamas own separate budgets.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -53,22 +54,29 @@ function Llama:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isLlama(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, armed={}}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.llama_release", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isLlama(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -129,9 +137,10 @@ function Llama:Init(mod, Risk)
             observeFloor(b)
             if p:IsDead() then drop:Forget(p); return end
             if combat then b.armed[room] = true end
-            if drop:Poll(p, s.releases > 0) then
+            if drop:Poll(p, s.releases > 0,
+                "No Releases left") then
                 if combat then
-                    Game():GetHUD():ShowItemText("Llama-chan", "Prepare the release between fights")
+                    drop:Refuse(p, "Release between fights")
                 else
                     s.releases = s.releases - 1
                     release(p)
@@ -162,7 +171,8 @@ function Llama:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s = b.state
             local text = string.format("Llama-chan: Releases %d/%d  Next %d/%d", s.releases, RELEASE_CAP,
                 s.clears, CLEARS_PER_RELEASE)

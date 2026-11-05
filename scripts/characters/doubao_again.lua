@@ -1,6 +1,7 @@
 -- Tainted Doubao: I'll Do It Again. An overpromise/recovery cycle: Confident,
 -- then Apology, then ready to promise again. Timers run only in hostile combat.
 -- Saved per player: the current phase and its remaining frames.
+local SaveSync = include("scripts.save_sync")
 local HudText = include("scripts.hud_text")
 local HudLayout = include("scripts.hud_layout")
 local DropTap = include("scripts.characters.drop_tap")
@@ -43,22 +44,29 @@ function Again:Init(mod, Risk)
             local p, key = Isaac.GetPlayer(i), tostring(i)
             local pointer, previous = GetPtrHash(p), slots[key]
             if isTainted(p) then
-                if previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
-                    or previous.kind ~= p:GetPlayerType()) then all[key] = nil end
-                if not valid(all[key]) then all[key] = fresh() end
                 local b = bindings[pointer]
-                if not b or b.seed ~= p.InitSeed or b.slot ~= key then
+                local sameOwner = b and b.seed == p.InitSeed
+                -- Read the old slot before rebuilding the map: cyclic moves
+                -- retain this owner's saved progress and transient ability.
+                local s = all[sameOwner and b.slot or key]
+                if not sameOwner and previous and (previous.pointer ~= pointer or previous.seed ~= p.InitSeed
+                    or previous.kind ~= p:GetPlayerType()) then s = nil end
+                if not valid(s) then s = fresh() end
+                if not sameOwner then
                     b = {seed=p.InitSeed, slot=key, frame=Game():GetFrameCount()}
                 end
-                b.state = all[key]; nextBindings[pointer] = b
-            else
-                all[key] = nil
+                b.slot = key; b.state = s; nextBindings[pointer] = b
             end
             nextSlots[key] = {pointer=pointer, seed=p.InitSeed, kind=p:GetPlayerType()}
         end
-        for key in pairs(all) do if not nextSlots[key] then all[key] = nil end end
+        for key in pairs(all) do all[key] = nil end
+        for _, b in pairs(nextBindings) do all[b.slot] = b.state end
         bindings, slots = nextBindings, nextSlots
     end
+    SaveSync.Register(Risk, "character.doubao_again", function()
+        if ready then bind() end
+    end)
+
     local function binding(p)
         if not ready or not isTainted(p) then return end
         local b = bindings[GetPtrHash(p)]
@@ -127,7 +135,8 @@ function Again:Init(mod, Risk)
                     end
                 end
             end
-            if drop:Poll(p, s.phase == nil) then
+            if drop:Poll(p, s.phase == nil,
+                s.phase == "confident" and "Already Confident" or "Still recovering") then
                 s.phase = "confident"; s.remaining = CONFIDENT_FRAMES
                 Game():GetHUD():ShowItemText("Doubao-chan", "Leave it to me!")
                 refresh(p)
@@ -163,7 +172,8 @@ function Again:Init(mod, Risk)
         if not ready then return end
         if Game():IsPaused() then drop:Reset() end
         if not Game():GetHUD():IsVisible() or not next(bindings) then return end
-        each(function(_, b, i)
+        each(function(p, b, i)
+            if drop:DrawRefusal(p, HudText, HudLayout, i) then return end
             local s, text = b.state, "Doubao-chan: Ready to promise"
             if s.phase == "confident" then text = string.format("Doubao-chan: Confident %ds  Clear -> Apology", math.ceil(s.remaining / 30))
             elseif s.phase == "apology" then text = string.format("Doubao-chan: Apology %ds", math.ceil(s.remaining / 30)) end

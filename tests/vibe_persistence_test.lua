@@ -5,7 +5,7 @@ local risk = { state = {} }
 local mod = { AddCallback = function(_, id, fn) callbacks[id] = fn end }
 function mod:AddPriorityCallback(id, _, fn) callbacks[id] = fn end
 ModCallbacks = setmetatable({}, { __index = function(_, key) return key end })
-CallbackPriority = {LATE=1000}
+CallbackPriority = {EARLY=-100,LATE=1000}
 DamageFlag = {DAMAGE_FAKE=1<<21,DAMAGE_NO_PENALTIES=1<<28}
 EntityType = { ENTITY_PLAYER = 1 }
 TearFlags = { TEAR_HOMING = 1, TEAR_PIERCING = 2, TEAR_SPECTRAL = 4, TEAR_POISON = 8, TEAR_SLOW = 16 }

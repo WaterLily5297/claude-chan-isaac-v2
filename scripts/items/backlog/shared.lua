@@ -85,9 +85,11 @@ function Shared:Init(mod, Risk, C)
     C.On("update", function(frame)
         local isClear = Game():GetRoom():IsClear()
         for _, p in ipairs(C.Players()) do
-            if p:HasCollectible(Item.RATE_LIMIT_VALVE) and not C.Primed(p, "valve") then
+            if not p:HasCollectible(Item.RATE_LIMIT_VALVE) then
+                C.Unprime(p, "valve")
+            elseif not C.Primed(p, "valve") then
                 local last = C.LastAttack(p) or 0
-                if frame - last >= VALVE_IDLE then C.Prime(p, "valve", 1.3) end
+                if frame - last >= VALVE_IDLE then C.Prime(p, "valve", 1.3, nil, Item.RATE_LIMIT_VALVE) end
             end
             local r = C.Data(p).room
             if expireCartridge(r, isClear) then C.Refresh(p) end

@@ -2,7 +2,7 @@
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
 local callbacks, players, saved, draws, texts, enemies = {}, {}, nil, {}, {}, {}
-local C={Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
+local C={RISK_MAX=100,Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
 function include(name)
     if name=="scripts.constants" then return C end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
@@ -153,7 +153,7 @@ enter(2,true)
 assert(hud()=="Grok-chan: DROP: quote someone",hud())
 
 -- DROP quotes the nearest hostile within 220 units; nothing nearby spends nothing.
-enemy(400); tap(p); assert(hud()=="Grok-chan: DROP: quote someone" and state().cooldown==0)
+enemy(400); tap(p); assert(hud()=="DROP: No target in range" and state().cooldown==0)
 local friend=enemy(30); friend.friendly=true
 local quoted,other,third=enemy(50),enemy(120),enemy(200)
 tap(p); assert(texts[#texts]=="Quoted" and state().cooldown==300)
@@ -168,7 +168,7 @@ step(); hit(quoted,tear(p)); step(); hit(other,tear(q)); step(); hit(other,tear(
 assert(hud()=="Grok-chan: Ratio 0/3  6s","an own-only reply loses one Ratio")
 for _=1,4 do step(); hit(third,tear(p)) end
 assert(hud()=="Grok-chan: Ratio 3/3  6s","Ratio caps at three")
-tap(p); assert(state().cooldown<300 and hud():find("Ratio 3/3"),"no retarget during the quote")
+tap(p); assert(state().cooldown<300 and hud()=="DROP: Quote cooling down","no retarget during the quote")
 
 -- At expiry the quoted target takes one 1x pulse per stack.
 local before=#quoted.taken
@@ -224,8 +224,8 @@ tick(20)
 assert(state()==stableFirst and state(1)==stableSecond and state().cooldown==180 and state(1).cooldown==130,
     "unchanged owners retain their accounts and advance cooldowns once per frame")
 players={q,p}; tick()
-assert(state().cooldown==0 and state(1).cooldown==0 and state()~=stableFirst and state(1)~=stableSecond,
-    "swapping occupied slots cannot transfer cooldowns")
+assert(state().cooldown==129 and state(1).cooldown==179 and state()==stableSecond and state(1)==stableFirst,
+    "cooldowns follow their owners and age once during a slot swap")
 state().cooldown=20; players={q}; tick()
 assert(state().cooldown==19 and state(1)==nil,"departure prunes only the absent slot")
 players[2]=p; tick()

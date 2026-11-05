@@ -2,7 +2,7 @@
 local root=arg[1]
 local frame, paused, clear, room, floor = 0, false, true, 1, 10
 local callbacks, players, saved, draws, texts, enemies = {}, {}, nil, {}, {}, {}
-local C={Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
+local C={RISK_MAX=100,Player={CLAUDE_CHAN=41,DEEPSEEK_CHAN=42}}
 function include(name)
     if name=="scripts.constants" then return C end
     if name=="scripts.hud_text" then return {Draw=function(_,text) draws[#draws+1]=text end} end
@@ -263,8 +263,8 @@ tick(20)
 assert(state()==stableFirst and state(1)==stableSecond and state().routing==2 and state(1).routing==1,
     "unchanged owners retain their accounts and routing")
 players={q,p}; tick()
-assert(state().routing==0 and state(1).routing==0 and state()~=stableFirst and state(1)~=stableSecond,
-    "swapping occupied slots cannot transfer routing")
+assert(state().routing==1 and state(1).routing==2 and state()==stableSecond and state(1)==stableFirst,
+    "routing follows each continuously observed owner through a slot swap")
 state().routing=2; players={q}; tick()
 assert(state().routing==2 and state(1)==nil,"departure prunes only the absent slot")
 players[2]=p; tick()
