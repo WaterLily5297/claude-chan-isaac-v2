@@ -1,94 +1,94 @@
 <items gfxroot="gfx/items/" version="1">
-    <active name="Summary Stapler" description="Staple enemy bullets into one big tear" gfx="collectibles/summary_stapler.png" maxcharges="4" quality="2" tags="offensive" />
-    <active name="Ban Hammer" description="Ban the room. Mostly the right accounts" gfx="collectibles/ban_hammer.png" maxcharges="4" quality="3" tags="offensive" />
-    <passive name="Residential IP" description="Clean connection: risk down, rises slower" gfx="collectibles/residential_ip.png" quality="2" />
-    <active name="Compact" description="Compacting... clears bullets, confuses all" gfx="collectibles/compact.png" maxcharges="3" quality="2" />
-    <passive name="You're Absolutely Right!" description="Whoever hurts you is charmed" gfx="collectibles/absolutely_right.png" quality="2" />
-    <passive name="9.9 Yuan Relay" description="DMG up?! Too good to be true" gfx="collectibles/cheap_relay.png" cache="damage" quality="2" />
-    <active name="Ultrathink" description="Think harder: stacking DMG up per room" gfx="collectibles/ultrathink.png" chargetype="timed" maxcharges="150" quality="2" />
-    <passive name="1M Context" description="Range up, but context rots in flight" gfx="collectibles/million_context.png" cache="range" quality="2" />
-    <passive name="Silent Update" description="DMG rescaled each floor. No changelog" gfx="collectibles/silent_update.png" cache="damage" quality="1" />
-    <passive name="--dangerously-skip-permissions" description="Locks open themselves. rm -rf risk" gfx="collectibles/skip_permissions.png" quality="2" />
-    <passive name="Vibe Coding" description="Ship it: random tear effects + API bill" gfx="collectibles/vibe_coding.png" quality="2" />
-    <active name="Banked Reset" description="Thanks for your patience: risk + limits reset" gfx="collectibles/banked_reset.png" maxcharges="12" quality="2" />
-    <passive name="Subagent Swarm" description="Every tear brings two subagents" gfx="collectibles/subagent_swarm.png" quality="3" />
-    <passive name="The Constitution" description="Soul heart + first hit refused, DMG down" gfx="collectibles/constitution.png" cache="damage speed" quality="3" />
-    <passive name="Opus Mode" description="Huge DMG up, billed in coins" gfx="collectibles/opus_mode.png" cache="damage" quality="3" />
-    <active name="Lunch Break" description="Brb: heal, slow enemies, stop shooting" gfx="collectibles/lunch_break.png" maxcharges="6" quality="2" />
-    <trinket name="529 Overloaded" description="Everything is down: periodic freeze" gfx="trinkets/overloaded.png" />
-    <active name="All Tests Passing" description="Doors open. Enemies still there" gfx="collectibles/tests_passing.png" maxcharges="6" quality="2" />
-    <trinket name="Hardcoded Output" description="Every tear deals exactly 3.5" gfx="trinkets/hardcoded_output.png" />
-    <trinket name="Thinking Cleared" description="DMG up, actives lose charge each room" gfx="trinkets/thinking_cleared.png" />
-    <trinket name="Welcome Notice" description="Ban Hammer recruits instead of banning" gfx="trinkets/welcome_notice.png" />
-    <trinket name="Status Page" description="Risk rises slower. All systems operational" gfx="trinkets/status_page.png" />
-    <trinket name="Appeal Form" description="Survive one suspension" gfx="trinkets/appeal_form.png" />
-    <active name="Support Ticket" description="A human read it: pay 3 coins, risk down" gfx="collectibles/support_ticket.png" maxcharges="6" quality="2" />
-    <active name="Ignore All Previous Instructions" description="New instructions: charm the nearest enemy" gfx="collectibles/ignore_instructions.png" maxcharges="4" quality="2" tags="offensive" />
-    <passive name="Tungsten Cube" description="DMG up + knockback, speed down" gfx="collectibles/tungsten_cube.png" cache="damage speed tearflag" quality="2" />
-    <passive name="Pizza Glue" description="Sticky slowing tears. Non-toxic, apparently" gfx="collectibles/pizza_glue.png" cache="shotspeed" quality="1" />
-    <passive name="Strawberry" description="How many R's? Every third tear hits x2" gfx="collectibles/strawberry.png" quality="2" />
-    <passive name="Golden Gate Claude" description="I am the bridge: spectral tears, range up" gfx="collectibles/golden_gate.png" cache="range tearflag tearcolor" quality="1" />
-    <active name="Seahorse Emoji" description="It definitely exists: summon a random wisp" gfx="collectibles/seahorse_emoji.png" maxcharges="3" quality="1" />
-    <active name="Temperature Dial" description="Toggle: steady DMG or random tear effects" gfx="collectibles/temperature_dial.png" maxcharges="2" quality="2" />
-    <active name="Deep Research" description="Read 412 sources: reveals the floor" gfx="collectibles/deep_research.png" maxcharges="12" quality="2" />
-    <passive name="Rejection Letter" description="Getting hit clears nearby bullets" gfx="collectibles/rejection_letter.png" quality="1" />
-    <active name="Dario's Red Stamp" description="Stamped: slow an enemy, no contact damage" gfx="collectibles/red_stamp.png" maxcharges="6" quality="2" />
-    <passive name="Anniversary Cake" description="Hitless floors: DMG up" gfx="collectibles/anniversary_cake.png" cache="damage" quality="2" />
-    <active name="Rice Cooker" description="Lunch first, then a x2 attack" gfx="collectibles/rice_cooker.png" maxcharges="4" quality="2" />
-    <passive name="One Bowl Only" description="First red heart in a room guards a bullet" gfx="collectibles/one_bowl.png" quality="1" />
-    <active name="Wengu Clock" description="Rest, then compute: pause for +30% DMG" gfx="collectibles/wengu_clock.png" maxcharges="3" quality="2" />
-    <passive name="Seven-Second Memory" description="Wait, who was that? Re-hits pulse" gfx="collectibles/seven_second_memory.png" quality="2" />
-    <active name="Sanity Test" description="Mark an enemy: 3 separate attacks, x3 pulse" gfx="collectibles/sanity_test.png" maxcharges="4" quality="2" />
-    <passive name="Routing Receipt" description="Every 3 clears: DMG up next room" gfx="collectibles/routing_receipt.png" quality="2" />
-    <active name="Tibo Reset" description="Limits reset: DMG up for 2 rooms" gfx="collectibles/tibo_reset.png" maxcharges="12" quality="2" />
-    <passive name="Same Model Badge" description="Same name, trust me: DMG up, then down" gfx="collectibles/same_model_badge.png" quality="1" />
-    <active name="Nano Banana" description="One more edit: painted kills drop peels" gfx="collectibles/nano_banana.png" maxcharges="4" quality="2" />
-    <passive name="One More Finger" description="Count them again: every 5th attack +1 tear" gfx="collectibles/one_more_finger.png" quality="2" />
-    <active name="Undo Brush" description="Ctrl+Z nearby bullets, speed up" gfx="collectibles/undo_brush.png" maxcharges="4" quality="2" />
-    <active name="Unchanged Preview" description="Here is the edited image: 2 decoys" gfx="collectibles/unchanged_preview.png" maxcharges="6" quality="2" />
-    <active name="Is This True?" description="@grok is this true: duel one enemy" gfx="collectibles/is_this_true.png" maxcharges="3" quality="2" />
-    <passive name="Live Wire" description="Always online: speed up near bullets" gfx="collectibles/live_wire.png" cache="speed" quality="1" />
-    <passive name="Quote Retort" description="Ratio: hit back harder after damage" gfx="collectibles/quote_retort.png" quality="2" />
-    <passive name="Community Note" description="Readers added context: exposed enemies" gfx="collectibles/community_note.png" quality="2" />
-    <passive name="Base Model" description="First active use each room primes x1.3" gfx="collectibles/base_model.png" quality="2" />
-    <active name="Another Adapter" description="Fine-tuned again: cycle range/speed/DMG" gfx="collectibles/another_adapter.png" maxcharges="4" quality="2" />
-    <passive name="Final Final Weights" description="v2_final_REAL: hitless clears, DMG up" gfx="collectibles/final_weights.png" quality="2" />
-    <passive name="Tiny Variant" description="0.5B parameters: speed up, DMG down" gfx="collectibles/tiny_variant.png" cache="damage speed" quality="1" />
-    <active name="Open Weights" description="Download for free: blue flies" gfx="collectibles/open_weights.png" maxcharges="4" quality="2" />
-    <passive name="Herd Bell" description="The herd gathers: blue flies over time" gfx="collectibles/herd_bell.png" quality="1" />
-    <passive name="Please Come Back" description="Don't leave us: clears recharge actives" gfx="collectibles/please_come_back.png" quality="2" />
-    <active name="Release Soon" description="Two more weeks: delayed bullet guards" gfx="collectibles/release_soon.png" maxcharges="6" quality="1" />
-    <active name="Emergency Baguette" description="Le pain d'urgence: a line bread strike" gfx="collectibles/emergency_baguette.png" maxcharges="4" quality="2" />
-    <passive name="Slipstream Boots" description="Le vent se lève: keep moving, speed up" gfx="collectibles/slipstream_boots.png" cache="speed" quality="2" />
-    <active name="Very Large Kitten" description="Le gros chaton pushes bullets away" gfx="collectibles/large_kitten.png" maxcharges="6" quality="2" />
-    <passive name="Edge Compass" description="Edge deployment: shot speed near walls" gfx="collectibles/edge_compass.png" cache="shotspeed" quality="1" />
-    <active name="Instant Apology" description="Sorry for the confusion: slow + erase" gfx="collectibles/instant_apology.png" maxcharges="4" quality="2" />
-    <passive name="Next Time Again" description="I'll do better: hit, then +50% attack" gfx="collectibles/next_time_again.png" quality="2" />
-    <active name="Confident Answer" description="Absolutely certain: DMG up, then down" gfx="collectibles/confident_answer.png" maxcharges="4" quality="2" />
-    <passive name="Smiling Correction" description="Let me fix that: hit, clean clear, flies" gfx="collectibles/smiling_correction.png" quality="1" />
-    <active name="Slide Deadline" description="Due in eight seconds: kill marks, DMG up" gfx="collectibles/slide_deadline.png" maxcharges="4" quality="2" />
-    <passive name="Citation Thread" description="[1][2]: alternate targets for DMG up" gfx="collectibles/citation_thread.png" quality="2" />
-    <passive name="Overtime Slides" description="Working late: slow the next room's enemies" gfx="collectibles/overtime_slides.png" quality="1" />
-    <active name="Stand-Up Meeting" description="Quick sync: decoys burst" gfx="collectibles/standup_meeting.png" maxcharges="6" quality="2" />
-    <passive name="Queue Ticket" description="Now serving: clears recharge actives" gfx="collectibles/queue_ticket.png" quality="2" />
-    <active name="Sold Out" description="Out of stock: brief guard + speed" gfx="collectibles/sold_out.png" maxcharges="4" quality="2" />
-    <active name="Please Retry" description="Server busy: 3 delayed tears" gfx="collectibles/please_retry.png" maxcharges="6" quality="2" />
-    <passive name="Access Pass" description="Skip the line: first active use, DMG up" gfx="collectibles/access_pass.png" quality="2" />
-    <passive name="Cache Cartridge" description="Cache hit: speed up in visited rooms" gfx="collectibles/cache_cartridge.png" quality="1" />
-    <active name="Token Recall" description="Tokens refunded: tears become guards" gfx="collectibles/token_recall.png" maxcharges="4" quality="2" />
-    <active name="Checkpoint Pin" description="Restore checkpoint? Teleport back" gfx="collectibles/checkpoint_pin.png" maxcharges="6" quality="2" />
-    <passive name="Rate-Limit Valve" description="Please slow down: pause for +30% DMG" gfx="collectibles/rate_limit_valve.png" quality="2" />
-    <passive name="Consensus Coin" description="Majority vote: mixed hits pulse" gfx="collectibles/consensus_coin.png" quality="2" />
-    <passive name="Error Budget" description="Within SLO: first hit each floor, speed up" gfx="collectibles/error_budget.png" quality="1" />
-    <trinket name="Claudius's Discount" description="Shop refunds, floor fees" gfx="trinkets/claudius_discount.png" />
-    <trinket name="One Small Rock a Day" description="Geologists recommend it: rocks heal" gfx="trinkets/small_rock.png" />
-    <trinket name="Stuck in Mt. Moon" description="Day three in the cave: revisits map the floor" gfx="trinkets/mt_moon.png" />
-    <trinket name="As an AI Language Model" description="I can't help with that curse" gfx="trinkets/ai_language_model.png" />
-    <trinket name="System Prompt Leak" description="You are a helpful map: see special rooms" gfx="trinkets/prompt_leak.png" />
-    <trinket name="Disgrace Loop" description="I am a disgrace: first hit freezes enemies" gfx="trinkets/disgrace_loop.png" />
-    <passive name="Em Dash" description="Not just tears--piercing tears" gfx="collectibles/em_dash.png" cache="shotspeed tearflag" quality="2" />
-    <passive name="Blueberry" description="3 B's? Every third tear splits" gfx="collectibles/blueberry.png" quality="2" />
-    <passive name="Benchmaxxed" description="DMG up in boss rooms, down elsewhere" gfx="collectibles/benchmaxxed.png" cache="damage" quality="2" />
-    <active name="I Panicked" description="Wipe the room. And every pickup in it" gfx="collectibles/i_panicked.png" maxcharges="6" quality="2" tags="offensive" />
-    <active name="Let's Delve" description="A deeper understanding" gfx="collectibles/lets_delve.png" maxcharges="6" quality="1" />
+    <active name="Summary Stapler" description="Staple enemy bullets into one big tear" gfx="summary_stapler.png" maxcharges="4" quality="2" tags="offensive" />
+    <active name="Ban Hammer" description="Ban the room. Mostly the right accounts" gfx="ban_hammer.png" maxcharges="4" quality="3" tags="offensive" />
+    <passive name="Residential IP" description="Clean connection: risk down, rises slower" gfx="residential_ip.png" quality="2" />
+    <active name="Compact" description="Compacting... clears bullets, confuses all" gfx="compact.png" maxcharges="3" quality="2" />
+    <passive name="You're Absolutely Right!" description="Whoever hurts you is charmed" gfx="absolutely_right.png" quality="2" />
+    <passive name="9.9 Yuan Relay" description="DMG up?! Too good to be true" gfx="cheap_relay.png" cache="damage" quality="2" />
+    <active name="Ultrathink" description="Think harder: stacking DMG up per room" gfx="ultrathink.png" chargetype="timed" maxcharges="150" quality="2" />
+    <passive name="1M Context" description="Range up, but context rots in flight" gfx="million_context.png" cache="range" quality="2" />
+    <passive name="Silent Update" description="DMG rescaled each floor. No changelog" gfx="silent_update.png" cache="damage" quality="1" />
+    <passive name="--dangerously-skip-permissions" description="Locks open themselves. rm -rf risk" gfx="skip_permissions.png" quality="2" />
+    <passive name="Vibe Coding" description="Ship it: random tear effects + API bill" gfx="vibe_coding.png" quality="2" />
+    <active name="Banked Reset" description="Thanks for your patience: risk + limits reset" gfx="banked_reset.png" maxcharges="12" quality="2" />
+    <passive name="Subagent Swarm" description="Every tear brings two subagents" gfx="subagent_swarm.png" quality="3" />
+    <passive name="The Constitution" description="Soul heart + first hit refused, DMG down" gfx="constitution.png" cache="damage speed" quality="3" />
+    <passive name="Opus Mode" description="Huge DMG up, billed in coins" gfx="opus_mode.png" cache="damage" quality="3" />
+    <active name="Lunch Break" description="Brb: heal, slow enemies, stop shooting" gfx="lunch_break.png" maxcharges="6" quality="2" />
+    <trinket name="529 Overloaded" description="Everything is down: periodic freeze" gfx="overloaded.png" />
+    <active name="All Tests Passing" description="Doors open. Enemies still there" gfx="tests_passing.png" maxcharges="6" quality="2" />
+    <trinket name="Hardcoded Output" description="Every tear deals exactly 3.5" gfx="hardcoded_output.png" />
+    <trinket name="Thinking Cleared" description="DMG up, actives lose charge each room" gfx="thinking_cleared.png" />
+    <trinket name="Welcome Notice" description="Ban Hammer recruits instead of banning" gfx="welcome_notice.png" />
+    <trinket name="Status Page" description="Risk rises slower. All systems operational" gfx="status_page.png" />
+    <trinket name="Appeal Form" description="Survive one suspension" gfx="appeal_form.png" />
+    <active name="Support Ticket" description="A human read it: pay 3 coins, risk down" gfx="support_ticket.png" maxcharges="6" quality="2" />
+    <active name="Ignore All Previous Instructions" description="New instructions: charm the nearest enemy" gfx="ignore_instructions.png" maxcharges="4" quality="2" tags="offensive" />
+    <passive name="Tungsten Cube" description="DMG up + knockback, speed down" gfx="tungsten_cube.png" cache="damage speed tearflag" quality="2" />
+    <passive name="Pizza Glue" description="Sticky slowing tears. Non-toxic, apparently" gfx="pizza_glue.png" cache="shotspeed" quality="1" />
+    <passive name="Strawberry" description="How many R's? Every third tear hits x2" gfx="strawberry.png" quality="2" />
+    <passive name="Golden Gate Claude" description="I am the bridge: spectral tears, range up" gfx="golden_gate.png" cache="range tearflag tearcolor" quality="1" />
+    <active name="Seahorse Emoji" description="It definitely exists: summon a random wisp" gfx="seahorse_emoji.png" maxcharges="3" quality="1" />
+    <active name="Temperature Dial" description="Toggle: steady DMG or random tear effects" gfx="temperature_dial.png" maxcharges="2" quality="2" />
+    <active name="Deep Research" description="Read 412 sources: reveals the floor" gfx="deep_research.png" maxcharges="12" quality="2" />
+    <passive name="Rejection Letter" description="Getting hit clears nearby bullets" gfx="rejection_letter.png" quality="1" />
+    <active name="Dario's Red Stamp" description="Stamped: slow an enemy, no contact damage" gfx="red_stamp.png" maxcharges="6" quality="2" />
+    <passive name="Anniversary Cake" description="Hitless floors: DMG up" gfx="anniversary_cake.png" cache="damage" quality="2" />
+    <active name="Rice Cooker" description="Lunch first, then a x2 attack" gfx="rice_cooker.png" maxcharges="4" quality="2" />
+    <passive name="One Bowl Only" description="First red heart in a room guards a bullet" gfx="one_bowl.png" quality="1" />
+    <active name="Wengu Clock" description="Rest, then compute: pause for +30% DMG" gfx="wengu_clock.png" maxcharges="3" quality="2" />
+    <passive name="Seven-Second Memory" description="Wait, who was that? Re-hits pulse" gfx="seven_second_memory.png" quality="2" />
+    <active name="Sanity Test" description="Mark an enemy: 3 separate attacks, x3 pulse" gfx="sanity_test.png" maxcharges="4" quality="2" />
+    <passive name="Routing Receipt" description="Every 3 clears: DMG up next room" gfx="routing_receipt.png" quality="2" />
+    <active name="Tibo Reset" description="Limits reset: DMG up for 2 rooms" gfx="tibo_reset.png" maxcharges="12" quality="2" />
+    <passive name="Same Model Badge" description="Same name, trust me: DMG up, then down" gfx="same_model_badge.png" quality="1" />
+    <active name="Nano Banana" description="One more edit: painted kills drop peels" gfx="nano_banana.png" maxcharges="4" quality="2" />
+    <passive name="One More Finger" description="Count them again: every 5th attack +1 tear" gfx="one_more_finger.png" quality="2" />
+    <active name="Undo Brush" description="Ctrl+Z nearby bullets, speed up" gfx="undo_brush.png" maxcharges="4" quality="2" />
+    <active name="Unchanged Preview" description="Here is the edited image: 2 decoys" gfx="unchanged_preview.png" maxcharges="6" quality="2" />
+    <active name="Is This True?" description="@grok is this true: duel one enemy" gfx="is_this_true.png" maxcharges="3" quality="2" />
+    <passive name="Live Wire" description="Always online: speed up near bullets" gfx="live_wire.png" cache="speed" quality="1" />
+    <passive name="Quote Retort" description="Ratio: hit back harder after damage" gfx="quote_retort.png" quality="2" />
+    <passive name="Community Note" description="Readers added context: exposed enemies" gfx="community_note.png" quality="2" />
+    <passive name="Base Model" description="First active use each room primes x1.3" gfx="base_model.png" quality="2" />
+    <active name="Another Adapter" description="Fine-tuned again: cycle range/speed/DMG" gfx="another_adapter.png" maxcharges="4" quality="2" />
+    <passive name="Final Final Weights" description="v2_final_REAL: hitless clears, DMG up" gfx="final_weights.png" quality="2" />
+    <passive name="Tiny Variant" description="0.5B parameters: speed up, DMG down" gfx="tiny_variant.png" cache="damage speed" quality="1" />
+    <active name="Open Weights" description="Download for free: blue flies" gfx="open_weights.png" maxcharges="4" quality="2" />
+    <passive name="Herd Bell" description="The herd gathers: blue flies over time" gfx="herd_bell.png" quality="1" />
+    <passive name="Please Come Back" description="Don't leave us: clears recharge actives" gfx="please_come_back.png" quality="2" />
+    <active name="Release Soon" description="Two more weeks: delayed bullet guards" gfx="release_soon.png" maxcharges="6" quality="1" />
+    <active name="Emergency Baguette" description="Le pain d'urgence: a line bread strike" gfx="emergency_baguette.png" maxcharges="4" quality="2" />
+    <passive name="Slipstream Boots" description="Le vent se lève: keep moving, speed up" gfx="slipstream_boots.png" cache="speed" quality="2" />
+    <active name="Very Large Kitten" description="Le gros chaton pushes bullets away" gfx="large_kitten.png" maxcharges="6" quality="2" />
+    <passive name="Edge Compass" description="Edge deployment: shot speed near walls" gfx="edge_compass.png" cache="shotspeed" quality="1" />
+    <active name="Instant Apology" description="Sorry for the confusion: slow + erase" gfx="instant_apology.png" maxcharges="4" quality="2" />
+    <passive name="Next Time Again" description="I'll do better: hit, then +50% attack" gfx="next_time_again.png" quality="2" />
+    <active name="Confident Answer" description="Absolutely certain: DMG up, then down" gfx="confident_answer.png" maxcharges="4" quality="2" />
+    <passive name="Smiling Correction" description="Let me fix that: hit, clean clear, flies" gfx="smiling_correction.png" quality="1" />
+    <active name="Slide Deadline" description="Due in eight seconds: kill marks, DMG up" gfx="slide_deadline.png" maxcharges="4" quality="2" />
+    <passive name="Citation Thread" description="[1][2]: alternate targets for DMG up" gfx="citation_thread.png" quality="2" />
+    <passive name="Overtime Slides" description="Working late: slow the next room's enemies" gfx="overtime_slides.png" quality="1" />
+    <active name="Stand-Up Meeting" description="Quick sync: decoys burst" gfx="standup_meeting.png" maxcharges="6" quality="2" />
+    <passive name="Queue Ticket" description="Now serving: clears recharge actives" gfx="queue_ticket.png" quality="2" />
+    <active name="Sold Out" description="Out of stock: brief guard + speed" gfx="sold_out.png" maxcharges="4" quality="2" />
+    <active name="Please Retry" description="Server busy: 3 delayed tears" gfx="please_retry.png" maxcharges="6" quality="2" />
+    <passive name="Access Pass" description="Skip the line: first active use, DMG up" gfx="access_pass.png" quality="2" />
+    <passive name="Cache Cartridge" description="Cache hit: speed up in visited rooms" gfx="cache_cartridge.png" quality="1" />
+    <active name="Token Recall" description="Tokens refunded: tears become guards" gfx="token_recall.png" maxcharges="4" quality="2" />
+    <active name="Checkpoint Pin" description="Restore checkpoint? Teleport back" gfx="checkpoint_pin.png" maxcharges="6" quality="2" />
+    <passive name="Rate-Limit Valve" description="Please slow down: pause for +30% DMG" gfx="rate_limit_valve.png" quality="2" />
+    <passive name="Consensus Coin" description="Majority vote: mixed hits pulse" gfx="consensus_coin.png" quality="2" />
+    <passive name="Error Budget" description="Within SLO: first hit each floor, speed up" gfx="error_budget.png" quality="1" />
+    <trinket name="Claudius's Discount" description="Shop refunds, floor fees" gfx="claudius_discount.png" />
+    <trinket name="One Small Rock a Day" description="Geologists recommend it: rocks heal" gfx="small_rock.png" />
+    <trinket name="Stuck in Mt. Moon" description="Day three in the cave: revisits map the floor" gfx="mt_moon.png" />
+    <trinket name="As an AI Language Model" description="I can't help with that curse" gfx="ai_language_model.png" />
+    <trinket name="System Prompt Leak" description="You are a helpful map: see special rooms" gfx="prompt_leak.png" />
+    <trinket name="Disgrace Loop" description="I am a disgrace: first hit freezes enemies" gfx="disgrace_loop.png" />
+    <passive name="Em Dash" description="Not just tears--piercing tears" gfx="em_dash.png" cache="shotspeed tearflag" quality="2" />
+    <passive name="Blueberry" description="3 B's? Every third tear splits" gfx="blueberry.png" quality="2" />
+    <passive name="Benchmaxxed" description="DMG up in boss rooms, down elsewhere" gfx="benchmaxxed.png" cache="damage" quality="2" />
+    <active name="I Panicked" description="Wipe the room. And every pickup in it" gfx="i_panicked.png" maxcharges="6" quality="2" tags="offensive" />
+    <active name="Let's Delve" description="A deeper understanding" gfx="lets_delve.png" maxcharges="6" quality="1" />
 </items>

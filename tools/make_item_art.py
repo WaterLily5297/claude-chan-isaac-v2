@@ -1623,12 +1623,16 @@ def registrations(root):
             'Expected items XML with gfx/items/ root')
     result, names = {}, set()
     for item in xml:
-        name, gfx = item.get('name'), icon_path(item.get('gfx'))
+        name, value = item.get('name'), item.get('gfx')
         require(item.tag in ('active', 'passive', 'trinket'), 'Unknown item kind')
         require(isinstance(name, str) and name.strip(), 'Missing registered name')
+        # The engine adds the collectibles/ or trinkets/ folder itself; a folder
+        # in the XML value doubles it and the icon renders transparent.
+        require(isinstance(value, str) and re.fullmatch(r'[a-z0-9_]+\.png', value),
+                f'{name}: gfx must be a bare file name, got {value!r}')
+        folder = 'trinkets' if item.tag == 'trinket' else 'collectibles'
+        gfx = icon_path(f'{folder}/{value}')
         require(name not in names and gfx not in result, 'Duplicate item name or gfx')
-        expected_folder = 'trinkets' if item.tag == 'trinket' else 'collectibles'
-        require(gfx.startswith(expected_folder + '/'), f'{name}: wrong icon folder')
         names.add(name)
         result[gfx] = {'name': name, 'kind': item.tag}
     require(result, 'No item registrations')

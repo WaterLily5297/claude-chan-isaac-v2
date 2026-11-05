@@ -65,6 +65,11 @@ function Dossiers:Init(mod)
                     if not sprites[def.key] then
                         local sprite=Sprite()
                         sprite:Load("gfx/ui/dossiers/"..def.key..".anm2",true)
+                        -- Bind the portrait by its resources-root path so the
+                        -- card does not depend on how the engine resolves the
+                        -- ANM2 Spritesheet Path (gfx/-root vs. ANM2 folder).
+                        sprite:ReplaceSpritesheet(0,"gfx/ui/dossiers/"..def.key..".png")
+                        sprite:LoadGraphics()
                         sprite:Play("Idle",true)
                         sprites[def.key]=sprite
                     end
