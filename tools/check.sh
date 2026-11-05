@@ -94,6 +94,7 @@ if [ -n "$PY" ]; then
     "$PY" tests/test_item_art.py || fail=1
     "$PY" tests/test_thumbnail.py || fail=1
     "$PY" tests/test_tainted_approved.py || fail=1
+    "$PY" tests/test_package.py || fail=1
     "$PY" tests/test_interaction_audit.py || fail=1
     "$PY" tools/audit_interactions.py --check || fail=1
 fi

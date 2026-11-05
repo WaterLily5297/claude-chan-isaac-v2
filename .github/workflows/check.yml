@@ -18,3 +18,13 @@ jobs:
         run: bash tools/check.sh
         env:
           LUA: lua5.4
+      # Install package: the downloaded artifact unzips to one claude-chan-isaac/
+      # folder holding only the files the game loads.
+      - name: Build install package
+        run: python3 tools/package_mod.py --dir --no-zip --out dist
+      - name: Upload install package
+        uses: actions/upload-artifact@v4
+        with:
+          name: claude-chan-isaac-${{ github.sha }}
+          path: dist/
+          retention-days: 30
