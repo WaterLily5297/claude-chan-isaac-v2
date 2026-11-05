@@ -1,5 +1,11 @@
 # Changelog
 
+## Approved tainted designs in menus, stage and dossiers (2026-11-05; art)
+
+- The nine owner-approved tainted designs (GPT, Gemini, Grok, Qwen, Llama, Mistral, Doubao, Kimi, GLM) now provide those forms' MAP dossier, stage/VS portrait and tainted menu cell, replacing the darkened copies of the normal art. `tools/make_roster_tainted_art.py --approved` makes them mechanically from the approved sources.
+- Their in-run gameplay skins are unchanged (still darker copies of the normal sheet); new gameplay sprites need separate art work. Tainted Claude and DeepSeek are unchanged.
+- tests/test_tainted_approved.py runs in check.sh. Not yet seen in game; installed 8fd6a8c is untouched.
+
 ## MAP dossier portraits bind their image directly (2026-11-05; offline fix)
 
 - The MAP dossier card loaded its portrait only through the ANM2 Spritesheet Path, whose resolution rule (from `gfx/` or from the ANM2 folder) is not engine-confirmed, so the portrait could render blank. The card now binds `gfx/ui/dossiers/<key>.png` with ReplaceSpritesheet after loading, which works under either rule.
