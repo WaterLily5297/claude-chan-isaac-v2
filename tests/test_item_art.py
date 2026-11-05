@@ -34,9 +34,9 @@ class ItemArtTests(unittest.TestCase):
         (self.root / 'content').mkdir()
         (self.root / 'docs/art').mkdir(parents=True)
         (self.root / 'content/items.xml').write_text('''<items gfxroot="gfx/items/">
-<active name="Ban Hammer" gfx="collectibles/ban_hammer.png" />
-<active name="Compact" gfx="collectibles/compact.png" />
-<trinket name="Status Page" gfx="trinkets/status_page.png" />
+<active name="Ban Hammer" gfx="ban_hammer.png" />
+<active name="Compact" gfx="compact.png" />
+<trinket name="Status Page" gfx="status_page.png" />
 </items>''', encoding='utf-8')
         (self.root / 'content/itempools.xml').write_text('''<ItemPools><Pool Name="treasure">
 <Item Name="Ban Hammer" /><Item Name="Compact" /></Pool></ItemPools>''', encoding='utf-8')
@@ -113,8 +113,10 @@ class ItemArtTests(unittest.TestCase):
         original = path.read_text(encoding='utf-8')
         for changed, error in (
             (original.replace('name="Compact"', 'name="Ban Hammer"'), 'Duplicate'),
-            (original.replace('collectibles/compact.png', self.gfx), 'Duplicate'),
-            (original.replace('trinkets/status_page.png', 'collectibles/status_page.png'), 'wrong icon folder')):
+            (original.replace('gfx="compact.png"', 'gfx="ban_hammer.png"'), 'Duplicate'),
+            # A folder in the XML value doubles the engine's own folder.
+            (original.replace('gfx="compact.png"', 'gfx="collectibles/compact.png"'), 'bare file name'),
+            (original.replace('gfx="status_page.png"', 'gfx="trinkets/status_page.png"'), 'bare file name')):
             with self.subTest(error=error):
                 path.write_text(changed, encoding='utf-8')
                 with self.assertRaisesRegex(ValueError, error): art.check(self.root)

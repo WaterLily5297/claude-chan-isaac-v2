@@ -1,5 +1,11 @@
 # Changelog
 
+## Transparent item icons and dossiers (2026-10-29; art wiring)
+
+- The owner reported transparent item textures in game. `content/items.xml` named every icon as `collectibles/<name>.png` or `trinkets/<name>.png`, but the engine adds that folder itself under `gfxroot`, so it looked for `gfx/items/collectibles/collectibles/<name>.png` and found nothing. All 92 entries now give the bare file name; the PNG files do not move.
+- The 22 MAP dossier `.anm2` files named their image as `gfx/ui/dossiers/<key>.png`, but spritesheet paths start from `gfx/` (IsaacDocs ANM2 page), so the engine looked under `gfx/gfx/`. They now name `ui/dossiers/<key>.png`. The menu wrappers sit in `gfx/` itself, so their bare names were already right.
+- `tools/check.sh`, `tools/make_item_art.py` and `tools/check_assets.py` now resolve both paths the way the engine does and reject the old form, and both art importers write the relative dossier path. Not yet confirmed in game.
+
 ## Repository move (2026-10-28; documentation)
 
 - Development continues in WaterLily5297/claude-chan-isaac-v2 with main's full history. PR and issue numbers before this entry belong to the original repository, which stays as a read-only record with its old branches.
