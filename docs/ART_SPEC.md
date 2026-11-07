@@ -1,6 +1,6 @@
 # Art specification and production guide
 
-Updated 2026-10-26 from source `8fd6a8c`. The roster has **11 families / 22 forms, 80 collectibles, 12 trinkets and five pill effects**. [ART_STATUS.md](ART_STATUS.md) inventories every bundled image/animation and the native presentations without custom files. That document is the art queue; this one defines how replacements are produced and checked.
+Updated 2026-10-30 against local v2 `main` at `9888186`. The roster has **11 families / 22 forms, 80 collectibles, 12 trinkets and five pill effects**. [ART_STATUS.md](ART_STATUS.md) inventories every bundled image/animation and the native presentations without custom files. That document is the art queue; this one defines how replacements are produced and checked.
 
 The designed-icon registry, producer and validator are now implemented in source. The pipeline migration preserved all 92 PNGs. The [first](ITEM_ART_BATCH_01.md), [second](ITEM_ART_BATCH_02.md), [third](ITEM_ART_BATCH_03.md), [fourth](ITEM_ART_BATCH_04.md), [fifth](ITEM_ART_BATCH_05.md), [sixth](ITEM_ART_BATCH_06.md), [seventh](ITEM_ART_BATCH_07.md), [eighth](ITEM_ART_BATCH_08.md) and [ninth](ITEM_ART_BATCH_09.md) batches supply all 92 designed icons and 1x/4x before-after sheets; no placeholder icon remains. Native art acceptance remains pending.
 
@@ -30,6 +30,18 @@ Inspect native geometry privately when necessary, then draw original pixels in p
 | Collectible/trinket icon | `resources/gfx/items/{collectibles,trinkets}/<registered_gfx>.png`, exactly 32x32 RGBA8; retain the `items.xml` reference and pool identity. |
 | Pills | Five effects use native random pill presentation. No custom per-effect PNG is required by current registration. |
 | Relay Slime | Currently tinted/scaled native Clotty, with no bespoke sheet or animation. W1.6 must add explicit art/registration checks when a custom asset is implemented. |
+
+## Resource path resolution audit
+
+`tools/check_resource_paths.py` audits path-bearing references without changing assets. XML paths must be relative and case-exact. The [players.xml reference](https://wofsauge.github.io/IsaacDocs/rep/xml/players.html) shows `skin`, `portrait` and `nameimage` resolved through `root`, `portraitroot` and `nameimageroot`; the checker also audits the source's `bigportrait`/`bigportraitroot` pair as an offline candidate because that attribute is not described by the reference. `extraportrait` is documented as an ANM2 file, but no path base is documented, so the checker fails closed if one is added. The [entities2.xml reference](https://wofsauge.github.io/IsaacDocs/rep/xml/entities2.html) says `anm2path` is relative to `anm2root`; this mod has no `entities2.xml` entries today. The [costumes2.xml reference](https://wofsauge.github.io/IsaacDocs/rep/xml/costumes2.html) identifies `anm2path` as an ANM2 path but does not specify its base; the checker defers any future path until an explicit rule is verified. The [pocketitems.xml reference](https://wofsauge.github.io/IsaacDocs/rep/xml/pocketitems.html) defines a custom card's `hud` value as an animation name in `content/gfx/ui_cardfronts.anm2`, not a filesystem path. A custom card pickup may also need an `entities2.xml` entry.
+
+The standalone [U0 resource path audit](RESOURCE_PATH_AUDIT_2026-10-30.md) records the checked references, offline results and unresolved native path conventions.
+
+For collectibles and trinkets, the open [v2 PR #2](https://github.com/WaterLily5297/claude-chan-isaac-v2/pull/2) encodes the rule that the engine adds the `collectibles/` or `trinkets/` subfolder below the `items.xml` `gfxroot`; each `gfx` value is therefore a bare filename. Its offline regression test checks that interpretation, but the owner has not yet verified a pedestal or trinket in game. The standalone U0 checker defers `content/items.xml` while that PR owns it.
+
+The project audit plan treats each ANM2 `<Spritesheet Path>` as relative to its wrapper file. The [published ANM2 reference](https://wofsauge.github.io/IsaacDocs/rep/xml/Anm2_files.html) instead describes the value as starting from `gfx/`; these rules disagree. The three menu wrappers under `content/gfx/` use adjacent-sheet filenames, and the offline checker currently validates that candidate resolution. Keep the dossier wrappers owned by v2 PR #2 deferred until its path convention is reconciled with engine evidence and the owner checks the images in game. Do not treat either convention as engine acceptance based only on file existence.
+
+`Sprite:Load` and `ReplaceSpritesheet` paths are relative to the mod's `resources/` folder ([Sprite API](https://wofsauge.github.io/IsaacDocs/rep/Sprite.html)). `Font:Load` is a separate exception: its path is relative to the game's `resources/` folder, so the CJK font candidate is not a mod asset and its availability is unverified; the code falls back to English when it cannot load ([Font API](https://wofsauge.github.io/IsaacDocs/rep/Font.html)). `Isaac.GetItemConfig()` returns item configuration by ID; current Lua callers do not pass or resolve a filesystem path. `scripts/eid.lua` registers descriptions by ID and currently declares no custom icon sprite path. `content/entities2.xml` and `content/costumes2.xml` are absent today; their path rules are implemented for future entries.
 
 ## Player pose geometry
 
